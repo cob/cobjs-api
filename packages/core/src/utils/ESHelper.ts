@@ -7,4 +7,4 @@ function toEsFieldName(fieldName: string): string | null {
   return fieldName.replace(/\s+/g, "_").toLowerCase()
 }
 
-export { toEsFieldName }
+export {toEsFieldName}

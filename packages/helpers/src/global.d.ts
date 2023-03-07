@@ -5,6 +5,7 @@ declare global {
 
   interface CobApp {
     getCurrentLoggedInUser(): string
+
     getGroups(): Array<string>
   }
 

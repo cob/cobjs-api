@@ -6,10 +6,10 @@ import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
-import { CreateDomainRequest } from '../model';
-import { DecoratedDomain } from '../model';
-import { FieldError } from '../model';
-import { UpdateDomainRequest } from '../model';
+import { CreateDomainRequest } from '../schema';
+import { DecoratedDomain } from '../schema';
+import { FieldError } from '../schema';
+import { UpdateDomainRequest } from '../schema';
 
 /**
  * DomainsApi - axios parameter creator
@@ -47,7 +47,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -58,7 +58,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         *
+         * 
          * @summary Creates a new domain
          * @param {CreateDomainRequest} [createDomainRequest] The new definition details
          * @param {*} [options] Override http request option.
@@ -80,7 +80,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -94,9 +94,9 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         *
+         * 
          * @summary Delete an existing domain
-         * @param {number} domainId
+         * @param {number} domainId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -119,7 +119,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -155,7 +155,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -187,7 +187,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -228,7 +228,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -268,7 +268,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -279,7 +279,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         *
+         * 
          * @summary Update an existing domain
          * @param {number} domainId The domain identifier
          * @param {UpdateDomainRequest} [updateDomainRequest] The new definition details
@@ -305,7 +305,7 @@ const DomainsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -341,7 +341,7 @@ const DomainsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Creates a new domain
          * @param {CreateDomainRequest} [createDomainRequest] The new definition details
          * @param {*} [options] Override http request option.
@@ -352,9 +352,9 @@ const DomainsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Delete an existing domain
-         * @param {number} domainId
+         * @param {number} domainId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -408,7 +408,7 @@ const DomainsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Update an existing domain
          * @param {number} domainId The domain identifier
          * @param {UpdateDomainRequest} [updateDomainRequest] The new definition details
@@ -443,7 +443,7 @@ export class DomainsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Creates a new domain
      * @param {CreateDomainRequest} [createDomainRequest] The new definition details
      * @param {*} [options] Override http request option.
@@ -455,9 +455,9 @@ export class DomainsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Delete an existing domain
-     * @param {number} domainId
+     * @param {number} domainId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DomainsApi
@@ -516,7 +516,7 @@ export class DomainsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Update an existing domain
      * @param {number} domainId The domain identifier
      * @param {UpdateDomainRequest} [updateDomainRequest] The new definition details

@@ -11412,7 +11412,7 @@ const Se = function(i) {
       let r;
       i && (r = i.baseOptions);
       const u = { method: "POST", ...r, ...s }, m = {}, c = {}, l = new (i && i.formDataCtor || FormData)();
-      e !== void 0 && l.append("file", e), m["Content-Type"] = "multipart/form-data", g(t, c);
+      e !== void 0 && l.append("file", new Blob([JSON.stringify(e)], { type: "application/json" })), m["Content-Type"] = "multipart/form-data", g(t, c);
       let d = r && r.headers ? r.headers : {};
       return u.headers = { ...m, ...d, ...s.headers }, u.data = l, {
         url: j(t),

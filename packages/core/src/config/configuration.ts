@@ -1,8 +1,7 @@
 /* tslint:disable */
-/* tslint:disable */
 
 import axios from "axios"
-import { CookieJar } from "tough-cookie"
+import {CookieJar} from "tough-cookie"
 import * as axiosCookieJarSupport from "axios-cookiejar-support"
 
 export const cookieJar = new CookieJar()
@@ -69,5 +68,5 @@ export class Configuration {
 
 export const DEFAUULT_CONFIGURATION: Configuration =
   typeof window == "object" && window.self === self && self
-    ? new Configuration({ basePath:"" }) //this means we're in a browser, no need to specify server and all endpoints are already realtive to the current server
-    : new Configuration({ basePath: "https://learning.cultofbits.com" })
+    ? new Configuration({basePath: ""}) //this means we're in a browser, no need to specify server and all endpoints are already realtive to the current server
+    : new Configuration({basePath: "https://learning.cultofbits.com"})

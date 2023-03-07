@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
-import { ReportGenerationRequest } from '../model';
+import { ReportGenerationRequest } from '../schema';
 /**
  * ReportsApi - object-oriented interface
  * @export

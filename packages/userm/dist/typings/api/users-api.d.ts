@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
-import { UpdateUserRequest } from '../model';
-import { User } from '../model';
+import { UpdateUserRequest } from '../schema';
+import { User } from '../schema';
 /**
  * UsersApi - object-oriented interface
  * @export

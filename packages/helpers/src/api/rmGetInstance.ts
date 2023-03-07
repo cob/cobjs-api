@@ -1,6 +1,6 @@
-import { getServer } from '@cob/cobjs-api-core'
-import { InstancesApi } from '@cob/cobjs-api-recordm'
-import { UIInstance } from '../model/index'
+import {getServer} from '@cob/cobjs-api-core'
+import {InstancesApi} from '@cob/cobjs-api-recordm'
+import {UIInstance} from '../schema'
 
 const ResultURLTemplate = "/recordm/index.html#/instance/__INSTANCE_ID__"
 

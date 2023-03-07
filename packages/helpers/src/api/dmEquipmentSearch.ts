@@ -1,4 +1,4 @@
-import { getServer } from '@cob/cobjs-api-core'
+import {getServer} from '@cob/cobjs-api-core'
 import axios from "axios"
 
 const QueryURLTemplate = "/confm/confm/search?from=__FROM__&size=__SIZE__&q=__QUERY__"

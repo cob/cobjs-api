@@ -1,7 +1,7 @@
 /* tslint:disable */
 
-import { Configuration, DEFAUULT_CONFIGURATION } from "./configuration"
-import globalAxios, { AxiosInstance, AxiosRequestConfig } from "axios"
+import {Configuration, DEFAUULT_CONFIGURATION} from "./configuration"
+import globalAxios, {AxiosInstance, AxiosRequestConfig} from "axios"
 
 export interface RequestArgs {
   url: string

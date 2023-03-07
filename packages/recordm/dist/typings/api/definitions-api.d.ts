@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
-import { CreateDefinitionRequest } from '../model';
-import { DecoratedDefinition } from '../model';
-import { UpdateDefinitionRequest } from '../model';
+import { CreateDefinitionRequest } from '../schema';
+import { DecoratedDefinition } from '../schema';
+import { UpdateDefinitionRequest } from '../schema';
 /**
  * DefinitionsApi - object-oriented interface
  * @export

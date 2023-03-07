@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
-import { CreateDomainRequest } from '../model';
-import { DecoratedDomain } from '../model';
-import { UpdateDomainRequest } from '../model';
+import { CreateDomainRequest } from '../schema';
+import { DecoratedDomain } from '../schema';
+import { UpdateDomainRequest } from '../schema';
 /**
  * DomainsApi - object-oriented interface
  * @export

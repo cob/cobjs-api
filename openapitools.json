@@ -6,7 +6,7 @@
     "generators": {
       "v1.0": {
         "templateDir": "./cob-templates/typescript-axios",
-        "ignoreFileOverride": "/Users/hugomarcelino/projects/cob/rest-api-wrapper/.openapi-generator-ignore",
+        "ignoreFileOverride": "#{cwd}/.openapi-generator-ignore",
         "generatorName": "typescript-axios",
         "output": "#{cwd}/packages/#{name}/src/",
         "glob": "./openapi/*.{json,yaml}",
@@ -18,7 +18,7 @@
           "enumPropertyNaming": "UPPERCASE",
           "withSeparateModelsAndApi": true,
           "apiPackage": "api",
-          "modelPackage": "model"
+          "modelPackage": "schema"
         }
       }
     }

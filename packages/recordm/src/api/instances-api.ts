@@ -6,8 +6,8 @@ import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
-import { DecoratedInstance } from '../model';
-import { Instance } from '../model';
+import { DecoratedInstance } from '../schema';
+import { Instance } from '../schema';
 
 /**
  * InstancesApi - axios parameter creator
@@ -40,7 +40,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -80,7 +80,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -97,7 +97,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
          * Deletes an instance.
          * @summary Delete an instance
          * @param {number} id The id of the instance to delete
-         * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it.
+         * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -124,7 +124,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -173,7 +173,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -186,7 +186,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
         /**
          * Obtains a representation of an instance.
          * @summary Get an instance
-         * @param {number} id
+         * @param {number} id 
          * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -214,7 +214,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -255,7 +255,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -299,7 +299,7 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -343,13 +343,14 @@ const InstancesApiAxiosParamCreator = function (configuration?: Configuration) {
 
             // authentication cobtoken required
 
-            if (file !== undefined) {
-                localVarFormParams.append('file', file as any);
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', new Blob([JSON.stringify(file)], { type: "application/json", }));
             }
-
-
+    
+    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -397,7 +398,7 @@ const InstancesApiFp = function(configuration: Configuration) {
          * Deletes an instance.
          * @summary Delete an instance
          * @param {number} id The id of the instance to delete
-         * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it.
+         * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -422,7 +423,7 @@ const InstancesApiFp = function(configuration: Configuration) {
         /**
          * Obtains a representation of an instance.
          * @summary Get an instance
-         * @param {number} id
+         * @param {number} id 
          * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -508,7 +509,7 @@ export class InstancesApi extends BaseAPI {
      * Deletes an instance.
      * @summary Delete an instance
      * @param {number} id The id of the instance to delete
-     * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it.
+     * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
@@ -535,7 +536,7 @@ export class InstancesApi extends BaseAPI {
     /**
      * Obtains a representation of an instance.
      * @summary Get an instance
-     * @param {number} id
+     * @param {number} id 
      * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -22270,7 +22270,7 @@ const Ts = function(e) {
       let u;
       e && (u = e.baseOptions);
       const m = { method: "POST", ...u, ...n }, c = {}, p = {}, r = new (e && e.formDataCtor || FormData)();
-      i !== void 0 && r.append("file", i), c["Content-Type"] = "multipart/form-data", v(t, p);
+      i !== void 0 && r.append("file", new Blob([JSON.stringify(i)], { type: "application/json" })), c["Content-Type"] = "multipart/form-data", v(t, p);
       let k = u && u.headers ? u.headers : {};
       return m.headers = { ...c, ...k, ...n.headers }, m.data = r, {
         url: z(t),

@@ -6,9 +6,9 @@ import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
-import { FieldError } from '../model';
-import { UpdateUserRequest } from '../model';
-import { User } from '../model';
+import { FieldError } from '../schema';
+import { UpdateUserRequest } from '../schema';
+import { User } from '../schema';
 
 /**
  * UsersApi - axios parameter creator
@@ -47,7 +47,7 @@ const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -58,7 +58,7 @@ const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         *
+         * 
          * @summary Update an existing user
          * @param {number} id The user identifier
          * @param {UpdateUserRequest} [updateUserRequest] The updated user information
@@ -84,7 +84,7 @@ const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -120,7 +120,7 @@ const UsersApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Update an existing user
          * @param {number} id The user identifier
          * @param {UpdateUserRequest} [updateUserRequest] The updated user information
@@ -155,7 +155,7 @@ export class UsersApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Update an existing user
      * @param {number} id The user identifier
      * @param {UpdateUserRequest} [updateUserRequest] The updated user information

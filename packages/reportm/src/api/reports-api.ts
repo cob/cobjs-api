@@ -6,7 +6,7 @@ import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
-import { ReportGenerationRequest } from '../model';
+import { ReportGenerationRequest } from '../schema';
 
 /**
  * ReportsApi - axios parameter creator
@@ -37,7 +37,7 @@ const ReportsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -74,13 +74,13 @@ const ReportsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-            if (f !== undefined) {
+            if (f !== undefined) { 
                 localVarFormParams.append('f', f as any);
             }
-
-
+    
+    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};

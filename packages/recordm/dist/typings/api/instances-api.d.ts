@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
-import { DecoratedInstance } from '../model';
-import { Instance } from '../model';
+import { DecoratedInstance } from '../schema';
+import { Instance } from '../schema';
 /**
  * InstancesApi - object-oriented interface
  * @export

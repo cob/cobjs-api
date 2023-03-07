@@ -6,10 +6,10 @@ import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
-import { CreateDefinitionRequest } from '../model';
-import { DecoratedDefinition } from '../model';
-import { FieldError } from '../model';
-import { UpdateDefinitionRequest } from '../model';
+import { CreateDefinitionRequest } from '../schema';
+import { DecoratedDefinition } from '../schema';
+import { FieldError } from '../schema';
+import { UpdateDefinitionRequest } from '../schema';
 
 /**
  * DefinitionsApi - axios parameter creator
@@ -18,7 +18,7 @@ import { UpdateDefinitionRequest } from '../model';
 const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         *
+         * 
          * @summary Clones an existing definition
          * @param {number} definitionId The definition identifier
          * @param {*} [options] Override http request option.
@@ -43,7 +43,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -54,7 +54,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         *
+         * 
          * @summary Delete an existing definition
          * @param {number} definitionId The definition identifier
          * @param {*} [options] Override http request option.
@@ -79,7 +79,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -90,7 +90,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         *
+         * 
          * @summary Download a definition
          * @param {number} definitionId The definition identifier
          * @param {*} [options] Override http request option.
@@ -115,7 +115,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -157,7 +157,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -203,7 +203,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -239,7 +239,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -250,7 +250,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         *
+         * 
          * @summary Create a new definition
          * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
          * @param {*} [options] Override http request option.
@@ -272,7 +272,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -286,7 +286,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         *
+         * 
          * @summary Update an existing definition
          * @param {number} definitionId The definition identifier
          * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
@@ -312,7 +312,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -326,7 +326,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         *
+         * 
          * @summary Change the state of an existing definition
          * @param {number} definitionId The definition identifier
          * @param {string} state The new state
@@ -355,7 +355,7 @@ const DefinitionsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -376,7 +376,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
     const localVarAxiosParamCreator = DefinitionsApiAxiosParamCreator(configuration)
     return {
         /**
-         *
+         * 
          * @summary Clones an existing definition
          * @param {number} definitionId The definition identifier
          * @param {*} [options] Override http request option.
@@ -387,7 +387,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Delete an existing definition
          * @param {number} definitionId The definition identifier
          * @param {*} [options] Override http request option.
@@ -398,7 +398,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Download a definition
          * @param {number} definitionId The definition identifier
          * @param {*} [options] Override http request option.
@@ -445,7 +445,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Create a new definition
          * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
          * @param {*} [options] Override http request option.
@@ -456,7 +456,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Update an existing definition
          * @param {number} definitionId The definition identifier
          * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
@@ -468,7 +468,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Change the state of an existing definition
          * @param {number} definitionId The definition identifier
          * @param {string} state The new state
@@ -490,7 +490,7 @@ const DefinitionsApiFp = function(configuration: Configuration) {
  */
 export class DefinitionsApi extends BaseAPI {
     /**
-     *
+     * 
      * @summary Clones an existing definition
      * @param {number} definitionId The definition identifier
      * @param {*} [options] Override http request option.
@@ -502,7 +502,7 @@ export class DefinitionsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Delete an existing definition
      * @param {number} definitionId The definition identifier
      * @param {*} [options] Override http request option.
@@ -514,7 +514,7 @@ export class DefinitionsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Download a definition
      * @param {number} definitionId The definition identifier
      * @param {*} [options] Override http request option.
@@ -565,7 +565,7 @@ export class DefinitionsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Create a new definition
      * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
      * @param {*} [options] Override http request option.
@@ -577,7 +577,7 @@ export class DefinitionsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Update an existing definition
      * @param {number} definitionId The definition identifier
      * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
@@ -590,7 +590,7 @@ export class DefinitionsApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Change the state of an existing definition
      * @param {number} definitionId The definition identifier
      * @param {string} state The new state

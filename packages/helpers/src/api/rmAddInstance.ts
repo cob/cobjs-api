@@ -1,10 +1,10 @@
-import { getServer } from '@cob/cobjs-api-core'
-import { IntegrationApi } from '@cob/cobjs-api-recordm'
-import { UIInstance } from '../model/index'
+import {getServer} from '@cob/cobjs-api-core'
+import {IntegrationApi} from '@cob/cobjs-api-recordm'
+import {UIInstance} from '../schema/index'
 
 const ResultURLTemplate = "/recordm/index.html#/instance/__INSTANCE_ID__"
 
-export const rmAddInstance = function (definitionName: string, values: { [K: string]: any  }): Promise<UIInstance> {
+export const rmAddInstance = function (definitionName: string, values: { [K: string]: any }): Promise<UIInstance> {
   const data = {
     type: definitionName,
     values: values,

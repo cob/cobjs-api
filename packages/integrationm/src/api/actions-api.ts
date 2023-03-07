@@ -40,7 +40,7 @@ const ActionsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -80,7 +80,7 @@ const ActionsApiAxiosParamCreator = function (configuration?: Configuration) {
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);

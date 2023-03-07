@@ -1,4 +1,4 @@
-import { getServer } from '@cob/cobjs-api-core'
+import {getServer} from '@cob/cobjs-api-core'
 import axios from "axios"
 
 const GetURL = "/recordm/recordm/instances/__ID__??ignoreRefs=__FLAG__"

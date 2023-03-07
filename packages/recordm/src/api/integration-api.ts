@@ -6,11 +6,11 @@ import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
-import { Instance } from '../model';
-import { IntegrationAddMessage } from '../model';
-import { IntegrationDeleteMessage } from '../model';
-import { IntegrationStats } from '../model';
-import { IntegrationUpdateMessage } from '../model';
+import { Instance } from '../schema';
+import { IntegrationAddMessage } from '../schema';
+import { IntegrationDeleteMessage } from '../schema';
+import { IntegrationStats } from '../schema';
+import { IntegrationUpdateMessage } from '../schema';
 
 /**
  * IntegrationApi - axios parameter creator
@@ -41,7 +41,7 @@ const IntegrationApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -77,7 +77,7 @@ const IntegrationApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -113,7 +113,7 @@ const IntegrationApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication cobtoken required
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);

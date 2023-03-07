@@ -1,10 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
-import { Instance } from '../model';
-import { IntegrationAddMessage } from '../model';
-import { IntegrationDeleteMessage } from '../model';
-import { IntegrationStats } from '../model';
-import { IntegrationUpdateMessage } from '../model';
+import { Instance } from '../schema';
+import { IntegrationAddMessage } from '../schema';
+import { IntegrationDeleteMessage } from '../schema';
+import { IntegrationStats } from '../schema';
+import { IntegrationUpdateMessage } from '../schema';
 /**
  * IntegrationApi - object-oriented interface
  * @export

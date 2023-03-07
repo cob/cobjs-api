@@ -1,8 +1,8 @@
 /* tslint:disable */
 
-import { Configuration } from "./configuration"
-import { RequestArgs, RequiredError } from "./base"
-import { AxiosInstance, AxiosResponse } from "axios"
+import {Configuration} from "./configuration"
+import {RequestArgs, RequiredError} from "./base"
+import {AxiosInstance, AxiosResponse} from "axios"
 
 export const DUMMY_BASE_URL = "https://example.com"
 
@@ -53,7 +53,7 @@ export const createRequestFunction = function (
   configuration: Configuration
 ) {
   return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios) => {
-    const axiosRequestArgs = { ...axiosArgs.options, url: configuration.basePath + axiosArgs.url }
+    const axiosRequestArgs = {...axiosArgs.options, url: configuration.basePath + axiosArgs.url}
     return axios.request<T, R>(axiosRequestArgs)
   }
 }

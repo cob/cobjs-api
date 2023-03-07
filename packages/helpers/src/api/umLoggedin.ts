@@ -1,20 +1,20 @@
-import { getServer } from '@cob/cobjs-api-core'
+import {getServer} from '@cob/cobjs-api-core'
 import axios from "axios"
-import { UmLoggedInResponse } from "../model/index"
+import {UmLoggedInResponse} from "../schema"
 
 let _lastUmLoggedinResponse: UmLoggedInResponse
 let _lastUmLoggedinResponseValidity = 0
 let _currentPromise: Promise<{ username: string }>
 
-export const umLoggedin = function ({ throtle }: { throtle: boolean } = { throtle: true }): Promise<UmLoggedInResponse> {
+export const umLoggedin = function ({throtle}: { throtle: boolean } = {throtle: true}): Promise<UmLoggedInResponse> {
   // debugger;
   if (typeof cob !== 'undefined' && cob?.app?.getCurrentLoggedInUser) {
     return Promise.resolve({
       username: cob.app.getCurrentLoggedInUser(),
       groups: cob.app.getGroups()
         ? cob.app.getGroups().map((g: string) => {
-            return { name: g } as { name: string }
-          })
+          return {name: g} as { name: string }
+        })
         : [],
     })
   } else if (throtle && Date.now() < _lastUmLoggedinResponseValidity) {
@@ -38,7 +38,7 @@ export const umLoggedin = function ({ throtle }: { throtle: boolean } = { throtl
       })
       .catch((e) => {
         if (e.response.status === 403) {
-          return Promise.resolve({ username: "anonymous" })
+          return Promise.resolve({username: "anonymous"})
         } else {
           throw e
         }
