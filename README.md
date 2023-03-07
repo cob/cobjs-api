@@ -17,7 +17,7 @@ it is organizes by product:
 *Node:*
 
 ```typescript
-import { DefinitionsApi } from "@cob/cobjs-recordm"
+import { DefinitionsApi } from "@cob/cobjs-api-recordm"
 
 const definitionsApi = new DefinitionsApi()
 const definitions = await definitionsApi.getAllDefinitions()
