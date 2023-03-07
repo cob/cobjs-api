@@ -1,6 +1,6 @@
 import j from "axios";
-var io = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Lo(e) {
+var so = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function No(e) {
   var a = e.default;
   if (typeof a == "function") {
     var o = function() {
@@ -19,29 +19,29 @@ function Lo(e) {
     });
   }), o;
 }
-const Z = 2147483647, S = 36, Ia = 1, aa = 26, Re = 38, Pe = 700, To = 72, Ro = 128, Po = "-", Ne = /^xn--/, Me = /[^\0-\x7E]/, He = /[\x2E\u3002\uFF0E\uFF61]/g, Je = {
+const Z = 2147483647, S = 36, Oa = 1, aa = 26, Je = 38, Ge = 700, Mo = 72, Ho = 128, Jo = "-", Qe = /^xn--/, We = /[^\0-\x7E]/, Ye = /[\x2E\u3002\uFF0E\uFF61]/g, Ze = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, da = S - Ia, _ = Math.floor, ja = String.fromCharCode;
+}, da = S - Oa, _ = Math.floor, ja = String.fromCharCode;
 function G(e) {
-  throw new RangeError(Je[e]);
+  throw new RangeError(Ze[e]);
 }
-function Ge(e, a) {
+function Ve(e, a) {
   const o = [];
   let i = e.length;
   for (; i--; )
     o[i] = a(e[i]);
   return o;
 }
-function No(e, a) {
+function Go(e, a) {
   const o = e.split("@");
   let i = "";
-  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(He, ".");
-  const n = e.split("."), s = Ge(n, a).join(".");
+  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(Ye, ".");
+  const n = e.split("."), s = Ve(n, a).join(".");
   return i + s;
 }
-function Ba(e) {
+function $a(e) {
   const a = [];
   let o = 0;
   const i = e.length;
@@ -55,18 +55,18 @@ function Ba(e) {
   }
   return a;
 }
-const Mo = (e) => String.fromCodePoint(...e), Qe = function(e) {
+const Qo = (e) => String.fromCodePoint(...e), Xe = function(e) {
   return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : S;
-}, no = function(e, a) {
+}, to = function(e, a) {
   return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
-}, Ho = function(e, a, o) {
+}, Wo = function(e, a, o) {
   let i = 0;
-  for (e = o ? _(e / Pe) : e >> 1, e += _(e / a); e > da * aa >> 1; i += S)
+  for (e = o ? _(e / Ge) : e >> 1, e += _(e / a); e > da * aa >> 1; i += S)
     e = _(e / da);
-  return _(i + (da + 1) * e / (e + Re));
-}, Oa = function(e) {
+  return _(i + (da + 1) * e / (e + Je));
+}, qa = function(e) {
   const a = [], o = e.length;
-  let i = 0, n = Ro, s = To, t = e.lastIndexOf(Po);
+  let i = 0, n = Ho, s = Mo, t = e.lastIndexOf(Jo);
   t < 0 && (t = 0);
   for (let u = 0; u < t; ++u)
     e.charCodeAt(u) >= 128 && G("not-basic"), a.push(e.charCodeAt(u));
@@ -74,26 +74,26 @@ const Mo = (e) => String.fromCodePoint(...e), Qe = function(e) {
     let m = i;
     for (let p = 1, r = S; ; r += S) {
       u >= o && G("invalid-input");
-      const k = Qe(e.charCodeAt(u++));
+      const k = Xe(e.charCodeAt(u++));
       (k >= S || k > _((Z - i) / p)) && G("overflow"), i += k * p;
-      const b = r <= s ? Ia : r >= s + aa ? aa : r - s;
+      const b = r <= s ? Oa : r >= s + aa ? aa : r - s;
       if (k < b)
         break;
       const d = S - b;
       p > _(Z / d) && G("overflow"), p *= d;
     }
     const c = a.length + 1;
-    s = Ho(i - m, c, m == 0), _(i / c) > Z - n && G("overflow"), n += _(i / c), i %= c, a.splice(i++, 0, n);
+    s = Wo(i - m, c, m == 0), _(i / c) > Z - n && G("overflow"), n += _(i / c), i %= c, a.splice(i++, 0, n);
   }
   return String.fromCodePoint(...a);
-}, $a = function(e) {
+}, Ua = function(e) {
   const a = [];
-  e = Ba(e);
-  let o = e.length, i = Ro, n = 0, s = To;
+  e = $a(e);
+  let o = e.length, i = Ho, n = 0, s = Mo;
   for (const m of e)
     m < 128 && a.push(ja(m));
   let t = a.length, u = t;
-  for (t && a.push(Po); u < o; ) {
+  for (t && a.push(Jo); u < o; ) {
     let m = Z;
     for (const p of e)
       p >= i && p < m && (m = p);
@@ -103,48 +103,48 @@ const Mo = (e) => String.fromCodePoint(...e), Qe = function(e) {
       if (p < i && ++n > Z && G("overflow"), p == i) {
         let r = n;
         for (let k = S; ; k += S) {
-          const b = k <= s ? Ia : k >= s + aa ? aa : k - s;
+          const b = k <= s ? Oa : k >= s + aa ? aa : k - s;
           if (r < b)
             break;
           const d = r - b, l = S - b;
           a.push(
-            ja(no(b + d % l, 0))
+            ja(to(b + d % l, 0))
           ), r = _(d / l);
         }
-        a.push(ja(no(r, 0))), s = Ho(n, c, u == t), n = 0, ++u;
+        a.push(ja(to(r, 0))), s = Wo(n, c, u == t), n = 0, ++u;
       }
     ++n, ++i;
   }
   return a.join("");
-}, Jo = function(e) {
-  return No(e, function(a) {
-    return Ne.test(a) ? Oa(a.slice(4).toLowerCase()) : a;
+}, Yo = function(e) {
+  return Go(e, function(a) {
+    return Qe.test(a) ? qa(a.slice(4).toLowerCase()) : a;
   });
-}, Go = function(e) {
-  return No(e, function(a) {
-    return Me.test(a) ? "xn--" + $a(a) : a;
+}, Zo = function(e) {
+  return Go(e, function(a) {
+    return We.test(a) ? "xn--" + Ua(a) : a;
   });
-}, We = {
+}, Ke = {
   version: "2.1.0",
   ucs2: {
-    decode: Ba,
-    encode: Mo
+    decode: $a,
+    encode: Qo
   },
-  decode: Oa,
-  encode: $a,
-  toASCII: Go,
-  toUnicode: Jo
-}, Ye = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: qa,
+  encode: Ua,
+  toASCII: Zo,
+  toUnicode: Yo
+}, ai = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ucs2decode: Ba,
-  ucs2encode: Mo,
-  decode: Oa,
-  encode: $a,
-  toASCII: Go,
-  toUnicode: Jo,
-  default: We
-}, Symbol.toStringTag, { value: "Module" })), Qo = /* @__PURE__ */ Lo(Ye);
-var Ze = function(e, a) {
+  ucs2decode: $a,
+  ucs2encode: Qo,
+  decode: qa,
+  encode: Ua,
+  toASCII: Zo,
+  toUnicode: Yo,
+  default: Ke
+}, Symbol.toStringTag, { value: "Module" })), Vo = /* @__PURE__ */ No(ai);
+var oi = function(e, a) {
   if (a = a.split(":")[0], e = +e, !e)
     return !1;
   switch (a) {
@@ -162,47 +162,47 @@ var Ze = function(e, a) {
       return !1;
   }
   return e !== 0;
-}, qa = {}, Ve = Object.prototype.hasOwnProperty, Xe;
-function so(e) {
+}, La = {}, ei = Object.prototype.hasOwnProperty, ii;
+function uo(e) {
   try {
     return decodeURIComponent(e.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function to(e) {
+function ro(e) {
   try {
     return encodeURIComponent(e);
   } catch {
     return null;
   }
 }
-function Ke(e) {
+function ni(e) {
   for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, i; i = a.exec(e); ) {
-    var n = so(i[1]), s = so(i[2]);
+    var n = uo(i[1]), s = uo(i[2]);
     n === null || s === null || n in o || (o[n] = s);
   }
   return o;
 }
-function ai(e, a) {
+function si(e, a) {
   a = a || "";
   var o = [], i, n;
   typeof a != "string" && (a = "?");
   for (n in e)
-    if (Ve.call(e, n)) {
-      if (i = e[n], !i && (i === null || i === Xe || isNaN(i)) && (i = ""), n = to(n), i = to(i), n === null || i === null)
+    if (ei.call(e, n)) {
+      if (i = e[n], !i && (i === null || i === ii || isNaN(i)) && (i = ""), n = ro(n), i = ro(i), n === null || i === null)
         continue;
       o.push(n + "=" + i);
     }
   return o.length ? a + o.join("&") : "";
 }
-qa.stringify = ai;
-qa.parse = Ke;
-var Wo = Ze, ma = qa, oi = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Yo = /[\n\r\t]/g, ei = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Zo = /:\d+$/, ii = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, ni = /^[a-zA-Z]:/;
-function Ua(e) {
-  return (e || "").toString().replace(oi, "");
+La.stringify = si;
+La.parse = ni;
+var Xo = oi, ma = La, ti = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ko = /[\n\r\t]/g, ui = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, ae = /:\d+$/, ri = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, mi = /^[a-zA-Z]:/;
+function Ta(e) {
+  return (e || "").toString().replace(ti, "");
 }
-var wa = [
+var za = [
   ["#", "hash"],
   ["?", "query"],
   function(e, a) {
@@ -213,10 +213,10 @@ var wa = [
   [NaN, "host", void 0, 1, 1],
   [/:(\d*)$/, "port", void 0, 1],
   [NaN, "hostname", void 0, 1, 1]
-], uo = { hash: 1, query: 1 };
-function Vo(e) {
+], mo = { hash: 1, query: 1 };
+function oe(e) {
   var a;
-  typeof window < "u" ? a = window : typeof io < "u" ? a = io : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof so < "u" ? a = so : typeof self < "u" ? a = self : a = {};
   var o = a.location || {};
   e = e || o;
   var i = {}, n = typeof e, s;
@@ -224,21 +224,21 @@ function Vo(e) {
     i = new q(unescape(e.pathname), {});
   else if (n === "string") {
     i = new q(e, {});
-    for (s in uo)
+    for (s in mo)
       delete i[s];
   } else if (n === "object") {
     for (s in e)
-      s in uo || (i[s] = e[s]);
-    i.slashes === void 0 && (i.slashes = ei.test(e.href));
+      s in mo || (i[s] = e[s]);
+    i.slashes === void 0 && (i.slashes = ui.test(e.href));
   }
   return i;
 }
 function O(e) {
   return e === "file:" || e === "ftp:" || e === "http:" || e === "https:" || e === "ws:" || e === "wss:";
 }
-function Xo(e, a) {
-  e = Ua(e), e = e.replace(Yo, ""), a = a || {};
-  var o = ii.exec(e), i = o[1] ? o[1].toLowerCase() : "", n = !!o[2], s = !!o[3], t = 0, u;
+function ee(e, a) {
+  e = Ta(e), e = e.replace(Ko, ""), a = a || {};
+  var o = ri.exec(e), i = o[1] ? o[1].toLowerCase() : "", n = !!o[2], s = !!o[3], t = 0, u;
   return n ? s ? (u = o[2] + o[3] + o[4], t = o[2].length + o[3].length) : (u = o[2] + o[4], t = o[2].length) : s ? (u = o[3] + o[4], t = o[3].length) : u = o[4], i === "file:" ? t >= 2 && (u = u.slice(2)) : O(i) ? u = o[4] : i ? n && (u = u.slice(2)) : t >= 2 && O(a.protocol) && (u = o[4]), {
     protocol: i,
     slashes: n || O(i),
@@ -246,7 +246,7 @@ function Xo(e, a) {
     rest: u
   };
 }
-function si(e, a) {
+function pi(e, a) {
   if (e === "")
     return a;
   for (var o = (a || "/").split("/").slice(0, -1).concat(e.split("/")), i = o.length, n = o[i - 1], s = !1, t = 0; i--; )
@@ -254,32 +254,32 @@ function si(e, a) {
   return s && o.unshift(""), (n === "." || n === "..") && o.push(""), o.join("/");
 }
 function q(e, a, o) {
-  if (e = Ua(e), e = e.replace(Yo, ""), !(this instanceof q))
+  if (e = Ta(e), e = e.replace(Ko, ""), !(this instanceof q))
     return new q(e, a, o);
-  var i, n, s, t, u, m, c = wa.slice(), p = typeof a, r = this, k = 0;
-  for (p !== "object" && p !== "string" && (o = a, a = null), o && typeof o != "function" && (o = ma.parse), a = Vo(a), n = Xo(e || "", a), i = !n.protocol && !n.slashes, r.slashes = n.slashes || i && a.slashes, r.protocol = n.protocol || a.protocol || "", e = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || ni.test(e)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !O(r.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
+  var i, n, s, t, u, m, c = za.slice(), p = typeof a, r = this, k = 0;
+  for (p !== "object" && p !== "string" && (o = a, a = null), o && typeof o != "function" && (o = ma.parse), a = oe(a), n = ee(e || "", a), i = !n.protocol && !n.slashes, r.slashes = n.slashes || i && a.slashes, r.protocol = n.protocol || a.protocol || "", e = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || mi.test(e)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !O(r.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
     if (t = c[k], typeof t == "function") {
       e = t(e, r);
       continue;
     }
     s = t[0], m = t[1], s !== s ? r[m] = e : typeof s == "string" ? (u = s === "@" ? e.lastIndexOf(s) : e.indexOf(s), ~u && (typeof t[2] == "number" ? (r[m] = e.slice(0, u), e = e.slice(u + t[2])) : (r[m] = e.slice(u), e = e.slice(0, u)))) : (u = s.exec(e)) && (r[m] = u[1], e = e.slice(0, u.index)), r[m] = r[m] || i && t[3] && a[m] || "", t[4] && (r[m] = r[m].toLowerCase());
   }
-  o && (r.query = o(r.query)), i && a.slashes && r.pathname.charAt(0) !== "/" && (r.pathname !== "" || a.pathname !== "") && (r.pathname = si(r.pathname, a.pathname)), r.pathname.charAt(0) !== "/" && O(r.protocol) && (r.pathname = "/" + r.pathname), Wo(r.port, r.protocol) || (r.host = r.hostname, r.port = ""), r.username = r.password = "", r.auth && (u = r.auth.indexOf(":"), ~u ? (r.username = r.auth.slice(0, u), r.username = encodeURIComponent(decodeURIComponent(r.username)), r.password = r.auth.slice(u + 1), r.password = encodeURIComponent(decodeURIComponent(r.password))) : r.username = encodeURIComponent(decodeURIComponent(r.auth)), r.auth = r.password ? r.username + ":" + r.password : r.username), r.origin = r.protocol !== "file:" && O(r.protocol) && r.host ? r.protocol + "//" + r.host : "null", r.href = r.toString();
+  o && (r.query = o(r.query)), i && a.slashes && r.pathname.charAt(0) !== "/" && (r.pathname !== "" || a.pathname !== "") && (r.pathname = pi(r.pathname, a.pathname)), r.pathname.charAt(0) !== "/" && O(r.protocol) && (r.pathname = "/" + r.pathname), Xo(r.port, r.protocol) || (r.host = r.hostname, r.port = ""), r.username = r.password = "", r.auth && (u = r.auth.indexOf(":"), ~u ? (r.username = r.auth.slice(0, u), r.username = encodeURIComponent(decodeURIComponent(r.username)), r.password = r.auth.slice(u + 1), r.password = encodeURIComponent(decodeURIComponent(r.password))) : r.username = encodeURIComponent(decodeURIComponent(r.auth)), r.auth = r.password ? r.username + ":" + r.password : r.username), r.origin = r.protocol !== "file:" && O(r.protocol) && r.host ? r.protocol + "//" + r.host : "null", r.href = r.toString();
 }
-function ti(e, a, o) {
+function ci(e, a, o) {
   var i = this;
   switch (e) {
     case "query":
       typeof a == "string" && a.length && (a = (o || ma.parse)(a)), i[e] = a;
       break;
     case "port":
-      i[e] = a, Wo(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
+      i[e] = a, Xo(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
       break;
     case "hostname":
       i[e] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[e] = a, Zo.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
+      i[e] = a, ae.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
       i.protocol = a.toLowerCase(), i.slashes = !o;
@@ -300,26 +300,26 @@ function ti(e, a, o) {
       var s = a.indexOf(":");
       ~s ? (i.username = a.slice(0, s), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(s + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < wa.length; t++) {
-    var u = wa[t];
+  for (var t = 0; t < za.length; t++) {
+    var u = za[t];
     u[4] && (i[u[1]] = i[u[1]].toLowerCase());
   }
   return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && O(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function ui(e) {
+function li(e) {
   (!e || typeof e != "function") && (e = ma.stringify);
   var a, o = this, i = o.host, n = o.protocol;
   n && n.charAt(n.length - 1) !== ":" && (n += ":");
   var s = n + (o.protocol && o.slashes || O(o.protocol) ? "//" : "");
-  return o.username ? (s += o.username, o.password && (s += ":" + o.password), s += "@") : o.password ? (s += ":" + o.password, s += "@") : o.protocol !== "file:" && O(o.protocol) && !i && o.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || Zo.test(o.hostname) && !o.port) && (i += ":"), s += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (s += o.hash), s;
+  return o.username ? (s += o.username, o.password && (s += ":" + o.password), s += "@") : o.password ? (s += ":" + o.password, s += "@") : o.protocol !== "file:" && O(o.protocol) && !i && o.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || ae.test(o.hostname) && !o.port) && (i += ":"), s += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (s += o.hash), s;
 }
-q.prototype = { set: ti, toString: ui };
-q.extractProtocol = Xo;
-q.location = Vo;
-q.trimLeft = Ua;
+q.prototype = { set: ci, toString: li };
+q.extractProtocol = ee;
+q.location = oe;
+q.trimLeft = Ta;
 q.qs = ma;
-var ri = q, La = {}, Ko = {};
-const mi = [
+var ki = q, Ra = {}, ie = {};
+const gi = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -9696,8 +9696,8 @@ const mi = [
   "enterprisecloud.nu"
 ];
 (function(e) {
-  var a = Qo, o = {};
-  o.rules = mi.map(function(i) {
+  var a = Vo, o = {};
+  o.rules = gi.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -9776,7 +9776,7 @@ const mi = [
     var n = e.parse(i);
     return Boolean(n.domain && n.listed);
   };
-})(Ko);
+})(ie);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -9807,163 +9807,28 @@ const mi = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const pi = Ko, ro = [
+const hi = ie, po = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], ci = ["localhost", "invalid"];
-function li(e, a = {}) {
+], di = ["localhost", "invalid"];
+function ji(e, a = {}) {
   const o = e.split("."), i = o[o.length - 1], n = !!a.allowSpecialUseDomain, s = !!a.ignoreError;
-  if (n && ro.includes(i)) {
+  if (n && po.includes(i)) {
     if (o.length > 1)
       return `${o[o.length - 2]}.${i}`;
-    if (ci.includes(i))
+    if (di.includes(i))
       return `${i}`;
   }
-  if (!s && ro.includes(i))
+  if (!s && po.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return pi.get(e);
+  return hi.get(e);
 }
-La.getPublicSuffix = li;
-var Ta = {};
-/*!
- * Copyright (c) 2015, Salesforce.com, Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. Neither the name of Salesforce.com nor the names of its contributors may
- * be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-class ki {
-  constructor() {
-    this.synchronous = !1;
-  }
-  findCookie(a, o, i, n) {
-    throw new Error("findCookie is not implemented");
-  }
-  findCookies(a, o, i, n) {
-    throw new Error("findCookies is not implemented");
-  }
-  putCookie(a, o) {
-    throw new Error("putCookie is not implemented");
-  }
-  updateCookie(a, o, i) {
-    throw new Error("updateCookie is not implemented");
-  }
-  removeCookie(a, o, i, n) {
-    throw new Error("removeCookie is not implemented");
-  }
-  removeCookies(a, o, i) {
-    throw new Error("removeCookies is not implemented");
-  }
-  removeAllCookies(a) {
-    throw new Error("removeAllCookies is not implemented");
-  }
-  getAllCookies(a) {
-    throw new Error(
-      "getAllCookies is not implemented (therefore jar cannot be serialized)"
-    );
-  }
-}
-Ta.Store = ki;
-var Ra = {}, pa = {};
-pa.fromCallback = function(e) {
-  return Object.defineProperty(function() {
-    if (typeof arguments[arguments.length - 1] == "function")
-      e.apply(this, arguments);
-    else
-      return new Promise((a, o) => {
-        arguments[arguments.length] = (i, n) => {
-          if (i)
-            return o(i);
-          a(n);
-        }, arguments.length++, e.apply(this, arguments);
-      });
-  }, "name", { value: e.name });
-};
-pa.fromPromise = function(e) {
-  return Object.defineProperty(function() {
-    const a = arguments[arguments.length - 1];
-    if (typeof a != "function")
-      return e.apply(this, arguments);
-    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
-  }, "name", { value: e.name });
-};
-var ae = {};
-/*!
- * Copyright (c) 2015, Salesforce.com, Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. Neither the name of Salesforce.com nor the names of its contributors may
- * be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-const gi = La;
-function hi(e, a) {
-  const o = gi.getPublicSuffix(e, {
-    allowSpecialUseDomain: a
-  });
-  if (!o)
-    return null;
-  if (o == e)
-    return [e];
-  e.slice(-1) == "." && (e = e.slice(0, -1));
-  const i = e.slice(0, -(o.length + 1)).split(".").reverse();
-  let n = o;
-  const s = [n];
-  for (; i.length; )
-    n = `${i.shift()}.${n}`, s.push(n);
-  return s;
-}
-ae.permuteDomain = hi;
+Ra.getPublicSuffix = ji;
 var Pa = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -9995,37 +9860,178 @@ var Pa = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-function di(e, a) {
+class bi {
+  constructor() {
+    this.synchronous = !1;
+  }
+  findCookie(a, o, i, n) {
+    throw new Error("findCookie is not implemented");
+  }
+  findCookies(a, o, i, n) {
+    throw new Error("findCookies is not implemented");
+  }
+  putCookie(a, o) {
+    throw new Error("putCookie is not implemented");
+  }
+  updateCookie(a, o, i) {
+    throw new Error("updateCookie is not implemented");
+  }
+  removeCookie(a, o, i, n) {
+    throw new Error("removeCookie is not implemented");
+  }
+  removeCookies(a, o, i) {
+    throw new Error("removeCookies is not implemented");
+  }
+  removeAllCookies(a) {
+    throw new Error("removeAllCookies is not implemented");
+  }
+  getAllCookies(a) {
+    throw new Error(
+      "getAllCookies is not implemented (therefore jar cannot be serialized)"
+    );
+  }
+}
+Pa.Store = bi;
+var Na = {}, pa = {};
+pa.fromCallback = function(e) {
+  return Object.defineProperty(function() {
+    if (typeof arguments[arguments.length - 1] == "function")
+      e.apply(this, arguments);
+    else
+      return new Promise((a, o) => {
+        arguments[arguments.length] = (i, n) => {
+          if (i)
+            return o(i);
+          a(n);
+        }, arguments.length++, e.apply(this, arguments);
+      });
+  }, "name", { value: e.name });
+};
+pa.fromPromise = function(e) {
+  return Object.defineProperty(function() {
+    const a = arguments[arguments.length - 1];
+    if (typeof a != "function")
+      return e.apply(this, arguments);
+    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
+  }, "name", { value: e.name });
+};
+var ba = {};
+/*!
+ * Copyright (c) 2015, Salesforce.com, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of Salesforce.com nor the names of its contributors may
+ * be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+var co;
+function ne() {
+  if (co)
+    return ba;
+  co = 1;
+  const e = Ra;
+  function a(o, i) {
+    const n = e.getPublicSuffix(o, {
+      allowSpecialUseDomain: i
+    });
+    if (!n)
+      return null;
+    if (n == o)
+      return [o];
+    o.slice(-1) == "." && (o = o.slice(0, -1));
+    const s = o.slice(0, -(n.length + 1)).split(".").reverse();
+    let t = n;
+    const u = [t];
+    for (; s.length; )
+      t = `${s.shift()}.${t}`, u.push(t);
+    return u;
+  }
+  return ba.permuteDomain = a, ba;
+}
+var Ma = {};
+/*!
+ * Copyright (c) 2015, Salesforce.com, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of Salesforce.com nor the names of its contributors may
+ * be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+function fi(e, a) {
   return a === e || e.indexOf(a) === 0 && (a.substr(-1) === "/" || e.substr(a.length, 1) === "/");
 }
-Pa.pathMatch = di;
+Ma.pathMatch = fi;
 var ca = {};
-const ji = {}, bi = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const yi = {}, wi = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: ji
-}, Symbol.toStringTag, { value: "Module" })), fi = /* @__PURE__ */ Lo(bi);
-function oe() {
+  default: yi
+}, Symbol.toStringTag, { value: "Module" })), vi = /* @__PURE__ */ No(wi);
+function se() {
   try {
-    return fi;
+    return vi;
   } catch {
     return null;
   }
 }
-function yi() {
+function zi() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
-function wi(e) {
-  const a = (e.requireUtil || oe)();
+function xi(e) {
+  const a = (e.requireUtil || se)();
   return a ? a.inspect.custom : null;
 }
 ca.getUtilInspect = function(e, a = {}) {
-  const o = (a.requireUtil || oe)();
+  const o = (a.requireUtil || se)();
   return function(i, n, s) {
     return o ? o.inspect(i, n, s) : e(i);
   };
 };
 ca.getCustomInspectSymbol = function(e = {}) {
-  return (e.lookupCustomInspectSymbol || yi)() || wi(e);
+  return (e.lookupCustomInspectSymbol || zi)() || xi(e);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -10057,15 +10063,15 @@ ca.getCustomInspectSymbol = function(e = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: vi } = pa, zi = Ta.Store, xi = ae.permuteDomain, Ei = Pa.pathMatch, { getCustomInspectSymbol: Ci, getUtilInspect: Ai } = ca;
-class va extends zi {
+const { fromCallback: Ei } = pa, Ci = Pa.Store, Ai = ne().permuteDomain, Fi = Ma.pathMatch, { getCustomInspectSymbol: Di, getUtilInspect: Si } = ca;
+class xa extends Ci {
   constructor() {
     super(), this.synchronous = !0, this.idx = {};
-    const a = Ci();
+    const a = Di();
     a && (this[a] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: Ai(ee) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: Si(te) }.inspect(this.idx, !1, 2)} }`;
   }
   findCookie(a, o, i, n) {
     return !this.idx[a] || !this.idx[a][o] ? n(null, void 0) : n(null, this.idx[a][o][i] || null);
@@ -10077,7 +10083,7 @@ class va extends zi {
     let t;
     o ? t = function(c) {
       Object.keys(c).forEach((p) => {
-        if (Ei(o, p)) {
+        if (Fi(o, p)) {
           const r = c[p];
           for (const k in r)
             s.push(r[k]);
@@ -10090,7 +10096,7 @@ class va extends zi {
           s.push(r[k]);
       }
     };
-    const u = xi(a, i) || [a], m = this.idx;
+    const u = Ai(a, i) || [a], m = this.idx;
     u.forEach((c) => {
       const p = m[c];
       !p || t(p);
@@ -10132,32 +10138,32 @@ class va extends zi {
   "removeAllCookies",
   "getAllCookies"
 ].forEach((e) => {
-  va.prototype[e] = vi(
-    va.prototype[e]
+  xa.prototype[e] = Ei(
+    xa.prototype[e]
   );
 });
-Ra.MemoryCookieStore = va;
-function ee(e) {
+Na.MemoryCookieStore = xa;
+function te(e) {
   const a = Object.keys(e);
   if (a.length === 0)
     return "{}";
   let o = `{
 `;
   return Object.keys(e).forEach((i, n) => {
-    o += Fi(i, e[i]), n < a.length - 1 && (o += ","), o += `
+    o += _i(i, e[i]), n < a.length - 1 && (o += ","), o += `
 `;
   }), o += "}", o;
 }
-function Fi(e, a) {
+function _i(e, a) {
   const o = "  ";
   let i = `${o}'${e}': {
 `;
   return Object.keys(a).forEach((n, s, t) => {
-    i += Di(n, a[n]), s < t.length - 1 && (i += ","), i += `
+    i += Ii(n, a[n]), s < t.length - 1 && (i += ","), i += `
 `;
   }), i += `${o}}`, i;
 }
-function Di(e, a) {
+function Ii(e, a) {
   const o = "    ";
   let i = `${o}'${e}': {
 `;
@@ -10167,57 +10173,57 @@ function Di(e, a) {
 `;
   }), i += `${o}}`, i;
 }
-Ra.inspectFallback = ee;
+Na.inspectFallback = te;
 var R = {};
-function ie(e) {
+function ue(e) {
   return typeof e == "function";
 }
-function Si(e) {
-  return ne(e) && e !== "";
+function Bi(e) {
+  return re(e) && e !== "";
 }
-function _i(e) {
-  return Bi(e, Date) && Oi(e.getTime());
+function Oi(e) {
+  return qi(e, Date) && Ui(e.getTime());
 }
-function Ii(e) {
+function $i(e) {
   return e === "" || e instanceof String && e.toString() === "";
 }
-function ne(e) {
+function re(e) {
   return typeof e == "string" || e instanceof String;
 }
-function se(e) {
+function me(e) {
   return toString.call(e) === "[object Object]";
 }
-function Bi(e, a) {
+function qi(e, a) {
   try {
     return e instanceof a;
   } catch {
     return !1;
   }
 }
-function Oi(e) {
+function Ui(e) {
   return typeof e == "number" && e % 1 === 0;
 }
-function $i(e, a, o) {
-  if (ie(a) || (o = a, a = null), se(o) || (o = { Error: "Failed Check" }), !e)
+function Li(e, a, o) {
+  if (ue(a) || (o = a, a = null), me(o) || (o = { Error: "Failed Check" }), !e)
     if (a)
-      a(new za(o));
+      a(new Ea(o));
     else
-      throw new za(o);
+      throw new Ea(o);
 }
-class za extends Error {
+class Ea extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-R.ParameterError = za;
-R.isFunction = ie;
-R.isNonEmptyString = Si;
-R.isDate = _i;
-R.isEmptyString = Ii;
-R.isString = ne;
-R.isObject = se;
-R.validate = $i;
-var qi = "4.1.2";
+R.ParameterError = Ea;
+R.isFunction = ue;
+R.isNonEmptyString = Bi;
+R.isDate = Oi;
+R.isEmptyString = $i;
+R.isString = re;
+R.isObject = me;
+R.validate = Li;
+var Ti = "4.1.2";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
  * All rights reserved.
@@ -10248,8 +10254,8 @@ var qi = "4.1.2";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const mo = Qo, Ui = ri, Na = La, Li = Ta.Store, Ti = Ra.MemoryCookieStore, Ri = Pa.pathMatch, g = R, Pi = qi, { fromCallback: te } = pa, { getCustomInspectSymbol: Ni } = ca, Mi = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, po = /[\x00-\x1F]/, co = [`
-`, "\r", "\0"], Hi = /[\x20-\x3A\x3C-\x7E]+/, Ji = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, Gi = {
+const lo = Vo, Ri = ki, Ha = Ra, Pi = Pa.Store, Ni = Na.MemoryCookieStore, Mi = Ma.pathMatch, g = R, Hi = Ti, { fromCallback: pe } = pa, { getCustomInspectSymbol: Ji } = ca, Gi = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, ko = /[\x00-\x1F]/, go = [`
+`, "\r", "\0"], Qi = /[\x20-\x3A\x3C-\x7E]+/, Wi = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, Yi = {
   jan: 0,
   feb: 1,
   mar: 2,
@@ -10262,8 +10268,8 @@ const mo = Qo, Ui = ri, Na = La, Li = Ta.Store, Ti = Ra.MemoryCookieStore, Ri = 
   oct: 9,
   nov: 10,
   dec: 11
-}, xa = 2147483647e3, Qi = 0, lo = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function ko(e) {
+}, Ca = 2147483647e3, Zi = 0, ho = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function jo(e) {
   g.validate(g.isNonEmptyString(e), e);
   const a = String(e).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
@@ -10272,7 +10278,7 @@ const W = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), Wi = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, Yi = `
+}), Vi = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, Xi = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -10283,8 +10289,8 @@ const W = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), ue = new RegExp(`^${Yi}$`);
-function Ea(e, a, o, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), ce = new RegExp(`^${Xi}$`);
+function Aa(e, a, o, i) {
   let n = 0;
   for (; n < e.length; ) {
     const s = e.charCodeAt(n);
@@ -10294,27 +10300,27 @@ function Ea(e, a, o, i) {
   }
   return n < a || n > o || !i && n != e.length ? null : parseInt(e.substr(0, n), 10);
 }
-function Zi(e) {
+function Ki(e) {
   const a = e.split(":"), o = [0, 0, 0];
   if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const n = i == 2, s = Ea(a[i], 1, 2, n);
+    const n = i == 2, s = Aa(a[i], 1, 2, n);
     if (s === null)
       return null;
     o[i] = s;
   }
   return o;
 }
-function Vi(e) {
+function an(e) {
   e = String(e).substr(0, 3).toLowerCase();
-  const a = Gi[e];
+  const a = Yi[e];
   return a >= 0 ? a : null;
 }
 function ua(e) {
   if (!e)
     return;
-  const a = e.split(Ji);
+  const a = e.split(Wi);
   if (!a)
     return;
   let o = null, i = null, n = null, s = null, t = null, u = null;
@@ -10323,38 +10329,38 @@ function ua(e) {
     if (!c.length)
       continue;
     let p;
-    if (n === null && (p = Zi(c), p)) {
+    if (n === null && (p = Ki(c), p)) {
       o = p[0], i = p[1], n = p[2];
       continue;
     }
-    if (s === null && (p = Ea(c, 1, 2, !0), p !== null)) {
+    if (s === null && (p = Aa(c, 1, 2, !0), p !== null)) {
       s = p;
       continue;
     }
-    if (t === null && (p = Vi(c), p !== null)) {
+    if (t === null && (p = an(c), p !== null)) {
       t = p;
       continue;
     }
-    u === null && (p = Ea(c, 2, 4, !0), p !== null && (u = p, u >= 70 && u <= 99 ? u += 1900 : u >= 0 && u <= 69 && (u += 2e3)));
+    u === null && (p = Aa(c, 2, 4, !0), p !== null && (u = p, u >= 70 && u <= 99 ? u += 1900 : u >= 0 && u <= 69 && (u += 2e3)));
   }
   if (!(s === null || t === null || u === null || n === null || s < 1 || s > 31 || u < 1601 || o > 23 || i > 59 || n > 59))
     return new Date(Date.UTC(u, t, s, o, i, n));
 }
-function Xi(e) {
+function on(e) {
   return g.validate(g.isDate(e), e), e.toUTCString();
 }
 function oa(e) {
-  return e == null ? null : (e = e.trim().replace(/^\./, ""), ue.test(e) && (e = e.replace("[", "").replace("]", "")), mo && /[^\u0001-\u007f]/.test(e) && (e = mo.toASCII(e)), e.toLowerCase());
+  return e == null ? null : (e = e.trim().replace(/^\./, ""), ce.test(e) && (e = e.replace("[", "").replace("]", "")), lo && /[^\u0001-\u007f]/.test(e) && (e = lo.toASCII(e)), e.toLowerCase());
 }
-function go(e, a, o) {
+function bo(e, a, o) {
   if (e == null || a == null)
     return null;
   if (o !== !1 && (e = oa(e), a = oa(a)), e == a)
     return !0;
   const i = e.lastIndexOf(a);
-  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || Wi.test(e));
+  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || Vi.test(e));
 }
-function Ki(e) {
+function en(e) {
   if (!e || e.substr(0, 1) !== "/")
     return "/";
   if (e === "/")
@@ -10362,33 +10368,33 @@ function Ki(e) {
   const a = e.lastIndexOf("/");
   return a === 0 ? "/" : e.slice(0, a);
 }
-function an(e) {
+function nn(e) {
   if (g.isEmptyString(e))
     return e;
-  for (let a = 0; a < co.length; a++) {
-    const o = e.indexOf(co[a]);
+  for (let a = 0; a < go.length; a++) {
+    const o = e.indexOf(go[a]);
     o !== -1 && (e = e.substr(0, o));
   }
   return e;
 }
-function on(e, a) {
-  e = an(e), g.validate(g.isString(e), e);
+function sn(e, a) {
+  e = nn(e), g.validate(g.isString(e), e);
   let o = e.indexOf("=");
   if (a)
     o === 0 && (e = e.substr(1), o = e.indexOf("="));
   else if (o <= 0)
     return;
   let i, n;
-  if (o <= 0 ? (i = "", n = e.trim()) : (i = e.substr(0, o).trim(), n = e.substr(o + 1).trim()), po.test(i) || po.test(n))
+  if (o <= 0 ? (i = "", n = e.trim()) : (i = e.substr(0, o).trim(), n = e.substr(o + 1).trim()), ko.test(i) || ko.test(n))
     return;
   const s = new E();
   return s.key = i, s.value = n, s;
 }
-function en(e, a) {
+function tn(e, a) {
   if ((!a || typeof a != "object") && (a = {}), g.isEmptyString(e) || !g.isString(e))
     return null;
   e = e.trim();
-  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), n = on(i, !!a.loose);
+  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), n = sn(i, !!a.loose);
   if (!n)
     return;
   if (o === -1)
@@ -10454,13 +10460,13 @@ function en(e, a) {
   }
   return n;
 }
-function nn(e) {
+function un(e) {
   return g.validate(g.isObject(e), e), !e.key.startsWith("__Secure-") || e.secure;
 }
-function sn(e) {
+function rn(e) {
   return g.validate(g.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
 }
-function re(e) {
+function le(e) {
   let a;
   try {
     a = JSON.parse(e);
@@ -10469,12 +10475,12 @@ function re(e) {
   }
   return a;
 }
-function Ma(e) {
+function Ja(e) {
   if (!e || g.isEmptyString(e))
     return null;
   let a;
   if (typeof e == "string") {
-    if (a = re(e), a instanceof Error)
+    if (a = le(e), a instanceof Error)
       return null;
   } else
     a = e;
@@ -10485,23 +10491,23 @@ function Ma(e) {
   }
   return o;
 }
-function ho(e, a) {
+function fo(e, a) {
   g.validate(g.isObject(e), e), g.validate(g.isObject(a), a);
   let o = 0;
   const i = e.path ? e.path.length : 0;
   if (o = (a.path ? a.path.length : 0) - i, o !== 0)
     return o;
-  const n = e.creation ? e.creation.getTime() : xa, s = a.creation ? a.creation.getTime() : xa;
+  const n = e.creation ? e.creation.getTime() : Ca, s = a.creation ? a.creation.getTime() : Ca;
   return o = n - s, o !== 0 || (o = e.creationIndex - a.creationIndex), o;
 }
-function jo(e) {
+function yo(e) {
   if (e instanceof Object)
     return e;
   try {
     e = decodeURI(e);
   } catch {
   }
-  return Ui(e);
+  return Ri(e);
 }
 const X = {
   key: "",
@@ -10521,7 +10527,7 @@ const X = {
 };
 class E {
   constructor(a = {}) {
-    const o = Ni();
+    const o = Ji();
     o && (this[o] = this.inspect), Object.assign(this, X, a), this.creation = this.creation || new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
@@ -10540,13 +10546,13 @@ class E {
     return a;
   }
   clone() {
-    return Ma(this.toJSON());
+    return Ja(this.toJSON());
   }
   validate() {
-    if (!Mi.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ua(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !Hi.test(this.path))
+    if (!Gi.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ua(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !Qi.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || Na.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || Ha.getPublicSuffix(a) == null));
   }
   setExpires(a) {
     a instanceof Date ? this.expires = a : this.expires = ua(a) || "Infinity";
@@ -10560,7 +10566,7 @@ class E {
   }
   toString() {
     let a = this.cookieString();
-    return this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${Xi(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none" && (a += `; SameSite=${E.sameSiteCanonical[this.sameSite.toLowerCase()] || this.sameSite}`), this.extensions && this.extensions.forEach((o) => {
+    return this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${on(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none" && (a += `; SameSite=${E.sameSiteCanonical[this.sameSite.toLowerCase()] || this.sameSite}`), this.extensions && this.extensions.forEach((o) => {
       a += `; ${o}`;
     }), a;
   }
@@ -10579,7 +10585,7 @@ class E {
   }
   expiryDate(a) {
     const o = this.expiryTime(a);
-    return o == 1 / 0 ? new Date(xa) : o == -1 / 0 ? new Date(Qi) : new Date(o);
+    return o == 1 / 0 ? new Date(Ca) : o == -1 / 0 ? new Date(Zi) : new Date(o);
   }
   isPersistent() {
     return this.maxAge != null || this.expires != 1 / 0;
@@ -10592,8 +10598,8 @@ class E {
   }
 }
 E.cookiesCreated = 0;
-E.parse = en;
-E.fromJSON = Ma;
+E.parse = tn;
+E.fromJSON = Ja;
 E.serializableProperties = Object.keys(X);
 E.sameSiteLevel = {
   strict: 3,
@@ -10604,7 +10610,7 @@ E.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function bo(e) {
+function wo(e) {
   if (e != null) {
     const a = e.toLowerCase();
     switch (a) {
@@ -10618,20 +10624,20 @@ function bo(e) {
 }
 class F {
   constructor(a, o = { rejectPublicSuffixes: !0 }) {
-    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), g.validate(g.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new Ti(), this.prefixSecurity = bo(o.prefixSecurity), this._cloneSync = N("clone"), this._importCookiesSync = N("_importCookies"), this.getCookiesSync = N("getCookies"), this.getCookieStringSync = N("getCookieString"), this.getSetCookieStringsSync = N("getSetCookieStrings"), this.removeAllCookiesSync = N("removeAllCookies"), this.setCookieSync = N("setCookie"), this.serializeSync = N("serialize");
+    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), g.validate(g.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new Ni(), this.prefixSecurity = wo(o.prefixSecurity), this._cloneSync = N("clone"), this._importCookiesSync = N("_importCookies"), this.getCookiesSync = N("getCookies"), this.getCookieStringSync = N("getCookieString"), this.getSetCookieStringsSync = N("getSetCookieStrings"), this.removeAllCookiesSync = N("removeAllCookies"), this.setCookieSync = N("setCookie"), this.serializeSync = N("serialize");
   }
   setCookie(a, o, i, n) {
     g.validate(g.isNonEmptyString(o), n, i);
     let s;
     if (g.isFunction(o))
       return n = o, n(new Error("No URL was specified"));
-    const t = jo(o);
+    const t = yo(o);
     if (g.isFunction(i) && (n = i, i = {}), g.validate(g.isFunction(n), n), !g.isNonEmptyString(a) && !g.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
     const u = oa(t.hostname), m = i.loose || this.enableLooseMode;
     let c = null;
-    if (i.sameSiteContext && (c = ko(i.sameSiteContext), !c))
-      return n(new Error(lo));
+    if (i.sameSiteContext && (c = jo(i.sameSiteContext), !c))
+      return n(new Error(ho));
     if (typeof a == "string" || a instanceof String) {
       if (a = E.parse(a, { loose: m }), !a)
         return s = new Error("Cookie failed to parse"), n(i.ignoreError ? null : s);
@@ -10640,20 +10646,20 @@ class F {
         "First argument to setCookie must be a Cookie object or string"
       ), n(i.ignoreError ? null : s);
     const p = i.now || new Date();
-    if (this.rejectPublicSuffixes && a.domain && Na.getPublicSuffix(a.cdomain(), {
+    if (this.rejectPublicSuffixes && a.domain && Ha.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !ue.test(a.domain))
+    }) == null && !ce.test(a.domain))
       return s = new Error("Cookie has domain set to a public suffix"), n(i.ignoreError ? null : s);
     if (a.domain) {
-      if (!go(u, a.cdomain(), !1))
+      if (!bo(u, a.cdomain(), !1))
         return s = new Error(
           `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${u}`
         ), n(i.ignoreError ? null : s);
       a.hostOnly == null && (a.hostOnly = !1);
     } else
       a.hostOnly = !0, a.domain = u;
-    if ((!a.path || a.path[0] !== "/") && (a.path = Ki(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+    if ((!a.path || a.path[0] !== "/") && (a.path = en(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
       return s = new Error("Cookie is HttpOnly and this isn't an HTTP API"), n(i.ignoreError ? null : s);
     if (a.sameSite !== "none" && a.sameSite !== void 0 && c && c === "none")
       return s = new Error(
@@ -10662,7 +10668,7 @@ class F {
     const r = this.prefixSecurity === W.SILENT;
     if (this.prefixSecurity !== W.DISABLED) {
       let d = !1, l;
-      if (nn(a) ? sn(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
+      if (un(a) ? rn(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
         return n(
           i.ignoreError || r ? null : new Error(l)
         );
@@ -10690,16 +10696,16 @@ class F {
   }
   getCookies(a, o, i) {
     g.validate(g.isNonEmptyString(a), i, a);
-    const n = jo(a);
+    const n = yo(a);
     g.isFunction(o) && (i = o, o = {}), g.validate(g.isObject(o), i, o), g.validate(g.isFunction(i), i);
     const s = oa(n.hostname), t = n.pathname || "/";
     let u = o.secure;
     u == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (u = !0);
     let m = 0;
     if (o.sameSiteContext) {
-      const l = ko(o.sameSiteContext);
+      const l = jo(o.sameSiteContext);
       if (m = E.sameSiteLevel[l], !m)
-        return i(new Error(lo));
+        return i(new Error(ho));
     }
     let c = o.http;
     c == null && (c = !0);
@@ -10708,9 +10714,9 @@ class F {
       if (l.hostOnly) {
         if (l.domain != s)
           return !1;
-      } else if (!go(s, l.domain, !1))
+      } else if (!bo(s, l.domain, !1))
         return !1;
-      return !k && !Ri(t, l.path) || l.secure && !u || l.httpOnly && !c || m && E.sameSiteLevel[l.sameSite || "none"] > m ? !1 : r && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
+      return !k && !Mi(t, l.path) || l.secure && !u || l.httpOnly && !c || m && E.sameSiteLevel[l.sameSite || "none"] > m ? !1 : r && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
       }), !1) : !0;
     }
     b.findCookies(
@@ -10720,7 +10726,7 @@ class F {
       (l, f) => {
         if (l)
           return i(l);
-        f = f.filter(d), o.sort !== !1 && (f = f.sort(ho));
+        f = f.filter(d), o.sort !== !1 && (f = f.sort(fo));
         const L = new Date();
         for (const ha of f)
           ha.lastAccessed = L;
@@ -10734,7 +10740,7 @@ class F {
     const i = function(n, s) {
       n ? o(n) : o(
         null,
-        s.sort(ho).map((t) => t.cookieString()).join("; ")
+        s.sort(fo).map((t) => t.cookieString()).join("; ")
       );
     };
     a.push(i), this.getCookies.apply(this, a);
@@ -10755,12 +10761,12 @@ class F {
     let o = this.store.constructor.name;
     g.isObject(o) && (o = null);
     const i = {
-      version: `tough-cookie@${Pi}`,
+      version: `tough-cookie@${Hi}`,
       storeType: o,
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: bo(this.prefixSecurity),
+      prefixSecurity: wo(this.prefixSecurity),
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
@@ -10786,7 +10792,7 @@ class F {
         return o(s, this);
       let t;
       try {
-        t = Ma(i.shift());
+        t = Ja(i.shift());
       } catch (u) {
         return o(u);
       }
@@ -10815,7 +10821,7 @@ class F {
   removeAllCookies(a) {
     g.validate(g.isFunction(a), a);
     const o = this.store;
-    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== Li.prototype.removeAllCookies)
+    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== Pi.prototype.removeAllCookies)
       return o.removeAllCookies(a);
     o.getAllCookies((i, n) => {
       if (i)
@@ -10842,7 +10848,7 @@ class F {
     arguments.length !== 3 && (i = o, o = null), g.validate(g.isFunction(i), i);
     let n;
     if (typeof a == "string") {
-      if (n = re(a), n instanceof Error)
+      if (n = le(a), n instanceof Error)
         return i(n);
     } else
       n = a;
@@ -10881,9 +10887,9 @@ F.fromJSON = F.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((e) => {
-  F.prototype[e] = te(F.prototype[e]);
+  F.prototype[e] = pe(F.prototype[e]);
 });
-F.deserialize = te(F.deserialize);
+F.deserialize = pe(F.deserialize);
 function N(e) {
   return function(...a) {
     if (!this.store.synchronous)
@@ -10898,20 +10904,21 @@ function N(e) {
     return i;
   };
 }
-var tn = F;
-Na.getPublicSuffix;
+var mn = F;
+Ha.getPublicSuffix;
+ne().permuteDomain;
 g.ParameterError;
-var me = {};
-Object.defineProperty(me, "__esModule", { value: !0 });
-function un(e) {
+var ke = {};
+Object.defineProperty(ke, "__esModule", { value: !0 });
+function pn(e) {
   return e;
 }
-var rn = me.wrapper = un;
-const pe = new tn();
-rn && (j.defaults.jar = pe);
+var cn = ke.wrapper = pn;
+const ge = new mn();
+cn && (j.defaults.jar = ge);
 j.defaults.withCredentials = !0;
-class fo {
-  constructor(a = ce) {
+class vo {
+  constructor(a = he) {
     this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
   isJsonMime(a) {
@@ -10919,17 +10926,17 @@ class fo {
     return a !== null && (o.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const ce = typeof window == "object" && window.self === self && self ? new fo({ basePath: "" }) : new fo({ basePath: "https://learning.cultofbits.com" }), mn = ce;
+const he = typeof window == "object" && window.self === self && self ? new vo({ basePath: "" }) : new vo({ basePath: "https://learning.cultofbits.com" }), ln = he;
 function A() {
-  return mn.basePath;
+  return ln.basePath;
 }
-let na, yo = 0, sa;
-const wo = function({ throtle: e } = { throtle: !0 }) {
+let na, zo = 0, sa;
+const xo = function({ throtle: e } = { throtle: !0 }) {
   var a;
   return typeof cob < "u" && ((a = cob == null ? void 0 : cob.app) == null ? void 0 : a.getCurrentLoggedInUser) ? Promise.resolve({
     username: cob.app.getCurrentLoggedInUser(),
     groups: cob.app.getGroups() ? cob.app.getGroups().map((o) => ({ name: o })) : []
-  }) : e && Date.now() < yo ? (na.throtle = !0, Promise.resolve(na)) : e && sa && typeof sa.then == "function" ? sa.then((o) => o) : sa = j.get(A() + "/userm/userm/user/loggedin").then((o) => (yo = Date.now() + 6e4, na = {
+  }) : e && Date.now() < zo ? (na.throtle = !0, Promise.resolve(na)) : e && sa && typeof sa.then == "function" ? sa.then((o) => o) : sa = j.get(A() + "/userm/userm/user/loggedin").then((o) => (zo = Date.now() + 6e4, na = {
     username: o.data.loggedInUser.username,
     groups: (o.data.loggedInUser.groups || []).map((i) => i.name),
     throtle: !1
@@ -10948,7 +10955,7 @@ function ta(e) {
   }
   return e;
 }
-var pn = {
+var kn = {
   read: function(e) {
     return e[0] === '"' && (e = e.slice(1, -1)), e.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
   },
@@ -10959,7 +10966,7 @@ var pn = {
     );
   }
 };
-function Ca(e, a) {
+function Fa(e, a) {
   function o(n, s, t) {
     if (!(typeof document > "u")) {
       t = ta({}, a, t), typeof t.expires == "number" && (t.expires = new Date(Date.now() + t.expires * 864e5)), t.expires && (t.expires = t.expires.toUTCString()), n = encodeURIComponent(n).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
@@ -10997,10 +11004,10 @@ function Ca(e, a) {
         );
       },
       withAttributes: function(n) {
-        return Ca(this.converter, ta({}, this.attributes, n));
+        return Fa(this.converter, ta({}, this.attributes, n));
       },
       withConverter: function(n) {
-        return Ca(ta({}, this.converter, n), this.attributes);
+        return Fa(ta({}, this.converter, n), this.attributes);
       }
     },
     {
@@ -11009,24 +11016,24 @@ function Ca(e, a) {
     }
   );
 }
-var cn = Ca(pn, { path: "/" });
+var gn = Fa(kn, { path: "/" });
 const Ks = function({ username: e, password: a, token: o }) {
   return e && a ? j.post(A() + "/userm/security/auth", {
     username: e,
     password: a
-  }).then(() => wo({ throtle: !1 })).catch((i) => {
+  }).then(() => xo({ throtle: !1 })).catch((i) => {
     throw i;
-  }) : o ? (typeof window < "u" ? (console.warn("You should only use timeless tokens in backend scripts, not browser. Ignoring"), cn.set("cobtoken", o, { secure: !0, domain: window.location.hostname })) : pe.setCookieSync("cobtoken=" + o + ";", A()), wo({ throtle: !1 })) : Promise.reject("Specify a username/password OR a token");
+  }) : o ? (typeof window < "u" ? (console.warn("You should only use timeless tokens in backend scripts, not browser. Ignoring"), gn.set("cobtoken", o, { secure: !0, domain: window.location.hostname })) : ge.setCookieSync("cobtoken=" + o + ";", A()), xo({ throtle: !1 })) : Promise.reject("Specify a username/password OR a token");
 }, at = async function() {
   return await j.get(A() + "/userm/security/auth/logout");
-}, ln = "/confm/confm/search?from=__FROM__&size=__SIZE__&q=__QUERY__", kn = "/confm/#/search/q=__QUERY__", ot = async function(e = "*", a = 0, o = 0) {
-  const i = ln.replace("__QUERY__", e).replace("__FROM__", `${a}`).replace("__SIZE__", `${o}`);
-  return j.get(A() + i).then((n) => (n.data.resultsUrl = A() + kn.replace("__QUERY__", e), n.data)).catch((n) => {
+}, hn = "/confm/confm/search?from=__FROM__&size=__SIZE__&q=__QUERY__", dn = "/confm/#/search/q=__QUERY__", ot = async function(e = "*", a = 0, o = 0) {
+  const i = hn.replace("__QUERY__", e).replace("__FROM__", `${a}`).replace("__SIZE__", `${o}`);
+  return j.get(A() + i).then((n) => (n.data.resultsUrl = A() + dn.replace("__QUERY__", e), n.data)).catch((n) => {
     throw n;
   });
 };
-var vo = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function le(e) {
+var Eo = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function de(e) {
   var a = e.default;
   if (typeof a == "function") {
     var o = function() {
@@ -11045,29 +11052,29 @@ function le(e) {
     });
   }), o;
 }
-const V = 2147483647, I = 36, Ha = 1, ea = 26, gn = 38, hn = 700, ke = 72, ge = 128, he = "-", dn = /^xn--/, jn = /[^\0-\x7E]/, bn = /[\x2E\u3002\uFF0E\uFF61]/g, fn = {
+const V = 2147483647, I = 36, Ga = 1, ea = 26, jn = 38, bn = 700, je = 72, be = 128, fe = "-", fn = /^xn--/, yn = /[^\0-\x7E]/, wn = /[\x2E\u3002\uFF0E\uFF61]/g, vn = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, ba = I - Ha, B = Math.floor, fa = String.fromCharCode;
+}, fa = I - Ga, B = Math.floor, ya = String.fromCharCode;
 function Q(e) {
-  throw new RangeError(fn[e]);
+  throw new RangeError(vn[e]);
 }
-function yn(e, a) {
+function zn(e, a) {
   const o = [];
   let i = e.length;
   for (; i--; )
     o[i] = a(e[i]);
   return o;
 }
-function de(e, a) {
+function ye(e, a) {
   const o = e.split("@");
   let i = "";
-  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(bn, ".");
-  const n = e.split("."), s = yn(n, a).join(".");
+  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(wn, ".");
+  const n = e.split("."), s = zn(n, a).join(".");
   return i + s;
 }
-function Ja(e) {
+function Qa(e) {
   const a = [];
   let o = 0;
   const i = e.length;
@@ -11081,18 +11088,18 @@ function Ja(e) {
   }
   return a;
 }
-const je = (e) => String.fromCodePoint(...e), wn = function(e) {
+const we = (e) => String.fromCodePoint(...e), xn = function(e) {
   return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : I;
-}, zo = function(e, a) {
+}, Co = function(e, a) {
   return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
-}, be = function(e, a, o) {
+}, ve = function(e, a, o) {
   let i = 0;
-  for (e = o ? B(e / hn) : e >> 1, e += B(e / a); e > ba * ea >> 1; i += I)
-    e = B(e / ba);
-  return B(i + (ba + 1) * e / (e + gn));
-}, Ga = function(e) {
+  for (e = o ? B(e / bn) : e >> 1, e += B(e / a); e > fa * ea >> 1; i += I)
+    e = B(e / fa);
+  return B(i + (fa + 1) * e / (e + jn));
+}, Wa = function(e) {
   const a = [], o = e.length;
-  let i = 0, n = ge, s = ke, t = e.lastIndexOf(he);
+  let i = 0, n = be, s = je, t = e.lastIndexOf(fe);
   t < 0 && (t = 0);
   for (let u = 0; u < t; ++u)
     e.charCodeAt(u) >= 128 && Q("not-basic"), a.push(e.charCodeAt(u));
@@ -11100,26 +11107,26 @@ const je = (e) => String.fromCodePoint(...e), wn = function(e) {
     let m = i;
     for (let p = 1, r = I; ; r += I) {
       u >= o && Q("invalid-input");
-      const k = wn(e.charCodeAt(u++));
+      const k = xn(e.charCodeAt(u++));
       (k >= I || k > B((V - i) / p)) && Q("overflow"), i += k * p;
-      const b = r <= s ? Ha : r >= s + ea ? ea : r - s;
+      const b = r <= s ? Ga : r >= s + ea ? ea : r - s;
       if (k < b)
         break;
       const d = I - b;
       p > B(V / d) && Q("overflow"), p *= d;
     }
     const c = a.length + 1;
-    s = be(i - m, c, m == 0), B(i / c) > V - n && Q("overflow"), n += B(i / c), i %= c, a.splice(i++, 0, n);
+    s = ve(i - m, c, m == 0), B(i / c) > V - n && Q("overflow"), n += B(i / c), i %= c, a.splice(i++, 0, n);
   }
   return String.fromCodePoint(...a);
-}, Qa = function(e) {
+}, Ya = function(e) {
   const a = [];
-  e = Ja(e);
-  let o = e.length, i = ge, n = 0, s = ke;
+  e = Qa(e);
+  let o = e.length, i = be, n = 0, s = je;
   for (const m of e)
-    m < 128 && a.push(fa(m));
+    m < 128 && a.push(ya(m));
   let t = a.length, u = t;
-  for (t && a.push(he); u < o; ) {
+  for (t && a.push(fe); u < o; ) {
     let m = V;
     for (const p of e)
       p >= i && p < m && (m = p);
@@ -11129,48 +11136,48 @@ const je = (e) => String.fromCodePoint(...e), wn = function(e) {
       if (p < i && ++n > V && Q("overflow"), p == i) {
         let r = n;
         for (let k = I; ; k += I) {
-          const b = k <= s ? Ha : k >= s + ea ? ea : k - s;
+          const b = k <= s ? Ga : k >= s + ea ? ea : k - s;
           if (r < b)
             break;
           const d = r - b, l = I - b;
           a.push(
-            fa(zo(b + d % l, 0))
+            ya(Co(b + d % l, 0))
           ), r = B(d / l);
         }
-        a.push(fa(zo(r, 0))), s = be(n, c, u == t), n = 0, ++u;
+        a.push(ya(Co(r, 0))), s = ve(n, c, u == t), n = 0, ++u;
       }
     ++n, ++i;
   }
   return a.join("");
-}, fe = function(e) {
-  return de(e, function(a) {
-    return dn.test(a) ? Ga(a.slice(4).toLowerCase()) : a;
+}, ze = function(e) {
+  return ye(e, function(a) {
+    return fn.test(a) ? Wa(a.slice(4).toLowerCase()) : a;
   });
-}, ye = function(e) {
-  return de(e, function(a) {
-    return jn.test(a) ? "xn--" + Qa(a) : a;
+}, xe = function(e) {
+  return ye(e, function(a) {
+    return yn.test(a) ? "xn--" + Ya(a) : a;
   });
-}, vn = {
+}, En = {
   version: "2.1.0",
   ucs2: {
-    decode: Ja,
-    encode: je
+    decode: Qa,
+    encode: we
   },
-  decode: Ga,
-  encode: Qa,
-  toASCII: ye,
-  toUnicode: fe
-}, zn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: Wa,
+  encode: Ya,
+  toASCII: xe,
+  toUnicode: ze
+}, Cn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ucs2decode: Ja,
-  ucs2encode: je,
-  decode: Ga,
-  encode: Qa,
-  toASCII: ye,
-  toUnicode: fe,
-  default: vn
-}, Symbol.toStringTag, { value: "Module" })), we = /* @__PURE__ */ le(zn);
-var xn = function(e, a) {
+  ucs2decode: Qa,
+  ucs2encode: we,
+  decode: Wa,
+  encode: Ya,
+  toASCII: xe,
+  toUnicode: ze,
+  default: En
+}, Symbol.toStringTag, { value: "Module" })), Ee = /* @__PURE__ */ de(Cn);
+var An = function(e, a) {
   if (a = a.split(":")[0], e = +e, !e)
     return !1;
   switch (a) {
@@ -11188,47 +11195,47 @@ var xn = function(e, a) {
       return !1;
   }
   return e !== 0;
-}, Wa = {}, En = Object.prototype.hasOwnProperty, Cn;
-function xo(e) {
+}, Za = {}, Fn = Object.prototype.hasOwnProperty, Dn;
+function Ao(e) {
   try {
     return decodeURIComponent(e.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function Eo(e) {
+function Fo(e) {
   try {
     return encodeURIComponent(e);
   } catch {
     return null;
   }
 }
-function An(e) {
+function Sn(e) {
   for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, i; i = a.exec(e); ) {
-    var n = xo(i[1]), s = xo(i[2]);
+    var n = Ao(i[1]), s = Ao(i[2]);
     n === null || s === null || n in o || (o[n] = s);
   }
   return o;
 }
-function Fn(e, a) {
+function _n(e, a) {
   a = a || "";
   var o = [], i, n;
   typeof a != "string" && (a = "?");
   for (n in e)
-    if (En.call(e, n)) {
-      if (i = e[n], !i && (i === null || i === Cn || isNaN(i)) && (i = ""), n = Eo(n), i = Eo(i), n === null || i === null)
+    if (Fn.call(e, n)) {
+      if (i = e[n], !i && (i === null || i === Dn || isNaN(i)) && (i = ""), n = Fo(n), i = Fo(i), n === null || i === null)
         continue;
       o.push(n + "=" + i);
     }
   return o.length ? a + o.join("&") : "";
 }
-Wa.stringify = Fn;
-Wa.parse = An;
-var ve = xn, la = Wa, Dn = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, ze = /[\n\r\t]/g, Sn = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, xe = /:\d+$/, _n = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, In = /^[a-zA-Z]:/;
-function Ya(e) {
-  return (e || "").toString().replace(Dn, "");
+Za.stringify = _n;
+Za.parse = Sn;
+var Ce = An, la = Za, In = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ae = /[\n\r\t]/g, Bn = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Fe = /:\d+$/, On = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, $n = /^[a-zA-Z]:/;
+function Va(e) {
+  return (e || "").toString().replace(In, "");
 }
-var Aa = [
+var Da = [
   ["#", "hash"],
   ["?", "query"],
   function(e, a) {
@@ -11239,10 +11246,10 @@ var Aa = [
   [NaN, "host", void 0, 1, 1],
   [/:(\d*)$/, "port", void 0, 1],
   [NaN, "hostname", void 0, 1, 1]
-], Co = { hash: 1, query: 1 };
-function Ee(e) {
+], Do = { hash: 1, query: 1 };
+function De(e) {
   var a;
-  typeof window < "u" ? a = window : typeof vo < "u" ? a = vo : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof Eo < "u" ? a = Eo : typeof self < "u" ? a = self : a = {};
   var o = a.location || {};
   e = e || o;
   var i = {}, n = typeof e, s;
@@ -11250,21 +11257,21 @@ function Ee(e) {
     i = new U(unescape(e.pathname), {});
   else if (n === "string") {
     i = new U(e, {});
-    for (s in Co)
+    for (s in Do)
       delete i[s];
   } else if (n === "object") {
     for (s in e)
-      s in Co || (i[s] = e[s]);
-    i.slashes === void 0 && (i.slashes = Sn.test(e.href));
+      s in Do || (i[s] = e[s]);
+    i.slashes === void 0 && (i.slashes = Bn.test(e.href));
   }
   return i;
 }
 function $(e) {
   return e === "file:" || e === "ftp:" || e === "http:" || e === "https:" || e === "ws:" || e === "wss:";
 }
-function Ce(e, a) {
-  e = Ya(e), e = e.replace(ze, ""), a = a || {};
-  var o = _n.exec(e), i = o[1] ? o[1].toLowerCase() : "", n = !!o[2], s = !!o[3], t = 0, u;
+function Se(e, a) {
+  e = Va(e), e = e.replace(Ae, ""), a = a || {};
+  var o = On.exec(e), i = o[1] ? o[1].toLowerCase() : "", n = !!o[2], s = !!o[3], t = 0, u;
   return n ? s ? (u = o[2] + o[3] + o[4], t = o[2].length + o[3].length) : (u = o[2] + o[4], t = o[2].length) : s ? (u = o[3] + o[4], t = o[3].length) : u = o[4], i === "file:" ? t >= 2 && (u = u.slice(2)) : $(i) ? u = o[4] : i ? n && (u = u.slice(2)) : t >= 2 && $(a.protocol) && (u = o[4]), {
     protocol: i,
     slashes: n || $(i),
@@ -11272,7 +11279,7 @@ function Ce(e, a) {
     rest: u
   };
 }
-function Bn(e, a) {
+function qn(e, a) {
   if (e === "")
     return a;
   for (var o = (a || "/").split("/").slice(0, -1).concat(e.split("/")), i = o.length, n = o[i - 1], s = !1, t = 0; i--; )
@@ -11280,32 +11287,32 @@ function Bn(e, a) {
   return s && o.unshift(""), (n === "." || n === "..") && o.push(""), o.join("/");
 }
 function U(e, a, o) {
-  if (e = Ya(e), e = e.replace(ze, ""), !(this instanceof U))
+  if (e = Va(e), e = e.replace(Ae, ""), !(this instanceof U))
     return new U(e, a, o);
-  var i, n, s, t, u, m, c = Aa.slice(), p = typeof a, r = this, k = 0;
-  for (p !== "object" && p !== "string" && (o = a, a = null), o && typeof o != "function" && (o = la.parse), a = Ee(a), n = Ce(e || "", a), i = !n.protocol && !n.slashes, r.slashes = n.slashes || i && a.slashes, r.protocol = n.protocol || a.protocol || "", e = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || In.test(e)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !$(r.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
+  var i, n, s, t, u, m, c = Da.slice(), p = typeof a, r = this, k = 0;
+  for (p !== "object" && p !== "string" && (o = a, a = null), o && typeof o != "function" && (o = la.parse), a = De(a), n = Se(e || "", a), i = !n.protocol && !n.slashes, r.slashes = n.slashes || i && a.slashes, r.protocol = n.protocol || a.protocol || "", e = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || $n.test(e)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !$(r.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
     if (t = c[k], typeof t == "function") {
       e = t(e, r);
       continue;
     }
     s = t[0], m = t[1], s !== s ? r[m] = e : typeof s == "string" ? (u = s === "@" ? e.lastIndexOf(s) : e.indexOf(s), ~u && (typeof t[2] == "number" ? (r[m] = e.slice(0, u), e = e.slice(u + t[2])) : (r[m] = e.slice(u), e = e.slice(0, u)))) : (u = s.exec(e)) && (r[m] = u[1], e = e.slice(0, u.index)), r[m] = r[m] || i && t[3] && a[m] || "", t[4] && (r[m] = r[m].toLowerCase());
   }
-  o && (r.query = o(r.query)), i && a.slashes && r.pathname.charAt(0) !== "/" && (r.pathname !== "" || a.pathname !== "") && (r.pathname = Bn(r.pathname, a.pathname)), r.pathname.charAt(0) !== "/" && $(r.protocol) && (r.pathname = "/" + r.pathname), ve(r.port, r.protocol) || (r.host = r.hostname, r.port = ""), r.username = r.password = "", r.auth && (u = r.auth.indexOf(":"), ~u ? (r.username = r.auth.slice(0, u), r.username = encodeURIComponent(decodeURIComponent(r.username)), r.password = r.auth.slice(u + 1), r.password = encodeURIComponent(decodeURIComponent(r.password))) : r.username = encodeURIComponent(decodeURIComponent(r.auth)), r.auth = r.password ? r.username + ":" + r.password : r.username), r.origin = r.protocol !== "file:" && $(r.protocol) && r.host ? r.protocol + "//" + r.host : "null", r.href = r.toString();
+  o && (r.query = o(r.query)), i && a.slashes && r.pathname.charAt(0) !== "/" && (r.pathname !== "" || a.pathname !== "") && (r.pathname = qn(r.pathname, a.pathname)), r.pathname.charAt(0) !== "/" && $(r.protocol) && (r.pathname = "/" + r.pathname), Ce(r.port, r.protocol) || (r.host = r.hostname, r.port = ""), r.username = r.password = "", r.auth && (u = r.auth.indexOf(":"), ~u ? (r.username = r.auth.slice(0, u), r.username = encodeURIComponent(decodeURIComponent(r.username)), r.password = r.auth.slice(u + 1), r.password = encodeURIComponent(decodeURIComponent(r.password))) : r.username = encodeURIComponent(decodeURIComponent(r.auth)), r.auth = r.password ? r.username + ":" + r.password : r.username), r.origin = r.protocol !== "file:" && $(r.protocol) && r.host ? r.protocol + "//" + r.host : "null", r.href = r.toString();
 }
-function On(e, a, o) {
+function Un(e, a, o) {
   var i = this;
   switch (e) {
     case "query":
       typeof a == "string" && a.length && (a = (o || la.parse)(a)), i[e] = a;
       break;
     case "port":
-      i[e] = a, ve(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
+      i[e] = a, Ce(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
       break;
     case "hostname":
       i[e] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[e] = a, xe.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
+      i[e] = a, Fe.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
       i.protocol = a.toLowerCase(), i.slashes = !o;
@@ -11326,26 +11333,26 @@ function On(e, a, o) {
       var s = a.indexOf(":");
       ~s ? (i.username = a.slice(0, s), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(s + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < Aa.length; t++) {
-    var u = Aa[t];
+  for (var t = 0; t < Da.length; t++) {
+    var u = Da[t];
     u[4] && (i[u[1]] = i[u[1]].toLowerCase());
   }
   return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && $(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function $n(e) {
+function Ln(e) {
   (!e || typeof e != "function") && (e = la.stringify);
   var a, o = this, i = o.host, n = o.protocol;
   n && n.charAt(n.length - 1) !== ":" && (n += ":");
   var s = n + (o.protocol && o.slashes || $(o.protocol) ? "//" : "");
-  return o.username ? (s += o.username, o.password && (s += ":" + o.password), s += "@") : o.password ? (s += ":" + o.password, s += "@") : o.protocol !== "file:" && $(o.protocol) && !i && o.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || xe.test(o.hostname) && !o.port) && (i += ":"), s += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (s += o.hash), s;
+  return o.username ? (s += o.username, o.password && (s += ":" + o.password), s += "@") : o.password ? (s += ":" + o.password, s += "@") : o.protocol !== "file:" && $(o.protocol) && !i && o.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || Fe.test(o.hostname) && !o.port) && (i += ":"), s += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (s += o.hash), s;
 }
-U.prototype = { set: On, toString: $n };
-U.extractProtocol = Ce;
-U.location = Ee;
-U.trimLeft = Ya;
+U.prototype = { set: Un, toString: Ln };
+U.extractProtocol = Se;
+U.location = De;
+U.trimLeft = Va;
 U.qs = la;
-var qn = U, Za = {}, Ae = {};
-const Un = [
+var Tn = U, Xa = {}, _e = {};
+const Rn = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -20722,8 +20729,8 @@ const Un = [
   "enterprisecloud.nu"
 ];
 (function(e) {
-  var a = we, o = {};
-  o.rules = Un.map(function(i) {
+  var a = Ee, o = {};
+  o.rules = Rn.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -20802,7 +20809,7 @@ const Un = [
     var n = e.parse(i);
     return Boolean(n.domain && n.listed);
   };
-})(Ae);
+})(_e);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -20833,163 +20840,28 @@ const Un = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Ln = Ae, Ao = [
+const Pn = _e, So = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], Tn = ["localhost", "invalid"];
-function Rn(e, a = {}) {
+], Nn = ["localhost", "invalid"];
+function Mn(e, a = {}) {
   const o = e.split("."), i = o[o.length - 1], n = !!a.allowSpecialUseDomain, s = !!a.ignoreError;
-  if (n && Ao.includes(i)) {
+  if (n && So.includes(i)) {
     if (o.length > 1)
       return `${o[o.length - 2]}.${i}`;
-    if (Tn.includes(i))
+    if (Nn.includes(i))
       return `${i}`;
   }
-  if (!s && Ao.includes(i))
+  if (!s && So.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return Ln.get(e);
+  return Pn.get(e);
 }
-Za.getPublicSuffix = Rn;
-var Va = {};
-/*!
- * Copyright (c) 2015, Salesforce.com, Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. Neither the name of Salesforce.com nor the names of its contributors may
- * be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-class Pn {
-  constructor() {
-    this.synchronous = !1;
-  }
-  findCookie(a, o, i, n) {
-    throw new Error("findCookie is not implemented");
-  }
-  findCookies(a, o, i, n) {
-    throw new Error("findCookies is not implemented");
-  }
-  putCookie(a, o) {
-    throw new Error("putCookie is not implemented");
-  }
-  updateCookie(a, o, i) {
-    throw new Error("updateCookie is not implemented");
-  }
-  removeCookie(a, o, i, n) {
-    throw new Error("removeCookie is not implemented");
-  }
-  removeCookies(a, o, i) {
-    throw new Error("removeCookies is not implemented");
-  }
-  removeAllCookies(a) {
-    throw new Error("removeAllCookies is not implemented");
-  }
-  getAllCookies(a) {
-    throw new Error(
-      "getAllCookies is not implemented (therefore jar cannot be serialized)"
-    );
-  }
-}
-Va.Store = Pn;
-var Xa = {}, ka = {};
-ka.fromCallback = function(e) {
-  return Object.defineProperty(function() {
-    if (typeof arguments[arguments.length - 1] == "function")
-      e.apply(this, arguments);
-    else
-      return new Promise((a, o) => {
-        arguments[arguments.length] = (i, n) => {
-          if (i)
-            return o(i);
-          a(n);
-        }, arguments.length++, e.apply(this, arguments);
-      });
-  }, "name", { value: e.name });
-};
-ka.fromPromise = function(e) {
-  return Object.defineProperty(function() {
-    const a = arguments[arguments.length - 1];
-    if (typeof a != "function")
-      return e.apply(this, arguments);
-    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
-  }, "name", { value: e.name });
-};
-var Fe = {};
-/*!
- * Copyright (c) 2015, Salesforce.com, Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. Neither the name of Salesforce.com nor the names of its contributors may
- * be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-const Nn = Za;
-function Mn(e, a) {
-  const o = Nn.getPublicSuffix(e, {
-    allowSpecialUseDomain: a
-  });
-  if (!o)
-    return null;
-  if (o == e)
-    return [e];
-  e.slice(-1) == "." && (e = e.slice(0, -1));
-  const i = e.slice(0, -(o.length + 1)).split(".").reverse();
-  let n = o;
-  const s = [n];
-  for (; i.length; )
-    n = `${i.shift()}.${n}`, s.push(n);
-  return s;
-}
-Fe.permuteDomain = Mn;
+Xa.getPublicSuffix = Mn;
 var Ka = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -21021,37 +20893,178 @@ var Ka = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-function Hn(e, a) {
+class Hn {
+  constructor() {
+    this.synchronous = !1;
+  }
+  findCookie(a, o, i, n) {
+    throw new Error("findCookie is not implemented");
+  }
+  findCookies(a, o, i, n) {
+    throw new Error("findCookies is not implemented");
+  }
+  putCookie(a, o) {
+    throw new Error("putCookie is not implemented");
+  }
+  updateCookie(a, o, i) {
+    throw new Error("updateCookie is not implemented");
+  }
+  removeCookie(a, o, i, n) {
+    throw new Error("removeCookie is not implemented");
+  }
+  removeCookies(a, o, i) {
+    throw new Error("removeCookies is not implemented");
+  }
+  removeAllCookies(a) {
+    throw new Error("removeAllCookies is not implemented");
+  }
+  getAllCookies(a) {
+    throw new Error(
+      "getAllCookies is not implemented (therefore jar cannot be serialized)"
+    );
+  }
+}
+Ka.Store = Hn;
+var ao = {}, ka = {};
+ka.fromCallback = function(e) {
+  return Object.defineProperty(function() {
+    if (typeof arguments[arguments.length - 1] == "function")
+      e.apply(this, arguments);
+    else
+      return new Promise((a, o) => {
+        arguments[arguments.length] = (i, n) => {
+          if (i)
+            return o(i);
+          a(n);
+        }, arguments.length++, e.apply(this, arguments);
+      });
+  }, "name", { value: e.name });
+};
+ka.fromPromise = function(e) {
+  return Object.defineProperty(function() {
+    const a = arguments[arguments.length - 1];
+    if (typeof a != "function")
+      return e.apply(this, arguments);
+    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
+  }, "name", { value: e.name });
+};
+var wa = {};
+/*!
+ * Copyright (c) 2015, Salesforce.com, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of Salesforce.com nor the names of its contributors may
+ * be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+var _o;
+function Ie() {
+  if (_o)
+    return wa;
+  _o = 1;
+  const e = Xa;
+  function a(o, i) {
+    const n = e.getPublicSuffix(o, {
+      allowSpecialUseDomain: i
+    });
+    if (!n)
+      return null;
+    if (n == o)
+      return [o];
+    o.slice(-1) == "." && (o = o.slice(0, -1));
+    const s = o.slice(0, -(n.length + 1)).split(".").reverse();
+    let t = n;
+    const u = [t];
+    for (; s.length; )
+      t = `${s.shift()}.${t}`, u.push(t);
+    return u;
+  }
+  return wa.permuteDomain = a, wa;
+}
+var oo = {};
+/*!
+ * Copyright (c) 2015, Salesforce.com, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of Salesforce.com nor the names of its contributors may
+ * be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+function Jn(e, a) {
   return a === e || e.indexOf(a) === 0 && (a.substr(-1) === "/" || e.substr(a.length, 1) === "/");
 }
-Ka.pathMatch = Hn;
+oo.pathMatch = Jn;
 var ga = {};
-const Jn = {}, Gn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Gn = {}, Qn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: Jn
-}, Symbol.toStringTag, { value: "Module" })), Qn = /* @__PURE__ */ le(Gn);
-function De() {
+  default: Gn
+}, Symbol.toStringTag, { value: "Module" })), Wn = /* @__PURE__ */ de(Qn);
+function Be() {
   try {
-    return Qn;
+    return Wn;
   } catch {
     return null;
   }
 }
-function Wn() {
+function Yn() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
-function Yn(e) {
-  const a = (e.requireUtil || De)();
+function Zn(e) {
+  const a = (e.requireUtil || Be)();
   return a ? a.inspect.custom : null;
 }
 ga.getUtilInspect = function(e, a = {}) {
-  const o = (a.requireUtil || De)();
+  const o = (a.requireUtil || Be)();
   return function(i, n, s) {
     return o ? o.inspect(i, n, s) : e(i);
   };
 };
 ga.getCustomInspectSymbol = function(e = {}) {
-  return (e.lookupCustomInspectSymbol || Wn)() || Yn(e);
+  return (e.lookupCustomInspectSymbol || Yn)() || Zn(e);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -21083,15 +21096,15 @@ ga.getCustomInspectSymbol = function(e = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: Zn } = ka, Vn = Va.Store, Xn = Fe.permuteDomain, Kn = Ka.pathMatch, { getCustomInspectSymbol: as, getUtilInspect: os } = ga;
-class Fa extends Vn {
+const { fromCallback: Vn } = ka, Xn = Ka.Store, Kn = Ie().permuteDomain, as = oo.pathMatch, { getCustomInspectSymbol: os, getUtilInspect: es } = ga;
+class Sa extends Xn {
   constructor() {
     super(), this.synchronous = !0, this.idx = {};
-    const a = as();
+    const a = os();
     a && (this[a] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: os(Se) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: es(Oe) }.inspect(this.idx, !1, 2)} }`;
   }
   findCookie(a, o, i, n) {
     return !this.idx[a] || !this.idx[a][o] ? n(null, void 0) : n(null, this.idx[a][o][i] || null);
@@ -21103,7 +21116,7 @@ class Fa extends Vn {
     let t;
     o ? t = function(c) {
       Object.keys(c).forEach((p) => {
-        if (Kn(o, p)) {
+        if (as(o, p)) {
           const r = c[p];
           for (const k in r)
             s.push(r[k]);
@@ -21116,7 +21129,7 @@ class Fa extends Vn {
           s.push(r[k]);
       }
     };
-    const u = Xn(a, i) || [a], m = this.idx;
+    const u = Kn(a, i) || [a], m = this.idx;
     u.forEach((c) => {
       const p = m[c];
       !p || t(p);
@@ -21158,32 +21171,32 @@ class Fa extends Vn {
   "removeAllCookies",
   "getAllCookies"
 ].forEach((e) => {
-  Fa.prototype[e] = Zn(
-    Fa.prototype[e]
+  Sa.prototype[e] = Vn(
+    Sa.prototype[e]
   );
 });
-Xa.MemoryCookieStore = Fa;
-function Se(e) {
+ao.MemoryCookieStore = Sa;
+function Oe(e) {
   const a = Object.keys(e);
   if (a.length === 0)
     return "{}";
   let o = `{
 `;
   return Object.keys(e).forEach((i, n) => {
-    o += es(i, e[i]), n < a.length - 1 && (o += ","), o += `
+    o += is(i, e[i]), n < a.length - 1 && (o += ","), o += `
 `;
   }), o += "}", o;
 }
-function es(e, a) {
+function is(e, a) {
   const o = "  ";
   let i = `${o}'${e}': {
 `;
   return Object.keys(a).forEach((n, s, t) => {
-    i += is(n, a[n]), s < t.length - 1 && (i += ","), i += `
+    i += ns(n, a[n]), s < t.length - 1 && (i += ","), i += `
 `;
   }), i += `${o}}`, i;
 }
-function is(e, a) {
+function ns(e, a) {
   const o = "    ";
   let i = `${o}'${e}': {
 `;
@@ -21193,57 +21206,57 @@ function is(e, a) {
 `;
   }), i += `${o}}`, i;
 }
-Xa.inspectFallback = Se;
+ao.inspectFallback = Oe;
 var P = {};
-function _e(e) {
+function $e(e) {
   return typeof e == "function";
 }
-function ns(e) {
-  return Ie(e) && e !== "";
-}
 function ss(e) {
-  return us(e, Date) && rs(e.getTime());
+  return qe(e) && e !== "";
 }
 function ts(e) {
+  return rs(e, Date) && ms(e.getTime());
+}
+function us(e) {
   return e === "" || e instanceof String && e.toString() === "";
 }
-function Ie(e) {
+function qe(e) {
   return typeof e == "string" || e instanceof String;
 }
-function Be(e) {
+function Ue(e) {
   return toString.call(e) === "[object Object]";
 }
-function us(e, a) {
+function rs(e, a) {
   try {
     return e instanceof a;
   } catch {
     return !1;
   }
 }
-function rs(e) {
+function ms(e) {
   return typeof e == "number" && e % 1 === 0;
 }
-function ms(e, a, o) {
-  if (_e(a) || (o = a, a = null), Be(o) || (o = { Error: "Failed Check" }), !e)
+function ps(e, a, o) {
+  if ($e(a) || (o = a, a = null), Ue(o) || (o = { Error: "Failed Check" }), !e)
     if (a)
-      a(new Da(o));
+      a(new _a(o));
     else
-      throw new Da(o);
+      throw new _a(o);
 }
-class Da extends Error {
+class _a extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-P.ParameterError = Da;
-P.isFunction = _e;
-P.isNonEmptyString = ns;
-P.isDate = ss;
-P.isEmptyString = ts;
-P.isString = Ie;
-P.isObject = Be;
-P.validate = ms;
-var ps = "4.1.2";
+P.ParameterError = _a;
+P.isFunction = $e;
+P.isNonEmptyString = ss;
+P.isDate = ts;
+P.isEmptyString = us;
+P.isString = qe;
+P.isObject = Ue;
+P.validate = ps;
+var cs = "4.1.2";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
  * All rights reserved.
@@ -21274,8 +21287,8 @@ var ps = "4.1.2";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Fo = we, cs = qn, ao = Za, ls = Va.Store, ks = Xa.MemoryCookieStore, gs = Ka.pathMatch, h = P, hs = ps, { fromCallback: Oe } = ka, { getCustomInspectSymbol: ds } = ga, js = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Do = /[\x00-\x1F]/, So = [`
-`, "\r", "\0"], bs = /[\x20-\x3A\x3C-\x7E]+/, fs = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, ys = {
+const Io = Ee, ls = Tn, eo = Xa, ks = Ka.Store, gs = ao.MemoryCookieStore, hs = oo.pathMatch, h = P, ds = cs, { fromCallback: Le } = ka, { getCustomInspectSymbol: js } = ga, bs = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Bo = /[\x00-\x1F]/, Oo = [`
+`, "\r", "\0"], fs = /[\x20-\x3A\x3C-\x7E]+/, ys = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, ws = {
   jan: 0,
   feb: 1,
   mar: 2,
@@ -21288,8 +21301,8 @@ const Fo = we, cs = qn, ao = Za, ls = Va.Store, ks = Xa.MemoryCookieStore, gs = 
   oct: 9,
   nov: 10,
   dec: 11
-}, Sa = 2147483647e3, ws = 0, _o = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function Io(e) {
+}, Ia = 2147483647e3, vs = 0, $o = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function qo(e) {
   h.validate(h.isNonEmptyString(e), e);
   const a = String(e).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
@@ -21298,7 +21311,7 @@ const Y = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), vs = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, zs = `
+}), zs = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, xs = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -21309,8 +21322,8 @@ const Y = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), $e = new RegExp(`^${zs}$`);
-function _a(e, a, o, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), Te = new RegExp(`^${xs}$`);
+function Ba(e, a, o, i) {
   let n = 0;
   for (; n < e.length; ) {
     const s = e.charCodeAt(n);
@@ -21320,27 +21333,27 @@ function _a(e, a, o, i) {
   }
   return n < a || n > o || !i && n != e.length ? null : parseInt(e.substr(0, n), 10);
 }
-function xs(e) {
+function Es(e) {
   const a = e.split(":"), o = [0, 0, 0];
   if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const n = i == 2, s = _a(a[i], 1, 2, n);
+    const n = i == 2, s = Ba(a[i], 1, 2, n);
     if (s === null)
       return null;
     o[i] = s;
   }
   return o;
 }
-function Es(e) {
+function Cs(e) {
   e = String(e).substr(0, 3).toLowerCase();
-  const a = ys[e];
+  const a = ws[e];
   return a >= 0 ? a : null;
 }
 function ra(e) {
   if (!e)
     return;
-  const a = e.split(fs);
+  const a = e.split(ys);
   if (!a)
     return;
   let o = null, i = null, n = null, s = null, t = null, u = null;
@@ -21349,38 +21362,38 @@ function ra(e) {
     if (!c.length)
       continue;
     let p;
-    if (n === null && (p = xs(c), p)) {
+    if (n === null && (p = Es(c), p)) {
       o = p[0], i = p[1], n = p[2];
       continue;
     }
-    if (s === null && (p = _a(c, 1, 2, !0), p !== null)) {
+    if (s === null && (p = Ba(c, 1, 2, !0), p !== null)) {
       s = p;
       continue;
     }
-    if (t === null && (p = Es(c), p !== null)) {
+    if (t === null && (p = Cs(c), p !== null)) {
       t = p;
       continue;
     }
-    u === null && (p = _a(c, 2, 4, !0), p !== null && (u = p, u >= 70 && u <= 99 ? u += 1900 : u >= 0 && u <= 69 && (u += 2e3)));
+    u === null && (p = Ba(c, 2, 4, !0), p !== null && (u = p, u >= 70 && u <= 99 ? u += 1900 : u >= 0 && u <= 69 && (u += 2e3)));
   }
   if (!(s === null || t === null || u === null || n === null || s < 1 || s > 31 || u < 1601 || o > 23 || i > 59 || n > 59))
     return new Date(Date.UTC(u, t, s, o, i, n));
 }
-function Cs(e) {
+function As(e) {
   return h.validate(h.isDate(e), e), e.toUTCString();
 }
 function ia(e) {
-  return e == null ? null : (e = e.trim().replace(/^\./, ""), $e.test(e) && (e = e.replace("[", "").replace("]", "")), Fo && /[^\u0001-\u007f]/.test(e) && (e = Fo.toASCII(e)), e.toLowerCase());
+  return e == null ? null : (e = e.trim().replace(/^\./, ""), Te.test(e) && (e = e.replace("[", "").replace("]", "")), Io && /[^\u0001-\u007f]/.test(e) && (e = Io.toASCII(e)), e.toLowerCase());
 }
-function Bo(e, a, o) {
+function Uo(e, a, o) {
   if (e == null || a == null)
     return null;
   if (o !== !1 && (e = ia(e), a = ia(a)), e == a)
     return !0;
   const i = e.lastIndexOf(a);
-  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || vs.test(e));
+  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || zs.test(e));
 }
-function As(e) {
+function Fs(e) {
   if (!e || e.substr(0, 1) !== "/")
     return "/";
   if (e === "/")
@@ -21388,33 +21401,33 @@ function As(e) {
   const a = e.lastIndexOf("/");
   return a === 0 ? "/" : e.slice(0, a);
 }
-function Fs(e) {
+function Ds(e) {
   if (h.isEmptyString(e))
     return e;
-  for (let a = 0; a < So.length; a++) {
-    const o = e.indexOf(So[a]);
+  for (let a = 0; a < Oo.length; a++) {
+    const o = e.indexOf(Oo[a]);
     o !== -1 && (e = e.substr(0, o));
   }
   return e;
 }
-function Ds(e, a) {
-  e = Fs(e), h.validate(h.isString(e), e);
+function Ss(e, a) {
+  e = Ds(e), h.validate(h.isString(e), e);
   let o = e.indexOf("=");
   if (a)
     o === 0 && (e = e.substr(1), o = e.indexOf("="));
   else if (o <= 0)
     return;
   let i, n;
-  if (o <= 0 ? (i = "", n = e.trim()) : (i = e.substr(0, o).trim(), n = e.substr(o + 1).trim()), Do.test(i) || Do.test(n))
+  if (o <= 0 ? (i = "", n = e.trim()) : (i = e.substr(0, o).trim(), n = e.substr(o + 1).trim()), Bo.test(i) || Bo.test(n))
     return;
   const s = new C();
   return s.key = i, s.value = n, s;
 }
-function Ss(e, a) {
+function _s(e, a) {
   if ((!a || typeof a != "object") && (a = {}), h.isEmptyString(e) || !h.isString(e))
     return null;
   e = e.trim();
-  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), n = Ds(i, !!a.loose);
+  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), n = Ss(i, !!a.loose);
   if (!n)
     return;
   if (o === -1)
@@ -21480,13 +21493,13 @@ function Ss(e, a) {
   }
   return n;
 }
-function _s(e) {
+function Is(e) {
   return h.validate(h.isObject(e), e), !e.key.startsWith("__Secure-") || e.secure;
 }
-function Is(e) {
+function Bs(e) {
   return h.validate(h.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
 }
-function qe(e) {
+function Re(e) {
   let a;
   try {
     a = JSON.parse(e);
@@ -21495,12 +21508,12 @@ function qe(e) {
   }
   return a;
 }
-function oo(e) {
+function io(e) {
   if (!e || h.isEmptyString(e))
     return null;
   let a;
   if (typeof e == "string") {
-    if (a = qe(e), a instanceof Error)
+    if (a = Re(e), a instanceof Error)
       return null;
   } else
     a = e;
@@ -21511,23 +21524,23 @@ function oo(e) {
   }
   return o;
 }
-function Oo(e, a) {
+function Lo(e, a) {
   h.validate(h.isObject(e), e), h.validate(h.isObject(a), a);
   let o = 0;
   const i = e.path ? e.path.length : 0;
   if (o = (a.path ? a.path.length : 0) - i, o !== 0)
     return o;
-  const n = e.creation ? e.creation.getTime() : Sa, s = a.creation ? a.creation.getTime() : Sa;
+  const n = e.creation ? e.creation.getTime() : Ia, s = a.creation ? a.creation.getTime() : Ia;
   return o = n - s, o !== 0 || (o = e.creationIndex - a.creationIndex), o;
 }
-function $o(e) {
+function To(e) {
   if (e instanceof Object)
     return e;
   try {
     e = decodeURI(e);
   } catch {
   }
-  return cs(e);
+  return ls(e);
 }
 const K = {
   key: "",
@@ -21547,7 +21560,7 @@ const K = {
 };
 class C {
   constructor(a = {}) {
-    const o = ds();
+    const o = js();
     o && (this[o] = this.inspect), Object.assign(this, K, a), this.creation = this.creation || new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
@@ -21566,13 +21579,13 @@ class C {
     return a;
   }
   clone() {
-    return oo(this.toJSON());
+    return io(this.toJSON());
   }
   validate() {
-    if (!js.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ra(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !bs.test(this.path))
+    if (!bs.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ra(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !fs.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || ao.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || eo.getPublicSuffix(a) == null));
   }
   setExpires(a) {
     a instanceof Date ? this.expires = a : this.expires = ra(a) || "Infinity";
@@ -21586,7 +21599,7 @@ class C {
   }
   toString() {
     let a = this.cookieString();
-    return this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${Cs(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none" && (a += `; SameSite=${C.sameSiteCanonical[this.sameSite.toLowerCase()] || this.sameSite}`), this.extensions && this.extensions.forEach((o) => {
+    return this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${As(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none" && (a += `; SameSite=${C.sameSiteCanonical[this.sameSite.toLowerCase()] || this.sameSite}`), this.extensions && this.extensions.forEach((o) => {
       a += `; ${o}`;
     }), a;
   }
@@ -21605,7 +21618,7 @@ class C {
   }
   expiryDate(a) {
     const o = this.expiryTime(a);
-    return o == 1 / 0 ? new Date(Sa) : o == -1 / 0 ? new Date(ws) : new Date(o);
+    return o == 1 / 0 ? new Date(Ia) : o == -1 / 0 ? new Date(vs) : new Date(o);
   }
   isPersistent() {
     return this.maxAge != null || this.expires != 1 / 0;
@@ -21618,8 +21631,8 @@ class C {
   }
 }
 C.cookiesCreated = 0;
-C.parse = Ss;
-C.fromJSON = oo;
+C.parse = _s;
+C.fromJSON = io;
 C.serializableProperties = Object.keys(K);
 C.sameSiteLevel = {
   strict: 3,
@@ -21630,7 +21643,7 @@ C.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function qo(e) {
+function Ro(e) {
   if (e != null) {
     const a = e.toLowerCase();
     switch (a) {
@@ -21644,20 +21657,20 @@ function qo(e) {
 }
 class D {
   constructor(a, o = { rejectPublicSuffixes: !0 }) {
-    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), h.validate(h.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new ks(), this.prefixSecurity = qo(o.prefixSecurity), this._cloneSync = M("clone"), this._importCookiesSync = M("_importCookies"), this.getCookiesSync = M("getCookies"), this.getCookieStringSync = M("getCookieString"), this.getSetCookieStringsSync = M("getSetCookieStrings"), this.removeAllCookiesSync = M("removeAllCookies"), this.setCookieSync = M("setCookie"), this.serializeSync = M("serialize");
+    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), h.validate(h.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new gs(), this.prefixSecurity = Ro(o.prefixSecurity), this._cloneSync = M("clone"), this._importCookiesSync = M("_importCookies"), this.getCookiesSync = M("getCookies"), this.getCookieStringSync = M("getCookieString"), this.getSetCookieStringsSync = M("getSetCookieStrings"), this.removeAllCookiesSync = M("removeAllCookies"), this.setCookieSync = M("setCookie"), this.serializeSync = M("serialize");
   }
   setCookie(a, o, i, n) {
     h.validate(h.isNonEmptyString(o), n, i);
     let s;
     if (h.isFunction(o))
       return n = o, n(new Error("No URL was specified"));
-    const t = $o(o);
+    const t = To(o);
     if (h.isFunction(i) && (n = i, i = {}), h.validate(h.isFunction(n), n), !h.isNonEmptyString(a) && !h.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
     const u = ia(t.hostname), m = i.loose || this.enableLooseMode;
     let c = null;
-    if (i.sameSiteContext && (c = Io(i.sameSiteContext), !c))
-      return n(new Error(_o));
+    if (i.sameSiteContext && (c = qo(i.sameSiteContext), !c))
+      return n(new Error($o));
     if (typeof a == "string" || a instanceof String) {
       if (a = C.parse(a, { loose: m }), !a)
         return s = new Error("Cookie failed to parse"), n(i.ignoreError ? null : s);
@@ -21666,20 +21679,20 @@ class D {
         "First argument to setCookie must be a Cookie object or string"
       ), n(i.ignoreError ? null : s);
     const p = i.now || new Date();
-    if (this.rejectPublicSuffixes && a.domain && ao.getPublicSuffix(a.cdomain(), {
+    if (this.rejectPublicSuffixes && a.domain && eo.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !$e.test(a.domain))
+    }) == null && !Te.test(a.domain))
       return s = new Error("Cookie has domain set to a public suffix"), n(i.ignoreError ? null : s);
     if (a.domain) {
-      if (!Bo(u, a.cdomain(), !1))
+      if (!Uo(u, a.cdomain(), !1))
         return s = new Error(
           `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${u}`
         ), n(i.ignoreError ? null : s);
       a.hostOnly == null && (a.hostOnly = !1);
     } else
       a.hostOnly = !0, a.domain = u;
-    if ((!a.path || a.path[0] !== "/") && (a.path = As(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+    if ((!a.path || a.path[0] !== "/") && (a.path = Fs(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
       return s = new Error("Cookie is HttpOnly and this isn't an HTTP API"), n(i.ignoreError ? null : s);
     if (a.sameSite !== "none" && a.sameSite !== void 0 && c && c === "none")
       return s = new Error(
@@ -21688,7 +21701,7 @@ class D {
     const r = this.prefixSecurity === Y.SILENT;
     if (this.prefixSecurity !== Y.DISABLED) {
       let d = !1, l;
-      if (_s(a) ? Is(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
+      if (Is(a) ? Bs(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
         return n(
           i.ignoreError || r ? null : new Error(l)
         );
@@ -21716,16 +21729,16 @@ class D {
   }
   getCookies(a, o, i) {
     h.validate(h.isNonEmptyString(a), i, a);
-    const n = $o(a);
+    const n = To(a);
     h.isFunction(o) && (i = o, o = {}), h.validate(h.isObject(o), i, o), h.validate(h.isFunction(i), i);
     const s = ia(n.hostname), t = n.pathname || "/";
     let u = o.secure;
     u == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (u = !0);
     let m = 0;
     if (o.sameSiteContext) {
-      const l = Io(o.sameSiteContext);
+      const l = qo(o.sameSiteContext);
       if (m = C.sameSiteLevel[l], !m)
-        return i(new Error(_o));
+        return i(new Error($o));
     }
     let c = o.http;
     c == null && (c = !0);
@@ -21734,9 +21747,9 @@ class D {
       if (l.hostOnly) {
         if (l.domain != s)
           return !1;
-      } else if (!Bo(s, l.domain, !1))
+      } else if (!Uo(s, l.domain, !1))
         return !1;
-      return !k && !gs(t, l.path) || l.secure && !u || l.httpOnly && !c || m && C.sameSiteLevel[l.sameSite || "none"] > m ? !1 : r && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
+      return !k && !hs(t, l.path) || l.secure && !u || l.httpOnly && !c || m && C.sameSiteLevel[l.sameSite || "none"] > m ? !1 : r && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
       }), !1) : !0;
     }
     b.findCookies(
@@ -21746,7 +21759,7 @@ class D {
       (l, f) => {
         if (l)
           return i(l);
-        f = f.filter(d), o.sort !== !1 && (f = f.sort(Oo));
+        f = f.filter(d), o.sort !== !1 && (f = f.sort(Lo));
         const L = new Date();
         for (const ha of f)
           ha.lastAccessed = L;
@@ -21760,7 +21773,7 @@ class D {
     const i = function(n, s) {
       n ? o(n) : o(
         null,
-        s.sort(Oo).map((t) => t.cookieString()).join("; ")
+        s.sort(Lo).map((t) => t.cookieString()).join("; ")
       );
     };
     a.push(i), this.getCookies.apply(this, a);
@@ -21781,12 +21794,12 @@ class D {
     let o = this.store.constructor.name;
     h.isObject(o) && (o = null);
     const i = {
-      version: `tough-cookie@${hs}`,
+      version: `tough-cookie@${ds}`,
       storeType: o,
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: qo(this.prefixSecurity),
+      prefixSecurity: Ro(this.prefixSecurity),
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
@@ -21812,7 +21825,7 @@ class D {
         return o(s, this);
       let t;
       try {
-        t = oo(i.shift());
+        t = io(i.shift());
       } catch (u) {
         return o(u);
       }
@@ -21841,7 +21854,7 @@ class D {
   removeAllCookies(a) {
     h.validate(h.isFunction(a), a);
     const o = this.store;
-    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== ls.prototype.removeAllCookies)
+    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== ks.prototype.removeAllCookies)
       return o.removeAllCookies(a);
     o.getAllCookies((i, n) => {
       if (i)
@@ -21868,7 +21881,7 @@ class D {
     arguments.length !== 3 && (i = o, o = null), h.validate(h.isFunction(i), i);
     let n;
     if (typeof a == "string") {
-      if (n = qe(a), n instanceof Error)
+      if (n = Re(a), n instanceof Error)
         return i(n);
     } else
       n = a;
@@ -21907,9 +21920,9 @@ D.fromJSON = D.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((e) => {
-  D.prototype[e] = Oe(D.prototype[e]);
+  D.prototype[e] = Le(D.prototype[e]);
 });
-D.deserialize = Oe(D.deserialize);
+D.deserialize = Le(D.deserialize);
 function M(e) {
   return function(...a) {
     if (!this.store.synchronous)
@@ -21924,20 +21937,21 @@ function M(e) {
     return i;
   };
 }
-var Bs = D;
-ao.getPublicSuffix;
+var Os = D;
+eo.getPublicSuffix;
+Ie().permuteDomain;
 h.ParameterError;
-var Ue = {};
-Object.defineProperty(Ue, "__esModule", { value: !0 });
-function Os(e) {
+var Pe = {};
+Object.defineProperty(Pe, "__esModule", { value: !0 });
+function $s(e) {
   return e;
 }
-var $s = Ue.wrapper = Os;
-const qs = new Bs();
-$s && (j.defaults.jar = qs);
+var qs = Pe.wrapper = $s;
+const Us = new Os();
+qs && (j.defaults.jar = Us);
 j.defaults.withCredentials = !0;
-class Uo {
-  constructor(a = Le) {
+class Po {
+  constructor(a = Ne) {
     this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
   isJsonMime(a) {
@@ -21945,20 +21959,20 @@ class Uo {
     return a !== null && (o.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const Le = typeof window == "object" && window.self === self && self ? new Uo({ basePath: "" }) : new Uo({ basePath: "https://learning.cultofbits.com" });
-class eo {
+const Ne = typeof window == "object" && window.self === self && self ? new Po({ basePath: "" }) : new Po({ basePath: "https://learning.cultofbits.com" });
+class no {
   constructor(a, o = j) {
-    this.axios = o, this.configuration = a != null ? a : Le;
+    this.axios = o, this.configuration = a != null ? a : Ne;
   }
 }
-class Us extends Error {
+class Ls extends Error {
   constructor(a, o) {
     super(o), this.field = a, this.name = "RequiredError";
   }
 }
 const w = "https://example.com", y = function(e, a, o) {
   if (o == null)
-    throw new Us(
+    throw new Ls(
       a,
       `Required parameter ${a} was null or undefined when calling ${e}.`
     );
@@ -21983,7 +21997,7 @@ const w = "https://example.com", y = function(e, a, o) {
     const n = { ...e.options, url: o.basePath + e.url };
     return i.request(n);
   };
-}, Ls = function(e) {
+}, Ts = function(e) {
   return {
     cloneDefinition: async (a, o = {}) => {
       y("cloneDefinition", "definitionId", a);
@@ -22102,7 +22116,7 @@ const w = "https://example.com", y = function(e, a, o) {
     }
   };
 }, T = function(e) {
-  const a = Ls(e);
+  const a = Ts(e);
   return {
     async cloneDefinition(o, i) {
       const n = await a.cloneDefinition(o, i);
@@ -22142,7 +22156,7 @@ const w = "https://example.com", y = function(e, a, o) {
     }
   };
 };
-class Te extends eo {
+class Me extends no {
   cloneDefinition(a, o) {
     return T(this.configuration).cloneDefinition(a, o).then((i) => i(this.axios));
   }
@@ -22171,7 +22185,7 @@ class Te extends eo {
     return T(this.configuration).updateDefinitionState(a, o, i).then((n) => n(this.axios));
   }
 }
-const Ts = function(e) {
+const Rs = function(e) {
   return {
     addInstance: async (a, o = {}) => {
       y("addInstance", "instance", a);
@@ -22279,7 +22293,7 @@ const Ts = function(e) {
     }
   };
 }, H = function(e) {
-  const a = Ts(e);
+  const a = Rs(e);
   return {
     async addInstance(o, i) {
       const n = await a.addInstance(o, i);
@@ -22315,7 +22329,7 @@ const Ts = function(e) {
     }
   };
 };
-class Rs extends eo {
+class He extends no {
   addInstance(a, o) {
     return H(this.configuration).addInstance(a, o).then((i) => i(this.axios));
   }
@@ -22380,7 +22394,7 @@ const Ps = function(e) {
       };
     }
   };
-}, ya = function(e) {
+}, va = function(e) {
   const a = Ps(e);
   return {
     async _delete(o, i) {
@@ -22397,17 +22411,18 @@ const Ps = function(e) {
     }
   };
 };
-class Ns extends eo {
+class Ns extends no {
   _delete(a, o) {
-    return ya(this.configuration)._delete(a, o).then((i) => i(this.axios));
+    return va(this.configuration)._delete(a, o).then((i) => i(this.axios));
   }
   add(a, o) {
-    return ya(this.configuration).add(a, o).then((i) => i(this.axios));
+    return va(this.configuration).add(a, o).then((i) => i(this.axios));
   }
   update(a, o) {
-    return ya(this.configuration).update(a, o).then((i) => i(this.axios));
+    return va(this.configuration).update(a, o).then((i) => i(this.axios));
   }
 }
+new He();
 const Ms = "/recordm/index.html#/instance/__INSTANCE_ID__", et = function(e, a) {
   const o = {
     type: e,
@@ -22446,14 +22461,14 @@ const Ms = "/recordm/index.html#/instance/__INSTANCE_ID__", et = function(e, a) 
   const u = await j.get(A() + t);
   return u.data.resultsUrl = Zs.replace("__DOMAIN_ID__", `${e}`).replace("__QUERY__", a), typeof window > "u" && (u.data.resultsUrl = A() + u.data.resultsUrl), u.data;
 }, Vs = "/recordm/index.html#/instance/__INSTANCE_ID__", ut = function(e) {
-  return new Rs().getInstance(e).then((o) => {
+  return new He().getInstance(e).then((o) => {
     const i = o.data, n = i.id;
     return i.resultsUrl = Vs.replace("__INSTANCE_ID__", `${n}`), typeof window > "u" && (i.resultsUrl = A() + i.resultsUrl), i;
   });
 }, rt = async function(e) {
-  return (await new Te().getDefinition(e)).data;
+  return (await new Me().getDefinition(e)).data;
 }, mt = async function(e = { includeDisabled: !1, name: null }) {
-  return (await new Te().getAllDefinitions(
+  return (await new Me().getAllDefinitions(
     e.includeDisabled,
     e.name ? e.name.replace(/\*/g, "%") : void 0
   )).data;
@@ -22470,6 +22485,6 @@ export {
   ut as rmGetInstance,
   rt as rmListDefinitionFields,
   mt as rmListDefinitions,
-  wo as umLoggedin
+  xo as umLoggedin
 };
 //# sourceMappingURL=cobjs-api-helpers.mjs.map

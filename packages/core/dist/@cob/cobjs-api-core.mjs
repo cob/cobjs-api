@@ -1,6 +1,6 @@
-import J from "axios";
-var sa = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function wa(e) {
+import W from "axios";
+var ta = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function za(e) {
   var a = e.default;
   if (typeof a == "function") {
     var o = function() {
@@ -19,29 +19,29 @@ function wa(e) {
     });
   }), o;
 }
-const E = 2147483647, b = 36, W = 1, q = 26, Ga = 38, Xa = 700, va = 72, za = 128, xa = "-", Za = /^xn--/, Ka = /[^\0-\x7E]/, Ya = /[\x2E\u3002\uFF0E\uFF61]/g, Qa = {
+const E = 2147483647, b = 36, V = 1, q = 26, Za = 38, Ka = 700, xa = 72, Sa = 128, Ca = "-", Ya = /^xn--/, Qa = /[^\0-\x7E]/, ao = /[\x2E\u3002\uFF0E\uFF61]/g, oo = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, M = b - W, y = Math.floor, F = String.fromCharCode;
+}, M = b - V, y = Math.floor, F = String.fromCharCode;
 function C(e) {
-  throw new RangeError(Qa[e]);
+  throw new RangeError(oo[e]);
 }
-function ao(e, a) {
+function eo(e, a) {
   const o = [];
   let i = e.length;
   for (; i--; )
     o[i] = a(e[i]);
   return o;
 }
-function Sa(e, a) {
+function Aa(e, a) {
   const o = e.split("@");
   let i = "";
-  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(Ya, ".");
-  const n = e.split("."), s = ao(n, a).join(".");
+  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(ao, ".");
+  const n = e.split("."), s = eo(n, a).join(".");
   return i + s;
 }
-function V(e) {
+function G(e) {
   const a = [];
   let o = 0;
   const i = e.length;
@@ -55,18 +55,18 @@ function V(e) {
   }
   return a;
 }
-const Ca = (e) => String.fromCodePoint(...e), oo = function(e) {
+const Ia = (e) => String.fromCodePoint(...e), io = function(e) {
   return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : b;
-}, ta = function(e, a) {
+}, ra = function(e, a) {
   return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
-}, Aa = function(e, a, o) {
+}, Ea = function(e, a, o) {
   let i = 0;
-  for (e = o ? y(e / Xa) : e >> 1, e += y(e / a); e > M * q >> 1; i += b)
+  for (e = o ? y(e / Ka) : e >> 1, e += y(e / a); e > M * q >> 1; i += b)
     e = y(e / M);
-  return y(i + (M + 1) * e / (e + Ga));
-}, G = function(e) {
+  return y(i + (M + 1) * e / (e + Za));
+}, X = function(e) {
   const a = [], o = e.length;
-  let i = 0, n = za, s = va, t = e.lastIndexOf(xa);
+  let i = 0, n = Sa, s = xa, t = e.lastIndexOf(Ca);
   t < 0 && (t = 0);
   for (let r = 0; r < t; ++r)
     e.charCodeAt(r) >= 128 && C("not-basic"), a.push(e.charCodeAt(r));
@@ -74,26 +74,26 @@ const Ca = (e) => String.fromCodePoint(...e), oo = function(e) {
     let p = i;
     for (let m = 1, u = b; ; u += b) {
       r >= o && C("invalid-input");
-      const k = oo(e.charCodeAt(r++));
+      const k = io(e.charCodeAt(r++));
       (k >= b || k > y((E - i) / m)) && C("overflow"), i += k * m;
-      const h = u <= s ? W : u >= s + q ? q : u - s;
+      const h = u <= s ? V : u >= s + q ? q : u - s;
       if (k < h)
         break;
       const z = b - h;
       m > y(E / z) && C("overflow"), m *= z;
     }
     const l = a.length + 1;
-    s = Aa(i - p, l, p == 0), y(i / l) > E - n && C("overflow"), n += y(i / l), i %= l, a.splice(i++, 0, n);
+    s = Ea(i - p, l, p == 0), y(i / l) > E - n && C("overflow"), n += y(i / l), i %= l, a.splice(i++, 0, n);
   }
   return String.fromCodePoint(...a);
-}, X = function(e) {
+}, Z = function(e) {
   const a = [];
-  e = V(e);
-  let o = e.length, i = za, n = 0, s = va;
+  e = G(e);
+  let o = e.length, i = Sa, n = 0, s = xa;
   for (const p of e)
     p < 128 && a.push(F(p));
   let t = a.length, r = t;
-  for (t && a.push(xa); r < o; ) {
+  for (t && a.push(Ca); r < o; ) {
     let p = E;
     for (const m of e)
       m >= i && m < p && (p = m);
@@ -103,48 +103,48 @@ const Ca = (e) => String.fromCodePoint(...e), oo = function(e) {
       if (m < i && ++n > E && C("overflow"), m == i) {
         let u = n;
         for (let k = b; ; k += b) {
-          const h = k <= s ? W : k >= s + q ? q : k - s;
+          const h = k <= s ? V : k >= s + q ? q : k - s;
           if (u < h)
             break;
           const z = u - h, g = b - h;
           a.push(
-            F(ta(h + z % g, 0))
+            F(ra(h + z % g, 0))
           ), u = y(z / g);
         }
-        a.push(F(ta(u, 0))), s = Aa(n, l, r == t), n = 0, ++r;
+        a.push(F(ra(u, 0))), s = Ea(n, l, r == t), n = 0, ++r;
       }
     ++n, ++i;
   }
   return a.join("");
-}, Ia = function(e) {
-  return Sa(e, function(a) {
-    return Za.test(a) ? G(a.slice(4).toLowerCase()) : a;
+}, Oa = function(e) {
+  return Aa(e, function(a) {
+    return Ya.test(a) ? X(a.slice(4).toLowerCase()) : a;
   });
-}, Ea = function(e) {
-  return Sa(e, function(a) {
-    return Ka.test(a) ? "xn--" + X(a) : a;
+}, qa = function(e) {
+  return Aa(e, function(a) {
+    return Qa.test(a) ? "xn--" + Z(a) : a;
   });
-}, eo = {
+}, no = {
   version: "2.1.0",
   ucs2: {
-    decode: V,
-    encode: Ca
+    decode: G,
+    encode: Ia
   },
-  decode: G,
-  encode: X,
-  toASCII: Ea,
-  toUnicode: Ia
-}, io = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: X,
+  encode: Z,
+  toASCII: qa,
+  toUnicode: Oa
+}, so = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ucs2decode: V,
-  ucs2encode: Ca,
-  decode: G,
-  encode: X,
-  toASCII: Ea,
-  toUnicode: Ia,
-  default: eo
-}, Symbol.toStringTag, { value: "Module" })), Oa = /* @__PURE__ */ wa(io);
-var no = function(a, o) {
+  ucs2decode: G,
+  ucs2encode: Ia,
+  decode: X,
+  encode: Z,
+  toASCII: qa,
+  toUnicode: Oa,
+  default: no
+}, Symbol.toStringTag, { value: "Module" })), Da = /* @__PURE__ */ za(so);
+var to = function(a, o) {
   if (o = o.split(":")[0], a = +a, !a)
     return !1;
   switch (o) {
@@ -162,47 +162,47 @@ var no = function(a, o) {
       return !1;
   }
   return a !== 0;
-}, Z = {}, so = Object.prototype.hasOwnProperty, to;
-function ra(e) {
+}, K = {}, ro = Object.prototype.hasOwnProperty, uo;
+function ua(e) {
   try {
     return decodeURIComponent(e.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function ua(e) {
+function ma(e) {
   try {
     return encodeURIComponent(e);
   } catch {
     return null;
   }
 }
-function ro(e) {
+function mo(e) {
   for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, i; i = a.exec(e); ) {
-    var n = ra(i[1]), s = ra(i[2]);
+    var n = ua(i[1]), s = ua(i[2]);
     n === null || s === null || n in o || (o[n] = s);
   }
   return o;
 }
-function uo(e, a) {
+function po(e, a) {
   a = a || "";
   var o = [], i, n;
   typeof a != "string" && (a = "?");
   for (n in e)
-    if (so.call(e, n)) {
-      if (i = e[n], !i && (i === null || i === to || isNaN(i)) && (i = ""), n = ua(n), i = ua(i), n === null || i === null)
+    if (ro.call(e, n)) {
+      if (i = e[n], !i && (i === null || i === uo || isNaN(i)) && (i = ""), n = ma(n), i = ma(i), n === null || i === null)
         continue;
       o.push(n + "=" + i);
     }
   return o.length ? a + o.join("&") : "";
 }
-Z.stringify = uo;
-Z.parse = ro;
-var qa = no, T = Z, mo = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Da = /[\n\r\t]/g, po = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, _a = /:\d+$/, co = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, lo = /^[a-zA-Z]:/;
-function K(e) {
-  return (e || "").toString().replace(mo, "");
+K.stringify = po;
+K.parse = mo;
+var _a = to, T = K, co = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, La = /[\n\r\t]/g, lo = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Ta = /:\d+$/, ko = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, go = /^[a-zA-Z]:/;
+function Y(e) {
+  return (e || "").toString().replace(co, "");
 }
-var R = [
+var N = [
   ["#", "hash"],
   ["?", "query"],
   function(a, o) {
@@ -213,10 +213,10 @@ var R = [
   [NaN, "host", void 0, 1, 1],
   [/:(\d*)$/, "port", void 0, 1],
   [NaN, "hostname", void 0, 1, 1]
-], ma = { hash: 1, query: 1 };
-function La(e) {
+], pa = { hash: 1, query: 1 };
+function Pa(e) {
   var a;
-  typeof window < "u" ? a = window : typeof sa < "u" ? a = sa : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof ta < "u" ? a = ta : typeof self < "u" ? a = self : a = {};
   var o = a.location || {};
   e = e || o;
   var i = {}, n = typeof e, s;
@@ -224,21 +224,21 @@ function La(e) {
     i = new v(unescape(e.pathname), {});
   else if (n === "string") {
     i = new v(e, {});
-    for (s in ma)
+    for (s in pa)
       delete i[s];
   } else if (n === "object") {
     for (s in e)
-      s in ma || (i[s] = e[s]);
-    i.slashes === void 0 && (i.slashes = po.test(e.href));
+      s in pa || (i[s] = e[s]);
+    i.slashes === void 0 && (i.slashes = lo.test(e.href));
   }
   return i;
 }
 function w(e) {
   return e === "file:" || e === "ftp:" || e === "http:" || e === "https:" || e === "ws:" || e === "wss:";
 }
-function Ta(e, a) {
-  e = K(e), e = e.replace(Da, ""), a = a || {};
-  var o = co.exec(e), i = o[1] ? o[1].toLowerCase() : "", n = !!o[2], s = !!o[3], t = 0, r;
+function $a(e, a) {
+  e = Y(e), e = e.replace(La, ""), a = a || {};
+  var o = ko.exec(e), i = o[1] ? o[1].toLowerCase() : "", n = !!o[2], s = !!o[3], t = 0, r;
   return n ? s ? (r = o[2] + o[3] + o[4], t = o[2].length + o[3].length) : (r = o[2] + o[4], t = o[2].length) : s ? (r = o[3] + o[4], t = o[3].length) : r = o[4], i === "file:" ? t >= 2 && (r = r.slice(2)) : w(i) ? r = o[4] : i ? n && (r = r.slice(2)) : t >= 2 && w(a.protocol) && (r = o[4]), {
     protocol: i,
     slashes: n || w(i),
@@ -246,7 +246,7 @@ function Ta(e, a) {
     rest: r
   };
 }
-function ko(e, a) {
+function ho(e, a) {
   if (e === "")
     return a;
   for (var o = (a || "/").split("/").slice(0, -1).concat(e.split("/")), i = o.length, n = o[i - 1], s = !1, t = 0; i--; )
@@ -254,32 +254,32 @@ function ko(e, a) {
   return s && o.unshift(""), (n === "." || n === "..") && o.push(""), o.join("/");
 }
 function v(e, a, o) {
-  if (e = K(e), e = e.replace(Da, ""), !(this instanceof v))
+  if (e = Y(e), e = e.replace(La, ""), !(this instanceof v))
     return new v(e, a, o);
-  var i, n, s, t, r, p, l = R.slice(), m = typeof a, u = this, k = 0;
-  for (m !== "object" && m !== "string" && (o = a, a = null), o && typeof o != "function" && (o = T.parse), a = La(a), n = Ta(e || "", a), i = !n.protocol && !n.slashes, u.slashes = n.slashes || i && a.slashes, u.protocol = n.protocol || a.protocol || "", e = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || lo.test(e)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !w(u.protocol))) && (l[3] = [/(.*)/, "pathname"]); k < l.length; k++) {
+  var i, n, s, t, r, p, l = N.slice(), m = typeof a, u = this, k = 0;
+  for (m !== "object" && m !== "string" && (o = a, a = null), o && typeof o != "function" && (o = T.parse), a = Pa(a), n = $a(e || "", a), i = !n.protocol && !n.slashes, u.slashes = n.slashes || i && a.slashes, u.protocol = n.protocol || a.protocol || "", e = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || go.test(e)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !w(u.protocol))) && (l[3] = [/(.*)/, "pathname"]); k < l.length; k++) {
     if (t = l[k], typeof t == "function") {
       e = t(e, u);
       continue;
     }
     s = t[0], p = t[1], s !== s ? u[p] = e : typeof s == "string" ? (r = s === "@" ? e.lastIndexOf(s) : e.indexOf(s), ~r && (typeof t[2] == "number" ? (u[p] = e.slice(0, r), e = e.slice(r + t[2])) : (u[p] = e.slice(r), e = e.slice(0, r)))) : (r = s.exec(e)) && (u[p] = r[1], e = e.slice(0, r.index)), u[p] = u[p] || i && t[3] && a[p] || "", t[4] && (u[p] = u[p].toLowerCase());
   }
-  o && (u.query = o(u.query)), i && a.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || a.pathname !== "") && (u.pathname = ko(u.pathname, a.pathname)), u.pathname.charAt(0) !== "/" && w(u.protocol) && (u.pathname = "/" + u.pathname), qa(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && w(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
+  o && (u.query = o(u.query)), i && a.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || a.pathname !== "") && (u.pathname = ho(u.pathname, a.pathname)), u.pathname.charAt(0) !== "/" && w(u.protocol) && (u.pathname = "/" + u.pathname), _a(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && w(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
 }
-function go(e, a, o) {
+function jo(e, a, o) {
   var i = this;
   switch (e) {
     case "query":
       typeof a == "string" && a.length && (a = (o || T.parse)(a)), i[e] = a;
       break;
     case "port":
-      i[e] = a, qa(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
+      i[e] = a, _a(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
       break;
     case "hostname":
       i[e] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[e] = a, _a.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
+      i[e] = a, Ta.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
       i.protocol = a.toLowerCase(), i.slashes = !o;
@@ -300,26 +300,26 @@ function go(e, a, o) {
       var s = a.indexOf(":");
       ~s ? (i.username = a.slice(0, s), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(s + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < R.length; t++) {
-    var r = R[t];
+  for (var t = 0; t < N.length; t++) {
+    var r = N[t];
     r[4] && (i[r[1]] = i[r[1]].toLowerCase());
   }
   return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && w(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function ho(e) {
+function fo(e) {
   (!e || typeof e != "function") && (e = T.stringify);
   var a, o = this, i = o.host, n = o.protocol;
   n && n.charAt(n.length - 1) !== ":" && (n += ":");
   var s = n + (o.protocol && o.slashes || w(o.protocol) ? "//" : "");
-  return o.username ? (s += o.username, o.password && (s += ":" + o.password), s += "@") : o.password ? (s += ":" + o.password, s += "@") : o.protocol !== "file:" && w(o.protocol) && !i && o.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || _a.test(o.hostname) && !o.port) && (i += ":"), s += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (s += o.hash), s;
+  return o.username ? (s += o.username, o.password && (s += ":" + o.password), s += "@") : o.password ? (s += ":" + o.password, s += "@") : o.protocol !== "file:" && w(o.protocol) && !i && o.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || Ta.test(o.hostname) && !o.port) && (i += ":"), s += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (s += o.hash), s;
 }
-v.prototype = { set: go, toString: ho };
-v.extractProtocol = Ta;
-v.location = La;
-v.trimLeft = K;
+v.prototype = { set: jo, toString: fo };
+v.extractProtocol = $a;
+v.location = Pa;
+v.trimLeft = Y;
 v.qs = T;
-var jo = v, Y = {}, Pa = {};
-const fo = [
+var bo = v, Q = {}, Ma = {};
+const yo = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -9696,8 +9696,8 @@ const fo = [
   "enterprisecloud.nu"
 ];
 (function(e) {
-  var a = Oa, o = {};
-  o.rules = fo.map(function(i) {
+  var a = Da, o = {};
+  o.rules = yo.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -9776,7 +9776,7 @@ const fo = [
     var n = e.parse(i);
     return Boolean(n.domain && n.listed);
   };
-})(Pa);
+})(Ma);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -9807,29 +9807,29 @@ const fo = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const bo = Pa, pa = [
+const wo = Ma, ca = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], yo = ["localhost", "invalid"];
-function wo(e, a = {}) {
+], vo = ["localhost", "invalid"];
+function zo(e, a = {}) {
   const o = e.split("."), i = o[o.length - 1], n = !!a.allowSpecialUseDomain, s = !!a.ignoreError;
-  if (n && pa.includes(i)) {
+  if (n && ca.includes(i)) {
     if (o.length > 1)
       return `${o[o.length - 2]}.${i}`;
-    if (yo.includes(i))
+    if (vo.includes(i))
       return `${i}`;
   }
-  if (!s && pa.includes(i))
+  if (!s && ca.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return bo.get(e);
+  return wo.get(e);
 }
-Y.getPublicSuffix = wo;
-var Q = {};
+Q.getPublicSuffix = zo;
+var aa = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9860,7 +9860,7 @@ var Q = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-class vo {
+class xo {
   constructor() {
     this.synchronous = !1;
   }
@@ -9891,8 +9891,8 @@ class vo {
     );
   }
 }
-Q.Store = vo;
-var aa = {}, P = {};
+aa.Store = xo;
+var oa = {}, P = {};
 P.fromCallback = function(e) {
   return Object.defineProperty(function() {
     if (typeof arguments[arguments.length - 1] == "function")
@@ -9915,7 +9915,7 @@ P.fromPromise = function(e) {
     delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
   }, "name", { value: e.name });
 };
-var $a = {};
+var R = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9946,25 +9946,31 @@ var $a = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const zo = Y;
-function xo(e, a) {
-  const o = zo.getPublicSuffix(e, {
-    allowSpecialUseDomain: a
-  });
-  if (!o)
-    return null;
-  if (o == e)
-    return [e];
-  e.slice(-1) == "." && (e = e.slice(0, -1));
-  const n = e.slice(0, -(o.length + 1)).split(".").reverse();
-  let s = o;
-  const t = [s];
-  for (; n.length; )
-    s = `${n.shift()}.${s}`, t.push(s);
-  return t;
+var la;
+function Fa() {
+  if (la)
+    return R;
+  la = 1;
+  const e = Q;
+  function a(o, i) {
+    const n = e.getPublicSuffix(o, {
+      allowSpecialUseDomain: i
+    });
+    if (!n)
+      return null;
+    if (n == o)
+      return [o];
+    o.slice(-1) == "." && (o = o.slice(0, -1));
+    const t = o.slice(0, -(n.length + 1)).split(".").reverse();
+    let r = n;
+    const p = [r];
+    for (; t.length; )
+      r = `${t.shift()}.${r}`, p.push(r);
+    return p;
+  }
+  return R.permuteDomain = a, R;
 }
-$a.permuteDomain = xo;
-var oa = {};
+var ea = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9998,13 +10004,13 @@ var oa = {};
 function So(e, a) {
   return a === e || e.indexOf(a) === 0 && (a.substr(-1) === "/" || e.substr(a.length, 1) === "/");
 }
-oa.pathMatch = So;
+ea.pathMatch = So;
 var $ = {};
 const Co = {}, Ao = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Co
-}, Symbol.toStringTag, { value: "Module" })), Io = /* @__PURE__ */ wa(Ao);
-function Ma() {
+}, Symbol.toStringTag, { value: "Module" })), Io = /* @__PURE__ */ za(Ao);
+function Ra() {
   try {
     return Io;
   } catch {
@@ -10015,11 +10021,11 @@ function Eo() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
 function Oo(e) {
-  const o = (e.requireUtil || Ma)();
+  const o = (e.requireUtil || Ra)();
   return o ? o.inspect.custom : null;
 }
 $.getUtilInspect = function(a, o = {}) {
-  const n = (o.requireUtil || Ma)();
+  const n = (o.requireUtil || Ra)();
   return function(t, r, p) {
     return n ? n.inspect(t, r, p) : a(t);
   };
@@ -10057,15 +10063,15 @@ $.getCustomInspectSymbol = function(a = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: qo } = P, Do = Q.Store, _o = $a.permuteDomain, Lo = oa.pathMatch, { getCustomInspectSymbol: To, getUtilInspect: Po } = $;
-class N extends Do {
+const { fromCallback: qo } = P, Do = aa.Store, _o = Fa().permuteDomain, Lo = ea.pathMatch, { getCustomInspectSymbol: To, getUtilInspect: Po } = $;
+class U extends Do {
   constructor() {
     super(), this.synchronous = !0, this.idx = {};
     const a = To();
     a && (this[a] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: Po(Fa) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: Po(Na) }.inspect(this.idx, !1, 2)} }`;
   }
   findCookie(a, o, i, n) {
     return !this.idx[a] || !this.idx[a][o] ? n(null, void 0) : n(null, this.idx[a][o][i] || null);
@@ -10132,12 +10138,12 @@ class N extends Do {
   "removeAllCookies",
   "getAllCookies"
 ].forEach((e) => {
-  N.prototype[e] = qo(
-    N.prototype[e]
+  U.prototype[e] = qo(
+    U.prototype[e]
   );
 });
-aa.MemoryCookieStore = N;
-function Fa(e) {
+oa.MemoryCookieStore = U;
+function Na(e) {
   const a = Object.keys(e);
   if (a.length === 0)
     return "{}";
@@ -10167,13 +10173,13 @@ function Mo(e, a) {
 `;
   }), i += `${o}}`, i;
 }
-aa.inspectFallback = Fa;
+oa.inspectFallback = Na;
 var x = {};
-function Ra(e) {
+function Ua(e) {
   return typeof e == "function";
 }
 function Fo(e) {
-  return Na(e) && e !== "";
+  return Ha(e) && e !== "";
 }
 function Ro(e) {
   return Uo(e, Date) && Ho(e.getTime());
@@ -10181,10 +10187,10 @@ function Ro(e) {
 function No(e) {
   return e === "" || e instanceof String && e.toString() === "";
 }
-function Na(e) {
+function Ha(e) {
   return typeof e == "string" || e instanceof String;
 }
-function Ua(e) {
+function Ba(e) {
   return toString.call(e) === "[object Object]";
 }
 function Uo(e, a) {
@@ -10198,24 +10204,24 @@ function Ho(e) {
   return typeof e == "number" && e % 1 === 0;
 }
 function Bo(e, a, o) {
-  if (Ra(a) || (o = a, a = null), Ua(o) || (o = { Error: "Failed Check" }), !e)
+  if (Ua(a) || (o = a, a = null), Ba(o) || (o = { Error: "Failed Check" }), !e)
     if (a)
-      a(new U(o));
+      a(new H(o));
     else
-      throw new U(o);
+      throw new H(o);
 }
-class U extends Error {
+class H extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-x.ParameterError = U;
-x.isFunction = Ra;
+x.ParameterError = H;
+x.isFunction = Ua;
 x.isNonEmptyString = Fo;
 x.isDate = Ro;
 x.isEmptyString = No;
-x.isString = Na;
-x.isObject = Ua;
+x.isString = Ha;
+x.isObject = Ba;
 x.validate = Bo;
 var Jo = "4.1.2";
 /*!
@@ -10248,7 +10254,7 @@ var Jo = "4.1.2";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const ca = Oa, Wo = jo, ea = Y, Vo = Q.Store, Go = aa.MemoryCookieStore, Xo = oa.pathMatch, c = x, Zo = Jo, { fromCallback: Ha } = P, { getCustomInspectSymbol: Ko } = $, Yo = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, la = /[\x00-\x1F]/, ka = [`
+const ka = Da, Wo = bo, ia = Q, Vo = aa.Store, Go = oa.MemoryCookieStore, Xo = ea.pathMatch, c = x, Zo = Jo, { fromCallback: Ja } = P, { getCustomInspectSymbol: Ko } = $, Yo = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, ga = /[\x00-\x1F]/, ha = [`
 `, "\r", "\0"], Qo = /[\x20-\x3A\x3C-\x7E]+/, ae = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, oe = {
   jan: 0,
   feb: 1,
@@ -10262,8 +10268,8 @@ const ca = Oa, Wo = jo, ea = Y, Vo = Q.Store, Go = aa.MemoryCookieStore, Xo = oa
   oct: 9,
   nov: 10,
   dec: 11
-}, H = 2147483647e3, ee = 0, ga = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function ha(e) {
+}, B = 2147483647e3, ee = 0, da = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function ja(e) {
   c.validate(c.isNonEmptyString(e), e);
   const a = String(e).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
@@ -10283,8 +10289,8 @@ const I = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), Ba = new RegExp(`^${ne}$`);
-function B(e, a, o, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), Wa = new RegExp(`^${ne}$`);
+function J(e, a, o, i) {
   let n = 0;
   for (; n < e.length; ) {
     const s = e.charCodeAt(n);
@@ -10299,7 +10305,7 @@ function se(e) {
   if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const n = i == 2, s = B(a[i], 1, 2, n);
+    const n = i == 2, s = J(a[i], 1, 2, n);
     if (s === null)
       return null;
     o[i] = s;
@@ -10327,7 +10333,7 @@ function L(e) {
       o = m[0], i = m[1], n = m[2];
       continue;
     }
-    if (s === null && (m = B(l, 1, 2, !0), m !== null)) {
+    if (s === null && (m = J(l, 1, 2, !0), m !== null)) {
       s = m;
       continue;
     }
@@ -10335,7 +10341,7 @@ function L(e) {
       t = m;
       continue;
     }
-    r === null && (m = B(l, 2, 4, !0), m !== null && (r = m, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
+    r === null && (m = J(l, 2, 4, !0), m !== null && (r = m, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
   }
   if (!(s === null || t === null || r === null || n === null || s < 1 || s > 31 || r < 1601 || o > 23 || i > 59 || n > 59))
     return new Date(Date.UTC(r, t, s, o, i, n));
@@ -10344,9 +10350,9 @@ function re(e) {
   return c.validate(c.isDate(e), e), e.toUTCString();
 }
 function D(e) {
-  return e == null ? null : (e = e.trim().replace(/^\./, ""), Ba.test(e) && (e = e.replace("[", "").replace("]", "")), ca && /[^\u0001-\u007f]/.test(e) && (e = ca.toASCII(e)), e.toLowerCase());
+  return e == null ? null : (e = e.trim().replace(/^\./, ""), Wa.test(e) && (e = e.replace("[", "").replace("]", "")), ka && /[^\u0001-\u007f]/.test(e) && (e = ka.toASCII(e)), e.toLowerCase());
 }
-function da(e, a, o) {
+function fa(e, a, o) {
   if (e == null || a == null)
     return null;
   if (o !== !1 && (e = D(e), a = D(a)), e == a)
@@ -10365,8 +10371,8 @@ function ue(e) {
 function me(e) {
   if (c.isEmptyString(e))
     return e;
-  for (let a = 0; a < ka.length; a++) {
-    const o = e.indexOf(ka[a]);
+  for (let a = 0; a < ha.length; a++) {
+    const o = e.indexOf(ha[a]);
     o !== -1 && (e = e.substr(0, o));
   }
   return e;
@@ -10379,7 +10385,7 @@ function pe(e, a) {
   else if (o <= 0)
     return;
   let i, n;
-  if (o <= 0 ? (i = "", n = e.trim()) : (i = e.substr(0, o).trim(), n = e.substr(o + 1).trim()), la.test(i) || la.test(n))
+  if (o <= 0 ? (i = "", n = e.trim()) : (i = e.substr(0, o).trim(), n = e.substr(o + 1).trim()), ga.test(i) || ga.test(n))
     return;
   const s = new j();
   return s.key = i, s.value = n, s;
@@ -10460,7 +10466,7 @@ function le(e) {
 function ke(e) {
   return c.validate(c.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
 }
-function Ja(e) {
+function Va(e) {
   let a;
   try {
     a = JSON.parse(e);
@@ -10469,12 +10475,12 @@ function Ja(e) {
   }
   return a;
 }
-function ia(e) {
+function na(e) {
   if (!e || c.isEmptyString(e))
     return null;
   let a;
   if (typeof e == "string") {
-    if (a = Ja(e), a instanceof Error)
+    if (a = Va(e), a instanceof Error)
       return null;
   } else
     a = e;
@@ -10485,16 +10491,16 @@ function ia(e) {
   }
   return o;
 }
-function ja(e, a) {
+function ba(e, a) {
   c.validate(c.isObject(e), e), c.validate(c.isObject(a), a);
   let o = 0;
   const i = e.path ? e.path.length : 0;
   if (o = (a.path ? a.path.length : 0) - i, o !== 0)
     return o;
-  const s = e.creation ? e.creation.getTime() : H, t = a.creation ? a.creation.getTime() : H;
+  const s = e.creation ? e.creation.getTime() : B, t = a.creation ? a.creation.getTime() : B;
   return o = s - t, o !== 0 || (o = e.creationIndex - a.creationIndex), o;
 }
-function fa(e) {
+function ya(e) {
   if (e instanceof Object)
     return e;
   try {
@@ -10540,13 +10546,13 @@ class j {
     return a;
   }
   clone() {
-    return ia(this.toJSON());
+    return na(this.toJSON());
   }
   validate() {
     if (!Yo.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !L(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !Qo.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || ea.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || ia.getPublicSuffix(a) == null));
   }
   setExpires(a) {
     a instanceof Date ? this.expires = a : this.expires = L(a) || "Infinity";
@@ -10583,7 +10589,7 @@ class j {
   }
   expiryDate(a) {
     const o = this.expiryTime(a);
-    return o == 1 / 0 ? new Date(H) : o == -1 / 0 ? new Date(ee) : new Date(o);
+    return o == 1 / 0 ? new Date(B) : o == -1 / 0 ? new Date(ee) : new Date(o);
   }
   isPersistent() {
     return this.maxAge != null || this.expires != 1 / 0;
@@ -10597,7 +10603,7 @@ class j {
 }
 j.cookiesCreated = 0;
 j.parse = ce;
-j.fromJSON = ia;
+j.fromJSON = na;
 j.serializableProperties = Object.keys(O);
 j.sameSiteLevel = {
   strict: 3,
@@ -10608,7 +10614,7 @@ j.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function ba(e) {
+function wa(e) {
   if (e != null) {
     const a = e.toLowerCase();
     switch (a) {
@@ -10622,20 +10628,20 @@ function ba(e) {
 }
 class f {
   constructor(a, o = { rejectPublicSuffixes: !0 }) {
-    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), c.validate(c.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new Go(), this.prefixSecurity = ba(o.prefixSecurity), this._cloneSync = S("clone"), this._importCookiesSync = S("_importCookies"), this.getCookiesSync = S("getCookies"), this.getCookieStringSync = S("getCookieString"), this.getSetCookieStringsSync = S("getSetCookieStrings"), this.removeAllCookiesSync = S("removeAllCookies"), this.setCookieSync = S("setCookie"), this.serializeSync = S("serialize");
+    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), c.validate(c.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new Go(), this.prefixSecurity = wa(o.prefixSecurity), this._cloneSync = S("clone"), this._importCookiesSync = S("_importCookies"), this.getCookiesSync = S("getCookies"), this.getCookieStringSync = S("getCookieString"), this.getSetCookieStringsSync = S("getSetCookieStrings"), this.removeAllCookiesSync = S("removeAllCookies"), this.setCookieSync = S("setCookie"), this.serializeSync = S("serialize");
   }
   setCookie(a, o, i, n) {
     c.validate(c.isNonEmptyString(o), n, i);
     let s;
     if (c.isFunction(o))
       return n = o, n(new Error("No URL was specified"));
-    const t = fa(o);
+    const t = ya(o);
     if (c.isFunction(i) && (n = i, i = {}), c.validate(c.isFunction(n), n), !c.isNonEmptyString(a) && !c.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
     const r = D(t.hostname), p = i.loose || this.enableLooseMode;
     let l = null;
-    if (i.sameSiteContext && (l = ha(i.sameSiteContext), !l))
-      return n(new Error(ga));
+    if (i.sameSiteContext && (l = ja(i.sameSiteContext), !l))
+      return n(new Error(da));
     if (typeof a == "string" || a instanceof String) {
       if (a = j.parse(a, { loose: p }), !a)
         return s = new Error("Cookie failed to parse"), n(i.ignoreError ? null : s);
@@ -10644,13 +10650,13 @@ class f {
         "First argument to setCookie must be a Cookie object or string"
       ), n(i.ignoreError ? null : s);
     const m = i.now || new Date();
-    if (this.rejectPublicSuffixes && a.domain && ea.getPublicSuffix(a.cdomain(), {
+    if (this.rejectPublicSuffixes && a.domain && ia.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !Ba.test(a.domain))
+    }) == null && !Wa.test(a.domain))
       return s = new Error("Cookie has domain set to a public suffix"), n(i.ignoreError ? null : s);
     if (a.domain) {
-      if (!da(r, a.cdomain(), !1))
+      if (!fa(r, a.cdomain(), !1))
         return s = new Error(
           `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${r}`
         ), n(i.ignoreError ? null : s);
@@ -10694,16 +10700,16 @@ class f {
   }
   getCookies(a, o, i) {
     c.validate(c.isNonEmptyString(a), i, a);
-    const n = fa(a);
+    const n = ya(a);
     c.isFunction(o) && (i = o, o = {}), c.validate(c.isObject(o), i, o), c.validate(c.isFunction(i), i);
     const s = D(n.hostname), t = n.pathname || "/";
     let r = o.secure;
     r == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (r = !0);
     let p = 0;
     if (o.sameSiteContext) {
-      const g = ha(o.sameSiteContext);
+      const g = ja(o.sameSiteContext);
       if (p = j.sameSiteLevel[g], !p)
-        return i(new Error(ga));
+        return i(new Error(da));
     }
     let l = o.http;
     l == null && (l = !0);
@@ -10712,7 +10718,7 @@ class f {
       if (g.hostOnly) {
         if (g.domain != s)
           return !1;
-      } else if (!da(s, g.domain, !1))
+      } else if (!fa(s, g.domain, !1))
         return !1;
       return !k && !Xo(t, g.path) || g.secure && !r || g.httpOnly && !l || p && j.sameSiteLevel[g.sameSite || "none"] > p ? !1 : u && g.expiryTime() <= m ? (h.removeCookie(g.domain, g.path, g.key, () => {
       }), !1) : !0;
@@ -10724,7 +10730,7 @@ class f {
       (g, d) => {
         if (g)
           return i(g);
-        d = d.filter(z), o.sort !== !1 && (d = d.sort(ja));
+        d = d.filter(z), o.sort !== !1 && (d = d.sort(ba));
         const A = new Date();
         for (const _ of d)
           _.lastAccessed = A;
@@ -10738,7 +10744,7 @@ class f {
     const i = function(n, s) {
       n ? o(n) : o(
         null,
-        s.sort(ja).map((t) => t.cookieString()).join("; ")
+        s.sort(ba).map((t) => t.cookieString()).join("; ")
       );
     };
     a.push(i), this.getCookies.apply(this, a);
@@ -10764,7 +10770,7 @@ class f {
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: ba(this.prefixSecurity),
+      prefixSecurity: wa(this.prefixSecurity),
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
@@ -10790,7 +10796,7 @@ class f {
         return o(s, this);
       let t;
       try {
-        t = ia(i.shift());
+        t = na(i.shift());
       } catch (r) {
         return o(r);
       }
@@ -10846,7 +10852,7 @@ class f {
     arguments.length !== 3 && (i = o, o = null), c.validate(c.isFunction(i), i);
     let n;
     if (typeof a == "string") {
-      if (n = Ja(a), n instanceof Error)
+      if (n = Va(a), n instanceof Error)
         return i(n);
     } else
       n = a;
@@ -10885,9 +10891,9 @@ f.fromJSON = f.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((e) => {
-  f.prototype[e] = Ha(f.prototype[e]);
+  f.prototype[e] = Ja(f.prototype[e]);
 });
-f.deserialize = Ha(f.deserialize);
+f.deserialize = Ja(f.deserialize);
 function S(e) {
   return function(...a) {
     if (!this.store.synchronous)
@@ -10903,19 +10909,20 @@ function S(e) {
   };
 }
 var ge = f;
-ea.getPublicSuffix;
+ia.getPublicSuffix;
+Fa().permuteDomain;
 c.ParameterError;
-var Wa = {};
-Object.defineProperty(Wa, "__esModule", { value: !0 });
+var Ga = {};
+Object.defineProperty(Ga, "__esModule", { value: !0 });
 function he(e) {
   return e;
 }
-var de = Wa.wrapper = he;
+var de = Ga.wrapper = he;
 const je = new ge();
-de && (J.defaults.jar = je);
-J.defaults.withCredentials = !0;
-class ya {
-  constructor(a = na) {
+de && (W.defaults.jar = je);
+W.defaults.withCredentials = !0;
+class va {
+  constructor(a = sa) {
     this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
   isJsonMime(a) {
@@ -10923,10 +10930,10 @@ class ya {
     return a !== null && (o.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const na = typeof window == "object" && window.self === self && self ? new ya({ basePath: "" }) : new ya({ basePath: "https://learning.cultofbits.com" });
+const sa = typeof window == "object" && window.self === self && self ? new va({ basePath: "" }) : new va({ basePath: "https://learning.cultofbits.com" });
 class ye {
-  constructor(a, o = J) {
-    this.axios = o, this.configuration = a != null ? a : na;
+  constructor(a, o = W) {
+    this.axios = o, this.configuration = a != null ? a : sa;
   }
 }
 class fe extends Error {
@@ -10961,23 +10968,23 @@ const we = "https://example.com", ve = function(e, a, o) {
     const n = { ...e.options, url: o.basePath + e.url };
     return i.request(n);
   };
-}, Va = na;
+}, Xa = sa;
 function Ae(e) {
   typeof self == "object" && self.self === self && self && console.warn(
     `Attention: setting a diferent server in a browser environment will probably lead to CORS issues.
 Specifying the same server is redundant.`
-  ), Va.basePath = e;
+  ), Xa.basePath = e;
 }
 function Ie() {
-  return Va.basePath;
+  return Xa.basePath;
 }
 function Ee(e) {
   return e.replace(/\s+/g, "_").toLowerCase();
 }
 export {
   ye as BaseAPI,
-  ya as Configuration,
-  na as DEFAUULT_CONFIGURATION,
+  va as Configuration,
+  sa as DEFAUULT_CONFIGURATION,
   we as DUMMY_BASE_URL,
   fe as RequiredError,
   ve as assertParamExists,
