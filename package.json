@@ -17,7 +17,7 @@
     "packages/helpers"
   ],
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.5.1",
+    "@openapitools/openapi-generator-cli": "^2.6.0",
     "@types/jest": "^28.1.7",
     "@types/node": "^18.7.6",
     "jest": "^28.1.3",
