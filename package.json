@@ -1,6 +1,6 @@
 {
   "name": "cobjs-api",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Cult Of Bits",
   "scripts": {
     "build:all": "npm run build -ws --if-present",
