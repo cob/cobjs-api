@@ -12,7 +12,7 @@ it is organizes by product:
 
 ### Examples:
 
-*Note:* By default, the target server is `https://learning.cultofbits.com` but you can switch in server by setting a new value in the `DEFAULT_CONFIGURATION`
+*Note:* By default, the target server is `https://learning.cultofbits.com` but you can switch the target server address by setting a new value in the `DEFAULT_CONFIGURATION`
 
 *Node:*
 
