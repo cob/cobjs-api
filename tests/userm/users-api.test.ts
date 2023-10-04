@@ -5,16 +5,6 @@ import {auth} from "@cob/cobjs-api-helpers";
 const adminUsername = ""
 const adminPassword = ""
 
-beforeAll(() => {
-    // TODO: This is not the best approach. We should pass the desired server to the auth API as we do
-    // in the other APIs.
-    setServer("https://hmarcelino.cultofbits.com")
-})
-
-afterAll(() => {
-    setServer("https://learning.cultofbits.com")
-})
-
 test("can retrieve user data with username", async () => {
 
     const anonymousUser = (await new UsersApi().getUserByUsername("anonymous")).data
@@ -24,7 +14,7 @@ test("can retrieve user data with username", async () => {
     expect(anonymousUser.name).toStrictEqual("anonymous")
     expect(anonymousUser.state).toStrictEqual(UpdateUserRequestStateEnum.ENABLED)
     expect(anonymousUser._links?.perms).toStrictEqual("userm/user/1/perms")
-    expect(anonymousUser.groups?.map((g: Group) => g.name)).toStrictEqual(['FUNC Manage user demo'])
+    expect(anonymousUser.groups?.map((g: Group) => g.name)).toContain('FUNC Build Tests')
 })
 
 test.skip("can update user data with username", async () => {

@@ -1,4 +1,8 @@
 import { DefinitionsApi } from "@cob/cobjs-api-recordm"
+import { auth, logout } from "@cob/cobjs-api-helpers";
+
+beforeAll(async () => await auth({ username: "jestTests", password: "1jestTests2" }))
+afterAll(async () => await logout())
 
 test("Can list all active definitions with (no filter)", async () => {
   const definitionsApi = new DefinitionsApi()
