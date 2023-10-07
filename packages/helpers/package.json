@@ -22,8 +22,8 @@
     "build": "vite build -c ../../vite.config.ts && tsc"
   },
   "dependencies": {
-    "@cob/cobjs-api-core": "0.2.0",
-    "@cob/cobjs-api-recordm": "0.2.0",
+    "@cob/cobjs-api-core": "0.2.1",
+    "@cob/cobjs-api-recordm": "0.2.1",
     "axios": "^0.27.2",
     "js-cookie": "^3.0.1"
   },

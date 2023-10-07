@@ -1,10 +1,12 @@
 import j from "axios";
-var Ge = Object.defineProperty, Qe = (o, a, e) => a in o ? Ge(o, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[a] = e, fa = (o, a, e) => (Qe(o, typeof a != "symbol" ? a + "" : a, e), e), ro = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Mo(o) {
+var Qe = Object.defineProperty, We = (o, a, e) => a in o ? Qe(o, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[a] = e, ya = (o, a, e) => (We(o, typeof a != "symbol" ? a + "" : a, e), e), mo = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function Ho(o) {
+  if (o.__esModule)
+    return o;
   var a = o.default;
   if (typeof a == "function") {
-    var e = function() {
-      return a.apply(this, arguments);
+    var e = function i() {
+      return this instanceof i ? Reflect.construct(a, arguments, this.constructor) : a.apply(this, arguments);
     };
     e.prototype = a.prototype;
   } else
@@ -19,29 +21,29 @@ function Mo(o) {
     });
   }), e;
 }
-const Z = 2147483647, S = 36, Ua = 1, ea = 26, We = 38, Ye = 700, Ho = 72, Jo = 128, Go = "-", Ze = /^xn--/, Ve = /[^\0-\x7E]/, Xe = /[\x2E\u3002\uFF0E\uFF61]/g, Ke = {
+const Z = 2147483647, O = 36, Ra = 1, ea = 26, Ye = 38, Ze = 700, Jo = 72, Go = 128, Qo = "-", Ve = /^xn--/, Xe = /[^\0-\x7E]/, Ke = /[\x2E\u3002\uFF0E\uFF61]/g, ai = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, ya = S - Ua, _ = Math.floor, wa = String.fromCharCode;
+}, wa = O - Ra, $ = Math.floor, va = String.fromCharCode;
 function G(o) {
-  throw new RangeError(Ke[o]);
+  throw new RangeError(ai[o]);
 }
-function ai(o, a) {
+function oi(o, a) {
   const e = [];
   let i = o.length;
   for (; i--; )
     e[i] = a(o[i]);
   return e;
 }
-function Qo(o, a) {
+function Wo(o, a) {
   const e = o.split("@");
   let i = "";
-  e.length > 1 && (i = e[0] + "@", o = e[1]), o = o.replace(Xe, ".");
-  const n = o.split("."), s = ai(n, a).join(".");
+  e.length > 1 && (i = e[0] + "@", o = e[1]), o = o.replace(Ke, ".");
+  const n = o.split("."), s = oi(n, a).join(".");
   return i + s;
 }
-function La(o) {
+function Pa(o) {
   const a = [];
   let e = 0;
   const i = o.length;
@@ -55,96 +57,108 @@ function La(o) {
   }
   return a;
 }
-const Wo = (o) => String.fromCodePoint(...o), oi = function(o) {
-  return o - 48 < 10 ? o - 22 : o - 65 < 26 ? o - 65 : o - 97 < 26 ? o - 97 : S;
-}, mo = function(o, a) {
+const Yo = (o) => String.fromCodePoint(...o), ei = function(o) {
+  return o - 48 < 10 ? o - 22 : o - 65 < 26 ? o - 65 : o - 97 < 26 ? o - 97 : O;
+}, po = function(o, a) {
   return o + 22 + 75 * (o < 26) - ((a != 0) << 5);
-}, Yo = function(o, a, e) {
+}, Zo = function(o, a, e) {
   let i = 0;
-  for (o = e ? _(o / Ye) : o >> 1, o += _(o / a); o > ya * ea >> 1; i += S)
-    o = _(o / ya);
-  return _(i + (ya + 1) * o / (o + We));
-}, Ta = function(o) {
+  for (o = e ? $(o / Ze) : o >> 1, o += $(o / a); o > wa * ea >> 1; i += O)
+    o = $(o / wa);
+  return $(i + (wa + 1) * o / (o + Ye));
+}, Fa = function(o) {
   const a = [], e = o.length;
-  let i = 0, n = Jo, s = Ho, t = o.lastIndexOf(Go);
+  let i = 0, n = Go, s = Jo, t = o.lastIndexOf(Qo);
   t < 0 && (t = 0);
-  for (let u = 0; u < t; ++u)
-    o.charCodeAt(u) >= 128 && G("not-basic"), a.push(o.charCodeAt(u));
-  for (let u = t > 0 ? t + 1 : 0; u < e; ) {
+  for (let r = 0; r < t; ++r)
+    o.charCodeAt(r) >= 128 && G("not-basic"), a.push(o.charCodeAt(r));
+  for (let r = t > 0 ? t + 1 : 0; r < e; ) {
     let m = i;
-    for (let p = 1, r = S; ; r += S) {
-      u >= e && G("invalid-input");
-      const k = oi(o.charCodeAt(u++));
-      (k >= S || k > _((Z - i) / p)) && G("overflow"), i += k * p;
-      const b = r <= s ? Ua : r >= s + ea ? ea : r - s;
+    for (let p = 1, u = O; ; u += O) {
+      r >= e && G("invalid-input");
+      const k = ei(o.charCodeAt(r++));
+      (k >= O || k > $((Z - i) / p)) && G("overflow"), i += k * p;
+      const b = u <= s ? Ra : u >= s + ea ? ea : u - s;
       if (k < b)
         break;
-      const d = S - b;
-      p > _(Z / d) && G("overflow"), p *= d;
+      const d = O - b;
+      p > $(Z / d) && G("overflow"), p *= d;
     }
     const c = a.length + 1;
-    s = Yo(i - m, c, m == 0), _(i / c) > Z - n && G("overflow"), n += _(i / c), i %= c, a.splice(i++, 0, n);
+    s = Zo(i - m, c, m == 0), $(i / c) > Z - n && G("overflow"), n += $(i / c), i %= c, a.splice(i++, 0, n);
   }
   return String.fromCodePoint(...a);
-}, Ra = function(o) {
+}, Na = function(o) {
   const a = [];
-  o = La(o);
-  let e = o.length, i = Jo, n = 0, s = Ho;
+  o = Pa(o);
+  let e = o.length, i = Go, n = 0, s = Jo;
   for (const m of o)
-    m < 128 && a.push(wa(m));
-  let t = a.length, u = t;
-  for (t && a.push(Go); u < e; ) {
+    m < 128 && a.push(va(m));
+  let t = a.length, r = t;
+  for (t && a.push(Qo); r < e; ) {
     let m = Z;
     for (const p of o)
       p >= i && p < m && (m = p);
-    const c = u + 1;
-    m - i > _((Z - n) / c) && G("overflow"), n += (m - i) * c, i = m;
+    const c = r + 1;
+    m - i > $((Z - n) / c) && G("overflow"), n += (m - i) * c, i = m;
     for (const p of o)
       if (p < i && ++n > Z && G("overflow"), p == i) {
-        let r = n;
-        for (let k = S; ; k += S) {
-          const b = k <= s ? Ua : k >= s + ea ? ea : k - s;
-          if (r < b)
+        let u = n;
+        for (let k = O; ; k += O) {
+          const b = k <= s ? Ra : k >= s + ea ? ea : k - s;
+          if (u < b)
             break;
-          const d = r - b, l = S - b;
+          const d = u - b, l = O - b;
           a.push(
-            wa(mo(b + d % l, 0))
-          ), r = _(d / l);
+            va(po(b + d % l, 0))
+          ), u = $(d / l);
         }
-        a.push(wa(mo(r, 0))), s = Yo(n, c, u == t), n = 0, ++u;
+        a.push(va(po(u, 0))), s = Zo(n, c, r == t), n = 0, ++r;
       }
     ++n, ++i;
   }
   return a.join("");
-}, Zo = function(o) {
-  return Qo(o, function(a) {
-    return Ze.test(a) ? Ta(a.slice(4).toLowerCase()) : a;
-  });
 }, Vo = function(o) {
-  return Qo(o, function(a) {
-    return Ve.test(a) ? "xn--" + Ra(a) : a;
+  return Wo(o, function(a) {
+    return Ve.test(a) ? Fa(a.slice(4).toLowerCase()) : a;
   });
-}, ei = {
+}, Xo = function(o) {
+  return Wo(o, function(a) {
+    return Xe.test(a) ? "xn--" + Na(a) : a;
+  });
+}, ii = {
+  /**
+   * A string representing the current Punycode.js version number.
+   * @memberOf punycode
+   * @type String
+   */
   version: "2.1.0",
+  /**
+   * An object of methods to convert from JavaScript's internal character
+   * representation (UCS-2) to Unicode code points, and back.
+   * @see <https://mathiasbynens.be/notes/javascript-encoding>
+   * @memberOf punycode
+   * @type Object
+   */
   ucs2: {
-    decode: La,
-    encode: Wo
+    decode: Pa,
+    encode: Yo
   },
-  decode: Ta,
-  encode: Ra,
-  toASCII: Vo,
-  toUnicode: Zo
-}, ii = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: Fa,
+  encode: Na,
+  toASCII: Xo,
+  toUnicode: Vo
+}, ni = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ucs2decode: La,
-  ucs2encode: Wo,
-  decode: Ta,
-  encode: Ra,
-  toASCII: Vo,
-  toUnicode: Zo,
-  default: ei
-}, Symbol.toStringTag, { value: "Module" })), Xo = /* @__PURE__ */ Mo(ii);
-var ni = function(o, a) {
+  decode: Fa,
+  default: ii,
+  encode: Na,
+  toASCII: Xo,
+  toUnicode: Vo,
+  ucs2decode: Pa,
+  ucs2encode: Yo
+}, Symbol.toStringTag, { value: "Module" })), Ko = /* @__PURE__ */ Ho(ni);
+var si = function(o, a) {
   if (a = a.split(":")[0], o = +o, !o)
     return !1;
   switch (a) {
@@ -162,15 +176,15 @@ var ni = function(o, a) {
       return !1;
   }
   return o !== 0;
-}, Pa = {}, si = Object.prototype.hasOwnProperty, ti;
-function po(o) {
+}, Ma = {}, ti = Object.prototype.hasOwnProperty, ri;
+function co(o) {
   try {
     return decodeURIComponent(o.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function co(o) {
+function lo(o) {
   try {
     return encodeURIComponent(o);
   } catch {
@@ -179,107 +193,114 @@ function co(o) {
 }
 function ui(o) {
   for (var a = /([^=?#&]+)=?([^&]*)/g, e = {}, i; i = a.exec(o); ) {
-    var n = po(i[1]), s = po(i[2]);
+    var n = co(i[1]), s = co(i[2]);
     n === null || s === null || n in e || (e[n] = s);
   }
   return e;
 }
-function ri(o, a) {
+function mi(o, a) {
   a = a || "";
   var e = [], i, n;
   typeof a != "string" && (a = "?");
   for (n in o)
-    if (si.call(o, n)) {
-      if (i = o[n], !i && (i === null || i === ti || isNaN(i)) && (i = ""), n = co(n), i = co(i), n === null || i === null)
+    if (ti.call(o, n)) {
+      if (i = o[n], !i && (i === null || i === ri || isNaN(i)) && (i = ""), n = lo(n), i = lo(i), n === null || i === null)
         continue;
       e.push(n + "=" + i);
     }
   return e.length ? a + e.join("&") : "";
 }
-Pa.stringify = ri;
-Pa.parse = ui;
-var Ko = ni, la = Pa, mi = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, ae = /[\n\r\t]/g, pi = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, oe = /:\d+$/, ci = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, li = /^[a-zA-Z]:/;
-function Na(o) {
-  return (o || "").toString().replace(mi, "");
+Ma.stringify = mi;
+Ma.parse = ui;
+var ae = si, ka = Ma, pi = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, oe = /[\n\r\t]/g, ci = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, ee = /:\d+$/, li = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, ki = /^[a-zA-Z]:/;
+function Ba(o) {
+  return (o || "").toString().replace(pi, "");
 }
-var Ca = [
+var _a = [
   ["#", "hash"],
+  // Extract from the back.
   ["?", "query"],
+  // Extract from the back.
   function(o, a) {
-    return O(a.protocol) ? o.replace(/\\/g, "/") : o;
+    return q(a.protocol) ? o.replace(/\\/g, "/") : o;
   },
   ["/", "pathname"],
+  // Extract from the back.
   ["@", "auth", 1],
+  // Extract from the front.
   [NaN, "host", void 0, 1, 1],
+  // Set left over value.
   [/:(\d*)$/, "port", void 0, 1],
+  // RegExp the back.
   [NaN, "hostname", void 0, 1, 1]
-], lo = { hash: 1, query: 1 };
-function ee(o) {
+  // Set left over.
+], ko = { hash: 1, query: 1 };
+function ie(o) {
   var a;
-  typeof window < "u" ? a = window : typeof ro < "u" ? a = ro : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof mo < "u" ? a = mo : typeof self < "u" ? a = self : a = {};
   var e = a.location || {};
   o = o || e;
   var i = {}, n = typeof o, s;
   if (o.protocol === "blob:")
-    i = new q(unescape(o.pathname), {});
+    i = new L(unescape(o.pathname), {});
   else if (n === "string") {
-    i = new q(o, {});
-    for (s in lo)
+    i = new L(o, {});
+    for (s in ko)
       delete i[s];
   } else if (n === "object") {
     for (s in o)
-      s in lo || (i[s] = o[s]);
-    i.slashes === void 0 && (i.slashes = pi.test(o.href));
+      s in ko || (i[s] = o[s]);
+    i.slashes === void 0 && (i.slashes = ci.test(o.href));
   }
   return i;
 }
-function O(o) {
+function q(o) {
   return o === "file:" || o === "ftp:" || o === "http:" || o === "https:" || o === "ws:" || o === "wss:";
 }
-function ie(o, a) {
-  o = Na(o), o = o.replace(ae, ""), a = a || {};
-  var e = ci.exec(o), i = e[1] ? e[1].toLowerCase() : "", n = !!e[2], s = !!e[3], t = 0, u;
-  return n ? s ? (u = e[2] + e[3] + e[4], t = e[2].length + e[3].length) : (u = e[2] + e[4], t = e[2].length) : s ? (u = e[3] + e[4], t = e[3].length) : u = e[4], i === "file:" ? t >= 2 && (u = u.slice(2)) : O(i) ? u = e[4] : i ? n && (u = u.slice(2)) : t >= 2 && O(a.protocol) && (u = e[4]), {
+function ne(o, a) {
+  o = Ba(o), o = o.replace(oe, ""), a = a || {};
+  var e = li.exec(o), i = e[1] ? e[1].toLowerCase() : "", n = !!e[2], s = !!e[3], t = 0, r;
+  return n ? s ? (r = e[2] + e[3] + e[4], t = e[2].length + e[3].length) : (r = e[2] + e[4], t = e[2].length) : s ? (r = e[3] + e[4], t = e[3].length) : r = e[4], i === "file:" ? t >= 2 && (r = r.slice(2)) : q(i) ? r = e[4] : i ? n && (r = r.slice(2)) : t >= 2 && q(a.protocol) && (r = e[4]), {
     protocol: i,
-    slashes: n || O(i),
+    slashes: n || q(i),
     slashesCount: t,
-    rest: u
+    rest: r
   };
 }
-function ki(o, a) {
+function gi(o, a) {
   if (o === "")
     return a;
   for (var e = (a || "/").split("/").slice(0, -1).concat(o.split("/")), i = e.length, n = e[i - 1], s = !1, t = 0; i--; )
     e[i] === "." ? e.splice(i, 1) : e[i] === ".." ? (e.splice(i, 1), t++) : t && (i === 0 && (s = !0), e.splice(i, 1), t--);
   return s && e.unshift(""), (n === "." || n === "..") && e.push(""), e.join("/");
 }
-function q(o, a, e) {
-  if (o = Na(o), o = o.replace(ae, ""), !(this instanceof q))
-    return new q(o, a, e);
-  var i, n, s, t, u, m, c = Ca.slice(), p = typeof a, r = this, k = 0;
-  for (p !== "object" && p !== "string" && (e = a, a = null), e && typeof e != "function" && (e = la.parse), a = ee(a), n = ie(o || "", a), i = !n.protocol && !n.slashes, r.slashes = n.slashes || i && a.slashes, r.protocol = n.protocol || a.protocol || "", o = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || li.test(o)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !O(r.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
+function L(o, a, e) {
+  if (o = Ba(o), o = o.replace(oe, ""), !(this instanceof L))
+    return new L(o, a, e);
+  var i, n, s, t, r, m, c = _a.slice(), p = typeof a, u = this, k = 0;
+  for (p !== "object" && p !== "string" && (e = a, a = null), e && typeof e != "function" && (e = ka.parse), a = ie(a), n = ne(o || "", a), i = !n.protocol && !n.slashes, u.slashes = n.slashes || i && a.slashes, u.protocol = n.protocol || a.protocol || "", o = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || ki.test(o)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !q(u.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
     if (t = c[k], typeof t == "function") {
-      o = t(o, r);
+      o = t(o, u);
       continue;
     }
-    s = t[0], m = t[1], s !== s ? r[m] = o : typeof s == "string" ? (u = s === "@" ? o.lastIndexOf(s) : o.indexOf(s), ~u && (typeof t[2] == "number" ? (r[m] = o.slice(0, u), o = o.slice(u + t[2])) : (r[m] = o.slice(u), o = o.slice(0, u)))) : (u = s.exec(o)) && (r[m] = u[1], o = o.slice(0, u.index)), r[m] = r[m] || i && t[3] && a[m] || "", t[4] && (r[m] = r[m].toLowerCase());
+    s = t[0], m = t[1], s !== s ? u[m] = o : typeof s == "string" ? (r = s === "@" ? o.lastIndexOf(s) : o.indexOf(s), ~r && (typeof t[2] == "number" ? (u[m] = o.slice(0, r), o = o.slice(r + t[2])) : (u[m] = o.slice(r), o = o.slice(0, r)))) : (r = s.exec(o)) && (u[m] = r[1], o = o.slice(0, r.index)), u[m] = u[m] || i && t[3] && a[m] || "", t[4] && (u[m] = u[m].toLowerCase());
   }
-  e && (r.query = e(r.query)), i && a.slashes && r.pathname.charAt(0) !== "/" && (r.pathname !== "" || a.pathname !== "") && (r.pathname = ki(r.pathname, a.pathname)), r.pathname.charAt(0) !== "/" && O(r.protocol) && (r.pathname = "/" + r.pathname), Ko(r.port, r.protocol) || (r.host = r.hostname, r.port = ""), r.username = r.password = "", r.auth && (u = r.auth.indexOf(":"), ~u ? (r.username = r.auth.slice(0, u), r.username = encodeURIComponent(decodeURIComponent(r.username)), r.password = r.auth.slice(u + 1), r.password = encodeURIComponent(decodeURIComponent(r.password))) : r.username = encodeURIComponent(decodeURIComponent(r.auth)), r.auth = r.password ? r.username + ":" + r.password : r.username), r.origin = r.protocol !== "file:" && O(r.protocol) && r.host ? r.protocol + "//" + r.host : "null", r.href = r.toString();
+  e && (u.query = e(u.query)), i && a.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || a.pathname !== "") && (u.pathname = gi(u.pathname, a.pathname)), u.pathname.charAt(0) !== "/" && q(u.protocol) && (u.pathname = "/" + u.pathname), ae(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && q(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
 }
-function gi(o, a, e) {
+function hi(o, a, e) {
   var i = this;
   switch (o) {
     case "query":
-      typeof a == "string" && a.length && (a = (e || la.parse)(a)), i[o] = a;
+      typeof a == "string" && a.length && (a = (e || ka.parse)(a)), i[o] = a;
       break;
     case "port":
-      i[o] = a, Ko(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[o] = "");
+      i[o] = a, ae(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[o] = "");
       break;
     case "hostname":
       i[o] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[o] = a, oe.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
+      i[o] = a, ee.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
       i.protocol = a.toLowerCase(), i.slashes = !e;
@@ -300,26 +321,26 @@ function gi(o, a, e) {
       var s = a.indexOf(":");
       ~s ? (i.username = a.slice(0, s), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(s + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < Ca.length; t++) {
-    var u = Ca[t];
-    u[4] && (i[u[1]] = i[u[1]].toLowerCase());
+  for (var t = 0; t < _a.length; t++) {
+    var r = _a[t];
+    r[4] && (i[r[1]] = i[r[1]].toLowerCase());
   }
-  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && O(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
+  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && q(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function hi(o) {
-  (!o || typeof o != "function") && (o = la.stringify);
+function di(o) {
+  (!o || typeof o != "function") && (o = ka.stringify);
   var a, e = this, i = e.host, n = e.protocol;
   n && n.charAt(n.length - 1) !== ":" && (n += ":");
-  var s = n + (e.protocol && e.slashes || O(e.protocol) ? "//" : "");
-  return e.username ? (s += e.username, e.password && (s += ":" + e.password), s += "@") : e.password ? (s += ":" + e.password, s += "@") : e.protocol !== "file:" && O(e.protocol) && !i && e.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || oe.test(e.hostname) && !e.port) && (i += ":"), s += i + e.pathname, a = typeof e.query == "object" ? o(e.query) : e.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), e.hash && (s += e.hash), s;
+  var s = n + (e.protocol && e.slashes || q(e.protocol) ? "//" : "");
+  return e.username ? (s += e.username, e.password && (s += ":" + e.password), s += "@") : e.password ? (s += ":" + e.password, s += "@") : e.protocol !== "file:" && q(e.protocol) && !i && e.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || ee.test(e.hostname) && !e.port) && (i += ":"), s += i + e.pathname, a = typeof e.query == "object" ? o(e.query) : e.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), e.hash && (s += e.hash), s;
 }
-q.prototype = { set: gi, toString: hi };
-q.extractProtocol = ie;
-q.location = ee;
-q.trimLeft = Na;
-q.qs = la;
-var di = q, Ma = {}, ne = {};
-const ji = [
+L.prototype = { set: hi, toString: di };
+L.extractProtocol = ne;
+L.location = ie;
+L.trimLeft = Ba;
+L.qs = ka;
+var ji = L, Ha = {}, se = {};
+const bi = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -904,7 +925,7 @@ const ji = [
   "net.ci",
   "go.ci",
   "asso.ci",
-  "a\xE9roport.ci",
+  "aéroport.ci",
   "int.ci",
   "presse.ci",
   "md.ci",
@@ -929,9 +950,9 @@ const ji = [
   "net.cn",
   "org.cn",
   "mil.cn",
-  "\u516C\u53F8.cn",
-  "\u7F51\u7EDC.cn",
-  "\u7DB2\u7D61.cn",
+  "公司.cn",
+  "网络.cn",
+  "網絡.cn",
   "ah.cn",
   "bj.cn",
   "cq.cn",
@@ -1242,21 +1263,21 @@ const ji = [
   "idv.hk",
   "net.hk",
   "org.hk",
-  "\u516C\u53F8.hk",
-  "\u6559\u80B2.hk",
-  "\u654E\u80B2.hk",
-  "\u653F\u5E9C.hk",
-  "\u500B\u4EBA.hk",
-  "\u4E2A\uFFFD\uFFFD.hk",
-  "\u7B87\u4EBA.hk",
-  "\u7DB2\u7EDC.hk",
-  "\u7F51\u7EDC.hk",
-  "\u7EC4\u7E54.hk",
-  "\u7DB2\u7D61.hk",
-  "\u7F51\u7D61.hk",
-  "\u7EC4\u7EC7.hk",
-  "\u7D44\u7E54.hk",
-  "\u7D44\u7EC7.hk",
+  "公司.hk",
+  "教育.hk",
+  "敎育.hk",
+  "政府.hk",
+  "個人.hk",
+  "个��.hk",
+  "箇人.hk",
+  "網络.hk",
+  "网络.hk",
+  "组織.hk",
+  "網絡.hk",
+  "网絡.hk",
+  "组织.hk",
+  "組織.hk",
+  "組织.hk",
   "hm",
   "hn",
   "com.hn",
@@ -1387,8 +1408,8 @@ const ji = [
   "net.ir",
   "org.ir",
   "sch.ir",
-  "\u0627\u06CC\u0631\u0627\u0646.ir",
-  "\u0627\u064A\u0631\u0627\u0646.ir",
+  "ایران.ir",
+  "ايران.ir",
   "is",
   "net.is",
   "com.is",
@@ -1452,9 +1473,9 @@ const ji = [
   "tos.it",
   "toscana.it",
   "trentin-sud-tirol.it",
-  "trentin-s\xFCd-tirol.it",
+  "trentin-süd-tirol.it",
   "trentin-sudtirol.it",
-  "trentin-s\xFCdtirol.it",
+  "trentin-südtirol.it",
   "trentin-sued-tirol.it",
   "trentin-suedtirol.it",
   "trentino-a-adige.it",
@@ -1464,9 +1485,9 @@ const ji = [
   "trentino-s-tirol.it",
   "trentino-stirol.it",
   "trentino-sud-tirol.it",
-  "trentino-s\xFCd-tirol.it",
+  "trentino-süd-tirol.it",
   "trentino-sudtirol.it",
-  "trentino-s\xFCdtirol.it",
+  "trentino-südtirol.it",
   "trentino-sued-tirol.it",
   "trentino-suedtirol.it",
   "trentino.it",
@@ -1477,15 +1498,15 @@ const ji = [
   "trentinos-tirol.it",
   "trentinostirol.it",
   "trentinosud-tirol.it",
-  "trentinos\xFCd-tirol.it",
+  "trentinosüd-tirol.it",
   "trentinosudtirol.it",
-  "trentinos\xFCdtirol.it",
+  "trentinosüdtirol.it",
   "trentinosued-tirol.it",
   "trentinosuedtirol.it",
   "trentinsud-tirol.it",
-  "trentins\xFCd-tirol.it",
+  "trentinsüd-tirol.it",
   "trentinsudtirol.it",
-  "trentins\xFCdtirol.it",
+  "trentinsüdtirol.it",
   "trentinsued-tirol.it",
   "trentinsuedtirol.it",
   "tuscany.it",
@@ -1502,13 +1523,13 @@ const ji = [
   "valled-aosta.it",
   "valledaosta.it",
   "vallee-aoste.it",
-  "vall\xE9e-aoste.it",
+  "vallée-aoste.it",
   "vallee-d-aoste.it",
-  "vall\xE9e-d-aoste.it",
+  "vallée-d-aoste.it",
   "valleeaoste.it",
-  "vall\xE9eaoste.it",
+  "valléeaoste.it",
   "valleedaoste.it",
-  "vall\xE9edaoste.it",
+  "valléedaoste.it",
   "vao.it",
   "vda.it",
   "ven.it",
@@ -1541,7 +1562,7 @@ const ji = [
   "avellino.it",
   "ba.it",
   "balsan-sudtirol.it",
-  "balsan-s\xFCdtirol.it",
+  "balsan-südtirol.it",
   "balsan-suedtirol.it",
   "balsan.it",
   "bari.it",
@@ -1560,7 +1581,7 @@ const ji = [
   "bolzano-altoadige.it",
   "bolzano.it",
   "bozen-sudtirol.it",
-  "bozen-s\xFCdtirol.it",
+  "bozen-südtirol.it",
   "bozen-suedtirol.it",
   "bozen.it",
   "br.it",
@@ -1569,7 +1590,7 @@ const ji = [
   "bs.it",
   "bt.it",
   "bulsan-sudtirol.it",
-  "bulsan-s\xFCdtirol.it",
+  "bulsan-südtirol.it",
   "bulsan-suedtirol.it",
   "bulsan.it",
   "bz.it",
@@ -1589,9 +1610,9 @@ const ji = [
   "cb.it",
   "ce.it",
   "cesena-forli.it",
-  "cesena-forl\xEC.it",
+  "cesena-forlì.it",
   "cesenaforli.it",
-  "cesenaforl\xEC.it",
+  "cesenaforlì.it",
   "ch.it",
   "chieti.it",
   "ci.it",
@@ -1622,9 +1643,9 @@ const ji = [
   "fm.it",
   "foggia.it",
   "forli-cesena.it",
-  "forl\xEC-cesena.it",
+  "forlì-cesena.it",
   "forlicesena.it",
-  "forl\xECcesena.it",
+  "forlìcesena.it",
   "fr.it",
   "frosinone.it",
   "ge.it",
@@ -1755,7 +1776,7 @@ const ji = [
   "sr.it",
   "ss.it",
   "suedtirol.it",
-  "s\xFCdtirol.it",
+  "südtirol.it",
   "sv.it",
   "ta.it",
   "taranto.it",
@@ -1875,53 +1896,53 @@ const ji = [
   "yamagata.jp",
   "yamaguchi.jp",
   "yamanashi.jp",
-  "\u6803\u6728.jp",
-  "\u611B\u77E5.jp",
-  "\u611B\u5A9B.jp",
-  "\u5175\u5EAB.jp",
-  "\u718A\u672C.jp",
-  "\u8328\u57CE.jp",
-  "\u5317\u6D77\u9053.jp",
-  "\u5343\u8449.jp",
-  "\u548C\u6B4C\u5C71.jp",
-  "\u9577\u5D0E.jp",
-  "\u9577\u91CE.jp",
-  "\u65B0\u6F5F.jp",
-  "\u9752\u68EE.jp",
-  "\u9759\u5CA1.jp",
-  "\u6771\u4EAC.jp",
-  "\u77F3\u5DDD.jp",
-  "\u57FC\u7389.jp",
-  "\u4E09\u91CD.jp",
-  "\u4EAC\u90FD.jp",
-  "\u4F50\u8CC0.jp",
-  "\u5927\u5206.jp",
-  "\u5927\u962A.jp",
-  "\u5948\u826F.jp",
-  "\u5BAE\u57CE.jp",
-  "\u5BAE\u5D0E.jp",
-  "\u5BCC\u5C71.jp",
-  "\u5C71\u53E3.jp",
-  "\u5C71\u5F62.jp",
-  "\u5C71\u68A8.jp",
-  "\u5CA9\u624B.jp",
-  "\u5C90\u961C.jp",
-  "\u5CA1\u5C71.jp",
-  "\u5CF6\u6839.jp",
-  "\u5E83\u5CF6.jp",
-  "\u5FB3\u5CF6.jp",
-  "\u6C96\u7E04.jp",
-  "\u6ECB\u8CC0.jp",
-  "\u795E\u5948\u5DDD.jp",
-  "\u798F\u4E95.jp",
-  "\u798F\u5CA1.jp",
-  "\u798F\u5CF6.jp",
-  "\u79CB\u7530.jp",
-  "\u7FA4\u99AC.jp",
-  "\u9999\u5DDD.jp",
-  "\u9AD8\u77E5.jp",
-  "\u9CE5\u53D6.jp",
-  "\u9E7F\u5150\u5CF6.jp",
+  "栃木.jp",
+  "愛知.jp",
+  "愛媛.jp",
+  "兵庫.jp",
+  "熊本.jp",
+  "茨城.jp",
+  "北海道.jp",
+  "千葉.jp",
+  "和歌山.jp",
+  "長崎.jp",
+  "長野.jp",
+  "新潟.jp",
+  "青森.jp",
+  "静岡.jp",
+  "東京.jp",
+  "石川.jp",
+  "埼玉.jp",
+  "三重.jp",
+  "京都.jp",
+  "佐賀.jp",
+  "大分.jp",
+  "大阪.jp",
+  "奈良.jp",
+  "宮城.jp",
+  "宮崎.jp",
+  "富山.jp",
+  "山口.jp",
+  "山形.jp",
+  "山梨.jp",
+  "岩手.jp",
+  "岐阜.jp",
+  "岡山.jp",
+  "島根.jp",
+  "広島.jp",
+  "徳島.jp",
+  "沖縄.jp",
+  "滋賀.jp",
+  "神奈川.jp",
+  "福井.jp",
+  "福岡.jp",
+  "福島.jp",
+  "秋田.jp",
+  "群馬.jp",
+  "香川.jp",
+  "高知.jp",
+  "鳥取.jp",
+  "鹿児島.jp",
   "*.kawasaki.jp",
   "*.kitakyushu.jp",
   "*.kobe.jp",
@@ -4006,13 +4027,13 @@ const ji = [
   "community.museum",
   "computer.museum",
   "computerhistory.museum",
-  "comunica\xE7\xF5es.museum",
+  "comunicações.museum",
   "contemporary.museum",
   "contemporaryart.museum",
   "convent.museum",
   "copenhagen.museum",
   "corporation.museum",
-  "correios-e-telecomunica\xE7\xF5es.museum",
+  "correios-e-telecomunicações.museum",
   "corvette.museum",
   "costume.museum",
   "countryestate.museum",
@@ -4161,7 +4182,7 @@ const ji = [
   "lancashire.museum",
   "landes.museum",
   "lans.museum",
-  "l\xE4ns.museum",
+  "läns.museum",
   "larsson.museum",
   "lewismiller.museum",
   "lincoln.museum",
@@ -4421,8 +4442,8 @@ const ji = [
   "youth.museum",
   "zoological.museum",
   "zoology.museum",
-  "\u05D9\u05E8\u05D5\u05E9\u05DC\u05D9\u05DD.museum",
-  "\u0438\u043A\u043E\u043C.museum",
+  "ירושלים.museum",
+  "иком.museum",
   "mv",
   "aero.mv",
   "biz.mv",
@@ -4592,160 +4613,160 @@ const ji = [
   "gs.va.no",
   "gs.vf.no",
   "akrehamn.no",
-  "\xE5krehamn.no",
+  "åkrehamn.no",
   "algard.no",
-  "\xE5lg\xE5rd.no",
+  "ålgård.no",
   "arna.no",
   "brumunddal.no",
   "bryne.no",
   "bronnoysund.no",
-  "br\xF8nn\xF8ysund.no",
+  "brønnøysund.no",
   "drobak.no",
-  "dr\xF8bak.no",
+  "drøbak.no",
   "egersund.no",
   "fetsund.no",
   "floro.no",
-  "flor\xF8.no",
+  "florø.no",
   "fredrikstad.no",
   "hokksund.no",
   "honefoss.no",
-  "h\xF8nefoss.no",
+  "hønefoss.no",
   "jessheim.no",
   "jorpeland.no",
-  "j\xF8rpeland.no",
+  "jørpeland.no",
   "kirkenes.no",
   "kopervik.no",
   "krokstadelva.no",
   "langevag.no",
-  "langev\xE5g.no",
+  "langevåg.no",
   "leirvik.no",
   "mjondalen.no",
-  "mj\xF8ndalen.no",
+  "mjøndalen.no",
   "mo-i-rana.no",
   "mosjoen.no",
-  "mosj\xF8en.no",
+  "mosjøen.no",
   "nesoddtangen.no",
   "orkanger.no",
   "osoyro.no",
-  "os\xF8yro.no",
+  "osøyro.no",
   "raholt.no",
-  "r\xE5holt.no",
+  "råholt.no",
   "sandnessjoen.no",
-  "sandnessj\xF8en.no",
+  "sandnessjøen.no",
   "skedsmokorset.no",
   "slattum.no",
   "spjelkavik.no",
   "stathelle.no",
   "stavern.no",
   "stjordalshalsen.no",
-  "stj\xF8rdalshalsen.no",
+  "stjørdalshalsen.no",
   "tananger.no",
   "tranby.no",
   "vossevangen.no",
   "afjord.no",
-  "\xE5fjord.no",
+  "åfjord.no",
   "agdenes.no",
   "al.no",
-  "\xE5l.no",
+  "ål.no",
   "alesund.no",
-  "\xE5lesund.no",
+  "ålesund.no",
   "alstahaug.no",
   "alta.no",
-  "\xE1lt\xE1.no",
+  "áltá.no",
   "alaheadju.no",
-  "\xE1laheadju.no",
+  "álaheadju.no",
   "alvdal.no",
   "amli.no",
-  "\xE5mli.no",
+  "åmli.no",
   "amot.no",
-  "\xE5mot.no",
+  "åmot.no",
   "andebu.no",
   "andoy.no",
-  "and\xF8y.no",
+  "andøy.no",
   "andasuolo.no",
   "ardal.no",
-  "\xE5rdal.no",
+  "årdal.no",
   "aremark.no",
   "arendal.no",
-  "\xE5s.no",
+  "ås.no",
   "aseral.no",
-  "\xE5seral.no",
+  "åseral.no",
   "asker.no",
   "askim.no",
   "askvoll.no",
   "askoy.no",
-  "ask\xF8y.no",
+  "askøy.no",
   "asnes.no",
-  "\xE5snes.no",
+  "åsnes.no",
   "audnedaln.no",
   "aukra.no",
   "aure.no",
   "aurland.no",
   "aurskog-holand.no",
-  "aurskog-h\xF8land.no",
+  "aurskog-høland.no",
   "austevoll.no",
   "austrheim.no",
   "averoy.no",
-  "aver\xF8y.no",
+  "averøy.no",
   "balestrand.no",
   "ballangen.no",
   "balat.no",
-  "b\xE1l\xE1t.no",
+  "bálát.no",
   "balsfjord.no",
   "bahccavuotna.no",
-  "b\xE1hccavuotna.no",
+  "báhccavuotna.no",
   "bamble.no",
   "bardu.no",
   "beardu.no",
   "beiarn.no",
   "bajddar.no",
-  "b\xE1jddar.no",
+  "bájddar.no",
   "baidar.no",
-  "b\xE1id\xE1r.no",
+  "báidár.no",
   "berg.no",
   "bergen.no",
   "berlevag.no",
-  "berlev\xE5g.no",
+  "berlevåg.no",
   "bearalvahki.no",
-  "bearalv\xE1hki.no",
+  "bearalváhki.no",
   "bindal.no",
   "birkenes.no",
   "bjarkoy.no",
-  "bjark\xF8y.no",
+  "bjarkøy.no",
   "bjerkreim.no",
   "bjugn.no",
   "bodo.no",
-  "bod\xF8.no",
+  "bodø.no",
   "badaddja.no",
-  "b\xE5d\xE5ddj\xE5.no",
+  "bådåddjå.no",
   "budejju.no",
   "bokn.no",
   "bremanger.no",
   "bronnoy.no",
-  "br\xF8nn\xF8y.no",
+  "brønnøy.no",
   "bygland.no",
   "bykle.no",
   "barum.no",
-  "b\xE6rum.no",
+  "bærum.no",
   "bo.telemark.no",
-  "b\xF8.telemark.no",
+  "bø.telemark.no",
   "bo.nordland.no",
-  "b\xF8.nordland.no",
+  "bø.nordland.no",
   "bievat.no",
-  "biev\xE1t.no",
+  "bievát.no",
   "bomlo.no",
-  "b\xF8mlo.no",
+  "bømlo.no",
   "batsfjord.no",
-  "b\xE5tsfjord.no",
+  "båtsfjord.no",
   "bahcavuotna.no",
-  "b\xE1hcavuotna.no",
+  "báhcavuotna.no",
   "dovre.no",
   "drammen.no",
   "drangedal.no",
   "dyroy.no",
-  "dyr\xF8y.no",
+  "dyrøy.no",
   "donna.no",
-  "d\xF8nna.no",
+  "dønna.no",
   "eid.no",
   "eidfjord.no",
   "eidsberg.no",
@@ -4759,7 +4780,7 @@ const ji = [
   "etnedal.no",
   "evenes.no",
   "evenassi.no",
-  "even\xE1\u0161\u0161i.no",
+  "evenášši.no",
   "evje-og-hornnes.no",
   "farsund.no",
   "fauske.no",
@@ -4768,7 +4789,7 @@ const ji = [
   "fedje.no",
   "fet.no",
   "finnoy.no",
-  "finn\xF8y.no",
+  "finnøy.no",
   "fitjar.no",
   "fjaler.no",
   "fjell.no",
@@ -4778,7 +4799,7 @@ const ji = [
   "flesberg.no",
   "flora.no",
   "fla.no",
-  "fl\xE5.no",
+  "flå.no",
   "folldal.no",
   "forsand.no",
   "fosnes.no",
@@ -4787,27 +4808,27 @@ const ji = [
   "froland.no",
   "frosta.no",
   "frana.no",
-  "fr\xE6na.no",
+  "fræna.no",
   "froya.no",
-  "fr\xF8ya.no",
+  "frøya.no",
   "fusa.no",
   "fyresdal.no",
   "forde.no",
-  "f\xF8rde.no",
+  "førde.no",
   "gamvik.no",
   "gangaviika.no",
-  "g\xE1\u014Bgaviika.no",
+  "gáŋgaviika.no",
   "gaular.no",
   "gausdal.no",
   "gildeskal.no",
-  "gildesk\xE5l.no",
+  "gildeskål.no",
   "giske.no",
   "gjemnes.no",
   "gjerdrum.no",
   "gjerstad.no",
   "gjesdal.no",
   "gjovik.no",
-  "gj\xF8vik.no",
+  "gjøvik.no",
   "gloppen.no",
   "gol.no",
   "gran.no",
@@ -4817,7 +4838,7 @@ const ji = [
   "grimstad.no",
   "grong.no",
   "kraanghke.no",
-  "kr\xE5anghke.no",
+  "kråanghke.no",
   "grue.no",
   "gulen.no",
   "hadsel.no",
@@ -4826,18 +4847,18 @@ const ji = [
   "hamar.no",
   "hamaroy.no",
   "habmer.no",
-  "h\xE1bmer.no",
+  "hábmer.no",
   "hapmir.no",
-  "h\xE1pmir.no",
+  "hápmir.no",
   "hammerfest.no",
   "hammarfeasta.no",
-  "h\xE1mm\xE1rfeasta.no",
+  "hámmárfeasta.no",
   "haram.no",
   "hareid.no",
   "harstad.no",
   "hasvik.no",
   "aknoluokta.no",
-  "\xE1k\u014Boluokta.no",
+  "ákŋoluokta.no",
   "hattfjelldal.no",
   "aarborte.no",
   "haugesund.no",
@@ -4845,20 +4866,20 @@ const ji = [
   "hemnes.no",
   "hemsedal.no",
   "heroy.more-og-romsdal.no",
-  "her\xF8y.m\xF8re-og-romsdal.no",
+  "herøy.møre-og-romsdal.no",
   "heroy.nordland.no",
-  "her\xF8y.nordland.no",
+  "herøy.nordland.no",
   "hitra.no",
   "hjartdal.no",
   "hjelmeland.no",
   "hobol.no",
-  "hob\xF8l.no",
+  "hobøl.no",
   "hof.no",
   "hol.no",
   "hole.no",
   "holmestrand.no",
   "holtalen.no",
-  "holt\xE5len.no",
+  "holtålen.no",
   "hornindal.no",
   "horten.no",
   "hurdal.no",
@@ -4866,67 +4887,67 @@ const ji = [
   "hvaler.no",
   "hyllestad.no",
   "hagebostad.no",
-  "h\xE6gebostad.no",
+  "hægebostad.no",
   "hoyanger.no",
-  "h\xF8yanger.no",
+  "høyanger.no",
   "hoylandet.no",
-  "h\xF8ylandet.no",
+  "høylandet.no",
   "ha.no",
-  "h\xE5.no",
+  "hå.no",
   "ibestad.no",
   "inderoy.no",
-  "inder\xF8y.no",
+  "inderøy.no",
   "iveland.no",
   "jevnaker.no",
   "jondal.no",
   "jolster.no",
-  "j\xF8lster.no",
+  "jølster.no",
   "karasjok.no",
   "karasjohka.no",
-  "k\xE1r\xE1\u0161johka.no",
+  "kárášjohka.no",
   "karlsoy.no",
   "galsa.no",
-  "g\xE1ls\xE1.no",
+  "gálsá.no",
   "karmoy.no",
-  "karm\xF8y.no",
+  "karmøy.no",
   "kautokeino.no",
   "guovdageaidnu.no",
   "klepp.no",
   "klabu.no",
-  "kl\xE6bu.no",
+  "klæbu.no",
   "kongsberg.no",
   "kongsvinger.no",
   "kragero.no",
-  "krager\xF8.no",
+  "kragerø.no",
   "kristiansand.no",
   "kristiansund.no",
   "krodsherad.no",
-  "kr\xF8dsherad.no",
+  "krødsherad.no",
   "kvalsund.no",
   "rahkkeravju.no",
-  "r\xE1hkker\xE1vju.no",
+  "ráhkkerávju.no",
   "kvam.no",
   "kvinesdal.no",
   "kvinnherad.no",
   "kviteseid.no",
   "kvitsoy.no",
-  "kvits\xF8y.no",
+  "kvitsøy.no",
   "kvafjord.no",
-  "kv\xE6fjord.no",
+  "kvæfjord.no",
   "giehtavuoatna.no",
   "kvanangen.no",
-  "kv\xE6nangen.no",
+  "kvænangen.no",
   "navuotna.no",
-  "n\xE1vuotna.no",
+  "návuotna.no",
   "kafjord.no",
-  "k\xE5fjord.no",
+  "kåfjord.no",
   "gaivuotna.no",
-  "g\xE1ivuotna.no",
+  "gáivuotna.no",
   "larvik.no",
   "lavangen.no",
   "lavagis.no",
   "loabat.no",
-  "loab\xE1t.no",
+  "loabát.no",
   "lebesby.no",
   "davvesiida.no",
   "leikanger.no",
@@ -4935,7 +4956,7 @@ const ji = [
   "leksvik.no",
   "lenvik.no",
   "leangaviika.no",
-  "lea\u014Bgaviika.no",
+  "leaŋgaviika.no",
   "lesja.no",
   "levanger.no",
   "lier.no",
@@ -4944,33 +4965,33 @@ const ji = [
   "lillesand.no",
   "lindesnes.no",
   "lindas.no",
-  "lind\xE5s.no",
+  "lindås.no",
   "lom.no",
   "loppa.no",
   "lahppi.no",
-  "l\xE1hppi.no",
+  "láhppi.no",
   "lund.no",
   "lunner.no",
   "luroy.no",
-  "lur\xF8y.no",
+  "lurøy.no",
   "luster.no",
   "lyngdal.no",
   "lyngen.no",
   "ivgu.no",
   "lardal.no",
   "lerdal.no",
-  "l\xE6rdal.no",
+  "lærdal.no",
   "lodingen.no",
-  "l\xF8dingen.no",
+  "lødingen.no",
   "lorenskog.no",
-  "l\xF8renskog.no",
+  "lørenskog.no",
   "loten.no",
-  "l\xF8ten.no",
+  "løten.no",
   "malvik.no",
   "masoy.no",
-  "m\xE5s\xF8y.no",
+  "måsøy.no",
   "muosat.no",
-  "muos\xE1t.no",
+  "muosát.no",
   "mandal.no",
   "marker.no",
   "marnardal.no",
@@ -4979,11 +5000,11 @@ const ji = [
   "meldal.no",
   "melhus.no",
   "meloy.no",
-  "mel\xF8y.no",
+  "meløy.no",
   "meraker.no",
-  "mer\xE5ker.no",
+  "meråker.no",
   "moareke.no",
-  "mo\xE5reke.no",
+  "moåreke.no",
   "midsund.no",
   "midtre-gauldal.no",
   "modalen.no",
@@ -4993,15 +5014,15 @@ const ji = [
   "moss.no",
   "mosvik.no",
   "malselv.no",
-  "m\xE5lselv.no",
+  "målselv.no",
   "malatvuopmi.no",
-  "m\xE1latvuopmi.no",
+  "málatvuopmi.no",
   "namdalseid.no",
   "aejrie.no",
   "namsos.no",
   "namsskogan.no",
   "naamesjevuemie.no",
-  "n\xE5\xE5mesjevuemie.no",
+  "nååmesjevuemie.no",
   "laakesvuemie.no",
   "nannestad.no",
   "narvik.no",
@@ -5014,7 +5035,7 @@ const ji = [
   "nesodden.no",
   "nesseby.no",
   "unjarga.no",
-  "unj\xE1rga.no",
+  "unjárga.no",
   "nesset.no",
   "nissedal.no",
   "nittedal.no",
@@ -5024,52 +5045,52 @@ const ji = [
   "norddal.no",
   "nordkapp.no",
   "davvenjarga.no",
-  "davvenj\xE1rga.no",
+  "davvenjárga.no",
   "nordre-land.no",
   "nordreisa.no",
   "raisa.no",
-  "r\xE1isa.no",
+  "ráisa.no",
   "nore-og-uvdal.no",
   "notodden.no",
   "naroy.no",
-  "n\xE6r\xF8y.no",
+  "nærøy.no",
   "notteroy.no",
-  "n\xF8tter\xF8y.no",
+  "nøtterøy.no",
   "odda.no",
   "oksnes.no",
-  "\xF8ksnes.no",
+  "øksnes.no",
   "oppdal.no",
   "oppegard.no",
-  "oppeg\xE5rd.no",
+  "oppegård.no",
   "orkdal.no",
   "orland.no",
-  "\xF8rland.no",
+  "ørland.no",
   "orskog.no",
-  "\xF8rskog.no",
+  "ørskog.no",
   "orsta.no",
-  "\xF8rsta.no",
+  "ørsta.no",
   "os.hedmark.no",
   "os.hordaland.no",
   "osen.no",
   "osteroy.no",
-  "oster\xF8y.no",
+  "osterøy.no",
   "ostre-toten.no",
-  "\xF8stre-toten.no",
+  "østre-toten.no",
   "overhalla.no",
   "ovre-eiker.no",
-  "\xF8vre-eiker.no",
+  "øvre-eiker.no",
   "oyer.no",
-  "\xF8yer.no",
+  "øyer.no",
   "oygarden.no",
-  "\xF8ygarden.no",
+  "øygarden.no",
   "oystre-slidre.no",
-  "\xF8ystre-slidre.no",
+  "øystre-slidre.no",
   "porsanger.no",
   "porsangu.no",
-  "pors\xE1\u014Bgu.no",
+  "porsáŋgu.no",
   "porsgrunn.no",
   "radoy.no",
-  "rad\xF8y.no",
+  "radøy.no",
   "rakkestad.no",
   "rana.no",
   "ruovat.no",
@@ -5078,47 +5099,47 @@ const ji = [
   "rendalen.no",
   "rennebu.no",
   "rennesoy.no",
-  "rennes\xF8y.no",
+  "rennesøy.no",
   "rindal.no",
   "ringebu.no",
   "ringerike.no",
   "ringsaker.no",
   "rissa.no",
   "risor.no",
-  "ris\xF8r.no",
+  "risør.no",
   "roan.no",
   "rollag.no",
   "rygge.no",
   "ralingen.no",
-  "r\xE6lingen.no",
+  "rælingen.no",
   "rodoy.no",
-  "r\xF8d\xF8y.no",
+  "rødøy.no",
   "romskog.no",
-  "r\xF8mskog.no",
+  "rømskog.no",
   "roros.no",
-  "r\xF8ros.no",
+  "røros.no",
   "rost.no",
-  "r\xF8st.no",
+  "røst.no",
   "royken.no",
-  "r\xF8yken.no",
+  "røyken.no",
   "royrvik.no",
-  "r\xF8yrvik.no",
+  "røyrvik.no",
   "rade.no",
-  "r\xE5de.no",
+  "råde.no",
   "salangen.no",
   "siellak.no",
   "saltdal.no",
   "salat.no",
-  "s\xE1l\xE1t.no",
-  "s\xE1lat.no",
+  "sálát.no",
+  "sálat.no",
   "samnanger.no",
   "sande.more-og-romsdal.no",
-  "sande.m\xF8re-og-romsdal.no",
+  "sande.møre-og-romsdal.no",
   "sande.vestfold.no",
   "sandefjord.no",
   "sandnes.no",
   "sandoy.no",
-  "sand\xF8y.no",
+  "sandøy.no",
   "sarpsborg.no",
   "sauda.no",
   "sauherad.no",
@@ -5135,24 +5156,24 @@ const ji = [
   "skien.no",
   "skiptvet.no",
   "skjervoy.no",
-  "skjerv\xF8y.no",
+  "skjervøy.no",
   "skierva.no",
-  "skierv\xE1.no",
+  "skiervá.no",
   "skjak.no",
-  "skj\xE5k.no",
+  "skjåk.no",
   "skodje.no",
   "skanland.no",
-  "sk\xE5nland.no",
+  "skånland.no",
   "skanit.no",
-  "sk\xE1nit.no",
+  "skánit.no",
   "smola.no",
-  "sm\xF8la.no",
+  "smøla.no",
   "snillfjord.no",
   "snasa.no",
-  "sn\xE5sa.no",
+  "snåsa.no",
   "snoasa.no",
   "snaase.no",
-  "sn\xE5ase.no",
+  "snåase.no",
   "sogndal.no",
   "sokndal.no",
   "sola.no",
@@ -5165,7 +5186,7 @@ const ji = [
   "steigen.no",
   "steinkjer.no",
   "stjordal.no",
-  "stj\xF8rdal.no",
+  "stjørdal.no",
   "stokke.no",
   "stor-elvdal.no",
   "stord.no",
@@ -5184,27 +5205,27 @@ const ji = [
   "svelvik.no",
   "sykkylven.no",
   "sogne.no",
-  "s\xF8gne.no",
+  "søgne.no",
   "somna.no",
-  "s\xF8mna.no",
+  "sømna.no",
   "sondre-land.no",
-  "s\xF8ndre-land.no",
+  "søndre-land.no",
   "sor-aurdal.no",
-  "s\xF8r-aurdal.no",
+  "sør-aurdal.no",
   "sor-fron.no",
-  "s\xF8r-fron.no",
+  "sør-fron.no",
   "sor-odal.no",
-  "s\xF8r-odal.no",
+  "sør-odal.no",
   "sor-varanger.no",
-  "s\xF8r-varanger.no",
+  "sør-varanger.no",
   "matta-varjjat.no",
-  "m\xE1tta-v\xE1rjjat.no",
+  "mátta-várjjat.no",
   "sorfold.no",
-  "s\xF8rfold.no",
+  "sørfold.no",
   "sorreisa.no",
-  "s\xF8rreisa.no",
+  "sørreisa.no",
   "sorum.no",
-  "s\xF8rum.no",
+  "sørum.no",
   "tana.no",
   "deatnu.no",
   "time.no",
@@ -5213,23 +5234,23 @@ const ji = [
   "tjeldsund.no",
   "dielddanuorri.no",
   "tjome.no",
-  "tj\xF8me.no",
+  "tjøme.no",
   "tokke.no",
   "tolga.no",
   "torsken.no",
   "tranoy.no",
-  "tran\xF8y.no",
+  "tranøy.no",
   "tromso.no",
-  "troms\xF8.no",
+  "tromsø.no",
   "tromsa.no",
   "romsa.no",
   "trondheim.no",
   "troandin.no",
   "trysil.no",
   "trana.no",
-  "tr\xE6na.no",
+  "træna.no",
   "trogstad.no",
-  "tr\xF8gstad.no",
+  "trøgstad.no",
   "tvedestrand.no",
   "tydal.no",
   "tynset.no",
@@ -5238,30 +5259,30 @@ const ji = [
   "divttasvuotna.no",
   "tysnes.no",
   "tysvar.no",
-  "tysv\xE6r.no",
+  "tysvær.no",
   "tonsberg.no",
-  "t\xF8nsberg.no",
+  "tønsberg.no",
   "ullensaker.no",
   "ullensvang.no",
   "ulvik.no",
   "utsira.no",
   "vadso.no",
-  "vads\xF8.no",
+  "vadsø.no",
   "cahcesuolo.no",
-  "\u010D\xE1hcesuolo.no",
+  "čáhcesuolo.no",
   "vaksdal.no",
   "valle.no",
   "vang.no",
   "vanylven.no",
   "vardo.no",
-  "vard\xF8.no",
+  "vardø.no",
   "varggat.no",
-  "v\xE1rgg\xE1t.no",
+  "várggát.no",
   "vefsn.no",
   "vaapste.no",
   "vega.no",
   "vegarshei.no",
-  "veg\xE5rshei.no",
+  "vegårshei.no",
   "vennesla.no",
   "verdal.no",
   "verran.no",
@@ -5270,7 +5291,7 @@ const ji = [
   "vestre-slidre.no",
   "vestre-toten.no",
   "vestvagoy.no",
-  "vestv\xE5g\xF8y.no",
+  "vestvågøy.no",
   "vevelstad.no",
   "vik.no",
   "vikna.no",
@@ -5278,18 +5299,18 @@ const ji = [
   "volda.no",
   "voss.no",
   "varoy.no",
-  "v\xE6r\xF8y.no",
+  "værøy.no",
   "vagan.no",
-  "v\xE5gan.no",
+  "vågan.no",
   "voagat.no",
   "vagsoy.no",
-  "v\xE5gs\xF8y.no",
+  "vågsøy.no",
   "vaga.no",
-  "v\xE5g\xE5.no",
+  "vågå.no",
   "valer.ostfold.no",
-  "v\xE5ler.\xF8stfold.no",
+  "våler.østfold.no",
   "valer.hedmark.no",
-  "v\xE5ler.hedmark.no",
+  "våler.hedmark.no",
   "*.np",
   "nr",
   "biz.nr",
@@ -5312,7 +5333,7 @@ const ji = [
   "kiwi.nz",
   "maori.nz",
   "mil.nz",
-  "m\u0101ori.nz",
+  "māori.nz",
   "net.nz",
   "org.nz",
   "parliament.nz",
@@ -5952,9 +5973,9 @@ const ji = [
   "game.tw",
   "ebiz.tw",
   "club.tw",
-  "\u7DB2\u8DEF.tw",
-  "\u7D44\u7E54.tw",
-  "\u5546\u696D.tw",
+  "網路.tw",
+  "組織.tw",
+  "商業.tw",
   "tz",
   "ac.tz",
   "co.tz",
@@ -6369,93 +6390,93 @@ const ji = [
   "gov.ws",
   "edu.ws",
   "yt",
-  "\u0627\u0645\u0627\u0631\u0627\u062A",
-  "\u0570\u0561\u0575",
-  "\u09AC\u09BE\u0982\u09B2\u09BE",
-  "\u0431\u0433",
-  "\u0627\u0644\u0628\u062D\u0631\u064A\u0646",
-  "\u0431\u0435\u043B",
-  "\u4E2D\u56FD",
-  "\u4E2D\u570B",
-  "\u0627\u0644\u062C\u0632\u0627\u0626\u0631",
-  "\u0645\u0635\u0631",
-  "\u0435\u044E",
-  "\u03B5\u03C5",
-  "\u0645\u0648\u0631\u064A\u062A\u0627\u0646\u064A\u0627",
-  "\u10D2\u10D4",
-  "\u03B5\u03BB",
-  "\u9999\u6E2F",
-  "\u516C\u53F8.\u9999\u6E2F",
-  "\u6559\u80B2.\u9999\u6E2F",
-  "\u653F\u5E9C.\u9999\u6E2F",
-  "\u500B\u4EBA.\u9999\u6E2F",
-  "\u7DB2\u7D61.\u9999\u6E2F",
-  "\u7D44\u7E54.\u9999\u6E2F",
-  "\u0CAD\u0CBE\u0CB0\u0CA4",
-  "\u0B2D\u0B3E\u0B30\u0B24",
-  "\u09AD\u09BE\u09F0\u09A4",
-  "\u092D\u093E\u0930\u0924\u092E\u094D",
-  "\u092D\u093E\u0930\u094B\u0924",
-  "\u0680\u0627\u0631\u062A",
-  "\u0D2D\u0D3E\u0D30\u0D24\u0D02",
-  "\u092D\u093E\u0930\u0924",
-  "\u0628\u0627\u0631\u062A",
-  "\u0628\u06BE\u0627\u0631\u062A",
-  "\u0C2D\u0C3E\u0C30\u0C24\u0C4D",
-  "\u0AAD\u0ABE\u0AB0\u0AA4",
-  "\u0A2D\u0A3E\u0A30\u0A24",
-  "\u09AD\u09BE\u09B0\u09A4",
-  "\u0B87\u0BA8\u0BCD\u0BA4\u0BBF\u0BAF\u0BBE",
-  "\u0627\u06CC\u0631\u0627\u0646",
-  "\u0627\u064A\u0631\u0627\u0646",
-  "\u0639\u0631\u0627\u0642",
-  "\u0627\u0644\u0627\u0631\u062F\u0646",
-  "\uD55C\uAD6D",
-  "\u049B\u0430\u0437",
-  "\u0EA5\u0EB2\u0EA7",
-  "\u0DBD\u0D82\u0D9A\u0DCF",
-  "\u0B87\u0BB2\u0B99\u0BCD\u0B95\u0BC8",
-  "\u0627\u0644\u0645\u063A\u0631\u0628",
-  "\u043C\u043A\u0434",
-  "\u043C\u043E\u043D",
-  "\u6FB3\u9580",
-  "\u6FB3\u95E8",
-  "\u0645\u0644\u064A\u0633\u064A\u0627",
-  "\u0639\u0645\u0627\u0646",
-  "\u067E\u0627\u06A9\u0633\u062A\u0627\u0646",
-  "\u067E\u0627\u0643\u0633\u062A\u0627\u0646",
-  "\u0641\u0644\u0633\u0637\u064A\u0646",
-  "\u0441\u0440\u0431",
-  "\u043F\u0440.\u0441\u0440\u0431",
-  "\u043E\u0440\u0433.\u0441\u0440\u0431",
-  "\u043E\u0431\u0440.\u0441\u0440\u0431",
-  "\u043E\u0434.\u0441\u0440\u0431",
-  "\u0443\u043F\u0440.\u0441\u0440\u0431",
-  "\u0430\u043A.\u0441\u0440\u0431",
-  "\u0440\u0444",
-  "\u0642\u0637\u0631",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u06CC\u0629",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u06CC\u06C3",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0647",
-  "\u0633\u0648\u062F\u0627\u0646",
-  "\u65B0\u52A0\u5761",
-  "\u0B9A\u0BBF\u0B99\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0BC2\u0BB0\u0BCD",
-  "\u0633\u0648\u0631\u064A\u0629",
-  "\u0633\u0648\u0631\u064A\u0627",
-  "\u0E44\u0E17\u0E22",
-  "\u0E28\u0E36\u0E01\u0E29\u0E32.\u0E44\u0E17\u0E22",
-  "\u0E18\u0E38\u0E23\u0E01\u0E34\u0E08.\u0E44\u0E17\u0E22",
-  "\u0E23\u0E31\u0E10\u0E1A\u0E32\u0E25.\u0E44\u0E17\u0E22",
-  "\u0E17\u0E2B\u0E32\u0E23.\u0E44\u0E17\u0E22",
-  "\u0E40\u0E19\u0E47\u0E15.\u0E44\u0E17\u0E22",
-  "\u0E2D\u0E07\u0E04\u0E4C\u0E01\u0E23.\u0E44\u0E17\u0E22",
-  "\u062A\u0648\u0646\u0633",
-  "\u53F0\u7063",
-  "\u53F0\u6E7E",
-  "\u81FA\u7063",
-  "\u0443\u043A\u0440",
-  "\u0627\u0644\u064A\u0645\u0646",
+  "امارات",
+  "հայ",
+  "বাংলা",
+  "бг",
+  "البحرين",
+  "бел",
+  "中国",
+  "中國",
+  "الجزائر",
+  "مصر",
+  "ею",
+  "ευ",
+  "موريتانيا",
+  "გე",
+  "ελ",
+  "香港",
+  "公司.香港",
+  "教育.香港",
+  "政府.香港",
+  "個人.香港",
+  "網絡.香港",
+  "組織.香港",
+  "ಭಾರತ",
+  "ଭାରତ",
+  "ভাৰত",
+  "भारतम्",
+  "भारोत",
+  "ڀارت",
+  "ഭാരതം",
+  "भारत",
+  "بارت",
+  "بھارت",
+  "భారత్",
+  "ભારત",
+  "ਭਾਰਤ",
+  "ভারত",
+  "இந்தியா",
+  "ایران",
+  "ايران",
+  "عراق",
+  "الاردن",
+  "한국",
+  "қаз",
+  "ລາວ",
+  "ලංකා",
+  "இலங்கை",
+  "المغرب",
+  "мкд",
+  "мон",
+  "澳門",
+  "澳门",
+  "مليسيا",
+  "عمان",
+  "پاکستان",
+  "پاكستان",
+  "فلسطين",
+  "срб",
+  "пр.срб",
+  "орг.срб",
+  "обр.срб",
+  "од.срб",
+  "упр.срб",
+  "ак.срб",
+  "рф",
+  "قطر",
+  "السعودية",
+  "السعودیة",
+  "السعودیۃ",
+  "السعوديه",
+  "سودان",
+  "新加坡",
+  "சிங்கப்பூர்",
+  "سورية",
+  "سوريا",
+  "ไทย",
+  "ศึกษา.ไทย",
+  "ธุรกิจ.ไทย",
+  "รัฐบาล.ไทย",
+  "ทหาร.ไทย",
+  "เน็ต.ไทย",
+  "องค์กร.ไทย",
+  "تونس",
+  "台灣",
+  "台湾",
+  "臺灣",
+  "укр",
+  "اليمن",
   "xxx",
   "ye",
   "com.ye",
@@ -7546,98 +7567,98 @@ const ji = [
   "xfinity",
   "xihuan",
   "xin",
-  "\u0915\u0949\u092E",
-  "\u30BB\u30FC\u30EB",
-  "\u4F5B\u5C71",
-  "\u6148\u5584",
-  "\u96C6\u56E2",
-  "\u5728\u7EBF",
-  "\u70B9\u770B",
-  "\u0E04\u0E2D\u0E21",
-  "\u516B\u5366",
-  "\u0645\u0648\u0642\u0639",
-  "\u516C\u76CA",
-  "\u516C\u53F8",
-  "\u9999\u683C\u91CC\u62C9",
-  "\u7F51\u7AD9",
-  "\u79FB\u52A8",
-  "\u6211\u7231\u4F60",
-  "\u043C\u043E\u0441\u043A\u0432\u0430",
-  "\u043A\u0430\u0442\u043E\u043B\u0438\u043A",
-  "\u043E\u043D\u043B\u0430\u0439\u043D",
-  "\u0441\u0430\u0439\u0442",
-  "\u8054\u901A",
-  "\u05E7\u05D5\u05DD",
-  "\u65F6\u5C1A",
-  "\u5FAE\u535A",
-  "\u6DE1\u9A6C\u9521",
-  "\u30D5\u30A1\u30C3\u30B7\u30E7\u30F3",
-  "\u043E\u0440\u0433",
-  "\u0928\u0947\u091F",
-  "\u30B9\u30C8\u30A2",
-  "\u30A2\u30DE\u30BE\u30F3",
-  "\uC0BC\uC131",
-  "\u5546\u6807",
-  "\u5546\u5E97",
-  "\u5546\u57CE",
-  "\u0434\u0435\u0442\u0438",
-  "\u30DD\u30A4\u30F3\u30C8",
-  "\u65B0\u95FB",
-  "\u5BB6\u96FB",
-  "\u0643\u0648\u0645",
-  "\u4E2D\u6587\u7F51",
-  "\u4E2D\u4FE1",
-  "\u5A31\u4E50",
-  "\u8C37\u6B4C",
-  "\u96FB\u8A0A\u76C8\u79D1",
-  "\u8D2D\u7269",
-  "\u30AF\u30E9\u30A6\u30C9",
-  "\u901A\u8CA9",
-  "\u7F51\u5E97",
-  "\u0938\u0902\u0917\u0920\u0928",
-  "\u9910\u5385",
-  "\u7F51\u7EDC",
-  "\u043A\u043E\u043C",
-  "\u4E9A\u9A6C\u900A",
-  "\u8BFA\u57FA\u4E9A",
-  "\u98DF\u54C1",
-  "\u98DE\u5229\u6D66",
-  "\u624B\u673A",
-  "\u0627\u0631\u0627\u0645\u0643\u0648",
-  "\u0627\u0644\u0639\u0644\u064A\u0627\u0646",
-  "\u0627\u062A\u0635\u0627\u0644\u0627\u062A",
-  "\u0628\u0627\u0632\u0627\u0631",
-  "\u0627\u0628\u0648\u0638\u0628\u064A",
-  "\u0643\u0627\u062B\u0648\u0644\u064A\u0643",
-  "\u0647\u0645\u0631\u0627\u0647",
-  "\uB2F7\uCEF4",
-  "\u653F\u5E9C",
-  "\u0634\u0628\u0643\u0629",
-  "\u0628\u064A\u062A\u0643",
-  "\u0639\u0631\u0628",
-  "\u673A\u6784",
-  "\u7EC4\u7EC7\u673A\u6784",
-  "\u5065\u5EB7",
-  "\u62DB\u8058",
-  "\u0440\u0443\u0441",
-  "\u5927\u62FF",
-  "\u307F\u3093\u306A",
-  "\u30B0\u30FC\u30B0\u30EB",
-  "\u4E16\u754C",
-  "\u66F8\u7C4D",
-  "\u7F51\u5740",
-  "\uB2F7\uB137",
-  "\u30B3\u30E0",
-  "\u5929\u4E3B\u6559",
-  "\u6E38\u620F",
-  "verm\xF6gensberater",
-  "verm\xF6gensberatung",
-  "\u4F01\u4E1A",
-  "\u4FE1\u606F",
-  "\u5609\u91CC\u5927\u9152\u5E97",
-  "\u5609\u91CC",
-  "\u5E7F\u4E1C",
-  "\u653F\u52A1",
+  "कॉम",
+  "セール",
+  "佛山",
+  "慈善",
+  "集团",
+  "在线",
+  "点看",
+  "คอม",
+  "八卦",
+  "موقع",
+  "公益",
+  "公司",
+  "香格里拉",
+  "网站",
+  "移动",
+  "我爱你",
+  "москва",
+  "католик",
+  "онлайн",
+  "сайт",
+  "联通",
+  "קום",
+  "时尚",
+  "微博",
+  "淡马锡",
+  "ファッション",
+  "орг",
+  "नेट",
+  "ストア",
+  "アマゾン",
+  "삼성",
+  "商标",
+  "商店",
+  "商城",
+  "дети",
+  "ポイント",
+  "新闻",
+  "家電",
+  "كوم",
+  "中文网",
+  "中信",
+  "娱乐",
+  "谷歌",
+  "電訊盈科",
+  "购物",
+  "クラウド",
+  "通販",
+  "网店",
+  "संगठन",
+  "餐厅",
+  "网络",
+  "ком",
+  "亚马逊",
+  "诺基亚",
+  "食品",
+  "飞利浦",
+  "手机",
+  "ارامكو",
+  "العليان",
+  "اتصالات",
+  "بازار",
+  "ابوظبي",
+  "كاثوليك",
+  "همراه",
+  "닷컴",
+  "政府",
+  "شبكة",
+  "بيتك",
+  "عرب",
+  "机构",
+  "组织机构",
+  "健康",
+  "招聘",
+  "рус",
+  "大拿",
+  "みんな",
+  "グーグル",
+  "世界",
+  "書籍",
+  "网址",
+  "닷넷",
+  "コム",
+  "天主教",
+  "游戏",
+  "vermögensberater",
+  "vermögensberatung",
+  "企业",
+  "信息",
+  "嘉里大酒店",
+  "嘉里",
+  "广东",
+  "政务",
   "xyz",
   "yachts",
   "yahoo",
@@ -8764,8 +8785,8 @@ const ji = [
   "goupile.fr",
   "gov.nl",
   "awsmppl.com",
-  "g\xFCnstigbestellen.de",
-  "g\xFCnstigliefern.de",
+  "günstigbestellen.de",
+  "günstigliefern.de",
   "fin.ci",
   "free.hr",
   "caa.li",
@@ -8799,7 +8820,7 @@ const ji = [
   "edu.scot",
   "sch.so",
   "hostyhosting.io",
-  "h\xE4kkinen.fi",
+  "häkkinen.fi",
   "*.moonscale.io",
   "moonscale.net",
   "iki.fi",
@@ -9348,16 +9369,16 @@ const ji = [
   "itcouldbewor.se",
   "git-pages.rit.edu",
   "rocky.page",
-  "\u0431\u0438\u0437.\u0440\u0443\u0441",
-  "\u043A\u043E\u043C.\u0440\u0443\u0441",
-  "\u043A\u0440\u044B\u043C.\u0440\u0443\u0441",
-  "\u043C\u0438\u0440.\u0440\u0443\u0441",
-  "\u043C\u0441\u043A.\u0440\u0443\u0441",
-  "\u043E\u0440\u0433.\u0440\u0443\u0441",
-  "\u0441\u0430\u043C\u0430\u0440\u0430.\u0440\u0443\u0441",
-  "\u0441\u043E\u0447\u0438.\u0440\u0443\u0441",
-  "\u0441\u043F\u0431.\u0440\u0443\u0441",
-  "\u044F.\u0440\u0443\u0441",
+  "биз.рус",
+  "ком.рус",
+  "крым.рус",
+  "мир.рус",
+  "мск.рус",
+  "орг.рус",
+  "самара.рус",
+  "сочи.рус",
+  "спб.рус",
+  "я.рус",
   "*.builder.code.com",
   "*.dev-builder.code.com",
   "*.stg-builder.code.com",
@@ -9696,8 +9717,8 @@ const ji = [
   "enterprisecloud.nu"
 ];
 (function(o) {
-  var a = Xo, e = {};
-  e.rules = ji.map(function(i) {
+  var a = Ko, e = {};
+  e.rules = bi.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -9726,8 +9747,8 @@ const ji = [
       return "DOMAIN_TOO_SHORT";
     if (n.length > 255)
       return "DOMAIN_TOO_LONG";
-    for (var s = n.split("."), t, u = 0; u < s.length; ++u) {
-      if (t = s[u], !t.length)
+    for (var s = n.split("."), t, r = 0; r < s.length; ++r) {
+      if (t = s[r], !t.length)
         return "LABEL_TOO_SHORT";
       if (t.length > 63)
         return "LABEL_TOO_LONG";
@@ -9759,24 +9780,24 @@ const ji = [
       domain: null,
       subdomain: null,
       listed: !1
-    }, u = n.split(".");
-    if (u[u.length - 1] === "local")
+    }, r = n.split(".");
+    if (r[r.length - 1] === "local")
       return t;
     var m = function() {
       return /xn--/.test(n) && (t.domain && (t.domain = a.toASCII(t.domain)), t.subdomain && (t.subdomain = a.toASCII(t.subdomain))), t;
     }, c = e.findRule(n);
     if (!c)
-      return u.length < 2 ? t : (t.tld = u.pop(), t.sld = u.pop(), t.domain = [t.sld, t.tld].join("."), u.length && (t.subdomain = u.pop()), m());
+      return r.length < 2 ? t : (t.tld = r.pop(), t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.pop()), m());
     t.listed = !0;
-    var p = c.suffix.split("."), r = u.slice(0, u.length - p.length);
-    return c.exception && r.push(p.shift()), t.tld = p.join("."), !r.length || (c.wildcard && (p.unshift(r.pop()), t.tld = p.join(".")), !r.length) || (t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.join("."))), m();
+    var p = c.suffix.split("."), u = r.slice(0, r.length - p.length);
+    return c.exception && u.push(p.shift()), t.tld = p.join("."), !u.length || (c.wildcard && (p.unshift(u.pop()), t.tld = p.join(".")), !u.length) || (t.sld = u.pop(), t.domain = [t.sld, t.tld].join("."), u.length && (t.subdomain = u.join("."))), m();
   }, o.get = function(i) {
     return i && o.parse(i).domain || null;
   }, o.isValid = function(i) {
     var n = o.parse(i);
-    return Boolean(n.domain && n.listed);
+    return !!(n.domain && n.listed);
   };
-})(ne);
+})(se);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -9807,29 +9828,29 @@ const ji = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const bi = ne, ko = [
+const fi = se, go = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], fi = ["localhost", "invalid"];
-function yi(o, a = {}) {
+], yi = ["localhost", "invalid"];
+function wi(o, a = {}) {
   const e = o.split("."), i = e[e.length - 1], n = !!a.allowSpecialUseDomain, s = !!a.ignoreError;
-  if (n && ko.includes(i)) {
+  if (n && go.includes(i)) {
     if (e.length > 1)
       return `${e[e.length - 2]}.${i}`;
-    if (fi.includes(i))
+    if (yi.includes(i))
       return `${i}`;
   }
-  if (!s && ko.includes(i))
+  if (!s && go.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return bi.get(o);
+  return fi.get(o);
 }
-Ma.getPublicSuffix = yi;
-var Ha = {};
+Ha.getPublicSuffix = wi;
+var Ja = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9860,7 +9881,7 @@ var Ha = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-class wi {
+let vi = class {
   constructor() {
     this.synchronous = !1;
   }
@@ -9890,10 +9911,10 @@ class wi {
       "getAllCookies is not implemented (therefore jar cannot be serialized)"
     );
   }
-}
-Ha.Store = wi;
-var Ja = {}, ka = {};
-ka.fromCallback = function(o) {
+};
+Ja.Store = vi;
+var Ga = {}, ga = {};
+ga.fromCallback = function(o) {
   return Object.defineProperty(function() {
     if (typeof arguments[arguments.length - 1] == "function")
       o.apply(this, arguments);
@@ -9907,7 +9928,7 @@ ka.fromCallback = function(o) {
       });
   }, "name", { value: o.name });
 };
-ka.fromPromise = function(o) {
+ga.fromPromise = function(o) {
   return Object.defineProperty(function() {
     const a = arguments[arguments.length - 1];
     if (typeof a != "function")
@@ -9915,7 +9936,7 @@ ka.fromPromise = function(o) {
     delete arguments[arguments.length - 1], arguments.length--, o.apply(this, arguments).then((e) => a(null, e), a);
   }, "name", { value: o.name });
 };
-var se = {};
+var te = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9946,9 +9967,9 @@ var se = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const vi = Ma;
-function zi(o, a) {
-  const e = vi.getPublicSuffix(o, {
+const zi = Ha;
+function xi(o, a) {
+  const e = zi.getPublicSuffix(o, {
     allowSpecialUseDomain: a
   });
   if (!e)
@@ -9963,8 +9984,8 @@ function zi(o, a) {
     n = `${i.shift()}.${n}`, s.push(n);
   return s;
 }
-se.permuteDomain = zi;
-var Ga = {};
+te.permuteDomain = xi;
+var Qa = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9995,37 +10016,37 @@ var Ga = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-function xi(o, a) {
+function Si(o, a) {
   return a === o || o.indexOf(a) === 0 && (a.substr(-1) === "/" || o.substr(a.length, 1) === "/");
 }
-Ga.pathMatch = xi;
-var ga = {};
-const Ei = {}, Ci = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+Qa.pathMatch = Si;
+var ha = {};
+const Ci = {}, _i = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: Ei
-}, Symbol.toStringTag, { value: "Module" })), Ai = /* @__PURE__ */ Mo(Ci);
-function te() {
+  default: Ci
+}, Symbol.toStringTag, { value: "Module" })), Ii = /* @__PURE__ */ Ho(_i);
+function re() {
   try {
-    return Ai;
+    return Ii;
   } catch {
     return null;
   }
 }
-function Fi() {
+function Ai() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
-function Di(o) {
-  const a = (o.requireUtil || te)();
+function Oi(o) {
+  const a = (o.requireUtil || re)();
   return a ? a.inspect.custom : null;
 }
-ga.getUtilInspect = function(o, a = {}) {
-  const e = (a.requireUtil || te)();
+ha.getUtilInspect = function(o, a = {}) {
+  const e = (a.requireUtil || re)();
   return function(i, n, s) {
     return e ? e.inspect(i, n, s) : o(i);
   };
 };
-ga.getCustomInspectSymbol = function(o = {}) {
-  return (o.lookupCustomInspectSymbol || Fi)() || Di(o);
+ha.getCustomInspectSymbol = function(o = {}) {
+  return (o.lookupCustomInspectSymbol || Ai)() || Oi(o);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -10057,15 +10078,15 @@ ga.getCustomInspectSymbol = function(o = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: Si } = ka, _i = Ha.Store, Ii = se.permuteDomain, Bi = Ga.pathMatch, { getCustomInspectSymbol: Oi, getUtilInspect: $i } = ga;
-class Aa extends _i {
+const { fromCallback: $i } = ga, Di = Ja.Store, Ei = te.permuteDomain, qi = Qa.pathMatch, { getCustomInspectSymbol: Ui, getUtilInspect: Li } = ha;
+let Ia = class extends Di {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
-    const a = Oi();
+    const a = Ui();
     a && (this[a] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: $i(ue) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: Li(ue) }.inspect(this.idx, !1, 2)} }`;
   }
   findCookie(a, e, i, n) {
     return !this.idx[a] || !this.idx[a][e] ? n(null, void 0) : n(null, this.idx[a][e][i] || null);
@@ -10077,23 +10098,23 @@ class Aa extends _i {
     let t;
     e ? t = function(c) {
       Object.keys(c).forEach((p) => {
-        if (Bi(e, p)) {
-          const r = c[p];
-          for (const k in r)
-            s.push(r[k]);
+        if (qi(e, p)) {
+          const u = c[p];
+          for (const k in u)
+            s.push(u[k]);
         }
       });
     } : t = function(c) {
       for (const p in c) {
-        const r = c[p];
-        for (const k in r)
-          s.push(r[k]);
+        const u = c[p];
+        for (const k in u)
+          s.push(u[k]);
       }
     };
-    const u = Ii(a, i) || [a], m = this.idx;
-    u.forEach((c) => {
+    const r = Ei(a, i) || [a], m = this.idx;
+    r.forEach((c) => {
       const p = m[c];
-      !p || t(p);
+      p && t(p);
     }), n(null, s);
   }
   putCookie(a, e) {
@@ -10121,7 +10142,7 @@ class Aa extends _i {
       });
     }), e.sort((n, s) => (n.creationIndex || 0) - (s.creationIndex || 0)), a(null, e);
   }
-}
+};
 [
   "findCookie",
   "findCookies",
@@ -10132,11 +10153,11 @@ class Aa extends _i {
   "removeAllCookies",
   "getAllCookies"
 ].forEach((o) => {
-  Aa.prototype[o] = Si(
-    Aa.prototype[o]
+  Ia.prototype[o] = $i(
+    Ia.prototype[o]
   );
 });
-Ja.MemoryCookieStore = Aa;
+Ga.MemoryCookieStore = Ia;
 function ue(o) {
   const a = Object.keys(o);
   if (a.length === 0)
@@ -10144,80 +10165,80 @@ function ue(o) {
   let e = `[Object: null prototype] {
 `;
   return Object.keys(o).forEach((i, n) => {
-    e += qi(i, o[i]), n < a.length - 1 && (e += ","), e += `
+    e += Ti(i, o[i]), n < a.length - 1 && (e += ","), e += `
 `;
   }), e += "}", e;
 }
-function qi(o, a) {
+function Ti(o, a) {
   const e = "  ";
   let i = `${e}'${o}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((n, s, t) => {
-    i += Ui(n, a[n]), s < t.length - 1 && (i += ","), i += `
+    i += Ri(n, a[n]), s < t.length - 1 && (i += ","), i += `
 `;
   }), i += `${e}}`, i;
 }
-function Ui(o, a) {
+function Ri(o, a) {
   const e = "    ";
   let i = `${e}'${o}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((n, s, t) => {
-    const u = a[n];
-    i += `      ${n}: ${u.inspect()}`, s < t.length - 1 && (i += ","), i += `
+    const r = a[n];
+    i += `      ${n}: ${r.inspect()}`, s < t.length - 1 && (i += ","), i += `
 `;
   }), i += `${e}}`, i;
 }
-Ja.inspectFallback = ue;
-var R = {};
-function re(o) {
+Ga.inspectFallback = ue;
+var F = {};
+function me(o) {
   return typeof o == "function";
 }
-function Li(o) {
-  return me(o) && o !== "";
+function Pi(o) {
+  return pe(o) && o !== "";
 }
-function Ti(o) {
-  return Pi(o, Date) && Ni(o.getTime());
+function Fi(o) {
+  return Mi(o, Date) && Bi(o.getTime());
 }
-function Ri(o) {
+function Ni(o) {
   return o === "" || o instanceof String && o.toString() === "";
 }
-function me(o) {
+function pe(o) {
   return typeof o == "string" || o instanceof String;
 }
-function pe(o) {
+function ce(o) {
   return toString.call(o) === "[object Object]";
 }
-function Pi(o, a) {
+function Mi(o, a) {
   try {
     return o instanceof a;
   } catch {
     return !1;
   }
 }
-function Ni(o) {
+function Bi(o) {
   return typeof o == "number" && o % 1 === 0;
 }
-function Mi(o, a, e) {
-  if (re(a) || (e = a, a = null), pe(e) || (e = { Error: "Failed Check" }), !o)
+function Hi(o, a, e) {
+  if (me(a) || (e = a, a = null), ce(e) || (e = { Error: "Failed Check" }), !o)
     if (a)
-      a(new Fa(e));
+      a(new Aa(e));
     else
-      throw new Fa(e);
+      throw new Aa(e);
 }
-class Fa extends Error {
+let Aa = class extends Error {
   constructor(...a) {
     super(...a);
   }
-}
-R.ParameterError = Fa;
-R.isFunction = re;
-R.isNonEmptyString = Li;
-R.isDate = Ti;
-R.isEmptyString = Ri;
-R.isString = me;
-R.isObject = pe;
-R.validate = Mi;
-var Hi = "4.1.3";
+};
+F.ParameterError = Aa;
+F.isFunction = me;
+F.isNonEmptyString = Pi;
+F.isDate = Fi;
+F.isEmptyString = Ni;
+F.isString = pe;
+F.isObject = ce;
+F.validate = Hi;
+var Ji = "4.1.3";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
  * All rights reserved.
@@ -10248,8 +10269,8 @@ var Hi = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const go = Xo, Ji = di, Qa = Ma, Gi = Ha.Store, Qi = Ja.MemoryCookieStore, Wi = Ga.pathMatch, g = R, Yi = Hi, { fromCallback: ce } = ka, { getCustomInspectSymbol: Zi } = ga, Vi = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, ho = /[\x00-\x1F]/, jo = [`
-`, "\r", "\0"], Xi = /[\x20-\x3A\x3C-\x7E]+/, Ki = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, an = {
+const ho = Ko, Gi = ji, Wa = Ha, Qi = Ja.Store, Wi = Ga.MemoryCookieStore, Yi = Qa.pathMatch, g = F, Zi = Ji, { fromCallback: le } = ga, { getCustomInspectSymbol: Vi } = ha, Xi = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, jo = /[\x00-\x1F]/, bo = [`
+`, "\r", "\0"], Ki = /[\x20-\x3A\x3C-\x7E]+/, an = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, on = {
   jan: 0,
   feb: 1,
   mar: 2,
@@ -10262,8 +10283,8 @@ const go = Xo, Ji = di, Qa = Ma, Gi = Ha.Store, Qi = Ja.MemoryCookieStore, Wi = 
   oct: 9,
   nov: 10,
   dec: 11
-}, Da = 2147483647e3, on = 0, bo = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function fo(o) {
+}, Oa = 2147483647e3, en = 0, fo = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function yo(o) {
   g.validate(g.isNonEmptyString(o), o);
   const a = String(o).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
@@ -10272,7 +10293,7 @@ const W = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), en = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, nn = `
+}), nn = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, sn = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -10283,8 +10304,8 @@ const W = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), le = new RegExp(`^${nn}$`);
-function Sa(o, a, e, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), ke = new RegExp(`^${sn}$`);
+function $a(o, a, e, i) {
   let n = 0;
   for (; n < o.length; ) {
     const s = o.charCodeAt(n);
@@ -10294,67 +10315,67 @@ function Sa(o, a, e, i) {
   }
   return n < a || n > e || !i && n != o.length ? null : parseInt(o.substr(0, n), 10);
 }
-function sn(o) {
+function tn(o) {
   const a = o.split(":"), e = [0, 0, 0];
   if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const n = i == 2, s = Sa(a[i], 1, 2, n);
+    const n = i == 2, s = $a(a[i], 1, 2, n);
     if (s === null)
       return null;
     e[i] = s;
   }
   return e;
 }
-function tn(o) {
+function rn(o) {
   o = String(o).substr(0, 3).toLowerCase();
-  const a = an[o];
+  const a = on[o];
   return a >= 0 ? a : null;
 }
 function ma(o) {
   if (!o)
     return;
-  const a = o.split(Ki);
+  const a = o.split(an);
   if (!a)
     return;
-  let e = null, i = null, n = null, s = null, t = null, u = null;
+  let e = null, i = null, n = null, s = null, t = null, r = null;
   for (let m = 0; m < a.length; m++) {
     const c = a[m].trim();
     if (!c.length)
       continue;
     let p;
-    if (n === null && (p = sn(c), p)) {
+    if (n === null && (p = tn(c), p)) {
       e = p[0], i = p[1], n = p[2];
       continue;
     }
-    if (s === null && (p = Sa(c, 1, 2, !0), p !== null)) {
+    if (s === null && (p = $a(c, 1, 2, !0), p !== null)) {
       s = p;
       continue;
     }
-    if (t === null && (p = tn(c), p !== null)) {
+    if (t === null && (p = rn(c), p !== null)) {
       t = p;
       continue;
     }
-    u === null && (p = Sa(c, 2, 4, !0), p !== null && (u = p, u >= 70 && u <= 99 ? u += 1900 : u >= 0 && u <= 69 && (u += 2e3)));
+    r === null && (p = $a(c, 2, 4, !0), p !== null && (r = p, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
   }
-  if (!(s === null || t === null || u === null || n === null || s < 1 || s > 31 || u < 1601 || e > 23 || i > 59 || n > 59))
-    return new Date(Date.UTC(u, t, s, e, i, n));
+  if (!(s === null || t === null || r === null || n === null || s < 1 || s > 31 || r < 1601 || e > 23 || i > 59 || n > 59))
+    return new Date(Date.UTC(r, t, s, e, i, n));
 }
 function un(o) {
   return g.validate(g.isDate(o), o), o.toUTCString();
 }
 function ia(o) {
-  return o == null ? null : (o = o.trim().replace(/^\./, ""), le.test(o) && (o = o.replace("[", "").replace("]", "")), go && /[^\u0001-\u007f]/.test(o) && (o = go.toASCII(o)), o.toLowerCase());
+  return o == null ? null : (o = o.trim().replace(/^\./, ""), ke.test(o) && (o = o.replace("[", "").replace("]", "")), ho && /[^\u0001-\u007f]/.test(o) && (o = ho.toASCII(o)), o.toLowerCase());
 }
-function yo(o, a, e) {
+function wo(o, a, e) {
   if (o == null || a == null)
     return null;
   if (e !== !1 && (o = ia(o), a = ia(a)), o == a)
     return !0;
   const i = o.lastIndexOf(a);
-  return !(i <= 0 || o.length !== a.length + i || o.substr(i - 1, 1) !== "." || en.test(o));
+  return !(i <= 0 || o.length !== a.length + i || o.substr(i - 1, 1) !== "." || nn.test(o));
 }
-function rn(o) {
+function mn(o) {
   if (!o || o.substr(0, 1) !== "/")
     return "/";
   if (o === "/")
@@ -10362,33 +10383,33 @@ function rn(o) {
   const a = o.lastIndexOf("/");
   return a === 0 ? "/" : o.slice(0, a);
 }
-function mn(o) {
+function pn(o) {
   if (g.isEmptyString(o))
     return o;
-  for (let a = 0; a < jo.length; a++) {
-    const e = o.indexOf(jo[a]);
+  for (let a = 0; a < bo.length; a++) {
+    const e = o.indexOf(bo[a]);
     e !== -1 && (o = o.substr(0, e));
   }
   return o;
 }
-function pn(o, a) {
-  o = mn(o), g.validate(g.isString(o), o);
+function cn(o, a) {
+  o = pn(o), g.validate(g.isString(o), o);
   let e = o.indexOf("=");
   if (a)
     e === 0 && (o = o.substr(1), e = o.indexOf("="));
   else if (e <= 0)
     return;
   let i, n;
-  if (e <= 0 ? (i = "", n = o.trim()) : (i = o.substr(0, e).trim(), n = o.substr(e + 1).trim()), ho.test(i) || ho.test(n))
+  if (e <= 0 ? (i = "", n = o.trim()) : (i = o.substr(0, e).trim(), n = o.substr(e + 1).trim()), jo.test(i) || jo.test(n))
     return;
-  const s = new E();
+  const s = new C();
   return s.key = i, s.value = n, s;
 }
-function cn(o, a) {
+function ln(o, a) {
   if ((!a || typeof a != "object") && (a = {}), g.isEmptyString(o) || !g.isString(o))
     return null;
   o = o.trim();
-  const e = o.indexOf(";"), i = e === -1 ? o : o.substr(0, e), n = pn(i, !!a.loose);
+  const e = o.indexOf(";"), i = e === -1 ? o : o.substr(0, e), n = cn(i, !!a.loose);
   if (!n)
     return;
   if (e === -1)
@@ -10398,28 +10419,28 @@ function cn(o, a) {
     return n;
   const t = s.split(";");
   for (; t.length; ) {
-    const u = t.shift().trim();
-    if (u.length === 0)
+    const r = t.shift().trim();
+    if (r.length === 0)
       continue;
-    const m = u.indexOf("=");
+    const m = r.indexOf("=");
     let c, p;
-    switch (m === -1 ? (c = u, p = null) : (c = u.substr(0, m), p = u.substr(m + 1)), c = c.trim().toLowerCase(), p && (p = p.trim()), c) {
+    switch (m === -1 ? (c = r, p = null) : (c = r.substr(0, m), p = r.substr(m + 1)), c = c.trim().toLowerCase(), p && (p = p.trim()), c) {
       case "expires":
         if (p) {
-          const r = ma(p);
-          r && (n.expires = r);
+          const u = ma(p);
+          u && (n.expires = u);
         }
         break;
       case "max-age":
         if (p && /^-?[0-9]+$/.test(p)) {
-          const r = parseInt(p, 10);
-          n.setMaxAge(r);
+          const u = parseInt(p, 10);
+          n.setMaxAge(u);
         }
         break;
       case "domain":
         if (p) {
-          const r = p.trim().replace(/^\./, "");
-          r && (n.domain = r.toLowerCase());
+          const u = p.trim().replace(/^\./, "");
+          u && (n.domain = u.toLowerCase());
         }
         break;
       case "path":
@@ -10448,19 +10469,19 @@ function cn(o, a) {
         }
         break;
       default:
-        n.extensions = n.extensions || [], n.extensions.push(u);
+        n.extensions = n.extensions || [], n.extensions.push(r);
         break;
     }
   }
   return n;
 }
-function ln(o) {
+function kn(o) {
   return g.validate(g.isObject(o), o), !o.key.startsWith("__Secure-") || o.secure;
 }
-function kn(o) {
+function gn(o) {
   return g.validate(g.isObject(o)), !o.key.startsWith("__Host-") || o.secure && o.hostOnly && o.path != null && o.path === "/";
 }
-function ke(o) {
+function ge(o) {
   let a;
   try {
     a = JSON.parse(o);
@@ -10469,41 +10490,42 @@ function ke(o) {
   }
   return a;
 }
-function Wa(o) {
+function Ya(o) {
   if (!o || g.isEmptyString(o))
     return null;
   let a;
   if (typeof o == "string") {
-    if (a = ke(o), a instanceof Error)
+    if (a = ge(o), a instanceof Error)
       return null;
   } else
     a = o;
-  const e = new E();
-  for (let i = 0; i < E.serializableProperties.length; i++) {
-    const n = E.serializableProperties[i];
+  const e = new C();
+  for (let i = 0; i < C.serializableProperties.length; i++) {
+    const n = C.serializableProperties[i];
     a[n] === void 0 || a[n] === K[n] || (n === "expires" || n === "creation" || n === "lastAccessed" ? a[n] === null ? e[n] = null : e[n] = a[n] == "Infinity" ? "Infinity" : new Date(a[n]) : e[n] = a[n]);
   }
   return e;
 }
-function wo(o, a) {
+function vo(o, a) {
   g.validate(g.isObject(o), o), g.validate(g.isObject(a), a);
   let e = 0;
   const i = o.path ? o.path.length : 0;
   if (e = (a.path ? a.path.length : 0) - i, e !== 0)
     return e;
-  const n = o.creation ? o.creation.getTime() : Da, s = a.creation ? a.creation.getTime() : Da;
+  const n = o.creation ? o.creation.getTime() : Oa, s = a.creation ? a.creation.getTime() : Oa;
   return e = n - s, e !== 0 || (e = o.creationIndex - a.creationIndex), e;
 }
-function vo(o) {
+function zo(o) {
   if (o instanceof Object)
     return o;
   try {
     o = decodeURI(o);
   } catch {
   }
-  return Ji(o);
+  return Gi(o);
 }
 const K = {
+  // the order in which the RFC has them:
   key: "",
   value: "",
   expires: "Infinity",
@@ -10513,20 +10535,22 @@ const K = {
   secure: !1,
   httpOnly: !1,
   extensions: null,
+  // set by the CookieJar:
   hostOnly: null,
   pathIsDefault: null,
   creation: null,
   lastAccessed: null,
   sameSite: void 0
 };
-class E {
+let C = class pa {
   constructor(a = {}) {
-    const e = Zi();
-    e && (this[e] = this.inspect), Object.assign(this, K, a), this.creation = this.creation || new Date(), Object.defineProperty(this, "creationIndex", {
+    const e = Vi();
+    e && (this[e] = this.inspect), Object.assign(this, K, a), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
+      // important for assert.deepEqual checks
       writable: !0,
-      value: ++E.cookiesCreated
+      value: ++pa.cookiesCreated
     });
   }
   inspect() {
@@ -10535,18 +10559,18 @@ class E {
   }
   toJSON() {
     const a = {};
-    for (const e of E.serializableProperties)
+    for (const e of pa.serializableProperties)
       this[e] !== K[e] && (e === "expires" || e === "creation" || e === "lastAccessed" ? this[e] === null ? a[e] = null : a[e] = this[e] == "Infinity" ? "Infinity" : this[e].toISOString() : e === "maxAge" ? this[e] !== null && (a[e] = this[e] == 1 / 0 || this[e] == -1 / 0 ? this[e].toString() : this[e]) : this[e] !== K[e] && (a[e] = this[e]));
     return a;
   }
   clone() {
-    return Wa(this.toJSON());
+    return Ya(this.toJSON());
   }
   validate() {
-    if (!Vi.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ma(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !Xi.test(this.path))
+    if (!Xi.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ma(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !Ki.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || Qa.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || Wa.getPublicSuffix(a) == null));
   }
   setExpires(a) {
     a instanceof Date ? this.expires = a : this.expires = ma(a) || "Infinity";
@@ -10558,57 +10582,68 @@ class E {
     let a = this.value;
     return a == null && (a = ""), this.key === "" ? a : `${this.key}=${a}`;
   }
+  // gives Set-Cookie header format
   toString() {
     let a = this.cookieString();
     if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${un(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
-      const e = E.sameSiteCanonical[this.sameSite.toLowerCase()];
+      const e = pa.sameSiteCanonical[this.sameSite.toLowerCase()];
       a += `; SameSite=${e || this.sameSite}`;
     }
     return this.extensions && this.extensions.forEach((e) => {
       a += `; ${e}`;
     }), a;
   }
+  // TTL() partially replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere)
+  // S5.3 says to give the "latest representable date" for which we use Infinity
+  // For "expired" we use 0
   TTL(a) {
     if (this.maxAge != null)
       return this.maxAge <= 0 ? 0 : this.maxAge * 1e3;
     let e = this.expires;
     return e != 1 / 0 ? (e instanceof Date || (e = ma(e) || 1 / 0), e == 1 / 0 ? 1 / 0 : e.getTime() - (a || Date.now())) : 1 / 0;
   }
+  // expiryTime() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere)
   expiryTime(a) {
     if (this.maxAge != null) {
-      const e = a || this.creation || new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
+      const e = a || this.creation || /* @__PURE__ */ new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
       return e.getTime() + i;
     }
     return this.expires == 1 / 0 ? 1 / 0 : this.expires.getTime();
   }
+  // expiryDate() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere), except it returns a Date
   expiryDate(a) {
     const e = this.expiryTime(a);
-    return e == 1 / 0 ? new Date(Da) : e == -1 / 0 ? new Date(on) : new Date(e);
+    return e == 1 / 0 ? new Date(Oa) : e == -1 / 0 ? new Date(en) : new Date(e);
   }
+  // This replaces the "persistent-flag" parts of S5.3 step 3
   isPersistent() {
     return this.maxAge != null || this.expires != 1 / 0;
   }
+  // Mostly S5.1.2 and S5.2.3:
   canonicalizedDomain() {
     return this.domain == null ? null : ia(this.domain);
   }
   cdomain() {
     return this.canonicalizedDomain();
   }
-}
-E.cookiesCreated = 0;
-E.parse = cn;
-E.fromJSON = Wa;
-E.serializableProperties = Object.keys(K);
-E.sameSiteLevel = {
+};
+C.cookiesCreated = 0;
+C.parse = ln;
+C.fromJSON = Ya;
+C.serializableProperties = Object.keys(K);
+C.sameSiteLevel = {
   strict: 3,
   lax: 2,
   none: 1
 };
-E.sameSiteCanonical = {
+C.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function zo(o) {
+function xo(o) {
   if (o != null) {
     const a = o.toLowerCase();
     switch (a) {
@@ -10620,55 +10655,55 @@ function zo(o) {
   }
   return W.SILENT;
 }
-class F {
+class I {
   constructor(a, e = { rejectPublicSuffixes: !0 }) {
-    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), g.validate(g.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Qi(), this.prefixSecurity = zo(e.prefixSecurity), this._cloneSync = N("clone"), this._importCookiesSync = N("_importCookies"), this.getCookiesSync = N("getCookies"), this.getCookieStringSync = N("getCookieString"), this.getSetCookieStringsSync = N("getSetCookieStrings"), this.removeAllCookiesSync = N("removeAllCookies"), this.setCookieSync = N("setCookie"), this.serializeSync = N("serialize");
+    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), g.validate(g.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Wi(), this.prefixSecurity = xo(e.prefixSecurity), this._cloneSync = M("clone"), this._importCookiesSync = M("_importCookies"), this.getCookiesSync = M("getCookies"), this.getCookieStringSync = M("getCookieString"), this.getSetCookieStringsSync = M("getSetCookieStrings"), this.removeAllCookiesSync = M("removeAllCookies"), this.setCookieSync = M("setCookie"), this.serializeSync = M("serialize");
   }
   setCookie(a, e, i, n) {
     g.validate(g.isNonEmptyString(e), n, i);
     let s;
     if (g.isFunction(e))
       return n = e, n(new Error("No URL was specified"));
-    const t = vo(e);
+    const t = zo(e);
     if (g.isFunction(i) && (n = i, i = {}), g.validate(g.isFunction(n), n), !g.isNonEmptyString(a) && !g.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
-    const u = ia(t.hostname), m = i.loose || this.enableLooseMode;
+    const r = ia(t.hostname), m = i.loose || this.enableLooseMode;
     let c = null;
-    if (i.sameSiteContext && (c = fo(i.sameSiteContext), !c))
-      return n(new Error(bo));
+    if (i.sameSiteContext && (c = yo(i.sameSiteContext), !c))
+      return n(new Error(fo));
     if (typeof a == "string" || a instanceof String) {
-      if (a = E.parse(a, { loose: m }), !a)
+      if (a = C.parse(a, { loose: m }), !a)
         return s = new Error("Cookie failed to parse"), n(i.ignoreError ? null : s);
-    } else if (!(a instanceof E))
+    } else if (!(a instanceof C))
       return s = new Error(
         "First argument to setCookie must be a Cookie object or string"
       ), n(i.ignoreError ? null : s);
-    const p = i.now || new Date();
-    if (this.rejectPublicSuffixes && a.domain && Qa.getPublicSuffix(a.cdomain(), {
+    const p = i.now || /* @__PURE__ */ new Date();
+    if (this.rejectPublicSuffixes && a.domain && Wa.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !le.test(a.domain))
+    }) == null && !ke.test(a.domain))
       return s = new Error("Cookie has domain set to a public suffix"), n(i.ignoreError ? null : s);
     if (a.domain) {
-      if (!yo(u, a.cdomain(), !1))
+      if (!wo(r, a.cdomain(), !1))
         return s = new Error(
-          `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${u}`
+          `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${r}`
         ), n(i.ignoreError ? null : s);
       a.hostOnly == null && (a.hostOnly = !1);
     } else
-      a.hostOnly = !0, a.domain = u;
-    if ((!a.path || a.path[0] !== "/") && (a.path = rn(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+      a.hostOnly = !0, a.domain = r;
+    if ((!a.path || a.path[0] !== "/") && (a.path = mn(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
       return s = new Error("Cookie is HttpOnly and this isn't an HTTP API"), n(i.ignoreError ? null : s);
     if (a.sameSite !== "none" && a.sameSite !== void 0 && c && c === "none")
       return s = new Error(
         "Cookie is SameSite but this is a cross-origin request"
       ), n(i.ignoreError ? null : s);
-    const r = this.prefixSecurity === W.SILENT;
+    const u = this.prefixSecurity === W.SILENT;
     if (this.prefixSecurity !== W.DISABLED) {
       let d = !1, l;
-      if (ln(a) ? kn(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
+      if (kn(a) ? gn(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
         return n(
-          i.ignoreError || r ? null : new Error(l)
+          i.ignoreError || u ? null : new Error(l)
         );
     }
     const k = this.store;
@@ -10678,9 +10713,9 @@ class F {
     function b(d, l) {
       if (d)
         return n(d);
-      const f = function(L) {
-        if (L)
-          return n(L);
+      const f = function(R) {
+        if (R)
+          return n(R);
         n(null, a);
       };
       if (l) {
@@ -10692,29 +10727,30 @@ class F {
     }
     k.findCookie(a.domain, a.path, a.key, b);
   }
+  // RFC6365 S5.4
   getCookies(a, e, i) {
     g.validate(g.isNonEmptyString(a), i, a);
-    const n = vo(a);
+    const n = zo(a);
     g.isFunction(e) && (i = e, e = {}), g.validate(g.isObject(e), i, e), g.validate(g.isFunction(i), i);
     const s = ia(n.hostname), t = n.pathname || "/";
-    let u = e.secure;
-    u == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (u = !0);
+    let r = e.secure;
+    r == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (r = !0);
     let m = 0;
     if (e.sameSiteContext) {
-      const l = fo(e.sameSiteContext);
-      if (m = E.sameSiteLevel[l], !m)
-        return i(new Error(bo));
+      const l = yo(e.sameSiteContext);
+      if (m = C.sameSiteLevel[l], !m)
+        return i(new Error(fo));
     }
     let c = e.http;
     c == null && (c = !0);
-    const p = e.now || Date.now(), r = e.expire !== !1, k = !!e.allPaths, b = this.store;
+    const p = e.now || Date.now(), u = e.expire !== !1, k = !!e.allPaths, b = this.store;
     function d(l) {
       if (l.hostOnly) {
         if (l.domain != s)
           return !1;
-      } else if (!yo(s, l.domain, !1))
+      } else if (!wo(s, l.domain, !1))
         return !1;
-      return !k && !Wi(t, l.path) || l.secure && !u || l.httpOnly && !c || m && E.sameSiteLevel[l.sameSite || "none"] > m ? !1 : r && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
+      return !k && !Yi(t, l.path) || l.secure && !r || l.httpOnly && !c || m && C.sameSiteLevel[l.sameSite || "none"] > m ? !1 : u && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
       }), !1) : !0;
     }
     b.findCookies(
@@ -10724,10 +10760,10 @@ class F {
       (l, f) => {
         if (l)
           return i(l);
-        f = f.filter(d), e.sort !== !1 && (f = f.sort(wo));
-        const L = new Date();
-        for (const ba of f)
-          ba.lastAccessed = L;
+        f = f.filter(d), e.sort !== !1 && (f = f.sort(vo));
+        const R = /* @__PURE__ */ new Date();
+        for (const fa of f)
+          fa.lastAccessed = R;
         i(null, f);
       }
     );
@@ -10738,7 +10774,7 @@ class F {
     const i = function(n, s) {
       n ? e(n) : e(
         null,
-        s.sort(wo).map((t) => t.cookieString()).join("; ")
+        s.sort(vo).map((t) => t.cookieString()).join("; ")
       );
     };
     a.push(i), this.getCookies.apply(this, a);
@@ -10759,12 +10795,18 @@ class F {
     let e = this.store.constructor.name;
     g.isObject(e) && (e = null);
     const i = {
-      version: `tough-cookie@${Yi}`,
+      // The version of tough-cookie that serialized this jar. Generally a good
+      // practice since future versions can make data import decisions based on
+      // known past behavior. When/if this matters, use `semver`.
+      version: `tough-cookie@${Zi}`,
+      // add the store type, to make humans happy:
       storeType: e,
+      // CookieJar configuration:
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: zo(this.prefixSecurity),
+      prefixSecurity: xo(this.prefixSecurity),
+      // this gets filled from getAllCookies:
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
@@ -10773,11 +10815,12 @@ class F {
           "store does not support getAllCookies and cannot be serialized"
         )
       );
-    this.store.getAllCookies((n, s) => n ? a(n) : (i.cookies = s.map((t) => (t = t instanceof E ? t.toJSON() : t, delete t.creationIndex, t)), a(null, i)));
+    this.store.getAllCookies((n, s) => n ? a(n) : (i.cookies = s.map((t) => (t = t instanceof C ? t.toJSON() : t, delete t.creationIndex, t)), a(null, i)));
   }
   toJSON() {
     return this.serializeSync();
   }
+  // use the class method CookieJar.deserialize instead of calling this directly
   _importCookies(a, e) {
     let i = a.cookies;
     if (!i || !Array.isArray(i))
@@ -10790,9 +10833,9 @@ class F {
         return e(s, this);
       let t;
       try {
-        t = Wa(i.shift());
-      } catch (u) {
-        return e(u);
+        t = Ya(i.shift());
+      } catch (r) {
+        return e(r);
       }
       if (t === null)
         return n(null);
@@ -10804,7 +10847,7 @@ class F {
     arguments.length === 1 && (e = a, a = null), this.serialize((i, n) => {
       if (i)
         return e(i);
-      F.deserialize(n, a, e);
+      I.deserialize(n, a, e);
     });
   }
   cloneSync(a) {
@@ -10819,7 +10862,7 @@ class F {
   removeAllCookies(a) {
     g.validate(g.isFunction(a), a);
     const e = this.store;
-    if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== Gi.prototype.removeAllCookies)
+    if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== Qi.prototype.removeAllCookies)
       return e.removeAllCookies(a);
     e.getAllCookies((i, n) => {
       if (i)
@@ -10828,7 +10871,7 @@ class F {
         return a(null);
       let s = 0;
       const t = [];
-      function u(m) {
+      function r(m) {
         if (m && t.push(m), s++, s === n.length)
           return a(t.length ? t[0] : null);
       }
@@ -10837,7 +10880,7 @@ class F {
           m.domain,
           m.path,
           m.key,
-          u
+          r
         );
       });
     });
@@ -10846,11 +10889,11 @@ class F {
     arguments.length !== 3 && (i = e, e = null), g.validate(g.isFunction(i), i);
     let n;
     if (typeof a == "string") {
-      if (n = ke(a), n instanceof Error)
+      if (n = ge(a), n instanceof Error)
         return i(n);
     } else
       n = a;
-    const s = new F(e, {
+    const s = new I(e, {
       rejectPublicSuffixes: n.rejectPublicSuffixes,
       looseMode: n.enableLooseMode,
       allowSpecialUseDomain: n.allowSpecialUseDomain,
@@ -10863,7 +10906,7 @@ class F {
     });
   }
   static deserializeSync(a, e) {
-    const i = typeof a == "string" ? JSON.parse(a) : a, n = new F(e, {
+    const i = typeof a == "string" ? JSON.parse(a) : a, n = new I(e, {
       rejectPublicSuffixes: i.rejectPublicSuffixes,
       looseMode: i.enableLooseMode
     });
@@ -10874,7 +10917,7 @@ class F {
     return n._importCookiesSync(i), n;
   }
 }
-F.fromJSON = F.deserializeSync;
+I.fromJSON = I.deserializeSync;
 [
   "_importCookies",
   "clone",
@@ -10885,10 +10928,10 @@ F.fromJSON = F.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((o) => {
-  F.prototype[o] = ce(F.prototype[o]);
+  I.prototype[o] = le(I.prototype[o]);
 });
-F.deserialize = ce(F.deserialize);
-function N(o) {
+I.deserialize = le(I.deserialize);
+function M(o) {
   return function(...a) {
     if (!this.store.synchronous)
       throw new Error(
@@ -10902,38 +10945,48 @@ function N(o) {
     return i;
   };
 }
-var gn = F;
-Qa.getPublicSuffix;
+var hn = I;
+Wa.getPublicSuffix;
 g.ParameterError;
-var ge = {};
-Object.defineProperty(ge, "__esModule", { value: !0 });
-function hn(o) {
+var he = {};
+Object.defineProperty(he, "__esModule", { value: !0 });
+function dn(o) {
   return o;
 }
-var dn = ge.wrapper = hn;
-const he = new gn();
-dn && (j.defaults.jar = he);
+var jn = he.wrapper = dn;
+const de = new hn();
+jn && (j.defaults.jar = de);
 j.defaults.withCredentials = !0;
-class xo {
-  constructor(a = de) {
-    fa(this, "basePath"), fa(this, "baseOptions"), fa(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
+let So = class {
+  constructor(a = je) {
+    ya(this, "basePath"), ya(this, "baseOptions"), ya(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
+  /**
+   * Check if the given MIME is a JSON MIME.
+   * JSON MIME examples:
+   *   application/json
+   *   application/json; charset=UTF8
+   *   APPLICATION/JSON
+   *   application/vnd.company+json
+   * @param mime - MIME (Multipurpose Internet Mail Extensions)
+   * @return True if the given MIME is JSON, false otherwise.
+   */
   isJsonMime(a) {
     const e = new RegExp("^(application/json|[^;/ 	]+/[^;/ 	]+[+]json)[ 	]*(;.*)?$", "i");
     return a !== null && (e.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
+};
+const je = typeof window == "object" && window.self === self && self ? new So({ basePath: "" }) : new So({ basePath: "https://learning.cultofbits.com" }), bn = je;
+function _() {
+  return bn.basePath;
 }
-const de = typeof window == "object" && window.self === self && self ? new xo({ basePath: "" }) : new xo({ basePath: "https://learning.cultofbits.com" }), jn = de;
-function A() {
-  return jn.basePath;
-}
-let ta, Eo = 0, ua;
-const Co = function({ throtle: o } = { throtle: !0 }) {
+let ta, Co = 0, ra;
+const _o = function({ throtle: o } = { throtle: !0 }) {
   var a;
-  return typeof cob < "u" && ((a = cob == null ? void 0 : cob.app) == null ? void 0 : a.getCurrentLoggedInUser) ? Promise.resolve({
+  return typeof cob < "u" && ((a = cob == null ? void 0 : cob.app) != null && a.getCurrentLoggedInUser) ? Promise.resolve({
     username: cob.app.getCurrentLoggedInUser(),
     groups: cob.app.getGroups() ? cob.app.getGroups().map((e) => ({ name: e })) : []
-  }) : o && Date.now() < Eo ? (ta.throtle = !0, Promise.resolve(ta)) : o && ua && typeof ua.then == "function" ? ua.then((e) => e) : ua = j.get(A() + "/userm/userm/user/loggedin").then((e) => (Eo = Date.now() + 6e4, ta = {
+  }) : o && Date.now() < Co ? (ta.throtle = !0, Promise.resolve(ta)) : o && ra && typeof ra.then == "function" ? ra.then((e) => e) : ra = j.get(_() + "/userm/userm/user/loggedin").then((e) => (Co = Date.now() + 6e4, ta = {
     username: e.data.loggedInUser.username,
     groups: (e.data.loggedInUser.groups || []).map((i) => i.name),
     throtle: !1
@@ -10944,7 +10997,7 @@ const Co = function({ throtle: o } = { throtle: !0 }) {
   });
 };
 /*! js-cookie v3.0.1 | MIT */
-function ra(o) {
+function ua(o) {
   for (var a = 1; a < arguments.length; a++) {
     var e = arguments[a];
     for (var i in e)
@@ -10952,7 +11005,7 @@ function ra(o) {
   }
   return o;
 }
-var bn = {
+var fn = {
   read: function(o) {
     return o[0] === '"' && (o = o.slice(1, -1)), o.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
   },
@@ -10963,20 +11016,20 @@ var bn = {
     );
   }
 };
-function _a(o, a) {
+function Da(o, a) {
   function e(n, s, t) {
     if (!(typeof document > "u")) {
-      t = ra({}, a, t), typeof t.expires == "number" && (t.expires = new Date(Date.now() + t.expires * 864e5)), t.expires && (t.expires = t.expires.toUTCString()), n = encodeURIComponent(n).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
-      var u = "";
+      t = ua({}, a, t), typeof t.expires == "number" && (t.expires = new Date(Date.now() + t.expires * 864e5)), t.expires && (t.expires = t.expires.toUTCString()), n = encodeURIComponent(n).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+      var r = "";
       for (var m in t)
-        !t[m] || (u += "; " + m, t[m] !== !0 && (u += "=" + t[m].split(";")[0]));
-      return document.cookie = n + "=" + o.write(s, n) + u;
+        t[m] && (r += "; " + m, t[m] !== !0 && (r += "=" + t[m].split(";")[0]));
+      return document.cookie = n + "=" + o.write(s, n) + r;
     }
   }
   function i(n) {
     if (!(typeof document > "u" || arguments.length && !n)) {
-      for (var s = document.cookie ? document.cookie.split("; ") : [], t = {}, u = 0; u < s.length; u++) {
-        var m = s[u].split("="), c = m.slice(1).join("=");
+      for (var s = document.cookie ? document.cookie.split("; ") : [], t = {}, r = 0; r < s.length; r++) {
+        var m = s[r].split("="), c = m.slice(1).join("=");
         try {
           var p = decodeURIComponent(m[0]);
           if (t[p] = o.read(c, p), n === p)
@@ -10995,16 +11048,16 @@ function _a(o, a) {
         e(
           n,
           "",
-          ra({}, s, {
+          ua({}, s, {
             expires: -1
           })
         );
       },
       withAttributes: function(n) {
-        return _a(this.converter, ra({}, this.attributes, n));
+        return Da(this.converter, ua({}, this.attributes, n));
       },
       withConverter: function(n) {
-        return _a(ra({}, this.converter, n), this.attributes);
+        return Da(ua({}, this.converter, n), this.attributes);
       }
     },
     {
@@ -11013,28 +11066,30 @@ function _a(o, a) {
     }
   );
 }
-var fn = _a(bn, { path: "/" });
-const ct = function({ username: o, password: a, token: e }) {
-  return o && a ? j.post(A() + "/userm/security/auth", {
+var yn = Da(fn, { path: "/" });
+const dt = function({ username: o, password: a, token: e }) {
+  return o && a ? j.post(_() + "/userm/security/auth", {
     username: o,
     password: a
-  }).then(() => Co({ throtle: !1 })).catch((i) => {
+  }).then(() => _o({ throtle: !1 })).catch((i) => {
     throw i;
-  }) : e ? (typeof window < "u" ? (console.warn("You should only use timeless tokens in backend scripts, not browser. Ignoring"), fn.set("cobtoken", e, { secure: !0, domain: window.location.hostname })) : he.setCookieSync("cobtoken=" + e + ";", A()), Co({ throtle: !1 })) : Promise.reject("Specify a username/password OR a token");
-}, lt = async function() {
-  return await j.get(A() + "/userm/security/auth/logout");
-}, yn = "/confm/confm/search?from=__FROM__&size=__SIZE__&q=__QUERY__", wn = "/confm/#/search/q=__QUERY__", kt = async function(o = "*", a = 0, e = 0) {
-  const i = yn.replace("__QUERY__", o).replace("__FROM__", `${a}`).replace("__SIZE__", `${e}`);
-  return j.get(A() + i).then((n) => (n.data.resultsUrl = A() + wn.replace("__QUERY__", o), n.data)).catch((n) => {
+  }) : e ? (typeof window < "u" ? (console.warn("You should only use timeless tokens in backend scripts, not browser. Ignoring"), yn.set("cobtoken", e, { secure: !0, domain: window.location.hostname })) : de.setCookieSync("cobtoken=" + e + ";", _()), _o({ throtle: !1 })) : Promise.reject("Specify a username/password OR a token");
+}, jt = async function() {
+  return await j.get(_() + "/userm/security/auth/logout");
+}, wn = "/confm/confm/search?from=__FROM__&size=__SIZE__&q=__QUERY__", vn = "/confm/#/search/q=__QUERY__", bt = async function(o = "*", a = 0, e = 0) {
+  const i = wn.replace("__QUERY__", o).replace("__FROM__", `${a}`).replace("__SIZE__", `${e}`);
+  return j.get(_() + i).then((n) => (n.data.resultsUrl = _() + vn.replace("__QUERY__", o), n.data)).catch((n) => {
     throw n;
   });
 };
-var vn = Object.defineProperty, zn = (o, a, e) => a in o ? vn(o, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[a] = e, V = (o, a, e) => (zn(o, typeof a != "symbol" ? a + "" : a, e), e), xn = Object.defineProperty, En = (o, a, e) => a in o ? xn(o, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[a] = e, aa = (o, a, e) => (En(o, typeof a != "symbol" ? a + "" : a, e), e), Ao = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function je(o) {
+var zn = Object.defineProperty, xn = (o, a, e) => a in o ? zn(o, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[a] = e, V = (o, a, e) => (xn(o, typeof a != "symbol" ? a + "" : a, e), e), Sn = Object.defineProperty, Cn = (o, a, e) => a in o ? Sn(o, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : o[a] = e, aa = (o, a, e) => (Cn(o, typeof a != "symbol" ? a + "" : a, e), e), Io = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function be(o) {
+  if (o.__esModule)
+    return o;
   var a = o.default;
   if (typeof a == "function") {
-    var e = function() {
-      return a.apply(this, arguments);
+    var e = function i() {
+      return this instanceof i ? Reflect.construct(a, arguments, this.constructor) : a.apply(this, arguments);
     };
     e.prototype = a.prototype;
   } else
@@ -11049,29 +11104,29 @@ function je(o) {
     });
   }), e;
 }
-const X = 2147483647, I = 36, Ya = 1, na = 26, Cn = 38, An = 700, be = 72, fe = 128, ye = "-", Fn = /^xn--/, Dn = /[^\0-\x7E]/, Sn = /[\x2E\u3002\uFF0E\uFF61]/g, _n = {
+const X = 2147483647, D = 36, Za = 1, na = 26, _n = 38, In = 700, fe = 72, ye = 128, we = "-", An = /^xn--/, On = /[^\0-\x7E]/, $n = /[\x2E\u3002\uFF0E\uFF61]/g, Dn = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, va = I - Ya, B = Math.floor, za = String.fromCharCode;
+}, za = D - Za, E = Math.floor, xa = String.fromCharCode;
 function Q(o) {
-  throw new RangeError(_n[o]);
+  throw new RangeError(Dn[o]);
 }
-function In(o, a) {
+function En(o, a) {
   const e = [];
   let i = o.length;
   for (; i--; )
     e[i] = a(o[i]);
   return e;
 }
-function we(o, a) {
+function ve(o, a) {
   const e = o.split("@");
   let i = "";
-  e.length > 1 && (i = e[0] + "@", o = e[1]), o = o.replace(Sn, ".");
-  const n = o.split("."), s = In(n, a).join(".");
+  e.length > 1 && (i = e[0] + "@", o = e[1]), o = o.replace($n, ".");
+  const n = o.split("."), s = En(n, a).join(".");
   return i + s;
 }
-function Za(o) {
+function Va(o) {
   const a = [];
   let e = 0;
   const i = o.length;
@@ -11085,96 +11140,108 @@ function Za(o) {
   }
   return a;
 }
-const ve = (o) => String.fromCodePoint(...o), Bn = function(o) {
-  return o - 48 < 10 ? o - 22 : o - 65 < 26 ? o - 65 : o - 97 < 26 ? o - 97 : I;
-}, Fo = function(o, a) {
+const ze = (o) => String.fromCodePoint(...o), qn = function(o) {
+  return o - 48 < 10 ? o - 22 : o - 65 < 26 ? o - 65 : o - 97 < 26 ? o - 97 : D;
+}, Ao = function(o, a) {
   return o + 22 + 75 * (o < 26) - ((a != 0) << 5);
-}, ze = function(o, a, e) {
+}, xe = function(o, a, e) {
   let i = 0;
-  for (o = e ? B(o / An) : o >> 1, o += B(o / a); o > va * na >> 1; i += I)
-    o = B(o / va);
-  return B(i + (va + 1) * o / (o + Cn));
-}, Va = function(o) {
+  for (o = e ? E(o / In) : o >> 1, o += E(o / a); o > za * na >> 1; i += D)
+    o = E(o / za);
+  return E(i + (za + 1) * o / (o + _n));
+}, Xa = function(o) {
   const a = [], e = o.length;
-  let i = 0, n = fe, s = be, t = o.lastIndexOf(ye);
+  let i = 0, n = ye, s = fe, t = o.lastIndexOf(we);
   t < 0 && (t = 0);
-  for (let u = 0; u < t; ++u)
-    o.charCodeAt(u) >= 128 && Q("not-basic"), a.push(o.charCodeAt(u));
-  for (let u = t > 0 ? t + 1 : 0; u < e; ) {
+  for (let r = 0; r < t; ++r)
+    o.charCodeAt(r) >= 128 && Q("not-basic"), a.push(o.charCodeAt(r));
+  for (let r = t > 0 ? t + 1 : 0; r < e; ) {
     let m = i;
-    for (let p = 1, r = I; ; r += I) {
-      u >= e && Q("invalid-input");
-      const k = Bn(o.charCodeAt(u++));
-      (k >= I || k > B((X - i) / p)) && Q("overflow"), i += k * p;
-      const b = r <= s ? Ya : r >= s + na ? na : r - s;
+    for (let p = 1, u = D; ; u += D) {
+      r >= e && Q("invalid-input");
+      const k = qn(o.charCodeAt(r++));
+      (k >= D || k > E((X - i) / p)) && Q("overflow"), i += k * p;
+      const b = u <= s ? Za : u >= s + na ? na : u - s;
       if (k < b)
         break;
-      const d = I - b;
-      p > B(X / d) && Q("overflow"), p *= d;
+      const d = D - b;
+      p > E(X / d) && Q("overflow"), p *= d;
     }
     const c = a.length + 1;
-    s = ze(i - m, c, m == 0), B(i / c) > X - n && Q("overflow"), n += B(i / c), i %= c, a.splice(i++, 0, n);
+    s = xe(i - m, c, m == 0), E(i / c) > X - n && Q("overflow"), n += E(i / c), i %= c, a.splice(i++, 0, n);
   }
   return String.fromCodePoint(...a);
-}, Xa = function(o) {
+}, Ka = function(o) {
   const a = [];
-  o = Za(o);
-  let e = o.length, i = fe, n = 0, s = be;
+  o = Va(o);
+  let e = o.length, i = ye, n = 0, s = fe;
   for (const m of o)
-    m < 128 && a.push(za(m));
-  let t = a.length, u = t;
-  for (t && a.push(ye); u < e; ) {
+    m < 128 && a.push(xa(m));
+  let t = a.length, r = t;
+  for (t && a.push(we); r < e; ) {
     let m = X;
     for (const p of o)
       p >= i && p < m && (m = p);
-    const c = u + 1;
-    m - i > B((X - n) / c) && Q("overflow"), n += (m - i) * c, i = m;
+    const c = r + 1;
+    m - i > E((X - n) / c) && Q("overflow"), n += (m - i) * c, i = m;
     for (const p of o)
       if (p < i && ++n > X && Q("overflow"), p == i) {
-        let r = n;
-        for (let k = I; ; k += I) {
-          const b = k <= s ? Ya : k >= s + na ? na : k - s;
-          if (r < b)
+        let u = n;
+        for (let k = D; ; k += D) {
+          const b = k <= s ? Za : k >= s + na ? na : k - s;
+          if (u < b)
             break;
-          const d = r - b, l = I - b;
+          const d = u - b, l = D - b;
           a.push(
-            za(Fo(b + d % l, 0))
-          ), r = B(d / l);
+            xa(Ao(b + d % l, 0))
+          ), u = E(d / l);
         }
-        a.push(za(Fo(r, 0))), s = ze(n, c, u == t), n = 0, ++u;
+        a.push(xa(Ao(u, 0))), s = xe(n, c, r == t), n = 0, ++r;
       }
     ++n, ++i;
   }
   return a.join("");
-}, xe = function(o) {
-  return we(o, function(a) {
-    return Fn.test(a) ? Va(a.slice(4).toLowerCase()) : a;
+}, Se = function(o) {
+  return ve(o, function(a) {
+    return An.test(a) ? Xa(a.slice(4).toLowerCase()) : a;
   });
-}, Ee = function(o) {
-  return we(o, function(a) {
-    return Dn.test(a) ? "xn--" + Xa(a) : a;
+}, Ce = function(o) {
+  return ve(o, function(a) {
+    return On.test(a) ? "xn--" + Ka(a) : a;
   });
-}, On = {
+}, Un = {
+  /**
+   * A string representing the current Punycode.js version number.
+   * @memberOf punycode
+   * @type String
+   */
   version: "2.1.0",
+  /**
+   * An object of methods to convert from JavaScript's internal character
+   * representation (UCS-2) to Unicode code points, and back.
+   * @see <https://mathiasbynens.be/notes/javascript-encoding>
+   * @memberOf punycode
+   * @type Object
+   */
   ucs2: {
-    decode: Za,
-    encode: ve
+    decode: Va,
+    encode: ze
   },
-  decode: Va,
-  encode: Xa,
-  toASCII: Ee,
-  toUnicode: xe
-}, $n = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: Xa,
+  encode: Ka,
+  toASCII: Ce,
+  toUnicode: Se
+}, Ln = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ucs2decode: Za,
-  ucs2encode: ve,
-  decode: Va,
-  encode: Xa,
-  toASCII: Ee,
-  toUnicode: xe,
-  default: On
-}, Symbol.toStringTag, { value: "Module" })), Ce = /* @__PURE__ */ je($n);
-var qn = function(o, a) {
+  decode: Xa,
+  default: Un,
+  encode: Ka,
+  toASCII: Ce,
+  toUnicode: Se,
+  ucs2decode: Va,
+  ucs2encode: ze
+}, Symbol.toStringTag, { value: "Module" })), _e = /* @__PURE__ */ be(Ln);
+var Tn = function(o, a) {
   if (a = a.split(":")[0], o = +o, !o)
     return !1;
   switch (a) {
@@ -11192,124 +11259,131 @@ var qn = function(o, a) {
       return !1;
   }
   return o !== 0;
-}, Ka = {}, Un = Object.prototype.hasOwnProperty, Ln;
-function Do(o) {
+}, ao = {}, Rn = Object.prototype.hasOwnProperty, Pn;
+function Oo(o) {
   try {
     return decodeURIComponent(o.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function So(o) {
+function $o(o) {
   try {
     return encodeURIComponent(o);
   } catch {
     return null;
   }
 }
-function Tn(o) {
+function Fn(o) {
   for (var a = /([^=?#&]+)=?([^&]*)/g, e = {}, i; i = a.exec(o); ) {
-    var n = Do(i[1]), s = Do(i[2]);
+    var n = Oo(i[1]), s = Oo(i[2]);
     n === null || s === null || n in e || (e[n] = s);
   }
   return e;
 }
-function Rn(o, a) {
+function Nn(o, a) {
   a = a || "";
   var e = [], i, n;
   typeof a != "string" && (a = "?");
   for (n in o)
-    if (Un.call(o, n)) {
-      if (i = o[n], !i && (i === null || i === Ln || isNaN(i)) && (i = ""), n = So(n), i = So(i), n === null || i === null)
+    if (Rn.call(o, n)) {
+      if (i = o[n], !i && (i === null || i === Pn || isNaN(i)) && (i = ""), n = $o(n), i = $o(i), n === null || i === null)
         continue;
       e.push(n + "=" + i);
     }
   return e.length ? a + e.join("&") : "";
 }
-Ka.stringify = Rn;
-Ka.parse = Tn;
-var Ae = qn, ha = Ka, Pn = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Fe = /[\n\r\t]/g, Nn = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, De = /:\d+$/, Mn = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Hn = /^[a-zA-Z]:/;
-function ao(o) {
-  return (o || "").toString().replace(Pn, "");
+ao.stringify = Nn;
+ao.parse = Fn;
+var Ie = Tn, da = ao, Mn = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ae = /[\n\r\t]/g, Bn = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Oe = /:\d+$/, Hn = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Jn = /^[a-zA-Z]:/;
+function oo(o) {
+  return (o || "").toString().replace(Mn, "");
 }
-var Ia = [
+var Ea = [
   ["#", "hash"],
+  // Extract from the back.
   ["?", "query"],
+  // Extract from the back.
   function(o, a) {
-    return $(a.protocol) ? o.replace(/\\/g, "/") : o;
+    return U(a.protocol) ? o.replace(/\\/g, "/") : o;
   },
   ["/", "pathname"],
+  // Extract from the back.
   ["@", "auth", 1],
+  // Extract from the front.
   [NaN, "host", void 0, 1, 1],
+  // Set left over value.
   [/:(\d*)$/, "port", void 0, 1],
+  // RegExp the back.
   [NaN, "hostname", void 0, 1, 1]
-], _o = { hash: 1, query: 1 };
-function Se(o) {
+  // Set left over.
+], Do = { hash: 1, query: 1 };
+function $e(o) {
   var a;
-  typeof window < "u" ? a = window : typeof Ao < "u" ? a = Ao : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof Io < "u" ? a = Io : typeof self < "u" ? a = self : a = {};
   var e = a.location || {};
   o = o || e;
   var i = {}, n = typeof o, s;
   if (o.protocol === "blob:")
-    i = new U(unescape(o.pathname), {});
+    i = new T(unescape(o.pathname), {});
   else if (n === "string") {
-    i = new U(o, {});
-    for (s in _o)
+    i = new T(o, {});
+    for (s in Do)
       delete i[s];
   } else if (n === "object") {
     for (s in o)
-      s in _o || (i[s] = o[s]);
-    i.slashes === void 0 && (i.slashes = Nn.test(o.href));
+      s in Do || (i[s] = o[s]);
+    i.slashes === void 0 && (i.slashes = Bn.test(o.href));
   }
   return i;
 }
-function $(o) {
+function U(o) {
   return o === "file:" || o === "ftp:" || o === "http:" || o === "https:" || o === "ws:" || o === "wss:";
 }
-function _e(o, a) {
-  o = ao(o), o = o.replace(Fe, ""), a = a || {};
-  var e = Mn.exec(o), i = e[1] ? e[1].toLowerCase() : "", n = !!e[2], s = !!e[3], t = 0, u;
-  return n ? s ? (u = e[2] + e[3] + e[4], t = e[2].length + e[3].length) : (u = e[2] + e[4], t = e[2].length) : s ? (u = e[3] + e[4], t = e[3].length) : u = e[4], i === "file:" ? t >= 2 && (u = u.slice(2)) : $(i) ? u = e[4] : i ? n && (u = u.slice(2)) : t >= 2 && $(a.protocol) && (u = e[4]), {
+function De(o, a) {
+  o = oo(o), o = o.replace(Ae, ""), a = a || {};
+  var e = Hn.exec(o), i = e[1] ? e[1].toLowerCase() : "", n = !!e[2], s = !!e[3], t = 0, r;
+  return n ? s ? (r = e[2] + e[3] + e[4], t = e[2].length + e[3].length) : (r = e[2] + e[4], t = e[2].length) : s ? (r = e[3] + e[4], t = e[3].length) : r = e[4], i === "file:" ? t >= 2 && (r = r.slice(2)) : U(i) ? r = e[4] : i ? n && (r = r.slice(2)) : t >= 2 && U(a.protocol) && (r = e[4]), {
     protocol: i,
-    slashes: n || $(i),
+    slashes: n || U(i),
     slashesCount: t,
-    rest: u
+    rest: r
   };
 }
-function Jn(o, a) {
+function Gn(o, a) {
   if (o === "")
     return a;
   for (var e = (a || "/").split("/").slice(0, -1).concat(o.split("/")), i = e.length, n = e[i - 1], s = !1, t = 0; i--; )
     e[i] === "." ? e.splice(i, 1) : e[i] === ".." ? (e.splice(i, 1), t++) : t && (i === 0 && (s = !0), e.splice(i, 1), t--);
   return s && e.unshift(""), (n === "." || n === "..") && e.push(""), e.join("/");
 }
-function U(o, a, e) {
-  if (o = ao(o), o = o.replace(Fe, ""), !(this instanceof U))
-    return new U(o, a, e);
-  var i, n, s, t, u, m, c = Ia.slice(), p = typeof a, r = this, k = 0;
-  for (p !== "object" && p !== "string" && (e = a, a = null), e && typeof e != "function" && (e = ha.parse), a = Se(a), n = _e(o || "", a), i = !n.protocol && !n.slashes, r.slashes = n.slashes || i && a.slashes, r.protocol = n.protocol || a.protocol || "", o = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || Hn.test(o)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !$(r.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
+function T(o, a, e) {
+  if (o = oo(o), o = o.replace(Ae, ""), !(this instanceof T))
+    return new T(o, a, e);
+  var i, n, s, t, r, m, c = Ea.slice(), p = typeof a, u = this, k = 0;
+  for (p !== "object" && p !== "string" && (e = a, a = null), e && typeof e != "function" && (e = da.parse), a = $e(a), n = De(o || "", a), i = !n.protocol && !n.slashes, u.slashes = n.slashes || i && a.slashes, u.protocol = n.protocol || a.protocol || "", o = n.rest, (n.protocol === "file:" && (n.slashesCount !== 2 || Jn.test(o)) || !n.slashes && (n.protocol || n.slashesCount < 2 || !U(u.protocol))) && (c[3] = [/(.*)/, "pathname"]); k < c.length; k++) {
     if (t = c[k], typeof t == "function") {
-      o = t(o, r);
+      o = t(o, u);
       continue;
     }
-    s = t[0], m = t[1], s !== s ? r[m] = o : typeof s == "string" ? (u = s === "@" ? o.lastIndexOf(s) : o.indexOf(s), ~u && (typeof t[2] == "number" ? (r[m] = o.slice(0, u), o = o.slice(u + t[2])) : (r[m] = o.slice(u), o = o.slice(0, u)))) : (u = s.exec(o)) && (r[m] = u[1], o = o.slice(0, u.index)), r[m] = r[m] || i && t[3] && a[m] || "", t[4] && (r[m] = r[m].toLowerCase());
+    s = t[0], m = t[1], s !== s ? u[m] = o : typeof s == "string" ? (r = s === "@" ? o.lastIndexOf(s) : o.indexOf(s), ~r && (typeof t[2] == "number" ? (u[m] = o.slice(0, r), o = o.slice(r + t[2])) : (u[m] = o.slice(r), o = o.slice(0, r)))) : (r = s.exec(o)) && (u[m] = r[1], o = o.slice(0, r.index)), u[m] = u[m] || i && t[3] && a[m] || "", t[4] && (u[m] = u[m].toLowerCase());
   }
-  e && (r.query = e(r.query)), i && a.slashes && r.pathname.charAt(0) !== "/" && (r.pathname !== "" || a.pathname !== "") && (r.pathname = Jn(r.pathname, a.pathname)), r.pathname.charAt(0) !== "/" && $(r.protocol) && (r.pathname = "/" + r.pathname), Ae(r.port, r.protocol) || (r.host = r.hostname, r.port = ""), r.username = r.password = "", r.auth && (u = r.auth.indexOf(":"), ~u ? (r.username = r.auth.slice(0, u), r.username = encodeURIComponent(decodeURIComponent(r.username)), r.password = r.auth.slice(u + 1), r.password = encodeURIComponent(decodeURIComponent(r.password))) : r.username = encodeURIComponent(decodeURIComponent(r.auth)), r.auth = r.password ? r.username + ":" + r.password : r.username), r.origin = r.protocol !== "file:" && $(r.protocol) && r.host ? r.protocol + "//" + r.host : "null", r.href = r.toString();
+  e && (u.query = e(u.query)), i && a.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || a.pathname !== "") && (u.pathname = Gn(u.pathname, a.pathname)), u.pathname.charAt(0) !== "/" && U(u.protocol) && (u.pathname = "/" + u.pathname), Ie(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && U(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
 }
-function Gn(o, a, e) {
+function Qn(o, a, e) {
   var i = this;
   switch (o) {
     case "query":
-      typeof a == "string" && a.length && (a = (e || ha.parse)(a)), i[o] = a;
+      typeof a == "string" && a.length && (a = (e || da.parse)(a)), i[o] = a;
       break;
     case "port":
-      i[o] = a, Ae(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[o] = "");
+      i[o] = a, Ie(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[o] = "");
       break;
     case "hostname":
       i[o] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[o] = a, De.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
+      i[o] = a, Oe.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
       i.protocol = a.toLowerCase(), i.slashes = !e;
@@ -11330,26 +11404,26 @@ function Gn(o, a, e) {
       var s = a.indexOf(":");
       ~s ? (i.username = a.slice(0, s), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(s + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < Ia.length; t++) {
-    var u = Ia[t];
-    u[4] && (i[u[1]] = i[u[1]].toLowerCase());
+  for (var t = 0; t < Ea.length; t++) {
+    var r = Ea[t];
+    r[4] && (i[r[1]] = i[r[1]].toLowerCase());
   }
-  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && $(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
+  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && U(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function Qn(o) {
-  (!o || typeof o != "function") && (o = ha.stringify);
+function Wn(o) {
+  (!o || typeof o != "function") && (o = da.stringify);
   var a, e = this, i = e.host, n = e.protocol;
   n && n.charAt(n.length - 1) !== ":" && (n += ":");
-  var s = n + (e.protocol && e.slashes || $(e.protocol) ? "//" : "");
-  return e.username ? (s += e.username, e.password && (s += ":" + e.password), s += "@") : e.password ? (s += ":" + e.password, s += "@") : e.protocol !== "file:" && $(e.protocol) && !i && e.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || De.test(e.hostname) && !e.port) && (i += ":"), s += i + e.pathname, a = typeof e.query == "object" ? o(e.query) : e.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), e.hash && (s += e.hash), s;
+  var s = n + (e.protocol && e.slashes || U(e.protocol) ? "//" : "");
+  return e.username ? (s += e.username, e.password && (s += ":" + e.password), s += "@") : e.password ? (s += ":" + e.password, s += "@") : e.protocol !== "file:" && U(e.protocol) && !i && e.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || Oe.test(e.hostname) && !e.port) && (i += ":"), s += i + e.pathname, a = typeof e.query == "object" ? o(e.query) : e.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), e.hash && (s += e.hash), s;
 }
-U.prototype = { set: Gn, toString: Qn };
-U.extractProtocol = _e;
-U.location = Se;
-U.trimLeft = ao;
-U.qs = ha;
-var Wn = U, oo = {}, Ie = {};
-const Yn = [
+T.prototype = { set: Qn, toString: Wn };
+T.extractProtocol = De;
+T.location = $e;
+T.trimLeft = oo;
+T.qs = da;
+var Yn = T, eo = {}, Ee = {};
+const Zn = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -11934,7 +12008,7 @@ const Yn = [
   "net.ci",
   "go.ci",
   "asso.ci",
-  "a\xE9roport.ci",
+  "aéroport.ci",
   "int.ci",
   "presse.ci",
   "md.ci",
@@ -11959,9 +12033,9 @@ const Yn = [
   "net.cn",
   "org.cn",
   "mil.cn",
-  "\u516C\u53F8.cn",
-  "\u7F51\u7EDC.cn",
-  "\u7DB2\u7D61.cn",
+  "公司.cn",
+  "网络.cn",
+  "網絡.cn",
   "ah.cn",
   "bj.cn",
   "cq.cn",
@@ -12272,21 +12346,21 @@ const Yn = [
   "idv.hk",
   "net.hk",
   "org.hk",
-  "\u516C\u53F8.hk",
-  "\u6559\u80B2.hk",
-  "\u654E\u80B2.hk",
-  "\u653F\u5E9C.hk",
-  "\u500B\u4EBA.hk",
-  "\u4E2A\uFFFD\uFFFD.hk",
-  "\u7B87\u4EBA.hk",
-  "\u7DB2\u7EDC.hk",
-  "\u7F51\u7EDC.hk",
-  "\u7EC4\u7E54.hk",
-  "\u7DB2\u7D61.hk",
-  "\u7F51\u7D61.hk",
-  "\u7EC4\u7EC7.hk",
-  "\u7D44\u7E54.hk",
-  "\u7D44\u7EC7.hk",
+  "公司.hk",
+  "教育.hk",
+  "敎育.hk",
+  "政府.hk",
+  "個人.hk",
+  "个��.hk",
+  "箇人.hk",
+  "網络.hk",
+  "网络.hk",
+  "组織.hk",
+  "網絡.hk",
+  "网絡.hk",
+  "组织.hk",
+  "組織.hk",
+  "組织.hk",
   "hm",
   "hn",
   "com.hn",
@@ -12417,8 +12491,8 @@ const Yn = [
   "net.ir",
   "org.ir",
   "sch.ir",
-  "\u0627\u06CC\u0631\u0627\u0646.ir",
-  "\u0627\u064A\u0631\u0627\u0646.ir",
+  "ایران.ir",
+  "ايران.ir",
   "is",
   "net.is",
   "com.is",
@@ -12482,9 +12556,9 @@ const Yn = [
   "tos.it",
   "toscana.it",
   "trentin-sud-tirol.it",
-  "trentin-s\xFCd-tirol.it",
+  "trentin-süd-tirol.it",
   "trentin-sudtirol.it",
-  "trentin-s\xFCdtirol.it",
+  "trentin-südtirol.it",
   "trentin-sued-tirol.it",
   "trentin-suedtirol.it",
   "trentino-a-adige.it",
@@ -12494,9 +12568,9 @@ const Yn = [
   "trentino-s-tirol.it",
   "trentino-stirol.it",
   "trentino-sud-tirol.it",
-  "trentino-s\xFCd-tirol.it",
+  "trentino-süd-tirol.it",
   "trentino-sudtirol.it",
-  "trentino-s\xFCdtirol.it",
+  "trentino-südtirol.it",
   "trentino-sued-tirol.it",
   "trentino-suedtirol.it",
   "trentino.it",
@@ -12507,15 +12581,15 @@ const Yn = [
   "trentinos-tirol.it",
   "trentinostirol.it",
   "trentinosud-tirol.it",
-  "trentinos\xFCd-tirol.it",
+  "trentinosüd-tirol.it",
   "trentinosudtirol.it",
-  "trentinos\xFCdtirol.it",
+  "trentinosüdtirol.it",
   "trentinosued-tirol.it",
   "trentinosuedtirol.it",
   "trentinsud-tirol.it",
-  "trentins\xFCd-tirol.it",
+  "trentinsüd-tirol.it",
   "trentinsudtirol.it",
-  "trentins\xFCdtirol.it",
+  "trentinsüdtirol.it",
   "trentinsued-tirol.it",
   "trentinsuedtirol.it",
   "tuscany.it",
@@ -12532,13 +12606,13 @@ const Yn = [
   "valled-aosta.it",
   "valledaosta.it",
   "vallee-aoste.it",
-  "vall\xE9e-aoste.it",
+  "vallée-aoste.it",
   "vallee-d-aoste.it",
-  "vall\xE9e-d-aoste.it",
+  "vallée-d-aoste.it",
   "valleeaoste.it",
-  "vall\xE9eaoste.it",
+  "valléeaoste.it",
   "valleedaoste.it",
-  "vall\xE9edaoste.it",
+  "valléedaoste.it",
   "vao.it",
   "vda.it",
   "ven.it",
@@ -12571,7 +12645,7 @@ const Yn = [
   "avellino.it",
   "ba.it",
   "balsan-sudtirol.it",
-  "balsan-s\xFCdtirol.it",
+  "balsan-südtirol.it",
   "balsan-suedtirol.it",
   "balsan.it",
   "bari.it",
@@ -12590,7 +12664,7 @@ const Yn = [
   "bolzano-altoadige.it",
   "bolzano.it",
   "bozen-sudtirol.it",
-  "bozen-s\xFCdtirol.it",
+  "bozen-südtirol.it",
   "bozen-suedtirol.it",
   "bozen.it",
   "br.it",
@@ -12599,7 +12673,7 @@ const Yn = [
   "bs.it",
   "bt.it",
   "bulsan-sudtirol.it",
-  "bulsan-s\xFCdtirol.it",
+  "bulsan-südtirol.it",
   "bulsan-suedtirol.it",
   "bulsan.it",
   "bz.it",
@@ -12619,9 +12693,9 @@ const Yn = [
   "cb.it",
   "ce.it",
   "cesena-forli.it",
-  "cesena-forl\xEC.it",
+  "cesena-forlì.it",
   "cesenaforli.it",
-  "cesenaforl\xEC.it",
+  "cesenaforlì.it",
   "ch.it",
   "chieti.it",
   "ci.it",
@@ -12652,9 +12726,9 @@ const Yn = [
   "fm.it",
   "foggia.it",
   "forli-cesena.it",
-  "forl\xEC-cesena.it",
+  "forlì-cesena.it",
   "forlicesena.it",
-  "forl\xECcesena.it",
+  "forlìcesena.it",
   "fr.it",
   "frosinone.it",
   "ge.it",
@@ -12785,7 +12859,7 @@ const Yn = [
   "sr.it",
   "ss.it",
   "suedtirol.it",
-  "s\xFCdtirol.it",
+  "südtirol.it",
   "sv.it",
   "ta.it",
   "taranto.it",
@@ -12905,53 +12979,53 @@ const Yn = [
   "yamagata.jp",
   "yamaguchi.jp",
   "yamanashi.jp",
-  "\u6803\u6728.jp",
-  "\u611B\u77E5.jp",
-  "\u611B\u5A9B.jp",
-  "\u5175\u5EAB.jp",
-  "\u718A\u672C.jp",
-  "\u8328\u57CE.jp",
-  "\u5317\u6D77\u9053.jp",
-  "\u5343\u8449.jp",
-  "\u548C\u6B4C\u5C71.jp",
-  "\u9577\u5D0E.jp",
-  "\u9577\u91CE.jp",
-  "\u65B0\u6F5F.jp",
-  "\u9752\u68EE.jp",
-  "\u9759\u5CA1.jp",
-  "\u6771\u4EAC.jp",
-  "\u77F3\u5DDD.jp",
-  "\u57FC\u7389.jp",
-  "\u4E09\u91CD.jp",
-  "\u4EAC\u90FD.jp",
-  "\u4F50\u8CC0.jp",
-  "\u5927\u5206.jp",
-  "\u5927\u962A.jp",
-  "\u5948\u826F.jp",
-  "\u5BAE\u57CE.jp",
-  "\u5BAE\u5D0E.jp",
-  "\u5BCC\u5C71.jp",
-  "\u5C71\u53E3.jp",
-  "\u5C71\u5F62.jp",
-  "\u5C71\u68A8.jp",
-  "\u5CA9\u624B.jp",
-  "\u5C90\u961C.jp",
-  "\u5CA1\u5C71.jp",
-  "\u5CF6\u6839.jp",
-  "\u5E83\u5CF6.jp",
-  "\u5FB3\u5CF6.jp",
-  "\u6C96\u7E04.jp",
-  "\u6ECB\u8CC0.jp",
-  "\u795E\u5948\u5DDD.jp",
-  "\u798F\u4E95.jp",
-  "\u798F\u5CA1.jp",
-  "\u798F\u5CF6.jp",
-  "\u79CB\u7530.jp",
-  "\u7FA4\u99AC.jp",
-  "\u9999\u5DDD.jp",
-  "\u9AD8\u77E5.jp",
-  "\u9CE5\u53D6.jp",
-  "\u9E7F\u5150\u5CF6.jp",
+  "栃木.jp",
+  "愛知.jp",
+  "愛媛.jp",
+  "兵庫.jp",
+  "熊本.jp",
+  "茨城.jp",
+  "北海道.jp",
+  "千葉.jp",
+  "和歌山.jp",
+  "長崎.jp",
+  "長野.jp",
+  "新潟.jp",
+  "青森.jp",
+  "静岡.jp",
+  "東京.jp",
+  "石川.jp",
+  "埼玉.jp",
+  "三重.jp",
+  "京都.jp",
+  "佐賀.jp",
+  "大分.jp",
+  "大阪.jp",
+  "奈良.jp",
+  "宮城.jp",
+  "宮崎.jp",
+  "富山.jp",
+  "山口.jp",
+  "山形.jp",
+  "山梨.jp",
+  "岩手.jp",
+  "岐阜.jp",
+  "岡山.jp",
+  "島根.jp",
+  "広島.jp",
+  "徳島.jp",
+  "沖縄.jp",
+  "滋賀.jp",
+  "神奈川.jp",
+  "福井.jp",
+  "福岡.jp",
+  "福島.jp",
+  "秋田.jp",
+  "群馬.jp",
+  "香川.jp",
+  "高知.jp",
+  "鳥取.jp",
+  "鹿児島.jp",
   "*.kawasaki.jp",
   "*.kitakyushu.jp",
   "*.kobe.jp",
@@ -15036,13 +15110,13 @@ const Yn = [
   "community.museum",
   "computer.museum",
   "computerhistory.museum",
-  "comunica\xE7\xF5es.museum",
+  "comunicações.museum",
   "contemporary.museum",
   "contemporaryart.museum",
   "convent.museum",
   "copenhagen.museum",
   "corporation.museum",
-  "correios-e-telecomunica\xE7\xF5es.museum",
+  "correios-e-telecomunicações.museum",
   "corvette.museum",
   "costume.museum",
   "countryestate.museum",
@@ -15191,7 +15265,7 @@ const Yn = [
   "lancashire.museum",
   "landes.museum",
   "lans.museum",
-  "l\xE4ns.museum",
+  "läns.museum",
   "larsson.museum",
   "lewismiller.museum",
   "lincoln.museum",
@@ -15451,8 +15525,8 @@ const Yn = [
   "youth.museum",
   "zoological.museum",
   "zoology.museum",
-  "\u05D9\u05E8\u05D5\u05E9\u05DC\u05D9\u05DD.museum",
-  "\u0438\u043A\u043E\u043C.museum",
+  "ירושלים.museum",
+  "иком.museum",
   "mv",
   "aero.mv",
   "biz.mv",
@@ -15622,160 +15696,160 @@ const Yn = [
   "gs.va.no",
   "gs.vf.no",
   "akrehamn.no",
-  "\xE5krehamn.no",
+  "åkrehamn.no",
   "algard.no",
-  "\xE5lg\xE5rd.no",
+  "ålgård.no",
   "arna.no",
   "brumunddal.no",
   "bryne.no",
   "bronnoysund.no",
-  "br\xF8nn\xF8ysund.no",
+  "brønnøysund.no",
   "drobak.no",
-  "dr\xF8bak.no",
+  "drøbak.no",
   "egersund.no",
   "fetsund.no",
   "floro.no",
-  "flor\xF8.no",
+  "florø.no",
   "fredrikstad.no",
   "hokksund.no",
   "honefoss.no",
-  "h\xF8nefoss.no",
+  "hønefoss.no",
   "jessheim.no",
   "jorpeland.no",
-  "j\xF8rpeland.no",
+  "jørpeland.no",
   "kirkenes.no",
   "kopervik.no",
   "krokstadelva.no",
   "langevag.no",
-  "langev\xE5g.no",
+  "langevåg.no",
   "leirvik.no",
   "mjondalen.no",
-  "mj\xF8ndalen.no",
+  "mjøndalen.no",
   "mo-i-rana.no",
   "mosjoen.no",
-  "mosj\xF8en.no",
+  "mosjøen.no",
   "nesoddtangen.no",
   "orkanger.no",
   "osoyro.no",
-  "os\xF8yro.no",
+  "osøyro.no",
   "raholt.no",
-  "r\xE5holt.no",
+  "råholt.no",
   "sandnessjoen.no",
-  "sandnessj\xF8en.no",
+  "sandnessjøen.no",
   "skedsmokorset.no",
   "slattum.no",
   "spjelkavik.no",
   "stathelle.no",
   "stavern.no",
   "stjordalshalsen.no",
-  "stj\xF8rdalshalsen.no",
+  "stjørdalshalsen.no",
   "tananger.no",
   "tranby.no",
   "vossevangen.no",
   "afjord.no",
-  "\xE5fjord.no",
+  "åfjord.no",
   "agdenes.no",
   "al.no",
-  "\xE5l.no",
+  "ål.no",
   "alesund.no",
-  "\xE5lesund.no",
+  "ålesund.no",
   "alstahaug.no",
   "alta.no",
-  "\xE1lt\xE1.no",
+  "áltá.no",
   "alaheadju.no",
-  "\xE1laheadju.no",
+  "álaheadju.no",
   "alvdal.no",
   "amli.no",
-  "\xE5mli.no",
+  "åmli.no",
   "amot.no",
-  "\xE5mot.no",
+  "åmot.no",
   "andebu.no",
   "andoy.no",
-  "and\xF8y.no",
+  "andøy.no",
   "andasuolo.no",
   "ardal.no",
-  "\xE5rdal.no",
+  "årdal.no",
   "aremark.no",
   "arendal.no",
-  "\xE5s.no",
+  "ås.no",
   "aseral.no",
-  "\xE5seral.no",
+  "åseral.no",
   "asker.no",
   "askim.no",
   "askvoll.no",
   "askoy.no",
-  "ask\xF8y.no",
+  "askøy.no",
   "asnes.no",
-  "\xE5snes.no",
+  "åsnes.no",
   "audnedaln.no",
   "aukra.no",
   "aure.no",
   "aurland.no",
   "aurskog-holand.no",
-  "aurskog-h\xF8land.no",
+  "aurskog-høland.no",
   "austevoll.no",
   "austrheim.no",
   "averoy.no",
-  "aver\xF8y.no",
+  "averøy.no",
   "balestrand.no",
   "ballangen.no",
   "balat.no",
-  "b\xE1l\xE1t.no",
+  "bálát.no",
   "balsfjord.no",
   "bahccavuotna.no",
-  "b\xE1hccavuotna.no",
+  "báhccavuotna.no",
   "bamble.no",
   "bardu.no",
   "beardu.no",
   "beiarn.no",
   "bajddar.no",
-  "b\xE1jddar.no",
+  "bájddar.no",
   "baidar.no",
-  "b\xE1id\xE1r.no",
+  "báidár.no",
   "berg.no",
   "bergen.no",
   "berlevag.no",
-  "berlev\xE5g.no",
+  "berlevåg.no",
   "bearalvahki.no",
-  "bearalv\xE1hki.no",
+  "bearalváhki.no",
   "bindal.no",
   "birkenes.no",
   "bjarkoy.no",
-  "bjark\xF8y.no",
+  "bjarkøy.no",
   "bjerkreim.no",
   "bjugn.no",
   "bodo.no",
-  "bod\xF8.no",
+  "bodø.no",
   "badaddja.no",
-  "b\xE5d\xE5ddj\xE5.no",
+  "bådåddjå.no",
   "budejju.no",
   "bokn.no",
   "bremanger.no",
   "bronnoy.no",
-  "br\xF8nn\xF8y.no",
+  "brønnøy.no",
   "bygland.no",
   "bykle.no",
   "barum.no",
-  "b\xE6rum.no",
+  "bærum.no",
   "bo.telemark.no",
-  "b\xF8.telemark.no",
+  "bø.telemark.no",
   "bo.nordland.no",
-  "b\xF8.nordland.no",
+  "bø.nordland.no",
   "bievat.no",
-  "biev\xE1t.no",
+  "bievát.no",
   "bomlo.no",
-  "b\xF8mlo.no",
+  "bømlo.no",
   "batsfjord.no",
-  "b\xE5tsfjord.no",
+  "båtsfjord.no",
   "bahcavuotna.no",
-  "b\xE1hcavuotna.no",
+  "báhcavuotna.no",
   "dovre.no",
   "drammen.no",
   "drangedal.no",
   "dyroy.no",
-  "dyr\xF8y.no",
+  "dyrøy.no",
   "donna.no",
-  "d\xF8nna.no",
+  "dønna.no",
   "eid.no",
   "eidfjord.no",
   "eidsberg.no",
@@ -15789,7 +15863,7 @@ const Yn = [
   "etnedal.no",
   "evenes.no",
   "evenassi.no",
-  "even\xE1\u0161\u0161i.no",
+  "evenášši.no",
   "evje-og-hornnes.no",
   "farsund.no",
   "fauske.no",
@@ -15798,7 +15872,7 @@ const Yn = [
   "fedje.no",
   "fet.no",
   "finnoy.no",
-  "finn\xF8y.no",
+  "finnøy.no",
   "fitjar.no",
   "fjaler.no",
   "fjell.no",
@@ -15808,7 +15882,7 @@ const Yn = [
   "flesberg.no",
   "flora.no",
   "fla.no",
-  "fl\xE5.no",
+  "flå.no",
   "folldal.no",
   "forsand.no",
   "fosnes.no",
@@ -15817,27 +15891,27 @@ const Yn = [
   "froland.no",
   "frosta.no",
   "frana.no",
-  "fr\xE6na.no",
+  "fræna.no",
   "froya.no",
-  "fr\xF8ya.no",
+  "frøya.no",
   "fusa.no",
   "fyresdal.no",
   "forde.no",
-  "f\xF8rde.no",
+  "førde.no",
   "gamvik.no",
   "gangaviika.no",
-  "g\xE1\u014Bgaviika.no",
+  "gáŋgaviika.no",
   "gaular.no",
   "gausdal.no",
   "gildeskal.no",
-  "gildesk\xE5l.no",
+  "gildeskål.no",
   "giske.no",
   "gjemnes.no",
   "gjerdrum.no",
   "gjerstad.no",
   "gjesdal.no",
   "gjovik.no",
-  "gj\xF8vik.no",
+  "gjøvik.no",
   "gloppen.no",
   "gol.no",
   "gran.no",
@@ -15847,7 +15921,7 @@ const Yn = [
   "grimstad.no",
   "grong.no",
   "kraanghke.no",
-  "kr\xE5anghke.no",
+  "kråanghke.no",
   "grue.no",
   "gulen.no",
   "hadsel.no",
@@ -15856,18 +15930,18 @@ const Yn = [
   "hamar.no",
   "hamaroy.no",
   "habmer.no",
-  "h\xE1bmer.no",
+  "hábmer.no",
   "hapmir.no",
-  "h\xE1pmir.no",
+  "hápmir.no",
   "hammerfest.no",
   "hammarfeasta.no",
-  "h\xE1mm\xE1rfeasta.no",
+  "hámmárfeasta.no",
   "haram.no",
   "hareid.no",
   "harstad.no",
   "hasvik.no",
   "aknoluokta.no",
-  "\xE1k\u014Boluokta.no",
+  "ákŋoluokta.no",
   "hattfjelldal.no",
   "aarborte.no",
   "haugesund.no",
@@ -15875,20 +15949,20 @@ const Yn = [
   "hemnes.no",
   "hemsedal.no",
   "heroy.more-og-romsdal.no",
-  "her\xF8y.m\xF8re-og-romsdal.no",
+  "herøy.møre-og-romsdal.no",
   "heroy.nordland.no",
-  "her\xF8y.nordland.no",
+  "herøy.nordland.no",
   "hitra.no",
   "hjartdal.no",
   "hjelmeland.no",
   "hobol.no",
-  "hob\xF8l.no",
+  "hobøl.no",
   "hof.no",
   "hol.no",
   "hole.no",
   "holmestrand.no",
   "holtalen.no",
-  "holt\xE5len.no",
+  "holtålen.no",
   "hornindal.no",
   "horten.no",
   "hurdal.no",
@@ -15896,67 +15970,67 @@ const Yn = [
   "hvaler.no",
   "hyllestad.no",
   "hagebostad.no",
-  "h\xE6gebostad.no",
+  "hægebostad.no",
   "hoyanger.no",
-  "h\xF8yanger.no",
+  "høyanger.no",
   "hoylandet.no",
-  "h\xF8ylandet.no",
+  "høylandet.no",
   "ha.no",
-  "h\xE5.no",
+  "hå.no",
   "ibestad.no",
   "inderoy.no",
-  "inder\xF8y.no",
+  "inderøy.no",
   "iveland.no",
   "jevnaker.no",
   "jondal.no",
   "jolster.no",
-  "j\xF8lster.no",
+  "jølster.no",
   "karasjok.no",
   "karasjohka.no",
-  "k\xE1r\xE1\u0161johka.no",
+  "kárášjohka.no",
   "karlsoy.no",
   "galsa.no",
-  "g\xE1ls\xE1.no",
+  "gálsá.no",
   "karmoy.no",
-  "karm\xF8y.no",
+  "karmøy.no",
   "kautokeino.no",
   "guovdageaidnu.no",
   "klepp.no",
   "klabu.no",
-  "kl\xE6bu.no",
+  "klæbu.no",
   "kongsberg.no",
   "kongsvinger.no",
   "kragero.no",
-  "krager\xF8.no",
+  "kragerø.no",
   "kristiansand.no",
   "kristiansund.no",
   "krodsherad.no",
-  "kr\xF8dsherad.no",
+  "krødsherad.no",
   "kvalsund.no",
   "rahkkeravju.no",
-  "r\xE1hkker\xE1vju.no",
+  "ráhkkerávju.no",
   "kvam.no",
   "kvinesdal.no",
   "kvinnherad.no",
   "kviteseid.no",
   "kvitsoy.no",
-  "kvits\xF8y.no",
+  "kvitsøy.no",
   "kvafjord.no",
-  "kv\xE6fjord.no",
+  "kvæfjord.no",
   "giehtavuoatna.no",
   "kvanangen.no",
-  "kv\xE6nangen.no",
+  "kvænangen.no",
   "navuotna.no",
-  "n\xE1vuotna.no",
+  "návuotna.no",
   "kafjord.no",
-  "k\xE5fjord.no",
+  "kåfjord.no",
   "gaivuotna.no",
-  "g\xE1ivuotna.no",
+  "gáivuotna.no",
   "larvik.no",
   "lavangen.no",
   "lavagis.no",
   "loabat.no",
-  "loab\xE1t.no",
+  "loabát.no",
   "lebesby.no",
   "davvesiida.no",
   "leikanger.no",
@@ -15965,7 +16039,7 @@ const Yn = [
   "leksvik.no",
   "lenvik.no",
   "leangaviika.no",
-  "lea\u014Bgaviika.no",
+  "leaŋgaviika.no",
   "lesja.no",
   "levanger.no",
   "lier.no",
@@ -15974,33 +16048,33 @@ const Yn = [
   "lillesand.no",
   "lindesnes.no",
   "lindas.no",
-  "lind\xE5s.no",
+  "lindås.no",
   "lom.no",
   "loppa.no",
   "lahppi.no",
-  "l\xE1hppi.no",
+  "láhppi.no",
   "lund.no",
   "lunner.no",
   "luroy.no",
-  "lur\xF8y.no",
+  "lurøy.no",
   "luster.no",
   "lyngdal.no",
   "lyngen.no",
   "ivgu.no",
   "lardal.no",
   "lerdal.no",
-  "l\xE6rdal.no",
+  "lærdal.no",
   "lodingen.no",
-  "l\xF8dingen.no",
+  "lødingen.no",
   "lorenskog.no",
-  "l\xF8renskog.no",
+  "lørenskog.no",
   "loten.no",
-  "l\xF8ten.no",
+  "løten.no",
   "malvik.no",
   "masoy.no",
-  "m\xE5s\xF8y.no",
+  "måsøy.no",
   "muosat.no",
-  "muos\xE1t.no",
+  "muosát.no",
   "mandal.no",
   "marker.no",
   "marnardal.no",
@@ -16009,11 +16083,11 @@ const Yn = [
   "meldal.no",
   "melhus.no",
   "meloy.no",
-  "mel\xF8y.no",
+  "meløy.no",
   "meraker.no",
-  "mer\xE5ker.no",
+  "meråker.no",
   "moareke.no",
-  "mo\xE5reke.no",
+  "moåreke.no",
   "midsund.no",
   "midtre-gauldal.no",
   "modalen.no",
@@ -16023,15 +16097,15 @@ const Yn = [
   "moss.no",
   "mosvik.no",
   "malselv.no",
-  "m\xE5lselv.no",
+  "målselv.no",
   "malatvuopmi.no",
-  "m\xE1latvuopmi.no",
+  "málatvuopmi.no",
   "namdalseid.no",
   "aejrie.no",
   "namsos.no",
   "namsskogan.no",
   "naamesjevuemie.no",
-  "n\xE5\xE5mesjevuemie.no",
+  "nååmesjevuemie.no",
   "laakesvuemie.no",
   "nannestad.no",
   "narvik.no",
@@ -16044,7 +16118,7 @@ const Yn = [
   "nesodden.no",
   "nesseby.no",
   "unjarga.no",
-  "unj\xE1rga.no",
+  "unjárga.no",
   "nesset.no",
   "nissedal.no",
   "nittedal.no",
@@ -16054,52 +16128,52 @@ const Yn = [
   "norddal.no",
   "nordkapp.no",
   "davvenjarga.no",
-  "davvenj\xE1rga.no",
+  "davvenjárga.no",
   "nordre-land.no",
   "nordreisa.no",
   "raisa.no",
-  "r\xE1isa.no",
+  "ráisa.no",
   "nore-og-uvdal.no",
   "notodden.no",
   "naroy.no",
-  "n\xE6r\xF8y.no",
+  "nærøy.no",
   "notteroy.no",
-  "n\xF8tter\xF8y.no",
+  "nøtterøy.no",
   "odda.no",
   "oksnes.no",
-  "\xF8ksnes.no",
+  "øksnes.no",
   "oppdal.no",
   "oppegard.no",
-  "oppeg\xE5rd.no",
+  "oppegård.no",
   "orkdal.no",
   "orland.no",
-  "\xF8rland.no",
+  "ørland.no",
   "orskog.no",
-  "\xF8rskog.no",
+  "ørskog.no",
   "orsta.no",
-  "\xF8rsta.no",
+  "ørsta.no",
   "os.hedmark.no",
   "os.hordaland.no",
   "osen.no",
   "osteroy.no",
-  "oster\xF8y.no",
+  "osterøy.no",
   "ostre-toten.no",
-  "\xF8stre-toten.no",
+  "østre-toten.no",
   "overhalla.no",
   "ovre-eiker.no",
-  "\xF8vre-eiker.no",
+  "øvre-eiker.no",
   "oyer.no",
-  "\xF8yer.no",
+  "øyer.no",
   "oygarden.no",
-  "\xF8ygarden.no",
+  "øygarden.no",
   "oystre-slidre.no",
-  "\xF8ystre-slidre.no",
+  "øystre-slidre.no",
   "porsanger.no",
   "porsangu.no",
-  "pors\xE1\u014Bgu.no",
+  "porsáŋgu.no",
   "porsgrunn.no",
   "radoy.no",
-  "rad\xF8y.no",
+  "radøy.no",
   "rakkestad.no",
   "rana.no",
   "ruovat.no",
@@ -16108,47 +16182,47 @@ const Yn = [
   "rendalen.no",
   "rennebu.no",
   "rennesoy.no",
-  "rennes\xF8y.no",
+  "rennesøy.no",
   "rindal.no",
   "ringebu.no",
   "ringerike.no",
   "ringsaker.no",
   "rissa.no",
   "risor.no",
-  "ris\xF8r.no",
+  "risør.no",
   "roan.no",
   "rollag.no",
   "rygge.no",
   "ralingen.no",
-  "r\xE6lingen.no",
+  "rælingen.no",
   "rodoy.no",
-  "r\xF8d\xF8y.no",
+  "rødøy.no",
   "romskog.no",
-  "r\xF8mskog.no",
+  "rømskog.no",
   "roros.no",
-  "r\xF8ros.no",
+  "røros.no",
   "rost.no",
-  "r\xF8st.no",
+  "røst.no",
   "royken.no",
-  "r\xF8yken.no",
+  "røyken.no",
   "royrvik.no",
-  "r\xF8yrvik.no",
+  "røyrvik.no",
   "rade.no",
-  "r\xE5de.no",
+  "råde.no",
   "salangen.no",
   "siellak.no",
   "saltdal.no",
   "salat.no",
-  "s\xE1l\xE1t.no",
-  "s\xE1lat.no",
+  "sálát.no",
+  "sálat.no",
   "samnanger.no",
   "sande.more-og-romsdal.no",
-  "sande.m\xF8re-og-romsdal.no",
+  "sande.møre-og-romsdal.no",
   "sande.vestfold.no",
   "sandefjord.no",
   "sandnes.no",
   "sandoy.no",
-  "sand\xF8y.no",
+  "sandøy.no",
   "sarpsborg.no",
   "sauda.no",
   "sauherad.no",
@@ -16165,24 +16239,24 @@ const Yn = [
   "skien.no",
   "skiptvet.no",
   "skjervoy.no",
-  "skjerv\xF8y.no",
+  "skjervøy.no",
   "skierva.no",
-  "skierv\xE1.no",
+  "skiervá.no",
   "skjak.no",
-  "skj\xE5k.no",
+  "skjåk.no",
   "skodje.no",
   "skanland.no",
-  "sk\xE5nland.no",
+  "skånland.no",
   "skanit.no",
-  "sk\xE1nit.no",
+  "skánit.no",
   "smola.no",
-  "sm\xF8la.no",
+  "smøla.no",
   "snillfjord.no",
   "snasa.no",
-  "sn\xE5sa.no",
+  "snåsa.no",
   "snoasa.no",
   "snaase.no",
-  "sn\xE5ase.no",
+  "snåase.no",
   "sogndal.no",
   "sokndal.no",
   "sola.no",
@@ -16195,7 +16269,7 @@ const Yn = [
   "steigen.no",
   "steinkjer.no",
   "stjordal.no",
-  "stj\xF8rdal.no",
+  "stjørdal.no",
   "stokke.no",
   "stor-elvdal.no",
   "stord.no",
@@ -16214,27 +16288,27 @@ const Yn = [
   "svelvik.no",
   "sykkylven.no",
   "sogne.no",
-  "s\xF8gne.no",
+  "søgne.no",
   "somna.no",
-  "s\xF8mna.no",
+  "sømna.no",
   "sondre-land.no",
-  "s\xF8ndre-land.no",
+  "søndre-land.no",
   "sor-aurdal.no",
-  "s\xF8r-aurdal.no",
+  "sør-aurdal.no",
   "sor-fron.no",
-  "s\xF8r-fron.no",
+  "sør-fron.no",
   "sor-odal.no",
-  "s\xF8r-odal.no",
+  "sør-odal.no",
   "sor-varanger.no",
-  "s\xF8r-varanger.no",
+  "sør-varanger.no",
   "matta-varjjat.no",
-  "m\xE1tta-v\xE1rjjat.no",
+  "mátta-várjjat.no",
   "sorfold.no",
-  "s\xF8rfold.no",
+  "sørfold.no",
   "sorreisa.no",
-  "s\xF8rreisa.no",
+  "sørreisa.no",
   "sorum.no",
-  "s\xF8rum.no",
+  "sørum.no",
   "tana.no",
   "deatnu.no",
   "time.no",
@@ -16243,23 +16317,23 @@ const Yn = [
   "tjeldsund.no",
   "dielddanuorri.no",
   "tjome.no",
-  "tj\xF8me.no",
+  "tjøme.no",
   "tokke.no",
   "tolga.no",
   "torsken.no",
   "tranoy.no",
-  "tran\xF8y.no",
+  "tranøy.no",
   "tromso.no",
-  "troms\xF8.no",
+  "tromsø.no",
   "tromsa.no",
   "romsa.no",
   "trondheim.no",
   "troandin.no",
   "trysil.no",
   "trana.no",
-  "tr\xE6na.no",
+  "træna.no",
   "trogstad.no",
-  "tr\xF8gstad.no",
+  "trøgstad.no",
   "tvedestrand.no",
   "tydal.no",
   "tynset.no",
@@ -16268,30 +16342,30 @@ const Yn = [
   "divttasvuotna.no",
   "tysnes.no",
   "tysvar.no",
-  "tysv\xE6r.no",
+  "tysvær.no",
   "tonsberg.no",
-  "t\xF8nsberg.no",
+  "tønsberg.no",
   "ullensaker.no",
   "ullensvang.no",
   "ulvik.no",
   "utsira.no",
   "vadso.no",
-  "vads\xF8.no",
+  "vadsø.no",
   "cahcesuolo.no",
-  "\u010D\xE1hcesuolo.no",
+  "čáhcesuolo.no",
   "vaksdal.no",
   "valle.no",
   "vang.no",
   "vanylven.no",
   "vardo.no",
-  "vard\xF8.no",
+  "vardø.no",
   "varggat.no",
-  "v\xE1rgg\xE1t.no",
+  "várggát.no",
   "vefsn.no",
   "vaapste.no",
   "vega.no",
   "vegarshei.no",
-  "veg\xE5rshei.no",
+  "vegårshei.no",
   "vennesla.no",
   "verdal.no",
   "verran.no",
@@ -16300,7 +16374,7 @@ const Yn = [
   "vestre-slidre.no",
   "vestre-toten.no",
   "vestvagoy.no",
-  "vestv\xE5g\xF8y.no",
+  "vestvågøy.no",
   "vevelstad.no",
   "vik.no",
   "vikna.no",
@@ -16308,18 +16382,18 @@ const Yn = [
   "volda.no",
   "voss.no",
   "varoy.no",
-  "v\xE6r\xF8y.no",
+  "værøy.no",
   "vagan.no",
-  "v\xE5gan.no",
+  "vågan.no",
   "voagat.no",
   "vagsoy.no",
-  "v\xE5gs\xF8y.no",
+  "vågsøy.no",
   "vaga.no",
-  "v\xE5g\xE5.no",
+  "vågå.no",
   "valer.ostfold.no",
-  "v\xE5ler.\xF8stfold.no",
+  "våler.østfold.no",
   "valer.hedmark.no",
-  "v\xE5ler.hedmark.no",
+  "våler.hedmark.no",
   "*.np",
   "nr",
   "biz.nr",
@@ -16342,7 +16416,7 @@ const Yn = [
   "kiwi.nz",
   "maori.nz",
   "mil.nz",
-  "m\u0101ori.nz",
+  "māori.nz",
   "net.nz",
   "org.nz",
   "parliament.nz",
@@ -16982,9 +17056,9 @@ const Yn = [
   "game.tw",
   "ebiz.tw",
   "club.tw",
-  "\u7DB2\u8DEF.tw",
-  "\u7D44\u7E54.tw",
-  "\u5546\u696D.tw",
+  "網路.tw",
+  "組織.tw",
+  "商業.tw",
   "tz",
   "ac.tz",
   "co.tz",
@@ -17399,93 +17473,93 @@ const Yn = [
   "gov.ws",
   "edu.ws",
   "yt",
-  "\u0627\u0645\u0627\u0631\u0627\u062A",
-  "\u0570\u0561\u0575",
-  "\u09AC\u09BE\u0982\u09B2\u09BE",
-  "\u0431\u0433",
-  "\u0627\u0644\u0628\u062D\u0631\u064A\u0646",
-  "\u0431\u0435\u043B",
-  "\u4E2D\u56FD",
-  "\u4E2D\u570B",
-  "\u0627\u0644\u062C\u0632\u0627\u0626\u0631",
-  "\u0645\u0635\u0631",
-  "\u0435\u044E",
-  "\u03B5\u03C5",
-  "\u0645\u0648\u0631\u064A\u062A\u0627\u0646\u064A\u0627",
-  "\u10D2\u10D4",
-  "\u03B5\u03BB",
-  "\u9999\u6E2F",
-  "\u516C\u53F8.\u9999\u6E2F",
-  "\u6559\u80B2.\u9999\u6E2F",
-  "\u653F\u5E9C.\u9999\u6E2F",
-  "\u500B\u4EBA.\u9999\u6E2F",
-  "\u7DB2\u7D61.\u9999\u6E2F",
-  "\u7D44\u7E54.\u9999\u6E2F",
-  "\u0CAD\u0CBE\u0CB0\u0CA4",
-  "\u0B2D\u0B3E\u0B30\u0B24",
-  "\u09AD\u09BE\u09F0\u09A4",
-  "\u092D\u093E\u0930\u0924\u092E\u094D",
-  "\u092D\u093E\u0930\u094B\u0924",
-  "\u0680\u0627\u0631\u062A",
-  "\u0D2D\u0D3E\u0D30\u0D24\u0D02",
-  "\u092D\u093E\u0930\u0924",
-  "\u0628\u0627\u0631\u062A",
-  "\u0628\u06BE\u0627\u0631\u062A",
-  "\u0C2D\u0C3E\u0C30\u0C24\u0C4D",
-  "\u0AAD\u0ABE\u0AB0\u0AA4",
-  "\u0A2D\u0A3E\u0A30\u0A24",
-  "\u09AD\u09BE\u09B0\u09A4",
-  "\u0B87\u0BA8\u0BCD\u0BA4\u0BBF\u0BAF\u0BBE",
-  "\u0627\u06CC\u0631\u0627\u0646",
-  "\u0627\u064A\u0631\u0627\u0646",
-  "\u0639\u0631\u0627\u0642",
-  "\u0627\u0644\u0627\u0631\u062F\u0646",
-  "\uD55C\uAD6D",
-  "\u049B\u0430\u0437",
-  "\u0EA5\u0EB2\u0EA7",
-  "\u0DBD\u0D82\u0D9A\u0DCF",
-  "\u0B87\u0BB2\u0B99\u0BCD\u0B95\u0BC8",
-  "\u0627\u0644\u0645\u063A\u0631\u0628",
-  "\u043C\u043A\u0434",
-  "\u043C\u043E\u043D",
-  "\u6FB3\u9580",
-  "\u6FB3\u95E8",
-  "\u0645\u0644\u064A\u0633\u064A\u0627",
-  "\u0639\u0645\u0627\u0646",
-  "\u067E\u0627\u06A9\u0633\u062A\u0627\u0646",
-  "\u067E\u0627\u0643\u0633\u062A\u0627\u0646",
-  "\u0641\u0644\u0633\u0637\u064A\u0646",
-  "\u0441\u0440\u0431",
-  "\u043F\u0440.\u0441\u0440\u0431",
-  "\u043E\u0440\u0433.\u0441\u0440\u0431",
-  "\u043E\u0431\u0440.\u0441\u0440\u0431",
-  "\u043E\u0434.\u0441\u0440\u0431",
-  "\u0443\u043F\u0440.\u0441\u0440\u0431",
-  "\u0430\u043A.\u0441\u0440\u0431",
-  "\u0440\u0444",
-  "\u0642\u0637\u0631",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u06CC\u0629",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u06CC\u06C3",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0647",
-  "\u0633\u0648\u062F\u0627\u0646",
-  "\u65B0\u52A0\u5761",
-  "\u0B9A\u0BBF\u0B99\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0BC2\u0BB0\u0BCD",
-  "\u0633\u0648\u0631\u064A\u0629",
-  "\u0633\u0648\u0631\u064A\u0627",
-  "\u0E44\u0E17\u0E22",
-  "\u0E28\u0E36\u0E01\u0E29\u0E32.\u0E44\u0E17\u0E22",
-  "\u0E18\u0E38\u0E23\u0E01\u0E34\u0E08.\u0E44\u0E17\u0E22",
-  "\u0E23\u0E31\u0E10\u0E1A\u0E32\u0E25.\u0E44\u0E17\u0E22",
-  "\u0E17\u0E2B\u0E32\u0E23.\u0E44\u0E17\u0E22",
-  "\u0E40\u0E19\u0E47\u0E15.\u0E44\u0E17\u0E22",
-  "\u0E2D\u0E07\u0E04\u0E4C\u0E01\u0E23.\u0E44\u0E17\u0E22",
-  "\u062A\u0648\u0646\u0633",
-  "\u53F0\u7063",
-  "\u53F0\u6E7E",
-  "\u81FA\u7063",
-  "\u0443\u043A\u0440",
-  "\u0627\u0644\u064A\u0645\u0646",
+  "امارات",
+  "հայ",
+  "বাংলা",
+  "бг",
+  "البحرين",
+  "бел",
+  "中国",
+  "中國",
+  "الجزائر",
+  "مصر",
+  "ею",
+  "ευ",
+  "موريتانيا",
+  "გე",
+  "ελ",
+  "香港",
+  "公司.香港",
+  "教育.香港",
+  "政府.香港",
+  "個人.香港",
+  "網絡.香港",
+  "組織.香港",
+  "ಭಾರತ",
+  "ଭାରତ",
+  "ভাৰত",
+  "भारतम्",
+  "भारोत",
+  "ڀارت",
+  "ഭാരതം",
+  "भारत",
+  "بارت",
+  "بھارت",
+  "భారత్",
+  "ભારત",
+  "ਭਾਰਤ",
+  "ভারত",
+  "இந்தியா",
+  "ایران",
+  "ايران",
+  "عراق",
+  "الاردن",
+  "한국",
+  "қаз",
+  "ລາວ",
+  "ලංකා",
+  "இலங்கை",
+  "المغرب",
+  "мкд",
+  "мон",
+  "澳門",
+  "澳门",
+  "مليسيا",
+  "عمان",
+  "پاکستان",
+  "پاكستان",
+  "فلسطين",
+  "срб",
+  "пр.срб",
+  "орг.срб",
+  "обр.срб",
+  "од.срб",
+  "упр.срб",
+  "ак.срб",
+  "рф",
+  "قطر",
+  "السعودية",
+  "السعودیة",
+  "السعودیۃ",
+  "السعوديه",
+  "سودان",
+  "新加坡",
+  "சிங்கப்பூர்",
+  "سورية",
+  "سوريا",
+  "ไทย",
+  "ศึกษา.ไทย",
+  "ธุรกิจ.ไทย",
+  "รัฐบาล.ไทย",
+  "ทหาร.ไทย",
+  "เน็ต.ไทย",
+  "องค์กร.ไทย",
+  "تونس",
+  "台灣",
+  "台湾",
+  "臺灣",
+  "укр",
+  "اليمن",
   "xxx",
   "ye",
   "com.ye",
@@ -18576,98 +18650,98 @@ const Yn = [
   "xfinity",
   "xihuan",
   "xin",
-  "\u0915\u0949\u092E",
-  "\u30BB\u30FC\u30EB",
-  "\u4F5B\u5C71",
-  "\u6148\u5584",
-  "\u96C6\u56E2",
-  "\u5728\u7EBF",
-  "\u70B9\u770B",
-  "\u0E04\u0E2D\u0E21",
-  "\u516B\u5366",
-  "\u0645\u0648\u0642\u0639",
-  "\u516C\u76CA",
-  "\u516C\u53F8",
-  "\u9999\u683C\u91CC\u62C9",
-  "\u7F51\u7AD9",
-  "\u79FB\u52A8",
-  "\u6211\u7231\u4F60",
-  "\u043C\u043E\u0441\u043A\u0432\u0430",
-  "\u043A\u0430\u0442\u043E\u043B\u0438\u043A",
-  "\u043E\u043D\u043B\u0430\u0439\u043D",
-  "\u0441\u0430\u0439\u0442",
-  "\u8054\u901A",
-  "\u05E7\u05D5\u05DD",
-  "\u65F6\u5C1A",
-  "\u5FAE\u535A",
-  "\u6DE1\u9A6C\u9521",
-  "\u30D5\u30A1\u30C3\u30B7\u30E7\u30F3",
-  "\u043E\u0440\u0433",
-  "\u0928\u0947\u091F",
-  "\u30B9\u30C8\u30A2",
-  "\u30A2\u30DE\u30BE\u30F3",
-  "\uC0BC\uC131",
-  "\u5546\u6807",
-  "\u5546\u5E97",
-  "\u5546\u57CE",
-  "\u0434\u0435\u0442\u0438",
-  "\u30DD\u30A4\u30F3\u30C8",
-  "\u65B0\u95FB",
-  "\u5BB6\u96FB",
-  "\u0643\u0648\u0645",
-  "\u4E2D\u6587\u7F51",
-  "\u4E2D\u4FE1",
-  "\u5A31\u4E50",
-  "\u8C37\u6B4C",
-  "\u96FB\u8A0A\u76C8\u79D1",
-  "\u8D2D\u7269",
-  "\u30AF\u30E9\u30A6\u30C9",
-  "\u901A\u8CA9",
-  "\u7F51\u5E97",
-  "\u0938\u0902\u0917\u0920\u0928",
-  "\u9910\u5385",
-  "\u7F51\u7EDC",
-  "\u043A\u043E\u043C",
-  "\u4E9A\u9A6C\u900A",
-  "\u8BFA\u57FA\u4E9A",
-  "\u98DF\u54C1",
-  "\u98DE\u5229\u6D66",
-  "\u624B\u673A",
-  "\u0627\u0631\u0627\u0645\u0643\u0648",
-  "\u0627\u0644\u0639\u0644\u064A\u0627\u0646",
-  "\u0627\u062A\u0635\u0627\u0644\u0627\u062A",
-  "\u0628\u0627\u0632\u0627\u0631",
-  "\u0627\u0628\u0648\u0638\u0628\u064A",
-  "\u0643\u0627\u062B\u0648\u0644\u064A\u0643",
-  "\u0647\u0645\u0631\u0627\u0647",
-  "\uB2F7\uCEF4",
-  "\u653F\u5E9C",
-  "\u0634\u0628\u0643\u0629",
-  "\u0628\u064A\u062A\u0643",
-  "\u0639\u0631\u0628",
-  "\u673A\u6784",
-  "\u7EC4\u7EC7\u673A\u6784",
-  "\u5065\u5EB7",
-  "\u62DB\u8058",
-  "\u0440\u0443\u0441",
-  "\u5927\u62FF",
-  "\u307F\u3093\u306A",
-  "\u30B0\u30FC\u30B0\u30EB",
-  "\u4E16\u754C",
-  "\u66F8\u7C4D",
-  "\u7F51\u5740",
-  "\uB2F7\uB137",
-  "\u30B3\u30E0",
-  "\u5929\u4E3B\u6559",
-  "\u6E38\u620F",
-  "verm\xF6gensberater",
-  "verm\xF6gensberatung",
-  "\u4F01\u4E1A",
-  "\u4FE1\u606F",
-  "\u5609\u91CC\u5927\u9152\u5E97",
-  "\u5609\u91CC",
-  "\u5E7F\u4E1C",
-  "\u653F\u52A1",
+  "कॉम",
+  "セール",
+  "佛山",
+  "慈善",
+  "集团",
+  "在线",
+  "点看",
+  "คอม",
+  "八卦",
+  "موقع",
+  "公益",
+  "公司",
+  "香格里拉",
+  "网站",
+  "移动",
+  "我爱你",
+  "москва",
+  "католик",
+  "онлайн",
+  "сайт",
+  "联通",
+  "קום",
+  "时尚",
+  "微博",
+  "淡马锡",
+  "ファッション",
+  "орг",
+  "नेट",
+  "ストア",
+  "アマゾン",
+  "삼성",
+  "商标",
+  "商店",
+  "商城",
+  "дети",
+  "ポイント",
+  "新闻",
+  "家電",
+  "كوم",
+  "中文网",
+  "中信",
+  "娱乐",
+  "谷歌",
+  "電訊盈科",
+  "购物",
+  "クラウド",
+  "通販",
+  "网店",
+  "संगठन",
+  "餐厅",
+  "网络",
+  "ком",
+  "亚马逊",
+  "诺基亚",
+  "食品",
+  "飞利浦",
+  "手机",
+  "ارامكو",
+  "العليان",
+  "اتصالات",
+  "بازار",
+  "ابوظبي",
+  "كاثوليك",
+  "همراه",
+  "닷컴",
+  "政府",
+  "شبكة",
+  "بيتك",
+  "عرب",
+  "机构",
+  "组织机构",
+  "健康",
+  "招聘",
+  "рус",
+  "大拿",
+  "みんな",
+  "グーグル",
+  "世界",
+  "書籍",
+  "网址",
+  "닷넷",
+  "コム",
+  "天主教",
+  "游戏",
+  "vermögensberater",
+  "vermögensberatung",
+  "企业",
+  "信息",
+  "嘉里大酒店",
+  "嘉里",
+  "广东",
+  "政务",
   "xyz",
   "yachts",
   "yahoo",
@@ -19794,8 +19868,8 @@ const Yn = [
   "goupile.fr",
   "gov.nl",
   "awsmppl.com",
-  "g\xFCnstigbestellen.de",
-  "g\xFCnstigliefern.de",
+  "günstigbestellen.de",
+  "günstigliefern.de",
   "fin.ci",
   "free.hr",
   "caa.li",
@@ -19829,7 +19903,7 @@ const Yn = [
   "edu.scot",
   "sch.so",
   "hostyhosting.io",
-  "h\xE4kkinen.fi",
+  "häkkinen.fi",
   "*.moonscale.io",
   "moonscale.net",
   "iki.fi",
@@ -20378,16 +20452,16 @@ const Yn = [
   "itcouldbewor.se",
   "git-pages.rit.edu",
   "rocky.page",
-  "\u0431\u0438\u0437.\u0440\u0443\u0441",
-  "\u043A\u043E\u043C.\u0440\u0443\u0441",
-  "\u043A\u0440\u044B\u043C.\u0440\u0443\u0441",
-  "\u043C\u0438\u0440.\u0440\u0443\u0441",
-  "\u043C\u0441\u043A.\u0440\u0443\u0441",
-  "\u043E\u0440\u0433.\u0440\u0443\u0441",
-  "\u0441\u0430\u043C\u0430\u0440\u0430.\u0440\u0443\u0441",
-  "\u0441\u043E\u0447\u0438.\u0440\u0443\u0441",
-  "\u0441\u043F\u0431.\u0440\u0443\u0441",
-  "\u044F.\u0440\u0443\u0441",
+  "биз.рус",
+  "ком.рус",
+  "крым.рус",
+  "мир.рус",
+  "мск.рус",
+  "орг.рус",
+  "самара.рус",
+  "сочи.рус",
+  "спб.рус",
+  "я.рус",
   "*.builder.code.com",
   "*.dev-builder.code.com",
   "*.stg-builder.code.com",
@@ -20726,8 +20800,8 @@ const Yn = [
   "enterprisecloud.nu"
 ];
 (function(o) {
-  var a = Ce, e = {};
-  e.rules = Yn.map(function(i) {
+  var a = _e, e = {};
+  e.rules = Zn.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -20756,8 +20830,8 @@ const Yn = [
       return "DOMAIN_TOO_SHORT";
     if (n.length > 255)
       return "DOMAIN_TOO_LONG";
-    for (var s = n.split("."), t, u = 0; u < s.length; ++u) {
-      if (t = s[u], !t.length)
+    for (var s = n.split("."), t, r = 0; r < s.length; ++r) {
+      if (t = s[r], !t.length)
         return "LABEL_TOO_SHORT";
       if (t.length > 63)
         return "LABEL_TOO_LONG";
@@ -20789,24 +20863,24 @@ const Yn = [
       domain: null,
       subdomain: null,
       listed: !1
-    }, u = n.split(".");
-    if (u[u.length - 1] === "local")
+    }, r = n.split(".");
+    if (r[r.length - 1] === "local")
       return t;
     var m = function() {
       return /xn--/.test(n) && (t.domain && (t.domain = a.toASCII(t.domain)), t.subdomain && (t.subdomain = a.toASCII(t.subdomain))), t;
     }, c = e.findRule(n);
     if (!c)
-      return u.length < 2 ? t : (t.tld = u.pop(), t.sld = u.pop(), t.domain = [t.sld, t.tld].join("."), u.length && (t.subdomain = u.pop()), m());
+      return r.length < 2 ? t : (t.tld = r.pop(), t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.pop()), m());
     t.listed = !0;
-    var p = c.suffix.split("."), r = u.slice(0, u.length - p.length);
-    return c.exception && r.push(p.shift()), t.tld = p.join("."), !r.length || (c.wildcard && (p.unshift(r.pop()), t.tld = p.join(".")), !r.length) || (t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.join("."))), m();
+    var p = c.suffix.split("."), u = r.slice(0, r.length - p.length);
+    return c.exception && u.push(p.shift()), t.tld = p.join("."), !u.length || (c.wildcard && (p.unshift(u.pop()), t.tld = p.join(".")), !u.length) || (t.sld = u.pop(), t.domain = [t.sld, t.tld].join("."), u.length && (t.subdomain = u.join("."))), m();
   }, o.get = function(i) {
     return i && o.parse(i).domain || null;
   }, o.isValid = function(i) {
     var n = o.parse(i);
-    return Boolean(n.domain && n.listed);
+    return !!(n.domain && n.listed);
   };
-})(Ie);
+})(Ee);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -20837,29 +20911,29 @@ const Yn = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Zn = Ie, Io = [
+const Vn = Ee, Eo = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], Vn = ["localhost", "invalid"];
-function Xn(o, a = {}) {
+], Xn = ["localhost", "invalid"];
+function Kn(o, a = {}) {
   const e = o.split("."), i = e[e.length - 1], n = !!a.allowSpecialUseDomain, s = !!a.ignoreError;
-  if (n && Io.includes(i)) {
+  if (n && Eo.includes(i)) {
     if (e.length > 1)
       return `${e[e.length - 2]}.${i}`;
-    if (Vn.includes(i))
+    if (Xn.includes(i))
       return `${i}`;
   }
-  if (!s && Io.includes(i))
+  if (!s && Eo.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return Zn.get(o);
+  return Vn.get(o);
 }
-oo.getPublicSuffix = Xn;
-var eo = {};
+eo.getPublicSuffix = Kn;
+var io = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -20890,40 +20964,40 @@ var eo = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-class Kn {
+let as = class {
   constructor() {
     this.synchronous = !1;
   }
-  findCookie(a, e, i, n) {
+  findCookie(o, a, e, i) {
     throw new Error("findCookie is not implemented");
   }
-  findCookies(a, e, i, n) {
+  findCookies(o, a, e, i) {
     throw new Error("findCookies is not implemented");
   }
-  putCookie(a, e) {
+  putCookie(o, a) {
     throw new Error("putCookie is not implemented");
   }
-  updateCookie(a, e, i) {
+  updateCookie(o, a, e) {
     throw new Error("updateCookie is not implemented");
   }
-  removeCookie(a, e, i, n) {
+  removeCookie(o, a, e, i) {
     throw new Error("removeCookie is not implemented");
   }
-  removeCookies(a, e, i) {
+  removeCookies(o, a, e) {
     throw new Error("removeCookies is not implemented");
   }
-  removeAllCookies(a) {
+  removeAllCookies(o) {
     throw new Error("removeAllCookies is not implemented");
   }
-  getAllCookies(a) {
+  getAllCookies(o) {
     throw new Error(
       "getAllCookies is not implemented (therefore jar cannot be serialized)"
     );
   }
-}
-eo.Store = Kn;
-var io = {}, da = {};
-da.fromCallback = function(o) {
+};
+io.Store = as;
+var no = {}, ja = {};
+ja.fromCallback = function(o) {
   return Object.defineProperty(function() {
     if (typeof arguments[arguments.length - 1] == "function")
       o.apply(this, arguments);
@@ -20937,7 +21011,7 @@ da.fromCallback = function(o) {
       });
   }, "name", { value: o.name });
 };
-da.fromPromise = function(o) {
+ja.fromPromise = function(o) {
   return Object.defineProperty(function() {
     const a = arguments[arguments.length - 1];
     if (typeof a != "function")
@@ -20945,7 +21019,7 @@ da.fromPromise = function(o) {
     delete arguments[arguments.length - 1], arguments.length--, o.apply(this, arguments).then((e) => a(null, e), a);
   }, "name", { value: o.name });
 };
-var Be = {};
+var qe = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -20976,9 +21050,9 @@ var Be = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const as = oo;
-function os(o, a) {
-  const e = as.getPublicSuffix(o, {
+const os = eo;
+function es(o, a) {
+  const e = os.getPublicSuffix(o, {
     allowSpecialUseDomain: a
   });
   if (!e)
@@ -20993,8 +21067,8 @@ function os(o, a) {
     n = `${i.shift()}.${n}`, s.push(n);
   return s;
 }
-Be.permuteDomain = os;
-var no = {};
+qe.permuteDomain = es;
+var so = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -21025,37 +21099,37 @@ var no = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-function es(o, a) {
+function is(o, a) {
   return a === o || o.indexOf(a) === 0 && (a.substr(-1) === "/" || o.substr(a.length, 1) === "/");
 }
-no.pathMatch = es;
-var ja = {};
-const is = {}, ns = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+so.pathMatch = is;
+var ba = {};
+const ns = {}, ss = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: is
-}, Symbol.toStringTag, { value: "Module" })), ss = /* @__PURE__ */ je(ns);
-function Oe() {
+  default: ns
+}, Symbol.toStringTag, { value: "Module" })), ts = /* @__PURE__ */ be(ss);
+function Ue() {
   try {
-    return ss;
+    return ts;
   } catch {
     return null;
   }
 }
-function ts() {
+function rs() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
 function us(o) {
-  const a = (o.requireUtil || Oe)();
+  const a = (o.requireUtil || Ue)();
   return a ? a.inspect.custom : null;
 }
-ja.getUtilInspect = function(o, a = {}) {
-  const e = (a.requireUtil || Oe)();
+ba.getUtilInspect = function(o, a = {}) {
+  const e = (a.requireUtil || Ue)();
   return function(i, n, s) {
     return e ? e.inspect(i, n, s) : o(i);
   };
 };
-ja.getCustomInspectSymbol = function(o = {}) {
-  return (o.lookupCustomInspectSymbol || ts)() || us(o);
+ba.getCustomInspectSymbol = function(o = {}) {
+  return (o.lookupCustomInspectSymbol || rs)() || us(o);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -21087,71 +21161,71 @@ ja.getCustomInspectSymbol = function(o = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: rs } = da, ms = eo.Store, ps = Be.permuteDomain, cs = no.pathMatch, { getCustomInspectSymbol: ls, getUtilInspect: ks } = ja;
-class Ba extends ms {
+const { fromCallback: ms } = ja, ps = io.Store, cs = qe.permuteDomain, ls = so.pathMatch, { getCustomInspectSymbol: ks, getUtilInspect: gs } = ba;
+let qa = class extends ps {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
-    const a = ls();
-    a && (this[a] = this.inspect);
+    const o = ks();
+    o && (this[o] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: ks($e) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: gs(Le) }.inspect(this.idx, !1, 2)} }`;
   }
-  findCookie(a, e, i, n) {
-    return !this.idx[a] || !this.idx[a][e] ? n(null, void 0) : n(null, this.idx[a][e][i] || null);
+  findCookie(o, a, e, i) {
+    return !this.idx[o] || !this.idx[o][a] ? i(null, void 0) : i(null, this.idx[o][a][e] || null);
   }
-  findCookies(a, e, i, n) {
-    const s = [];
-    if (typeof i == "function" && (n = i, i = !0), !a)
-      return n(null, []);
-    let t;
-    e ? t = function(c) {
-      Object.keys(c).forEach((p) => {
-        if (cs(e, p)) {
-          const r = c[p];
-          for (const k in r)
-            s.push(r[k]);
+  findCookies(o, a, e, i) {
+    const n = [];
+    if (typeof e == "function" && (i = e, e = !0), !o)
+      return i(null, []);
+    let s;
+    a ? s = function(m) {
+      Object.keys(m).forEach((c) => {
+        if (ls(a, c)) {
+          const p = m[c];
+          for (const u in p)
+            n.push(p[u]);
         }
       });
-    } : t = function(c) {
-      for (const p in c) {
-        const r = c[p];
-        for (const k in r)
-          s.push(r[k]);
+    } : s = function(m) {
+      for (const c in m) {
+        const p = m[c];
+        for (const u in p)
+          n.push(p[u]);
       }
     };
-    const u = ps(a, i) || [a], m = this.idx;
-    u.forEach((c) => {
-      const p = m[c];
-      !p || t(p);
-    }), n(null, s);
+    const t = cs(o, e) || [o], r = this.idx;
+    t.forEach((m) => {
+      const c = r[m];
+      c && s(c);
+    }), i(null, n);
   }
-  putCookie(a, e) {
-    this.idx[a.domain] || (this.idx[a.domain] = /* @__PURE__ */ Object.create(null)), this.idx[a.domain][a.path] || (this.idx[a.domain][a.path] = /* @__PURE__ */ Object.create(null)), this.idx[a.domain][a.path][a.key] = a, e(null);
+  putCookie(o, a) {
+    this.idx[o.domain] || (this.idx[o.domain] = /* @__PURE__ */ Object.create(null)), this.idx[o.domain][o.path] || (this.idx[o.domain][o.path] = /* @__PURE__ */ Object.create(null)), this.idx[o.domain][o.path][o.key] = o, a(null);
   }
-  updateCookie(a, e, i) {
-    this.putCookie(e, i);
+  updateCookie(o, a, e) {
+    this.putCookie(a, e);
   }
-  removeCookie(a, e, i, n) {
-    this.idx[a] && this.idx[a][e] && this.idx[a][e][i] && delete this.idx[a][e][i], n(null);
+  removeCookie(o, a, e, i) {
+    this.idx[o] && this.idx[o][a] && this.idx[o][a][e] && delete this.idx[o][a][e], i(null);
   }
-  removeCookies(a, e, i) {
-    return this.idx[a] && (e ? delete this.idx[a][e] : delete this.idx[a]), i(null);
+  removeCookies(o, a, e) {
+    return this.idx[o] && (a ? delete this.idx[o][a] : delete this.idx[o]), e(null);
   }
-  removeAllCookies(a) {
-    return this.idx = /* @__PURE__ */ Object.create(null), a(null);
+  removeAllCookies(o) {
+    return this.idx = /* @__PURE__ */ Object.create(null), o(null);
   }
-  getAllCookies(a) {
-    const e = [], i = this.idx;
-    Object.keys(i).forEach((n) => {
-      Object.keys(i[n]).forEach((s) => {
-        Object.keys(i[n][s]).forEach((t) => {
-          t !== null && e.push(i[n][s][t]);
+  getAllCookies(o) {
+    const a = [], e = this.idx;
+    Object.keys(e).forEach((i) => {
+      Object.keys(e[i]).forEach((n) => {
+        Object.keys(e[i][n]).forEach((s) => {
+          s !== null && a.push(e[i][n][s]);
         });
       });
-    }), e.sort((n, s) => (n.creationIndex || 0) - (s.creationIndex || 0)), a(null, e);
+    }), a.sort((i, n) => (i.creationIndex || 0) - (n.creationIndex || 0)), o(null, a);
   }
-}
+};
 [
   "findCookie",
   "findCookies",
@@ -21162,92 +21236,92 @@ class Ba extends ms {
   "removeAllCookies",
   "getAllCookies"
 ].forEach((o) => {
-  Ba.prototype[o] = rs(
-    Ba.prototype[o]
+  qa.prototype[o] = ms(
+    qa.prototype[o]
   );
 });
-io.MemoryCookieStore = Ba;
-function $e(o) {
+no.MemoryCookieStore = qa;
+function Le(o) {
   const a = Object.keys(o);
   if (a.length === 0)
     return "[Object: null prototype] {}";
   let e = `[Object: null prototype] {
 `;
   return Object.keys(o).forEach((i, n) => {
-    e += gs(i, o[i]), n < a.length - 1 && (e += ","), e += `
+    e += hs(i, o[i]), n < a.length - 1 && (e += ","), e += `
 `;
   }), e += "}", e;
 }
-function gs(o, a) {
+function hs(o, a) {
   const e = "  ";
   let i = `${e}'${o}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((n, s, t) => {
-    i += hs(n, a[n]), s < t.length - 1 && (i += ","), i += `
+    i += ds(n, a[n]), s < t.length - 1 && (i += ","), i += `
 `;
   }), i += `${e}}`, i;
 }
-function hs(o, a) {
+function ds(o, a) {
   const e = "    ";
   let i = `${e}'${o}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((n, s, t) => {
-    const u = a[n];
-    i += `      ${n}: ${u.inspect()}`, s < t.length - 1 && (i += ","), i += `
+    const r = a[n];
+    i += `      ${n}: ${r.inspect()}`, s < t.length - 1 && (i += ","), i += `
 `;
   }), i += `${e}}`, i;
 }
-io.inspectFallback = $e;
-var P = {};
-function qe(o) {
+no.inspectFallback = Le;
+var N = {};
+function Te(o) {
   return typeof o == "function";
 }
-function ds(o) {
-  return Ue(o) && o !== "";
-}
 function js(o) {
-  return fs(o, Date) && ys(o.getTime());
+  return Re(o) && o !== "";
 }
 function bs(o) {
+  return ys(o, Date) && ws(o.getTime());
+}
+function fs(o) {
   return o === "" || o instanceof String && o.toString() === "";
 }
-function Ue(o) {
+function Re(o) {
   return typeof o == "string" || o instanceof String;
 }
-function Le(o) {
+function Pe(o) {
   return toString.call(o) === "[object Object]";
 }
-function fs(o, a) {
+function ys(o, a) {
   try {
     return o instanceof a;
   } catch {
     return !1;
   }
 }
-function ys(o) {
+function ws(o) {
   return typeof o == "number" && o % 1 === 0;
 }
-function ws(o, a, e) {
-  if (qe(a) || (e = a, a = null), Le(e) || (e = { Error: "Failed Check" }), !o)
+function vs(o, a, e) {
+  if (Te(a) || (e = a, a = null), Pe(e) || (e = { Error: "Failed Check" }), !o)
     if (a)
-      a(new Oa(e));
+      a(new Ua(e));
     else
-      throw new Oa(e);
+      throw new Ua(e);
 }
-class Oa extends Error {
+class Ua extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-P.ParameterError = Oa;
-P.isFunction = qe;
-P.isNonEmptyString = ds;
-P.isDate = js;
-P.isEmptyString = bs;
-P.isString = Ue;
-P.isObject = Le;
-P.validate = ws;
-var vs = "4.1.3";
+N.ParameterError = Ua;
+N.isFunction = Te;
+N.isNonEmptyString = js;
+N.isDate = bs;
+N.isEmptyString = fs;
+N.isString = Re;
+N.isObject = Pe;
+N.validate = vs;
+var zs = "4.1.3";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
  * All rights reserved.
@@ -21278,8 +21352,8 @@ var vs = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Bo = Ce, zs = Wn, so = oo, xs = eo.Store, Es = io.MemoryCookieStore, Cs = no.pathMatch, h = P, As = vs, { fromCallback: Te } = da, { getCustomInspectSymbol: Fs } = ja, Ds = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Oo = /[\x00-\x1F]/, $o = [`
-`, "\r", "\0"], Ss = /[\x20-\x3A\x3C-\x7E]+/, _s = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, Is = {
+const qo = _e, xs = Yn, to = eo, Ss = io.Store, Cs = no.MemoryCookieStore, _s = so.pathMatch, h = N, Is = zs, { fromCallback: Fe } = ja, { getCustomInspectSymbol: As } = ba, Os = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Uo = /[\x00-\x1F]/, Lo = [`
+`, "\r", "\0"], $s = /[\x20-\x3A\x3C-\x7E]+/, Ds = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, Es = {
   jan: 0,
   feb: 1,
   mar: 2,
@@ -21292,8 +21366,8 @@ const Bo = Ce, zs = Wn, so = oo, xs = eo.Store, Es = io.MemoryCookieStore, Cs = 
   oct: 9,
   nov: 10,
   dec: 11
-}, $a = 2147483647e3, Bs = 0, qo = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function Uo(o) {
+}, La = 2147483647e3, qs = 0, To = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function Ro(o) {
   h.validate(h.isNonEmptyString(o), o);
   const a = String(o).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
@@ -21302,7 +21376,7 @@ const Y = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), Os = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, $s = `
+}), Us = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, Ls = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -21313,8 +21387,8 @@ const Y = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), Re = new RegExp(`^${$s}$`);
-function qa(o, a, e, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), Ne = new RegExp(`^${Ls}$`);
+function Ta(o, a, e, i) {
   let n = 0;
   for (; n < o.length; ) {
     const s = o.charCodeAt(n);
@@ -21324,67 +21398,67 @@ function qa(o, a, e, i) {
   }
   return n < a || n > e || !i && n != o.length ? null : parseInt(o.substr(0, n), 10);
 }
-function qs(o) {
+function Ts(o) {
   const a = o.split(":"), e = [0, 0, 0];
   if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const n = i == 2, s = qa(a[i], 1, 2, n);
+    const n = i == 2, s = Ta(a[i], 1, 2, n);
     if (s === null)
       return null;
     e[i] = s;
   }
   return e;
 }
-function Us(o) {
+function Rs(o) {
   o = String(o).substr(0, 3).toLowerCase();
-  const a = Is[o];
+  const a = Es[o];
   return a >= 0 ? a : null;
 }
-function pa(o) {
+function ca(o) {
   if (!o)
     return;
-  const a = o.split(_s);
+  const a = o.split(Ds);
   if (!a)
     return;
-  let e = null, i = null, n = null, s = null, t = null, u = null;
+  let e = null, i = null, n = null, s = null, t = null, r = null;
   for (let m = 0; m < a.length; m++) {
     const c = a[m].trim();
     if (!c.length)
       continue;
     let p;
-    if (n === null && (p = qs(c), p)) {
+    if (n === null && (p = Ts(c), p)) {
       e = p[0], i = p[1], n = p[2];
       continue;
     }
-    if (s === null && (p = qa(c, 1, 2, !0), p !== null)) {
+    if (s === null && (p = Ta(c, 1, 2, !0), p !== null)) {
       s = p;
       continue;
     }
-    if (t === null && (p = Us(c), p !== null)) {
+    if (t === null && (p = Rs(c), p !== null)) {
       t = p;
       continue;
     }
-    u === null && (p = qa(c, 2, 4, !0), p !== null && (u = p, u >= 70 && u <= 99 ? u += 1900 : u >= 0 && u <= 69 && (u += 2e3)));
+    r === null && (p = Ta(c, 2, 4, !0), p !== null && (r = p, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
   }
-  if (!(s === null || t === null || u === null || n === null || s < 1 || s > 31 || u < 1601 || e > 23 || i > 59 || n > 59))
-    return new Date(Date.UTC(u, t, s, e, i, n));
+  if (!(s === null || t === null || r === null || n === null || s < 1 || s > 31 || r < 1601 || e > 23 || i > 59 || n > 59))
+    return new Date(Date.UTC(r, t, s, e, i, n));
 }
-function Ls(o) {
+function Ps(o) {
   return h.validate(h.isDate(o), o), o.toUTCString();
 }
 function sa(o) {
-  return o == null ? null : (o = o.trim().replace(/^\./, ""), Re.test(o) && (o = o.replace("[", "").replace("]", "")), Bo && /[^\u0001-\u007f]/.test(o) && (o = Bo.toASCII(o)), o.toLowerCase());
+  return o == null ? null : (o = o.trim().replace(/^\./, ""), Ne.test(o) && (o = o.replace("[", "").replace("]", "")), qo && /[^\u0001-\u007f]/.test(o) && (o = qo.toASCII(o)), o.toLowerCase());
 }
-function Lo(o, a, e) {
+function Po(o, a, e) {
   if (o == null || a == null)
     return null;
   if (e !== !1 && (o = sa(o), a = sa(a)), o == a)
     return !0;
   const i = o.lastIndexOf(a);
-  return !(i <= 0 || o.length !== a.length + i || o.substr(i - 1, 1) !== "." || Os.test(o));
+  return !(i <= 0 || o.length !== a.length + i || o.substr(i - 1, 1) !== "." || Us.test(o));
 }
-function Ts(o) {
+function Fs(o) {
   if (!o || o.substr(0, 1) !== "/")
     return "/";
   if (o === "/")
@@ -21392,33 +21466,33 @@ function Ts(o) {
   const a = o.lastIndexOf("/");
   return a === 0 ? "/" : o.slice(0, a);
 }
-function Rs(o) {
+function Ns(o) {
   if (h.isEmptyString(o))
     return o;
-  for (let a = 0; a < $o.length; a++) {
-    const e = o.indexOf($o[a]);
+  for (let a = 0; a < Lo.length; a++) {
+    const e = o.indexOf(Lo[a]);
     e !== -1 && (o = o.substr(0, e));
   }
   return o;
 }
-function Ps(o, a) {
-  o = Rs(o), h.validate(h.isString(o), o);
+function Ms(o, a) {
+  o = Ns(o), h.validate(h.isString(o), o);
   let e = o.indexOf("=");
   if (a)
     e === 0 && (o = o.substr(1), e = o.indexOf("="));
   else if (e <= 0)
     return;
   let i, n;
-  if (e <= 0 ? (i = "", n = o.trim()) : (i = o.substr(0, e).trim(), n = o.substr(e + 1).trim()), Oo.test(i) || Oo.test(n))
+  if (e <= 0 ? (i = "", n = o.trim()) : (i = o.substr(0, e).trim(), n = o.substr(e + 1).trim()), Uo.test(i) || Uo.test(n))
     return;
-  const s = new C();
+  const s = new S();
   return s.key = i, s.value = n, s;
 }
-function Ns(o, a) {
+function Bs(o, a) {
   if ((!a || typeof a != "object") && (a = {}), h.isEmptyString(o) || !h.isString(o))
     return null;
   o = o.trim();
-  const e = o.indexOf(";"), i = e === -1 ? o : o.substr(0, e), n = Ps(i, !!a.loose);
+  const e = o.indexOf(";"), i = e === -1 ? o : o.substr(0, e), n = Ms(i, !!a.loose);
   if (!n)
     return;
   if (e === -1)
@@ -21428,28 +21502,28 @@ function Ns(o, a) {
     return n;
   const t = s.split(";");
   for (; t.length; ) {
-    const u = t.shift().trim();
-    if (u.length === 0)
+    const r = t.shift().trim();
+    if (r.length === 0)
       continue;
-    const m = u.indexOf("=");
+    const m = r.indexOf("=");
     let c, p;
-    switch (m === -1 ? (c = u, p = null) : (c = u.substr(0, m), p = u.substr(m + 1)), c = c.trim().toLowerCase(), p && (p = p.trim()), c) {
+    switch (m === -1 ? (c = r, p = null) : (c = r.substr(0, m), p = r.substr(m + 1)), c = c.trim().toLowerCase(), p && (p = p.trim()), c) {
       case "expires":
         if (p) {
-          const r = pa(p);
-          r && (n.expires = r);
+          const u = ca(p);
+          u && (n.expires = u);
         }
         break;
       case "max-age":
         if (p && /^-?[0-9]+$/.test(p)) {
-          const r = parseInt(p, 10);
-          n.setMaxAge(r);
+          const u = parseInt(p, 10);
+          n.setMaxAge(u);
         }
         break;
       case "domain":
         if (p) {
-          const r = p.trim().replace(/^\./, "");
-          r && (n.domain = r.toLowerCase());
+          const u = p.trim().replace(/^\./, "");
+          u && (n.domain = u.toLowerCase());
         }
         break;
       case "path":
@@ -21478,19 +21552,19 @@ function Ns(o, a) {
         }
         break;
       default:
-        n.extensions = n.extensions || [], n.extensions.push(u);
+        n.extensions = n.extensions || [], n.extensions.push(r);
         break;
     }
   }
   return n;
 }
-function Ms(o) {
+function Hs(o) {
   return h.validate(h.isObject(o), o), !o.key.startsWith("__Secure-") || o.secure;
 }
-function Hs(o) {
+function Js(o) {
   return h.validate(h.isObject(o)), !o.key.startsWith("__Host-") || o.secure && o.hostOnly && o.path != null && o.path === "/";
 }
-function Pe(o) {
+function Me(o) {
   let a;
   try {
     a = JSON.parse(o);
@@ -21499,41 +21573,42 @@ function Pe(o) {
   }
   return a;
 }
-function to(o) {
+function ro(o) {
   if (!o || h.isEmptyString(o))
     return null;
   let a;
   if (typeof o == "string") {
-    if (a = Pe(o), a instanceof Error)
+    if (a = Me(o), a instanceof Error)
       return null;
   } else
     a = o;
-  const e = new C();
-  for (let i = 0; i < C.serializableProperties.length; i++) {
-    const n = C.serializableProperties[i];
+  const e = new S();
+  for (let i = 0; i < S.serializableProperties.length; i++) {
+    const n = S.serializableProperties[i];
     a[n] === void 0 || a[n] === oa[n] || (n === "expires" || n === "creation" || n === "lastAccessed" ? a[n] === null ? e[n] = null : e[n] = a[n] == "Infinity" ? "Infinity" : new Date(a[n]) : e[n] = a[n]);
   }
   return e;
 }
-function To(o, a) {
+function Fo(o, a) {
   h.validate(h.isObject(o), o), h.validate(h.isObject(a), a);
   let e = 0;
   const i = o.path ? o.path.length : 0;
   if (e = (a.path ? a.path.length : 0) - i, e !== 0)
     return e;
-  const n = o.creation ? o.creation.getTime() : $a, s = a.creation ? a.creation.getTime() : $a;
+  const n = o.creation ? o.creation.getTime() : La, s = a.creation ? a.creation.getTime() : La;
   return e = n - s, e !== 0 || (e = o.creationIndex - a.creationIndex), e;
 }
-function Ro(o) {
+function No(o) {
   if (o instanceof Object)
     return o;
   try {
     o = decodeURI(o);
   } catch {
   }
-  return zs(o);
+  return xs(o);
 }
 const oa = {
+  // the order in which the RFC has them:
   key: "",
   value: "",
   expires: "Infinity",
@@ -21543,20 +21618,22 @@ const oa = {
   secure: !1,
   httpOnly: !1,
   extensions: null,
+  // set by the CookieJar:
   hostOnly: null,
   pathIsDefault: null,
   creation: null,
   lastAccessed: null,
   sameSite: void 0
 };
-class C {
+class S {
   constructor(a = {}) {
-    const e = Fs();
-    e && (this[e] = this.inspect), Object.assign(this, oa, a), this.creation = this.creation || new Date(), Object.defineProperty(this, "creationIndex", {
+    const e = As();
+    e && (this[e] = this.inspect), Object.assign(this, oa, a), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
+      // important for assert.deepEqual checks
       writable: !0,
-      value: ++C.cookiesCreated
+      value: ++S.cookiesCreated
     });
   }
   inspect() {
@@ -21565,21 +21642,21 @@ class C {
   }
   toJSON() {
     const a = {};
-    for (const e of C.serializableProperties)
+    for (const e of S.serializableProperties)
       this[e] !== oa[e] && (e === "expires" || e === "creation" || e === "lastAccessed" ? this[e] === null ? a[e] = null : a[e] = this[e] == "Infinity" ? "Infinity" : this[e].toISOString() : e === "maxAge" ? this[e] !== null && (a[e] = this[e] == 1 / 0 || this[e] == -1 / 0 ? this[e].toString() : this[e]) : this[e] !== oa[e] && (a[e] = this[e]));
     return a;
   }
   clone() {
-    return to(this.toJSON());
+    return ro(this.toJSON());
   }
   validate() {
-    if (!Ds.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !pa(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !Ss.test(this.path))
+    if (!Os.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !ca(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !$s.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || so.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || to.getPublicSuffix(a) == null));
   }
   setExpires(a) {
-    a instanceof Date ? this.expires = a : this.expires = pa(a) || "Infinity";
+    a instanceof Date ? this.expires = a : this.expires = ca(a) || "Infinity";
   }
   setMaxAge(a) {
     a === 1 / 0 || a === -1 / 0 ? this.maxAge = a.toString() : this.maxAge = a;
@@ -21588,36 +21665,47 @@ class C {
     let a = this.value;
     return a == null && (a = ""), this.key === "" ? a : `${this.key}=${a}`;
   }
+  // gives Set-Cookie header format
   toString() {
     let a = this.cookieString();
-    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${Ls(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
-      const e = C.sameSiteCanonical[this.sameSite.toLowerCase()];
+    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${Ps(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
+      const e = S.sameSiteCanonical[this.sameSite.toLowerCase()];
       a += `; SameSite=${e || this.sameSite}`;
     }
     return this.extensions && this.extensions.forEach((e) => {
       a += `; ${e}`;
     }), a;
   }
+  // TTL() partially replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere)
+  // S5.3 says to give the "latest representable date" for which we use Infinity
+  // For "expired" we use 0
   TTL(a) {
     if (this.maxAge != null)
       return this.maxAge <= 0 ? 0 : this.maxAge * 1e3;
     let e = this.expires;
-    return e != 1 / 0 ? (e instanceof Date || (e = pa(e) || 1 / 0), e == 1 / 0 ? 1 / 0 : e.getTime() - (a || Date.now())) : 1 / 0;
+    return e != 1 / 0 ? (e instanceof Date || (e = ca(e) || 1 / 0), e == 1 / 0 ? 1 / 0 : e.getTime() - (a || Date.now())) : 1 / 0;
   }
+  // expiryTime() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere)
   expiryTime(a) {
     if (this.maxAge != null) {
-      const e = a || this.creation || new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
+      const e = a || this.creation || /* @__PURE__ */ new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
       return e.getTime() + i;
     }
     return this.expires == 1 / 0 ? 1 / 0 : this.expires.getTime();
   }
+  // expiryDate() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere), except it returns a Date
   expiryDate(a) {
     const e = this.expiryTime(a);
-    return e == 1 / 0 ? new Date($a) : e == -1 / 0 ? new Date(Bs) : new Date(e);
+    return e == 1 / 0 ? new Date(La) : e == -1 / 0 ? new Date(qs) : new Date(e);
   }
+  // This replaces the "persistent-flag" parts of S5.3 step 3
   isPersistent() {
     return this.maxAge != null || this.expires != 1 / 0;
   }
+  // Mostly S5.1.2 and S5.2.3:
   canonicalizedDomain() {
     return this.domain == null ? null : sa(this.domain);
   }
@@ -21625,20 +21713,20 @@ class C {
     return this.canonicalizedDomain();
   }
 }
-C.cookiesCreated = 0;
-C.parse = Ns;
-C.fromJSON = to;
-C.serializableProperties = Object.keys(oa);
-C.sameSiteLevel = {
+S.cookiesCreated = 0;
+S.parse = Bs;
+S.fromJSON = ro;
+S.serializableProperties = Object.keys(oa);
+S.sameSiteLevel = {
   strict: 3,
   lax: 2,
   none: 1
 };
-C.sameSiteCanonical = {
+S.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function Po(o) {
+function Mo(o) {
   if (o != null) {
     const a = o.toLowerCase();
     switch (a) {
@@ -21650,55 +21738,55 @@ function Po(o) {
   }
   return Y.SILENT;
 }
-class D {
+class A {
   constructor(a, e = { rejectPublicSuffixes: !0 }) {
-    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), h.validate(h.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Es(), this.prefixSecurity = Po(e.prefixSecurity), this._cloneSync = M("clone"), this._importCookiesSync = M("_importCookies"), this.getCookiesSync = M("getCookies"), this.getCookieStringSync = M("getCookieString"), this.getSetCookieStringsSync = M("getSetCookieStrings"), this.removeAllCookiesSync = M("removeAllCookies"), this.setCookieSync = M("setCookie"), this.serializeSync = M("serialize");
+    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), h.validate(h.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Cs(), this.prefixSecurity = Mo(e.prefixSecurity), this._cloneSync = B("clone"), this._importCookiesSync = B("_importCookies"), this.getCookiesSync = B("getCookies"), this.getCookieStringSync = B("getCookieString"), this.getSetCookieStringsSync = B("getSetCookieStrings"), this.removeAllCookiesSync = B("removeAllCookies"), this.setCookieSync = B("setCookie"), this.serializeSync = B("serialize");
   }
   setCookie(a, e, i, n) {
     h.validate(h.isNonEmptyString(e), n, i);
     let s;
     if (h.isFunction(e))
       return n = e, n(new Error("No URL was specified"));
-    const t = Ro(e);
+    const t = No(e);
     if (h.isFunction(i) && (n = i, i = {}), h.validate(h.isFunction(n), n), !h.isNonEmptyString(a) && !h.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
-    const u = sa(t.hostname), m = i.loose || this.enableLooseMode;
+    const r = sa(t.hostname), m = i.loose || this.enableLooseMode;
     let c = null;
-    if (i.sameSiteContext && (c = Uo(i.sameSiteContext), !c))
-      return n(new Error(qo));
+    if (i.sameSiteContext && (c = Ro(i.sameSiteContext), !c))
+      return n(new Error(To));
     if (typeof a == "string" || a instanceof String) {
-      if (a = C.parse(a, { loose: m }), !a)
+      if (a = S.parse(a, { loose: m }), !a)
         return s = new Error("Cookie failed to parse"), n(i.ignoreError ? null : s);
-    } else if (!(a instanceof C))
+    } else if (!(a instanceof S))
       return s = new Error(
         "First argument to setCookie must be a Cookie object or string"
       ), n(i.ignoreError ? null : s);
-    const p = i.now || new Date();
-    if (this.rejectPublicSuffixes && a.domain && so.getPublicSuffix(a.cdomain(), {
+    const p = i.now || /* @__PURE__ */ new Date();
+    if (this.rejectPublicSuffixes && a.domain && to.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !Re.test(a.domain))
+    }) == null && !Ne.test(a.domain))
       return s = new Error("Cookie has domain set to a public suffix"), n(i.ignoreError ? null : s);
     if (a.domain) {
-      if (!Lo(u, a.cdomain(), !1))
+      if (!Po(r, a.cdomain(), !1))
         return s = new Error(
-          `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${u}`
+          `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${r}`
         ), n(i.ignoreError ? null : s);
       a.hostOnly == null && (a.hostOnly = !1);
     } else
-      a.hostOnly = !0, a.domain = u;
-    if ((!a.path || a.path[0] !== "/") && (a.path = Ts(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+      a.hostOnly = !0, a.domain = r;
+    if ((!a.path || a.path[0] !== "/") && (a.path = Fs(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
       return s = new Error("Cookie is HttpOnly and this isn't an HTTP API"), n(i.ignoreError ? null : s);
     if (a.sameSite !== "none" && a.sameSite !== void 0 && c && c === "none")
       return s = new Error(
         "Cookie is SameSite but this is a cross-origin request"
       ), n(i.ignoreError ? null : s);
-    const r = this.prefixSecurity === Y.SILENT;
+    const u = this.prefixSecurity === Y.SILENT;
     if (this.prefixSecurity !== Y.DISABLED) {
       let d = !1, l;
-      if (Ms(a) ? Hs(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
+      if (Hs(a) ? Js(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
         return n(
-          i.ignoreError || r ? null : new Error(l)
+          i.ignoreError || u ? null : new Error(l)
         );
     }
     const k = this.store;
@@ -21708,9 +21796,9 @@ class D {
     function b(d, l) {
       if (d)
         return n(d);
-      const f = function(L) {
-        if (L)
-          return n(L);
+      const f = function(R) {
+        if (R)
+          return n(R);
         n(null, a);
       };
       if (l) {
@@ -21722,29 +21810,30 @@ class D {
     }
     k.findCookie(a.domain, a.path, a.key, b);
   }
+  // RFC6365 S5.4
   getCookies(a, e, i) {
     h.validate(h.isNonEmptyString(a), i, a);
-    const n = Ro(a);
+    const n = No(a);
     h.isFunction(e) && (i = e, e = {}), h.validate(h.isObject(e), i, e), h.validate(h.isFunction(i), i);
     const s = sa(n.hostname), t = n.pathname || "/";
-    let u = e.secure;
-    u == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (u = !0);
+    let r = e.secure;
+    r == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (r = !0);
     let m = 0;
     if (e.sameSiteContext) {
-      const l = Uo(e.sameSiteContext);
-      if (m = C.sameSiteLevel[l], !m)
-        return i(new Error(qo));
+      const l = Ro(e.sameSiteContext);
+      if (m = S.sameSiteLevel[l], !m)
+        return i(new Error(To));
     }
     let c = e.http;
     c == null && (c = !0);
-    const p = e.now || Date.now(), r = e.expire !== !1, k = !!e.allPaths, b = this.store;
+    const p = e.now || Date.now(), u = e.expire !== !1, k = !!e.allPaths, b = this.store;
     function d(l) {
       if (l.hostOnly) {
         if (l.domain != s)
           return !1;
-      } else if (!Lo(s, l.domain, !1))
+      } else if (!Po(s, l.domain, !1))
         return !1;
-      return !k && !Cs(t, l.path) || l.secure && !u || l.httpOnly && !c || m && C.sameSiteLevel[l.sameSite || "none"] > m ? !1 : r && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
+      return !k && !_s(t, l.path) || l.secure && !r || l.httpOnly && !c || m && S.sameSiteLevel[l.sameSite || "none"] > m ? !1 : u && l.expiryTime() <= p ? (b.removeCookie(l.domain, l.path, l.key, () => {
       }), !1) : !0;
     }
     b.findCookies(
@@ -21754,10 +21843,10 @@ class D {
       (l, f) => {
         if (l)
           return i(l);
-        f = f.filter(d), e.sort !== !1 && (f = f.sort(To));
-        const L = new Date();
-        for (const ba of f)
-          ba.lastAccessed = L;
+        f = f.filter(d), e.sort !== !1 && (f = f.sort(Fo));
+        const R = /* @__PURE__ */ new Date();
+        for (const fa of f)
+          fa.lastAccessed = R;
         i(null, f);
       }
     );
@@ -21768,7 +21857,7 @@ class D {
     const i = function(n, s) {
       n ? e(n) : e(
         null,
-        s.sort(To).map((t) => t.cookieString()).join("; ")
+        s.sort(Fo).map((t) => t.cookieString()).join("; ")
       );
     };
     a.push(i), this.getCookies.apply(this, a);
@@ -21789,12 +21878,18 @@ class D {
     let e = this.store.constructor.name;
     h.isObject(e) && (e = null);
     const i = {
-      version: `tough-cookie@${As}`,
+      // The version of tough-cookie that serialized this jar. Generally a good
+      // practice since future versions can make data import decisions based on
+      // known past behavior. When/if this matters, use `semver`.
+      version: `tough-cookie@${Is}`,
+      // add the store type, to make humans happy:
       storeType: e,
+      // CookieJar configuration:
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: Po(this.prefixSecurity),
+      prefixSecurity: Mo(this.prefixSecurity),
+      // this gets filled from getAllCookies:
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
@@ -21803,11 +21898,12 @@ class D {
           "store does not support getAllCookies and cannot be serialized"
         )
       );
-    this.store.getAllCookies((n, s) => n ? a(n) : (i.cookies = s.map((t) => (t = t instanceof C ? t.toJSON() : t, delete t.creationIndex, t)), a(null, i)));
+    this.store.getAllCookies((n, s) => n ? a(n) : (i.cookies = s.map((t) => (t = t instanceof S ? t.toJSON() : t, delete t.creationIndex, t)), a(null, i)));
   }
   toJSON() {
     return this.serializeSync();
   }
+  // use the class method CookieJar.deserialize instead of calling this directly
   _importCookies(a, e) {
     let i = a.cookies;
     if (!i || !Array.isArray(i))
@@ -21820,9 +21916,9 @@ class D {
         return e(s, this);
       let t;
       try {
-        t = to(i.shift());
-      } catch (u) {
-        return e(u);
+        t = ro(i.shift());
+      } catch (r) {
+        return e(r);
       }
       if (t === null)
         return n(null);
@@ -21834,7 +21930,7 @@ class D {
     arguments.length === 1 && (e = a, a = null), this.serialize((i, n) => {
       if (i)
         return e(i);
-      D.deserialize(n, a, e);
+      A.deserialize(n, a, e);
     });
   }
   cloneSync(a) {
@@ -21849,7 +21945,7 @@ class D {
   removeAllCookies(a) {
     h.validate(h.isFunction(a), a);
     const e = this.store;
-    if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== xs.prototype.removeAllCookies)
+    if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== Ss.prototype.removeAllCookies)
       return e.removeAllCookies(a);
     e.getAllCookies((i, n) => {
       if (i)
@@ -21858,7 +21954,7 @@ class D {
         return a(null);
       let s = 0;
       const t = [];
-      function u(m) {
+      function r(m) {
         if (m && t.push(m), s++, s === n.length)
           return a(t.length ? t[0] : null);
       }
@@ -21867,7 +21963,7 @@ class D {
           m.domain,
           m.path,
           m.key,
-          u
+          r
         );
       });
     });
@@ -21876,11 +21972,11 @@ class D {
     arguments.length !== 3 && (i = e, e = null), h.validate(h.isFunction(i), i);
     let n;
     if (typeof a == "string") {
-      if (n = Pe(a), n instanceof Error)
+      if (n = Me(a), n instanceof Error)
         return i(n);
     } else
       n = a;
-    const s = new D(e, {
+    const s = new A(e, {
       rejectPublicSuffixes: n.rejectPublicSuffixes,
       looseMode: n.enableLooseMode,
       allowSpecialUseDomain: n.allowSpecialUseDomain,
@@ -21893,7 +21989,7 @@ class D {
     });
   }
   static deserializeSync(a, e) {
-    const i = typeof a == "string" ? JSON.parse(a) : a, n = new D(e, {
+    const i = typeof a == "string" ? JSON.parse(a) : a, n = new A(e, {
       rejectPublicSuffixes: i.rejectPublicSuffixes,
       looseMode: i.enableLooseMode
     });
@@ -21904,7 +22000,7 @@ class D {
     return n._importCookiesSync(i), n;
   }
 }
-D.fromJSON = D.deserializeSync;
+A.fromJSON = A.deserializeSync;
 [
   "_importCookies",
   "clone",
@@ -21915,10 +22011,10 @@ D.fromJSON = D.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((o) => {
-  D.prototype[o] = Te(D.prototype[o]);
+  A.prototype[o] = Fe(A.prototype[o]);
 });
-D.deserialize = Te(D.deserialize);
-function M(o) {
+A.deserialize = Fe(A.deserialize);
+function B(o) {
   return function(...a) {
     if (!this.store.synchronous)
       throw new Error(
@@ -21932,41 +22028,51 @@ function M(o) {
     return i;
   };
 }
-var Js = D;
-so.getPublicSuffix;
+var Gs = A;
+to.getPublicSuffix;
 h.ParameterError;
-var Ne = {};
-Object.defineProperty(Ne, "__esModule", { value: !0 });
-function Gs(o) {
+var Be = {};
+Object.defineProperty(Be, "__esModule", { value: !0 });
+function Qs(o) {
   return o;
 }
-var Qs = Ne.wrapper = Gs;
-const Ws = new Js();
-Qs && (j.defaults.jar = Ws);
+var Ws = Be.wrapper = Qs;
+const Ys = new Gs();
+Ws && (j.defaults.jar = Ys);
 j.defaults.withCredentials = !0;
-class No {
-  constructor(a = Me) {
+class Bo {
+  constructor(a = He) {
     aa(this, "basePath"), aa(this, "baseOptions"), aa(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
+  /**
+   * Check if the given MIME is a JSON MIME.
+   * JSON MIME examples:
+   *   application/json
+   *   application/json; charset=UTF8
+   *   APPLICATION/JSON
+   *   application/vnd.company+json
+   * @param mime - MIME (Multipurpose Internet Mail Extensions)
+   * @return True if the given MIME is JSON, false otherwise.
+   */
   isJsonMime(a) {
     const e = new RegExp("^(application/json|[^;/ 	]+/[^;/ 	]+[+]json)[ 	]*(;.*)?$", "i");
     return a !== null && (e.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const Me = typeof window == "object" && window.self === self && self ? new No({ basePath: "" }) : new No({ basePath: "https://learning.cultofbits.com" });
+const He = typeof window == "object" && window.self === self && self ? new Bo({ basePath: "" }) : new Bo({ basePath: "https://learning.cultofbits.com" });
 class uo {
   constructor(a, e = j) {
-    aa(this, "configuration"), this.axios = e, this.configuration = a != null ? a : Me;
+    aa(this, "configuration"), this.axios = e, this.configuration = a ?? He;
   }
 }
-class Ys extends Error {
+class Zs extends Error {
   constructor(a, e) {
     super(e), aa(this, "name", "RequiredError"), this.field = a;
   }
 }
 const w = "https://example.com", y = function(o, a, e) {
   if (e == null)
-    throw new Ys(
+    throw new Zs(
       a,
       `Required parameter ${a} was null or undefined when calling ${o}.`
     );
@@ -21991,432 +22097,920 @@ const w = "https://example.com", y = function(o, a, e) {
     const n = { ...o.options, url: e.basePath + o.url };
     return i.request(n);
   };
-}, Zs = function(o) {
+}, Vs = function(o) {
   return {
+    /**
+     * 
+     * @summary Clones an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     cloneDefinition: async (a, e = {}) => {
       y("cloneDefinition", "definitionId", a);
       const i = "/recordm/recordm/definitions/{definitionId}/clone".replace("{definitionId}", encodeURIComponent(String(a))), n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "POST", ...s, ...e }, u = {};
+      const t = { method: "POST", ...s, ...e }, r = {};
       v(n, {});
       let m = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...m, ...e.headers }, {
+      return t.headers = { ...r, ...m, ...e.headers }, {
         url: z(n),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Delete an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     deleteDefinition: async (a, e = {}) => {
       y("deleteDefinition", "definitionId", a);
       const i = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "DELETE", ...s, ...e }, u = {};
+      const t = { method: "DELETE", ...s, ...e }, r = {};
       v(n, {});
       let m = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...m, ...e.headers }, {
+      return t.headers = { ...r, ...m, ...e.headers }, {
         url: z(n),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Download a definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     exportDefinition: async (a, e = {}) => {
       y("exportDefinition", "definitionId", a);
       const i = "/recordm/recordm/definitions/{definitionId}/export".replace("{definitionId}", encodeURIComponent(String(a))), n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "GET", ...s, ...e }, u = {};
+      const t = { method: "GET", ...s, ...e }, r = {};
       v(n, {});
       let m = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...m, ...e.headers }, {
+      return t.headers = { ...r, ...m, ...e.headers }, {
         url: z(n),
         options: t
       };
     },
+    /**
+     * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
+     * @summary Retrieves all definitions
+     * @param {boolean} [includeDisabled] If it should include inactive definitions
+     * @param {string} [name] Restrict results to definitons with name matching
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getAllDefinitions: async (a, e, i = {}) => {
       const n = "/recordm/recordm/definitions", s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "GET", ...t, ...i }, m = {}, c = {};
+      const r = { method: "GET", ...t, ...i }, m = {}, c = {};
       a !== void 0 && (c.includeDisabled = a), e !== void 0 && (c.name = e), v(s, c);
       let p = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...p, ...i.headers }, {
+      return r.headers = { ...m, ...p, ...i.headers }, {
         url: z(s),
-        options: u
+        options: r
       };
     },
+    /**
+     * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
+     * @summary Retrieves a specific definition including its fields.
+     * @param {number} definitionId The definition identifier
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the definition and if they are equal, a 304 will be returned.
+     * @param {boolean} [_export] When true it will return a clone of the definition
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getDefinition: async (a, e, i, n = {}) => {
       y("getDefinition", "definitionId", a);
       const s = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), t = new URL(s, w);
-      let u;
-      o && (u = o.baseOptions);
-      const m = { method: "GET", ...u, ...n }, c = {}, p = {};
+      let r;
+      o && (r = o.baseOptions);
+      const m = { method: "GET", ...r, ...n }, c = {}, p = {};
       i !== void 0 && (p.export = i), e != null && (c["If-None-Match"] = String(e)), v(t, p);
-      let r = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...r, ...n.headers }, {
+      let u = r && r.headers ? r.headers : {};
+      return m.headers = { ...c, ...u, ...n.headers }, {
         url: z(t),
         options: m
       };
     },
+    /**
+     * Retrieves the full details about a definition.
+     * @summary Retrieves a specific that match a provided name.
+     * @param {string} name The definition name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getDefinitionByName: async (a, e = {}) => {
       y("getDefinitionByName", "name", a);
       const i = "/recordm/recordm/definitions/name/{name}".replace("{name}", encodeURIComponent(String(a))), n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "GET", ...s, ...e }, u = {};
+      const t = { method: "GET", ...s, ...e }, r = {};
       v(n, {});
       let m = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...m, ...e.headers }, {
+      return t.headers = { ...r, ...m, ...e.headers }, {
         url: z(n),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Create a new definition
+     * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     saveDefinition: async (a, e = {}) => {
       const i = "/recordm/recordm/definitions", n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "POST", ...s, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", v(n, m);
+      const t = { method: "POST", ...s, ...e }, r = {}, m = {};
+      r["Content-Type"] = "application/json", v(n, m);
       let c = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...c, ...e.headers }, t.data = J(a, t, o), {
+      return t.headers = { ...r, ...c, ...e.headers }, t.data = J(a, t, o), {
         url: z(n),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Update an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     updateDefinition: async (a, e, i = {}) => {
       y("updateDefinition", "definitionId", a);
       const n = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "PUT", ...t, ...i }, m = {}, c = {};
+      const r = { method: "PUT", ...t, ...i }, m = {}, c = {};
       m["Content-Type"] = "application/json", v(s, c);
       let p = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...p, ...i.headers }, u.data = J(e, u, o), {
+      return r.headers = { ...m, ...p, ...i.headers }, r.data = J(e, r, o), {
         url: z(s),
-        options: u
+        options: r
       };
     },
+    /**
+     * 
+     * @summary Change the state of an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {string} state The new state
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     updateDefinitionState: async (a, e, i = {}) => {
       y("updateDefinitionState", "definitionId", a), y("updateDefinitionState", "state", e);
       const n = "/recordm/recordm/definitions/{definitionId}/state/{state}".replace("{definitionId}", encodeURIComponent(String(a))).replace("{state}", encodeURIComponent(String(e))), s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "PUT", ...t, ...i }, m = {};
+      const r = { method: "PUT", ...t, ...i }, m = {};
       v(s, {});
       let c = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...c, ...i.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: z(s),
-        options: u
+        options: r
       };
     }
   };
-}, T = function(o) {
-  const a = Zs(o);
+}, P = function(o) {
+  const a = Vs(o);
   return {
+    /**
+     * 
+     * @summary Clones an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async cloneDefinition(e, i) {
       const n = await a.cloneDefinition(e, i);
       return x(n, j, o);
     },
+    /**
+     * 
+     * @summary Delete an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async deleteDefinition(e, i) {
       const n = await a.deleteDefinition(e, i);
       return x(n, j, o);
     },
+    /**
+     * 
+     * @summary Download a definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async exportDefinition(e, i) {
       const n = await a.exportDefinition(e, i);
       return x(n, j, o);
     },
+    /**
+     * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
+     * @summary Retrieves all definitions
+     * @param {boolean} [includeDisabled] If it should include inactive definitions
+     * @param {string} [name] Restrict results to definitons with name matching
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async getAllDefinitions(e, i, n) {
       const s = await a.getAllDefinitions(e, i, n);
       return x(s, j, o);
     },
+    /**
+     * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
+     * @summary Retrieves a specific definition including its fields.
+     * @param {number} definitionId The definition identifier
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the definition and if they are equal, a 304 will be returned.
+     * @param {boolean} [_export] When true it will return a clone of the definition
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async getDefinition(e, i, n, s) {
       const t = await a.getDefinition(e, i, n, s);
       return x(t, j, o);
     },
+    /**
+     * Retrieves the full details about a definition.
+     * @summary Retrieves a specific that match a provided name.
+     * @param {string} name The definition name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async getDefinitionByName(e, i) {
       const n = await a.getDefinitionByName(e, i);
       return x(n, j, o);
     },
+    /**
+     * 
+     * @summary Create a new definition
+     * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async saveDefinition(e, i) {
       const n = await a.saveDefinition(e, i);
       return x(n, j, o);
     },
+    /**
+     * 
+     * @summary Update an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async updateDefinition(e, i, n) {
       const s = await a.updateDefinition(e, i, n);
       return x(s, j, o);
     },
+    /**
+     * 
+     * @summary Change the state of an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {string} state The new state
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async updateDefinitionState(e, i, n) {
       const s = await a.updateDefinitionState(e, i, n);
       return x(s, j, o);
     }
   };
 };
-class He extends uo {
+class Je extends uo {
+  /**
+   * 
+   * @summary Clones an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   cloneDefinition(a, e) {
-    return T(this.configuration).cloneDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).cloneDefinition(a, e).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Delete an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   deleteDefinition(a, e) {
-    return T(this.configuration).deleteDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).deleteDefinition(a, e).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Download a definition
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   exportDefinition(a, e) {
-    return T(this.configuration).exportDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).exportDefinition(a, e).then((i) => i(this.axios));
   }
+  /**
+   * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
+   * @summary Retrieves all definitions
+   * @param {boolean} [includeDisabled] If it should include inactive definitions
+   * @param {string} [name] Restrict results to definitons with name matching
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   getAllDefinitions(a, e, i) {
-    return T(this.configuration).getAllDefinitions(a, e, i).then((n) => n(this.axios));
+    return P(this.configuration).getAllDefinitions(a, e, i).then((n) => n(this.axios));
   }
+  /**
+   * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
+   * @summary Retrieves a specific definition including its fields.
+   * @param {number} definitionId The definition identifier
+   * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the definition and if they are equal, a 304 will be returned.
+   * @param {boolean} [_export] When true it will return a clone of the definition
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   getDefinition(a, e, i, n) {
-    return T(this.configuration).getDefinition(a, e, i, n).then((s) => s(this.axios));
+    return P(this.configuration).getDefinition(a, e, i, n).then((s) => s(this.axios));
   }
+  /**
+   * Retrieves the full details about a definition.
+   * @summary Retrieves a specific that match a provided name.
+   * @param {string} name The definition name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   getDefinitionByName(a, e) {
-    return T(this.configuration).getDefinitionByName(a, e).then((i) => i(this.axios));
+    return P(this.configuration).getDefinitionByName(a, e).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Create a new definition
+   * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   saveDefinition(a, e) {
-    return T(this.configuration).saveDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).saveDefinition(a, e).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Update an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   updateDefinition(a, e, i) {
-    return T(this.configuration).updateDefinition(a, e, i).then((n) => n(this.axios));
+    return P(this.configuration).updateDefinition(a, e, i).then((n) => n(this.axios));
   }
+  /**
+   * 
+   * @summary Change the state of an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {string} state The new state
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   updateDefinitionState(a, e, i) {
-    return T(this.configuration).updateDefinitionState(a, e, i).then((n) => n(this.axios));
+    return P(this.configuration).updateDefinitionState(a, e, i).then((n) => n(this.axios));
   }
 }
-const Vs = function(o) {
+const Xs = function(o) {
   return {
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Add an instance
+     * @param {Instance} instance the instance to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     addInstance: async (a, e = {}) => {
       y("addInstance", "instance", a);
       const i = "/recordm/recordm/instances", n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "POST", ...s, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", v(n, m);
+      const t = { method: "POST", ...s, ...e }, r = {}, m = {};
+      r["Content-Type"] = "application/json", v(n, m);
       let c = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...c, ...e.headers }, t.data = J(a, t, o), {
+      return t.headers = { ...r, ...c, ...e.headers }, t.data = J(a, t, o), {
         url: z(n),
         options: t
       };
     },
+    /**
+     * Adds a LogM log entry to an instance.
+     * @summary Add log to instance
+     * @param {number} id The instance id
+     * @param {string} [body] The log message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     addLogMessageToInstance: async (a, e, i = {}) => {
       y("addLogMessageToInstance", "id", a);
       const n = "/recordm/recordm/instances/{id}/log".replace("{id}", encodeURIComponent(String(a))), s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "POST", ...t, ...i }, m = {}, c = {};
+      const r = { method: "POST", ...t, ...i }, m = {}, c = {};
       m["Content-Type"] = "application/json", v(s, c);
       let p = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...p, ...i.headers }, u.data = J(e, u, o), {
+      return r.headers = { ...m, ...p, ...i.headers }, r.data = J(e, r, o), {
         url: z(s),
-        options: u
+        options: r
       };
     },
+    /**
+     * Deletes an instance.
+     * @summary Delete an instance
+     * @param {number} id The id of the instance to delete
+     * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     deleteInstance: async (a, e, i = {}) => {
       y("deleteInstance", "id", a);
       const n = "/recordm/recordm/instances/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "DELETE", ...t, ...i }, m = {}, c = {};
+      const r = { method: "DELETE", ...t, ...i }, m = {}, c = {};
       e !== void 0 && (c.ignoreRefs = e), v(s, c);
       let p = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...p, ...i.headers }, {
+      return r.headers = { ...m, ...p, ...i.headers }, {
         url: z(s),
-        options: u
+        options: r
       };
     },
+    /**
+     * Download a file that is attached to a $file field
+     * @summary Download file from field in instance
+     * @param {string} id The id of the instance
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {string} filename The filename of the file to download.
+     * @param {string} [disposition] The Content-Disposition to use when downloading the file. Only useful when used as link in a webpage, to control if it should be downloaded or shown inline.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     downloadFile: async (a, e, i, n, s = {}) => {
       y("downloadFile", "id", a), y("downloadFile", "fieldDefinitionId", e), y("downloadFile", "filename", i);
-      const t = "/recordm/recordm/instances/{id}/files/{fieldDefinitionId}/{filename}".replace("{id}", encodeURIComponent(String(a))).replace("{fieldDefinitionId}", encodeURIComponent(String(e))).replace("{filename}", encodeURIComponent(String(i))), u = new URL(t, w);
+      const t = "/recordm/recordm/instances/{id}/files/{fieldDefinitionId}/{filename}".replace("{id}", encodeURIComponent(String(a))).replace("{fieldDefinitionId}", encodeURIComponent(String(e))).replace("{filename}", encodeURIComponent(String(i))), r = new URL(t, w);
       let m;
       o && (m = o.baseOptions);
-      const c = { method: "GET", ...m, ...s }, p = {}, r = {};
-      n !== void 0 && (r.disposition = n), v(u, r);
+      const c = { method: "GET", ...m, ...s }, p = {}, u = {};
+      n !== void 0 && (u.disposition = n), v(r, u);
       let k = m && m.headers ? m.headers : {};
       return c.headers = { ...p, ...k, ...s.headers }, {
-        url: z(u),
+        url: z(r),
         options: c
       };
     },
+    /**
+     * Obtains a representation of an instance.
+     * @summary Get an instance
+     * @param {number} id 
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getInstance: async (a, e, i = {}) => {
       y("getInstance", "id", a);
       const n = "/recordm/recordm/instances/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "GET", ...t, ...i }, m = {}, c = {};
+      const r = { method: "GET", ...t, ...i }, m = {}, c = {};
       e != null && (m["If-None-Match"] = String(e)), v(s, c);
       let p = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...p, ...i.headers }, {
+      return r.headers = { ...m, ...p, ...i.headers }, {
         url: z(s),
-        options: u
+        options: r
       };
     },
+    /**
+     * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
+     * @summary Get a new empty instance
+     * @param {number} definitionId The id of the definition of which we want the empty instance.
+     * @param {boolean} [withDefaults] If true, all the fields with defined default values will have them already filled. If false, all the fields will have empty values.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getNewInstance: async (a, e, i = {}) => {
       y("getNewInstance", "definitionId", a);
       const n = "/recordm/recordm/instances/empty/definition/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(n, w);
       let t;
       o && (t = o.baseOptions);
-      const u = { method: "GET", ...t, ...i }, m = {}, c = {};
+      const r = { method: "GET", ...t, ...i }, m = {}, c = {};
       e !== void 0 && (c.withDefaults = e), v(s, c);
       let p = t && t.headers ? t.headers : {};
-      return u.headers = { ...m, ...p, ...i.headers }, {
+      return r.headers = { ...m, ...p, ...i.headers }, {
         url: z(s),
-        options: u
+        options: r
       };
     },
+    /**
+     * Updates an instance with the complete representation passed.
+     * @summary Update an instance
+     * @param {number} id The id of the instance to update
+     * @param {Instance} instance the updated instance
+     * @param {boolean} [acceptOutdated] Should outdated $extRef fields be accepted?
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     updateInstance: async (a, e, i, n = {}) => {
       y("updateInstance", "id", a), y("updateInstance", "instance", e);
       const s = "/recordm/recordm/instances/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, w);
-      let u;
-      o && (u = o.baseOptions);
-      const m = { method: "PUT", ...u, ...n }, c = {}, p = {};
+      let r;
+      o && (r = o.baseOptions);
+      const m = { method: "PUT", ...r, ...n }, c = {}, p = {};
       i !== void 0 && (p.acceptOutdated = i), c["Content-Type"] = "application/json", v(t, p);
-      let r = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...r, ...n.headers }, m.data = J(e, m, o), {
+      let u = r && r.headers ? r.headers : {};
+      return m.headers = { ...c, ...u, ...n.headers }, m.data = J(e, m, o), {
         url: z(t),
         options: m
       };
     },
+    /**
+     * Upload a file to be used as a value for a $file field
+     * @summary Upload file to field in instance
+     * @param {string} id When uploading to an existing instance, it\&#39;s the id of the instance. When uploading for an instance that doesn\&#39;t yet exist, it should be an UUID that matches the one the instance will have on creation. This way the already uploaded files will be moved to the final destination.
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {any} [file] The file to upload.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     uploadFile: async (a, e, i, n = {}) => {
       y("uploadFile", "id", a), y("uploadFile", "fieldDefinitionId", e);
       const s = "/recordm/recordm/instances/{id}/files/{fieldDefinitionId}".replace("{id}", encodeURIComponent(String(a))).replace("{fieldDefinitionId}", encodeURIComponent(String(e))), t = new URL(s, w);
-      let u;
-      o && (u = o.baseOptions);
-      const m = { method: "POST", ...u, ...n }, c = {}, p = {}, r = new (o && o.formDataCtor || FormData)();
-      i !== void 0 && r.append("file", new Blob([JSON.stringify(i)], { type: "application/json" })), c["Content-Type"] = "multipart/form-data", v(t, p);
-      let k = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...k, ...n.headers }, m.data = r, {
+      let r;
+      o && (r = o.baseOptions);
+      const m = { method: "POST", ...r, ...n }, c = {}, p = {}, u = new (o && o.formDataCtor || FormData)();
+      i !== void 0 && u.append("file", new Blob([JSON.stringify(i)], { type: "application/json" })), c["Content-Type"] = "multipart/form-data", v(t, p);
+      let k = r && r.headers ? r.headers : {};
+      return m.headers = { ...c, ...k, ...n.headers }, m.data = u, {
         url: z(t),
         options: m
       };
     }
   };
 }, H = function(o) {
-  const a = Vs(o);
+  const a = Xs(o);
   return {
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Add an instance
+     * @param {Instance} instance the instance to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async addInstance(e, i) {
       const n = await a.addInstance(e, i);
       return x(n, j, o);
     },
+    /**
+     * Adds a LogM log entry to an instance.
+     * @summary Add log to instance
+     * @param {number} id The instance id
+     * @param {string} [body] The log message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async addLogMessageToInstance(e, i, n) {
       const s = await a.addLogMessageToInstance(e, i, n);
       return x(s, j, o);
     },
+    /**
+     * Deletes an instance.
+     * @summary Delete an instance
+     * @param {number} id The id of the instance to delete
+     * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async deleteInstance(e, i, n) {
       const s = await a.deleteInstance(e, i, n);
       return x(s, j, o);
     },
+    /**
+     * Download a file that is attached to a $file field
+     * @summary Download file from field in instance
+     * @param {string} id The id of the instance
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {string} filename The filename of the file to download.
+     * @param {string} [disposition] The Content-Disposition to use when downloading the file. Only useful when used as link in a webpage, to control if it should be downloaded or shown inline.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async downloadFile(e, i, n, s, t) {
-      const u = await a.downloadFile(e, i, n, s, t);
-      return x(u, j, o);
+      const r = await a.downloadFile(e, i, n, s, t);
+      return x(r, j, o);
     },
+    /**
+     * Obtains a representation of an instance.
+     * @summary Get an instance
+     * @param {number} id 
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async getInstance(e, i, n) {
       const s = await a.getInstance(e, i, n);
       return x(s, j, o);
     },
+    /**
+     * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
+     * @summary Get a new empty instance
+     * @param {number} definitionId The id of the definition of which we want the empty instance.
+     * @param {boolean} [withDefaults] If true, all the fields with defined default values will have them already filled. If false, all the fields will have empty values.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async getNewInstance(e, i, n) {
       const s = await a.getNewInstance(e, i, n);
       return x(s, j, o);
     },
+    /**
+     * Updates an instance with the complete representation passed.
+     * @summary Update an instance
+     * @param {number} id The id of the instance to update
+     * @param {Instance} instance the updated instance
+     * @param {boolean} [acceptOutdated] Should outdated $extRef fields be accepted?
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async updateInstance(e, i, n, s) {
       const t = await a.updateInstance(e, i, n, s);
       return x(t, j, o);
     },
+    /**
+     * Upload a file to be used as a value for a $file field
+     * @summary Upload file to field in instance
+     * @param {string} id When uploading to an existing instance, it\&#39;s the id of the instance. When uploading for an instance that doesn\&#39;t yet exist, it should be an UUID that matches the one the instance will have on creation. This way the already uploaded files will be moved to the final destination.
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {any} [file] The file to upload.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async uploadFile(e, i, n, s) {
       const t = await a.uploadFile(e, i, n, s);
       return x(t, j, o);
     }
   };
 };
-class Je extends uo {
+class Ge extends uo {
+  /**
+   * Adds a new instance represented by the passed Object.
+   * @summary Add an instance
+   * @param {Instance} instance the instance to add
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   addInstance(a, e) {
     return H(this.configuration).addInstance(a, e).then((i) => i(this.axios));
   }
+  /**
+   * Adds a LogM log entry to an instance.
+   * @summary Add log to instance
+   * @param {number} id The instance id
+   * @param {string} [body] The log message
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   addLogMessageToInstance(a, e, i) {
     return H(this.configuration).addLogMessageToInstance(a, e, i).then((n) => n(this.axios));
   }
+  /**
+   * Deletes an instance.
+   * @summary Delete an instance
+   * @param {number} id The id of the instance to delete
+   * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   deleteInstance(a, e, i) {
     return H(this.configuration).deleteInstance(a, e, i).then((n) => n(this.axios));
   }
+  /**
+   * Download a file that is attached to a $file field
+   * @summary Download file from field in instance
+   * @param {string} id The id of the instance
+   * @param {string} fieldDefinitionId The id of the field definition of the $file field
+   * @param {string} filename The filename of the file to download.
+   * @param {string} [disposition] The Content-Disposition to use when downloading the file. Only useful when used as link in a webpage, to control if it should be downloaded or shown inline.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   downloadFile(a, e, i, n, s) {
     return H(this.configuration).downloadFile(a, e, i, n, s).then((t) => t(this.axios));
   }
+  /**
+   * Obtains a representation of an instance.
+   * @summary Get an instance
+   * @param {number} id 
+   * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   getInstance(a, e, i) {
     return H(this.configuration).getInstance(a, e, i).then((n) => n(this.axios));
   }
+  /**
+   * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
+   * @summary Get a new empty instance
+   * @param {number} definitionId The id of the definition of which we want the empty instance.
+   * @param {boolean} [withDefaults] If true, all the fields with defined default values will have them already filled. If false, all the fields will have empty values.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   getNewInstance(a, e, i) {
     return H(this.configuration).getNewInstance(a, e, i).then((n) => n(this.axios));
   }
+  /**
+   * Updates an instance with the complete representation passed.
+   * @summary Update an instance
+   * @param {number} id The id of the instance to update
+   * @param {Instance} instance the updated instance
+   * @param {boolean} [acceptOutdated] Should outdated $extRef fields be accepted?
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   updateInstance(a, e, i, n) {
     return H(this.configuration).updateInstance(a, e, i, n).then((s) => s(this.axios));
   }
+  /**
+   * Upload a file to be used as a value for a $file field
+   * @summary Upload file to field in instance
+   * @param {string} id When uploading to an existing instance, it\&#39;s the id of the instance. When uploading for an instance that doesn\&#39;t yet exist, it should be an UUID that matches the one the instance will have on creation. This way the already uploaded files will be moved to the final destination.
+   * @param {string} fieldDefinitionId The id of the field definition of the $file field
+   * @param {any} [file] The file to upload.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   uploadFile(a, e, i, n) {
     return H(this.configuration).uploadFile(a, e, i, n).then((s) => s(this.axios));
   }
 }
-const Xs = function(o) {
+const Ks = function(o) {
   return {
+    /**
+     * Deletes the instances that match the condition.
+     * @summary Deletes one or more instances
+     * @param {IntegrationDeleteMessage} [integrationDeleteMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     _delete: async (a, e = {}) => {
       const i = "/recordm/recordm/instances/integration", n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "DELETE", ...s, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", v(n, m);
+      const t = { method: "DELETE", ...s, ...e }, r = {}, m = {};
+      r["Content-Type"] = "application/json", v(n, m);
       let c = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...c, ...e.headers }, t.data = J(a, t, o), {
+      return t.headers = { ...r, ...c, ...e.headers }, t.data = J(a, t, o), {
         url: z(n),
         options: t
       };
     },
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Create an instance
+     * @param {IntegrationAddMessage} [integrationAddMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     add: async (a, e = {}) => {
       const i = "/recordm/recordm/instances/integration", n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "POST", ...s, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", v(n, m);
+      const t = { method: "POST", ...s, ...e }, r = {}, m = {};
+      r["Content-Type"] = "application/json", v(n, m);
       let c = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...c, ...e.headers }, t.data = J(a, t, o), {
+      return t.headers = { ...r, ...c, ...e.headers }, t.data = J(a, t, o), {
         url: z(n),
         options: t
       };
     },
+    /**
+     * Updates the matching instances with the passed updates.
+     * @summary Update one or more instances
+     * @param {IntegrationUpdateMessage} [integrationUpdateMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     update: async (a, e = {}) => {
       const i = "/recordm/recordm/instances/integration", n = new URL(i, w);
       let s;
       o && (s = o.baseOptions);
-      const t = { method: "PUT", ...s, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", v(n, m);
+      const t = { method: "PUT", ...s, ...e }, r = {}, m = {};
+      r["Content-Type"] = "application/json", v(n, m);
       let c = s && s.headers ? s.headers : {};
-      return t.headers = { ...u, ...c, ...e.headers }, t.data = J(a, t, o), {
+      return t.headers = { ...r, ...c, ...e.headers }, t.data = J(a, t, o), {
         url: z(n),
         options: t
       };
     }
   };
-}, xa = function(o) {
-  const a = Xs(o);
+}, Sa = function(o) {
+  const a = Ks(o);
   return {
+    /**
+     * Deletes the instances that match the condition.
+     * @summary Deletes one or more instances
+     * @param {IntegrationDeleteMessage} [integrationDeleteMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async _delete(e, i) {
       const n = await a._delete(e, i);
       return x(n, j, o);
     },
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Create an instance
+     * @param {IntegrationAddMessage} [integrationAddMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async add(e, i) {
       const n = await a.add(e, i);
       return x(n, j, o);
     },
+    /**
+     * Updates the matching instances with the passed updates.
+     * @summary Update one or more instances
+     * @param {IntegrationUpdateMessage} [integrationUpdateMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async update(e, i) {
       const n = await a.update(e, i);
       return x(n, j, o);
     }
   };
 };
-class Ks extends uo {
+class at extends uo {
+  /**
+   * Deletes the instances that match the condition.
+   * @summary Deletes one or more instances
+   * @param {IntegrationDeleteMessage} [integrationDeleteMessage] A JSON doc of the specified format
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
   _delete(a, e) {
-    return xa(this.configuration)._delete(a, e).then((i) => i(this.axios));
+    return Sa(this.configuration)._delete(a, e).then((i) => i(this.axios));
   }
+  /**
+   * Adds a new instance represented by the passed Object.
+   * @summary Create an instance
+   * @param {IntegrationAddMessage} [integrationAddMessage] A JSON doc of the specified format
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
   add(a, e) {
-    return xa(this.configuration).add(a, e).then((i) => i(this.axios));
+    return Sa(this.configuration).add(a, e).then((i) => i(this.axios));
   }
+  /**
+   * Updates the matching instances with the passed updates.
+   * @summary Update one or more instances
+   * @param {IntegrationUpdateMessage} [integrationUpdateMessage] A JSON doc of the specified format
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
   update(a, e) {
-    return xa(this.configuration).update(a, e).then((i) => i(this.axios));
+    return Sa(this.configuration).update(a, e).then((i) => i(this.axios));
   }
 }
-class Ea {
+class Ca {
   constructor(a, e, i) {
     V(this, "instanceId"), V(this, "fieldDefinitionId"), V(this, "filename"), this.instanceId = a, this.fieldDefinitionId = e, this.filename = i;
   }
@@ -22427,17 +23021,23 @@ class Ea {
     return `/recordm/recordm/instances/${this.instanceId}/files/${this.fieldDefinitionId}/${this.filename}`;
   }
 }
-const ca = class {
-  constructor(o) {
-    V(this, "instance"), V(this, "fieldsNameMap"), this.instance = o, this.fieldsNameMap = {}, this.updateInternalDataStructure(this.instance.fields || []);
+const ot = class la {
+  constructor(a) {
+    V(this, "instance"), V(this, "fieldsNameMap"), this.instance = a, this.fieldsNameMap = {}, this.updateInternalDataStructure(this.instance.fields || []);
   }
-  updateInternalDataStructure(o, a) {
-    this.flattenFields(o).forEach((e) => {
-      this.fieldsNameMap[e.fieldDefinition.name] ? this.fieldsNameMap[e.fieldDefinition.name].push(e) : this.fieldsNameMap[e.fieldDefinition.name] = [e];
+  /**
+   * Updates internal data structures for quick access and findings
+   * @param fields the list of fields to analyze
+   * @param parent the parent field
+   * @private
+   */
+  updateInternalDataStructure(a, e) {
+    this.flattenFields(a).forEach((i) => {
+      this.fieldsNameMap[i.fieldDefinition.name] ? this.fieldsNameMap[i.fieldDefinition.name].push(i) : this.fieldsNameMap[i.fieldDefinition.name] = [i];
     });
   }
-  flattenFields(o) {
-    return o.flatMap((a) => [a, ...this.flattenFields(a.fields || [])]);
+  flattenFields(a) {
+    return a.flatMap((e) => [e, ...this.flattenFields(e.fields || [])]);
   }
   get id() {
     return this.instance.id;
@@ -22445,79 +23045,131 @@ const ca = class {
   get version() {
     return this.instance.version;
   }
-  field(o) {
-    var a;
-    return ((a = this.fieldsNameMap[o]) == null ? void 0 : a[0]) || null;
+  /**
+   * Lookup all instance fields with a specific name
+   * @param name the name of the field to look for
+   */
+  field(a) {
+    var e;
+    return ((e = this.fieldsNameMap[a]) == null ? void 0 : e[0]) || null;
   }
-  fields(o) {
-    return this.fieldsNameMap[o] || [];
+  /**
+   * Lookup all instance fields with a specific name.
+   * @param name the name of the field to look for
+   */
+  fields(a) {
+    return this.fieldsNameMap[a] || [];
   }
-  value(o) {
-    var a;
-    const e = (a = this.fields(o)) == null ? void 0 : a.find((i) => !!i.value);
-    return (e == null ? void 0 : e.value) || void 0;
+  /**
+   * Shortcut method to get the first value of a field of the Instance.
+   * @param name the field name
+   */
+  value(a) {
+    var e;
+    const i = (e = this.fields(a)) == null ? void 0 : e.find((n) => !!n.value);
+    return (i == null ? void 0 : i.value) || void 0;
   }
-  valueAndTransform(o, a) {
-    const e = this.value(o);
-    return e ? a(e) : void 0;
+  /**
+   * Shortcut method to get the first value of a field of the Instance and turn it into a specific type
+   * @param name the field name
+   * @param transformer the transformer function to return the value as a specific type
+   */
+  valueAndTransform(a, e) {
+    const i = this.value(a);
+    return i ? e(i) : void 0;
   }
-  valueAsNumber(o) {
-    return this.valueAndTransform(o, (a) => parseInt(a, 10));
+  /**
+   * Shortcut method to get the first value of a field of the Instance as a number.
+   * @param name the field name
+   */
+  valueAsNumber(a) {
+    return this.valueAndTransform(a, (e) => parseInt(e, 10));
   }
-  valueAsDate(o) {
-    return this.valueAndTransform(o, (a) => new Date(parseInt(a, 10)));
+  /**
+   * Shortcut method to get the first value of a field of the Instance as a Date.
+   * @param name the field name
+   */
+  valueAsDate(a) {
+    return this.valueAndTransform(a, (e) => new Date(parseInt(e, 10)));
   }
-  valueAsFile(o) {
-    let a = this.field(o);
-    if (a != null && a.value)
-      return new Ea(this.id, a.fieldDefinition.id, a.value);
+  /**
+   * Shortcut method to get the first value of a field of the Instance as an RmInstanceFile.
+   * @param name the field name
+   */
+  valueAsFile(a) {
+    let e = this.field(a);
+    if (e != null && e.value)
+      return new Ca(this.id, e.fieldDefinition.id, e.value);
   }
-  values(o) {
-    return this.fields(o).filter((a) => !!a.value).map((a) => a.value);
+  /**
+   * Get all the values of fields with the specified name.
+   * @param name the field name
+   */
+  values(a) {
+    return this.fields(a).filter((e) => !!e.value).map((e) => e.value);
   }
-  valuesAsNumbers(o) {
-    return this.values(o).map((a) => parseInt(a, 10));
+  /**
+   * Get all the values of fields with the specified name as numbers
+   * @param name the field name
+   */
+  valuesAsNumbers(a) {
+    return this.values(a).map((e) => parseInt(e, 10));
   }
-  valuesAsDates(o) {
-    return this.values(o).map((a) => new Date(parseInt(a, 10)));
+  /**
+   * Get all the values of fields with the specified name as numbers
+   * @param name the field name
+   */
+  valuesAsDates(a) {
+    return this.values(a).map((e) => new Date(parseInt(e, 10)));
   }
-  valuesAsFiles(o) {
-    return this.fields(o).filter((a) => !!a.value).map((a) => new Ea(this.id, a.fieldDefinition.id, a.value));
+  /**
+   * Shortcut method to get all values of a field of the Instance as an RmInstanceFile.
+   * @param name the field name
+   */
+  valuesAsFiles(a) {
+    return this.fields(a).filter((e) => !!e.value).map((e) => new Ca(this.id, e.fieldDefinition.id, e.value));
   }
-  async uploadFiles(o, a) {
-    const e = a.map((i) => ca.API.uploadFile(`${this.id}`, `${o.fieldDefinition.id}`, i).then((n) => {
-      let s = n.data.replaceAll("<textarea>", "").replaceAll("</textarea>", "");
-      return new Ea(this.id, o.fieldDefinition.id, s);
+  /**
+   * Upload a file into a $file field.
+   * @param field the target field to upload the files
+   * @param fieldUploads a Pair of field and the file to upload
+   */
+  async uploadFiles(a, e) {
+    const i = e.map((n) => la.API.uploadFile(`${this.id}`, `${a.fieldDefinition.id}`, n).then((s) => {
+      let t = s.data.replaceAll("<textarea>", "").replaceAll("</textarea>", "");
+      return new Ca(this.id, a.fieldDefinition.id, t);
     }));
-    return await Promise.all(e);
+    return await Promise.all(i);
   }
+  /**
+   * Veriify if this instance is updatable
+   */
   canUpdate() {
     return !!this.instance._links.update;
   }
-  static async load(o) {
+  static async load(a) {
     try {
-      const a = (await ca.API.getInstance(o)).data;
-      return Promise.resolve(new ca(a));
-    } catch (a) {
-      return console.error("Error loading instance with id", o), Promise.reject(a);
+      const e = (await la.API.getInstance(a)).data;
+      return Promise.resolve(new la(e));
+    } catch (e) {
+      return console.error("Error loading instance with id", a), Promise.reject(e);
     }
   }
 };
-let at = ca;
-V(at, "API", new Je());
-const ot = "/recordm/index.html#/instance/__INSTANCE_ID__", gt = function(o, a) {
+V(ot, "API", new Ge());
+const et = "/recordm/index.html#/instance/__INSTANCE_ID__", ft = function(o, a) {
   const e = {
     type: o,
     values: a
   };
-  return new Ks().add(e).then((n) => {
+  return new at().add(e).then((n) => {
     const s = n.data, t = s.id;
-    return s.resultsUrl = ot.replace("__INSTANCE_ID__", `${t}`), typeof window > "u" && (s.resultsUrl = A() + s.resultsUrl), s;
+    return s.resultsUrl = et.replace("__INSTANCE_ID__", `${t}`), typeof window > "u" && (s.resultsUrl = _() + s.resultsUrl), s;
   });
-}, et = "/recordm/recordm/definitions/search/advanced/__DEF_ID__?from=__FROM__&size=__SIZE__", it = "/recordm/#/definitions/__DEF_ID__/q=__QUERY__", ht = async function(o, a, e = "*", i = 0, n = 10, s = "", t = "") {
-  let u = et.replace("__DEF_ID__", `${o}`).replace("__FROM__", `${i}`).replace("__SIZE__", `${n}`);
-  const m = it.replace("__DEF_ID__", `${o}`).replace("__QUERY__", e);
-  s && (u += "&sort=" + s), t && (u += "&ascending=" + t);
+}, it = "/recordm/recordm/definitions/search/advanced/__DEF_ID__?from=__FROM__&size=__SIZE__", nt = "/recordm/#/definitions/__DEF_ID__/q=__QUERY__", yt = async function(o, a, e = "*", i = 0, n = 10, s = "", t = "") {
+  let r = it.replace("__DEF_ID__", `${o}`).replace("__FROM__", `${i}`).replace("__SIZE__", `${n}`);
+  const m = nt.replace("__DEF_ID__", `${o}`).replace("__QUERY__", e);
+  s && (r += "&sort=" + s), t && (r += "&ascending=" + t);
   const c = {
     query: {
       query_string: {
@@ -22527,46 +23179,46 @@ const ot = "/recordm/index.html#/instance/__INSTANCE_ID__", gt = function(o, a) 
       }
     },
     aggs: a
-  }, p = await j.post(A() + u, c);
-  return p.data.resultsUrl = m, typeof window > "u" && (p.data.resultsUrl = A() + p.data.resultsUrl), p.data;
-}, nt = "/recordm/recordm/definitions/search/name/__DEF_NAME__?from=__FROM__&size=__SIZE__&q=__QUERY__", st = "/recordm/#/definitions/__DEF_ID__/q=__QUERY__", dt = async function(o, a = "*", e = 0, i = 0, n = "", s) {
-  let t = nt.replace("__DEF_NAME__", o).replace("__QUERY__", a).replace("__FROM__", `${e}`).replace("__SIZE__", `${i}`);
+  }, p = await j.post(_() + r, c);
+  return p.data.resultsUrl = m, typeof window > "u" && (p.data.resultsUrl = _() + p.data.resultsUrl), p.data;
+}, st = "/recordm/recordm/definitions/search/name/__DEF_NAME__?from=__FROM__&size=__SIZE__&q=__QUERY__", tt = "/recordm/#/definitions/__DEF_ID__/q=__QUERY__", wt = async function(o, a = "*", e = 0, i = 0, n = "", s) {
+  let t = st.replace("__DEF_NAME__", o).replace("__QUERY__", a).replace("__FROM__", `${e}`).replace("__SIZE__", `${i}`);
   n !== void 0 && (t += "&sort=" + n), s !== void 0 && (t += "&ascending=" + s);
-  const u = await j.get(A() + t), m = u.data._definitions, c = m[Object.keys(m)[0]].id;
-  return u.data.resultsUrl = A() + st.replace("__DEF_ID__", c).replace("__QUERY__", a), u.data;
-}, tt = "/recordm/recordm/instances/__ID__??ignoreRefs=__FLAG__", jt = async function(o, a = !1) {
-  const e = tt.replace("__ID__", `${o}`).replace("__FLAG__", `${a}`);
-  await j.delete(A() + e);
-}, ut = "/recordm/recordm/domains/search/__DOMAIN_ID__?from=0&size=0&q=__QUERY__", rt = "/recordm/#/domain/__DOMAIN_ID__/q=__QUERY__", bt = async function(o, a = "*", e = 0, i = 0, n = "", s = !1) {
+  const r = await j.get(_() + t), m = r.data._definitions, c = m[Object.keys(m)[0]].id;
+  return r.data.resultsUrl = _() + tt.replace("__DEF_ID__", c).replace("__QUERY__", a), r.data;
+}, rt = "/recordm/recordm/instances/__ID__??ignoreRefs=__FLAG__", vt = async function(o, a = !1) {
+  const e = rt.replace("__ID__", `${o}`).replace("__FLAG__", `${a}`);
+  await j.delete(_() + e);
+}, ut = "/recordm/recordm/domains/search/__DOMAIN_ID__?from=0&size=0&q=__QUERY__", mt = "/recordm/#/domain/__DOMAIN_ID__/q=__QUERY__", zt = async function(o, a = "*", e = 0, i = 0, n = "", s = !1) {
   let t = ut.replace("__DOMAIN_ID__", `${o}`).replace("__QUERY__", a).replace("__FROM__", `${e}`).replace("__SIZE__", `${i}`);
   n && (t += "&sort=" + n), s && (t += "&ascending=" + s);
-  const u = await j.get(A() + t);
-  return u.data.resultsUrl = rt.replace("__DOMAIN_ID__", `${o}`).replace("__QUERY__", a), typeof window > "u" && (u.data.resultsUrl = A() + u.data.resultsUrl), u.data;
-}, mt = "/recordm/index.html#/instance/__INSTANCE_ID__", ft = function(o) {
-  return new Je().getInstance(o).then((e) => {
+  const r = await j.get(_() + t);
+  return r.data.resultsUrl = mt.replace("__DOMAIN_ID__", `${o}`).replace("__QUERY__", a), typeof window > "u" && (r.data.resultsUrl = _() + r.data.resultsUrl), r.data;
+}, pt = "/recordm/index.html#/instance/__INSTANCE_ID__", xt = function(o) {
+  return new Ge().getInstance(o).then((e) => {
     const i = e.data, n = i.id;
-    return i.resultsUrl = mt.replace("__INSTANCE_ID__", `${n}`), typeof window > "u" && (i.resultsUrl = A() + i.resultsUrl), i;
+    return i.resultsUrl = pt.replace("__INSTANCE_ID__", `${n}`), typeof window > "u" && (i.resultsUrl = _() + i.resultsUrl), i;
   });
-}, yt = async function(o) {
-  return (await new He().getDefinition(o)).data;
-}, wt = async function(o = { includeDisabled: !1, name: null }) {
-  return (await new He().getAllDefinitions(
+}, St = async function(o) {
+  return (await new Je().getDefinition(o)).data;
+}, Ct = async function(o = { includeDisabled: !1, name: null }) {
+  return (await new Je().getAllDefinitions(
     o.includeDisabled,
     o.name ? o.name.replace(/\*/g, "%") : void 0
   )).data;
 };
 export {
-  ct as auth,
-  kt as dmEquipmentSearch,
-  lt as logout,
-  gt as rmAddInstance,
-  ht as rmDefinitionAggregation,
-  dt as rmDefinitionSearch,
-  jt as rmDeleteInstance,
-  bt as rmDomainSearch,
-  ft as rmGetInstance,
-  yt as rmListDefinitionFields,
-  wt as rmListDefinitions,
-  Co as umLoggedin
+  dt as auth,
+  bt as dmEquipmentSearch,
+  jt as logout,
+  ft as rmAddInstance,
+  yt as rmDefinitionAggregation,
+  wt as rmDefinitionSearch,
+  vt as rmDeleteInstance,
+  zt as rmDomainSearch,
+  xt as rmGetInstance,
+  St as rmListDefinitionFields,
+  Ct as rmListDefinitions,
+  _o as umLoggedin
 };
 //# sourceMappingURL=cobjs-api-helpers.mjs.map

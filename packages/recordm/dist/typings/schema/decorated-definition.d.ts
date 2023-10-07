@@ -60,4 +60,4 @@ export declare const DecoratedDefinitionStateEnum: {
     readonly DISABLED: "disabled";
     readonly DELETE_IN_PROGRESS: "deleteInProgress";
 };
-export declare type DecoratedDefinitionStateEnum = typeof DecoratedDefinitionStateEnum[keyof typeof DecoratedDefinitionStateEnum];
+export type DecoratedDefinitionStateEnum = typeof DecoratedDefinitionStateEnum[keyof typeof DecoratedDefinitionStateEnum];

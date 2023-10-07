@@ -89,4 +89,4 @@ export declare const UpdateUserRequestStateEnum: {
     readonly ENABLED: "enabled";
     readonly DISABLED: "disabled";
 };
-export declare type UpdateUserRequestStateEnum = typeof UpdateUserRequestStateEnum[keyof typeof UpdateUserRequestStateEnum];
+export type UpdateUserRequestStateEnum = typeof UpdateUserRequestStateEnum[keyof typeof UpdateUserRequestStateEnum];

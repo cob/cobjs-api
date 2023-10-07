@@ -1,328 +1,349 @@
 var co = Object.defineProperty;
-var lo = (i, a, o) => a in i ? co(i, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : i[a] = o;
-var R = (i, a, o) => (lo(i, typeof a != "symbol" ? a + "" : a, o), o);
-import h from "axios";
-var po = Object.defineProperty, ho = (i, a, o) => a in i ? po(i, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : i[a] = o, _ = (i, a, o) => (ho(i, typeof a != "symbol" ? a + "" : a, o), o), fa = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Ta(i) {
-  var a = i.default;
+var lo = (e, a, o) => a in e ? co(e, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[a] = o;
+var U = (e, a, o) => (lo(e, typeof a != "symbol" ? a + "" : a, o), o);
+import d from "axios";
+var po = Object.defineProperty, ho = (e, a, o) => a in e ? po(e, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[a] = o, B = (e, a, o) => (ho(e, typeof a != "symbol" ? a + "" : a, o), o), ya = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function La(e) {
+  if (e.__esModule)
+    return e;
+  var a = e.default;
   if (typeof a == "function") {
-    var o = function() {
-      return a.apply(this, arguments);
+    var o = function i() {
+      return this instanceof i ? Reflect.construct(a, arguments, this.constructor) : a.apply(this, arguments);
     };
     o.prototype = a.prototype;
   } else
     o = {};
-  return Object.defineProperty(o, "__esModule", { value: !0 }), Object.keys(i).forEach(function(e) {
-    var s = Object.getOwnPropertyDescriptor(i, e);
-    Object.defineProperty(o, e, s.get ? s : {
+  return Object.defineProperty(o, "__esModule", { value: !0 }), Object.keys(e).forEach(function(i) {
+    var s = Object.getOwnPropertyDescriptor(e, i);
+    Object.defineProperty(o, i, s.get ? s : {
       enumerable: !0,
       get: function() {
-        return i[e];
+        return e[i];
       }
     });
   }), o;
 }
-const N = 2147483647, D = 36, ua = 1, M = 26, ko = 38, go = 700, Ra = 72, La = 128, Ua = "-", jo = /^xn--/, bo = /[^\0-\x7E]/, yo = /[\x2E\u3002\uFF0E\uFF61]/g, fo = {
+const q = 2147483647, I = 36, ra = 1, M = 26, ko = 38, go = 700, Ua = 72, Na = 128, _a = "-", jo = /^xn--/, bo = /[^\0-\x7E]/, yo = /[\x2E\u3002\uFF0E\uFF61]/g, fo = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, X = D - ua, C = Math.floor, Y = String.fromCharCode;
-function L(i) {
-  throw new RangeError(fo[i]);
+}, X = I - ra, A = Math.floor, Y = String.fromCharCode;
+function N(e) {
+  throw new RangeError(fo[e]);
 }
-function wo(i, a) {
+function wo(e, a) {
   const o = [];
-  let e = i.length;
-  for (; e--; )
-    o[e] = a(i[e]);
+  let i = e.length;
+  for (; i--; )
+    o[i] = a(e[i]);
   return o;
 }
-function Na(i, a) {
-  const o = i.split("@");
-  let e = "";
-  o.length > 1 && (e = o[0] + "@", i = o[1]), i = i.replace(yo, ".");
-  const s = i.split("."), n = wo(s, a).join(".");
-  return e + n;
+function Fa(e, a) {
+  const o = e.split("@");
+  let i = "";
+  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(yo, ".");
+  const s = e.split("."), n = wo(s, a).join(".");
+  return i + n;
 }
-function ma(i) {
+function ma(e) {
   const a = [];
   let o = 0;
-  const e = i.length;
-  for (; o < e; ) {
-    const s = i.charCodeAt(o++);
-    if (s >= 55296 && s <= 56319 && o < e) {
-      const n = i.charCodeAt(o++);
+  const i = e.length;
+  for (; o < i; ) {
+    const s = e.charCodeAt(o++);
+    if (s >= 55296 && s <= 56319 && o < i) {
+      const n = e.charCodeAt(o++);
       (n & 64512) == 56320 ? a.push(((s & 1023) << 10) + (n & 1023) + 65536) : (a.push(s), o--);
     } else
       a.push(s);
   }
   return a;
 }
-const _a = (i) => String.fromCodePoint(...i), vo = function(i) {
-  return i - 48 < 10 ? i - 22 : i - 65 < 26 ? i - 65 : i - 97 < 26 ? i - 97 : D;
-}, wa = function(i, a) {
-  return i + 22 + 75 * (i < 26) - ((a != 0) << 5);
-}, qa = function(i, a, o) {
-  let e = 0;
-  for (i = o ? C(i / go) : i >> 1, i += C(i / a); i > X * M >> 1; e += D)
-    i = C(i / X);
-  return C(e + (X + 1) * i / (i + ko));
-}, ca = function(i) {
-  const a = [], o = i.length;
-  let e = 0, s = La, n = Ra, t = i.lastIndexOf(Ua);
+const qa = (e) => String.fromCodePoint(...e), vo = function(e) {
+  return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : I;
+}, fa = function(e, a) {
+  return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
+}, Ba = function(e, a, o) {
+  let i = 0;
+  for (e = o ? A(e / go) : e >> 1, e += A(e / a); e > X * M >> 1; i += I)
+    e = A(e / X);
+  return A(i + (X + 1) * e / (e + ko));
+}, ua = function(e) {
+  const a = [], o = e.length;
+  let i = 0, s = Na, n = Ua, t = e.lastIndexOf(_a);
   t < 0 && (t = 0);
   for (let r = 0; r < t; ++r)
-    i.charCodeAt(r) >= 128 && L("not-basic"), a.push(i.charCodeAt(r));
+    e.charCodeAt(r) >= 128 && N("not-basic"), a.push(e.charCodeAt(r));
   for (let r = t > 0 ? t + 1 : 0; r < o; ) {
-    let u = e;
-    for (let c = 1, l = D; ; l += D) {
-      r >= o && L("invalid-input");
-      const d = vo(i.charCodeAt(r++));
-      (d >= D || d > C((N - e) / c)) && L("overflow"), e += d * c;
-      const f = l <= n ? ua : l >= n + M ? M : l - n;
-      if (d < f)
+    let m = i;
+    for (let c = 1, l = I; ; l += I) {
+      r >= o && N("invalid-input");
+      const h = vo(e.charCodeAt(r++));
+      (h >= I || h > A((q - i) / c)) && N("overflow"), i += h * c;
+      const f = l <= n ? ra : l >= n + M ? M : l - n;
+      if (h < f)
         break;
-      const v = D - f;
-      c > C(N / v) && L("overflow"), c *= v;
+      const v = I - f;
+      c > A(q / v) && N("overflow"), c *= v;
     }
-    const m = a.length + 1;
-    n = qa(e - u, m, u == 0), C(e / m) > N - s && L("overflow"), s += C(e / m), e %= m, a.splice(e++, 0, s);
+    const u = a.length + 1;
+    n = Ba(i - m, u, m == 0), A(i / u) > q - s && N("overflow"), s += A(i / u), i %= u, a.splice(i++, 0, s);
   }
   return String.fromCodePoint(...a);
-}, la = function(i) {
+}, ca = function(e) {
   const a = [];
-  i = ma(i);
-  let o = i.length, e = La, s = 0, n = Ra;
-  for (const u of i)
-    u < 128 && a.push(Y(u));
+  e = ma(e);
+  let o = e.length, i = Na, s = 0, n = Ua;
+  for (const m of e)
+    m < 128 && a.push(Y(m));
   let t = a.length, r = t;
-  for (t && a.push(Ua); r < o; ) {
-    let u = N;
-    for (const c of i)
-      c >= e && c < u && (u = c);
-    const m = r + 1;
-    u - e > C((N - s) / m) && L("overflow"), s += (u - e) * m, e = u;
-    for (const c of i)
-      if (c < e && ++s > N && L("overflow"), c == e) {
+  for (t && a.push(_a); r < o; ) {
+    let m = q;
+    for (const c of e)
+      c >= i && c < m && (m = c);
+    const u = r + 1;
+    m - i > A((q - s) / u) && N("overflow"), s += (m - i) * u, i = m;
+    for (const c of e)
+      if (c < i && ++s > q && N("overflow"), c == i) {
         let l = s;
-        for (let d = D; ; d += D) {
-          const f = d <= n ? ua : d >= n + M ? M : d - n;
+        for (let h = I; ; h += I) {
+          const f = h <= n ? ra : h >= n + M ? M : h - n;
           if (l < f)
             break;
-          const v = l - f, y = D - f;
+          const v = l - f, y = I - f;
           a.push(
-            Y(wa(f + v % y, 0))
-          ), l = C(v / y);
+            Y(fa(f + v % y, 0))
+          ), l = A(v / y);
         }
-        a.push(Y(wa(l, 0))), n = qa(s, m, r == t), s = 0, ++r;
+        a.push(Y(fa(l, 0))), n = Ba(s, u, r == t), s = 0, ++r;
       }
-    ++s, ++e;
+    ++s, ++i;
   }
   return a.join("");
-}, $a = function(i) {
-  return Na(i, function(a) {
-    return jo.test(a) ? ca(a.slice(4).toLowerCase()) : a;
+}, $a = function(e) {
+  return Fa(e, function(a) {
+    return jo.test(a) ? ua(a.slice(4).toLowerCase()) : a;
   });
-}, Ma = function(i) {
-  return Na(i, function(a) {
-    return bo.test(a) ? "xn--" + la(a) : a;
+}, Ma = function(e) {
+  return Fa(e, function(a) {
+    return bo.test(a) ? "xn--" + ca(a) : a;
   });
-}, xo = {
+}, zo = {
+  /**
+   * A string representing the current Punycode.js version number.
+   * @memberOf punycode
+   * @type String
+   */
   version: "2.1.0",
+  /**
+   * An object of methods to convert from JavaScript's internal character
+   * representation (UCS-2) to Unicode code points, and back.
+   * @see <https://mathiasbynens.be/notes/javascript-encoding>
+   * @memberOf punycode
+   * @type Object
+   */
   ucs2: {
     decode: ma,
-    encode: _a
+    encode: qa
   },
-  decode: ca,
-  encode: la,
+  decode: ua,
+  encode: ca,
   toASCII: Ma,
   toUnicode: $a
-}, zo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, xo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ucs2decode: ma,
-  ucs2encode: _a,
-  decode: ca,
-  encode: la,
+  decode: ua,
+  default: zo,
+  encode: ca,
   toASCII: Ma,
   toUnicode: $a,
-  default: xo
-}, Symbol.toStringTag, { value: "Module" })), Ha = /* @__PURE__ */ Ta(zo);
-var Eo = function(i, a) {
-  if (a = a.split(":")[0], i = +i, !i)
+  ucs2decode: ma,
+  ucs2encode: qa
+}, Symbol.toStringTag, { value: "Module" })), Ha = /* @__PURE__ */ La(xo);
+var Oo = function(e, a) {
+  if (a = a.split(":")[0], e = +e, !e)
     return !1;
   switch (a) {
     case "http":
     case "ws":
-      return i !== 80;
+      return e !== 80;
     case "https":
     case "wss":
-      return i !== 443;
+      return e !== 443;
     case "ftp":
-      return i !== 21;
+      return e !== 21;
     case "gopher":
-      return i !== 70;
+      return e !== 70;
     case "file":
       return !1;
   }
-  return i !== 0;
-}, pa = {}, Ao = Object.prototype.hasOwnProperty, Do;
-function va(i) {
+  return e !== 0;
+}, la = {}, Do = Object.prototype.hasOwnProperty, Io;
+function wa(e) {
   try {
-    return decodeURIComponent(i.replace(/\+/g, " "));
+    return decodeURIComponent(e.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function xa(i) {
+function va(e) {
   try {
-    return encodeURIComponent(i);
+    return encodeURIComponent(e);
   } catch {
     return null;
   }
 }
-function Co(i) {
-  for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, e; e = a.exec(i); ) {
-    var s = va(e[1]), n = va(e[2]);
+function Ao(e) {
+  for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, i; i = a.exec(e); ) {
+    var s = wa(i[1]), n = wa(i[2]);
     s === null || n === null || s in o || (o[s] = n);
   }
   return o;
 }
-function Oo(i, a) {
+function So(e, a) {
   a = a || "";
-  var o = [], e, s;
+  var o = [], i, s;
   typeof a != "string" && (a = "?");
-  for (s in i)
-    if (Ao.call(i, s)) {
-      if (e = i[s], !e && (e === null || e === Do || isNaN(e)) && (e = ""), s = xa(s), e = xa(e), s === null || e === null)
+  for (s in e)
+    if (Do.call(e, s)) {
+      if (i = e[s], !i && (i === null || i === Io || isNaN(i)) && (i = ""), s = va(s), i = va(i), s === null || i === null)
         continue;
-      o.push(s + "=" + e);
+      o.push(s + "=" + i);
     }
   return o.length ? a + o.join("&") : "";
 }
-pa.stringify = Oo;
-pa.parse = Co;
-var Qa = Eo, W = pa, Fo = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ga = /[\n\r\t]/g, Io = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Ja = /:\d+$/, So = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Vo = /^[a-zA-Z]:/;
-function da(i) {
-  return (i || "").toString().replace(Fo, "");
+la.stringify = So;
+la.parse = Ao;
+var Qa = Oo, W = la, Co = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ga = /[\n\r\t]/g, Vo = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Ja = /:\d+$/, Eo = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Po = /^[a-zA-Z]:/;
+function pa(e) {
+  return (e || "").toString().replace(Co, "");
 }
-var ia = [
+var ea = [
   ["#", "hash"],
+  // Extract from the back.
   ["?", "query"],
-  function(i, a) {
-    return O(a.protocol) ? i.replace(/\\/g, "/") : i;
+  // Extract from the back.
+  function(e, a) {
+    return S(a.protocol) ? e.replace(/\\/g, "/") : e;
   },
   ["/", "pathname"],
+  // Extract from the back.
   ["@", "auth", 1],
+  // Extract from the front.
   [NaN, "host", void 0, 1, 1],
+  // Set left over value.
   [/:(\d*)$/, "port", void 0, 1],
+  // RegExp the back.
   [NaN, "hostname", void 0, 1, 1]
+  // Set left over.
 ], za = { hash: 1, query: 1 };
-function Wa(i) {
+function Wa(e) {
   var a;
-  typeof window < "u" ? a = window : typeof fa < "u" ? a = fa : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof ya < "u" ? a = ya : typeof self < "u" ? a = self : a = {};
   var o = a.location || {};
-  i = i || o;
-  var e = {}, s = typeof i, n;
-  if (i.protocol === "blob:")
-    e = new F(unescape(i.pathname), {});
+  e = e || o;
+  var i = {}, s = typeof e, n;
+  if (e.protocol === "blob:")
+    i = new C(unescape(e.pathname), {});
   else if (s === "string") {
-    e = new F(i, {});
+    i = new C(e, {});
     for (n in za)
-      delete e[n];
+      delete i[n];
   } else if (s === "object") {
-    for (n in i)
-      n in za || (e[n] = i[n]);
-    e.slashes === void 0 && (e.slashes = Io.test(i.href));
+    for (n in e)
+      n in za || (i[n] = e[n]);
+    i.slashes === void 0 && (i.slashes = Vo.test(e.href));
   }
-  return e;
+  return i;
 }
-function O(i) {
-  return i === "file:" || i === "ftp:" || i === "http:" || i === "https:" || i === "ws:" || i === "wss:";
+function S(e) {
+  return e === "file:" || e === "ftp:" || e === "http:" || e === "https:" || e === "ws:" || e === "wss:";
 }
-function Za(i, a) {
-  i = da(i), i = i.replace(Ga, ""), a = a || {};
-  var o = So.exec(i), e = o[1] ? o[1].toLowerCase() : "", s = !!o[2], n = !!o[3], t = 0, r;
-  return s ? n ? (r = o[2] + o[3] + o[4], t = o[2].length + o[3].length) : (r = o[2] + o[4], t = o[2].length) : n ? (r = o[3] + o[4], t = o[3].length) : r = o[4], e === "file:" ? t >= 2 && (r = r.slice(2)) : O(e) ? r = o[4] : e ? s && (r = r.slice(2)) : t >= 2 && O(a.protocol) && (r = o[4]), {
-    protocol: e,
-    slashes: s || O(e),
+function Za(e, a) {
+  e = pa(e), e = e.replace(Ga, ""), a = a || {};
+  var o = Eo.exec(e), i = o[1] ? o[1].toLowerCase() : "", s = !!o[2], n = !!o[3], t = 0, r;
+  return s ? n ? (r = o[2] + o[3] + o[4], t = o[2].length + o[3].length) : (r = o[2] + o[4], t = o[2].length) : n ? (r = o[3] + o[4], t = o[3].length) : r = o[4], i === "file:" ? t >= 2 && (r = r.slice(2)) : S(i) ? r = o[4] : i ? s && (r = r.slice(2)) : t >= 2 && S(a.protocol) && (r = o[4]), {
+    protocol: i,
+    slashes: s || S(i),
     slashesCount: t,
     rest: r
   };
 }
-function Po(i, a) {
-  if (i === "")
+function To(e, a) {
+  if (e === "")
     return a;
-  for (var o = (a || "/").split("/").slice(0, -1).concat(i.split("/")), e = o.length, s = o[e - 1], n = !1, t = 0; e--; )
-    o[e] === "." ? o.splice(e, 1) : o[e] === ".." ? (o.splice(e, 1), t++) : t && (e === 0 && (n = !0), o.splice(e, 1), t--);
+  for (var o = (a || "/").split("/").slice(0, -1).concat(e.split("/")), i = o.length, s = o[i - 1], n = !1, t = 0; i--; )
+    o[i] === "." ? o.splice(i, 1) : o[i] === ".." ? (o.splice(i, 1), t++) : t && (i === 0 && (n = !0), o.splice(i, 1), t--);
   return n && o.unshift(""), (s === "." || s === "..") && o.push(""), o.join("/");
 }
-function F(i, a, o) {
-  if (i = da(i), i = i.replace(Ga, ""), !(this instanceof F))
-    return new F(i, a, o);
-  var e, s, n, t, r, u, m = ia.slice(), c = typeof a, l = this, d = 0;
-  for (c !== "object" && c !== "string" && (o = a, a = null), o && typeof o != "function" && (o = W.parse), a = Wa(a), s = Za(i || "", a), e = !s.protocol && !s.slashes, l.slashes = s.slashes || e && a.slashes, l.protocol = s.protocol || a.protocol || "", i = s.rest, (s.protocol === "file:" && (s.slashesCount !== 2 || Vo.test(i)) || !s.slashes && (s.protocol || s.slashesCount < 2 || !O(l.protocol))) && (m[3] = [/(.*)/, "pathname"]); d < m.length; d++) {
-    if (t = m[d], typeof t == "function") {
-      i = t(i, l);
+function C(e, a, o) {
+  if (e = pa(e), e = e.replace(Ga, ""), !(this instanceof C))
+    return new C(e, a, o);
+  var i, s, n, t, r, m, u = ea.slice(), c = typeof a, l = this, h = 0;
+  for (c !== "object" && c !== "string" && (o = a, a = null), o && typeof o != "function" && (o = W.parse), a = Wa(a), s = Za(e || "", a), i = !s.protocol && !s.slashes, l.slashes = s.slashes || i && a.slashes, l.protocol = s.protocol || a.protocol || "", e = s.rest, (s.protocol === "file:" && (s.slashesCount !== 2 || Po.test(e)) || !s.slashes && (s.protocol || s.slashesCount < 2 || !S(l.protocol))) && (u[3] = [/(.*)/, "pathname"]); h < u.length; h++) {
+    if (t = u[h], typeof t == "function") {
+      e = t(e, l);
       continue;
     }
-    n = t[0], u = t[1], n !== n ? l[u] = i : typeof n == "string" ? (r = n === "@" ? i.lastIndexOf(n) : i.indexOf(n), ~r && (typeof t[2] == "number" ? (l[u] = i.slice(0, r), i = i.slice(r + t[2])) : (l[u] = i.slice(r), i = i.slice(0, r)))) : (r = n.exec(i)) && (l[u] = r[1], i = i.slice(0, r.index)), l[u] = l[u] || e && t[3] && a[u] || "", t[4] && (l[u] = l[u].toLowerCase());
+    n = t[0], m = t[1], n !== n ? l[m] = e : typeof n == "string" ? (r = n === "@" ? e.lastIndexOf(n) : e.indexOf(n), ~r && (typeof t[2] == "number" ? (l[m] = e.slice(0, r), e = e.slice(r + t[2])) : (l[m] = e.slice(r), e = e.slice(0, r)))) : (r = n.exec(e)) && (l[m] = r[1], e = e.slice(0, r.index)), l[m] = l[m] || i && t[3] && a[m] || "", t[4] && (l[m] = l[m].toLowerCase());
   }
-  o && (l.query = o(l.query)), e && a.slashes && l.pathname.charAt(0) !== "/" && (l.pathname !== "" || a.pathname !== "") && (l.pathname = Po(l.pathname, a.pathname)), l.pathname.charAt(0) !== "/" && O(l.protocol) && (l.pathname = "/" + l.pathname), Qa(l.port, l.protocol) || (l.host = l.hostname, l.port = ""), l.username = l.password = "", l.auth && (r = l.auth.indexOf(":"), ~r ? (l.username = l.auth.slice(0, r), l.username = encodeURIComponent(decodeURIComponent(l.username)), l.password = l.auth.slice(r + 1), l.password = encodeURIComponent(decodeURIComponent(l.password))) : l.username = encodeURIComponent(decodeURIComponent(l.auth)), l.auth = l.password ? l.username + ":" + l.password : l.username), l.origin = l.protocol !== "file:" && O(l.protocol) && l.host ? l.protocol + "//" + l.host : "null", l.href = l.toString();
+  o && (l.query = o(l.query)), i && a.slashes && l.pathname.charAt(0) !== "/" && (l.pathname !== "" || a.pathname !== "") && (l.pathname = To(l.pathname, a.pathname)), l.pathname.charAt(0) !== "/" && S(l.protocol) && (l.pathname = "/" + l.pathname), Qa(l.port, l.protocol) || (l.host = l.hostname, l.port = ""), l.username = l.password = "", l.auth && (r = l.auth.indexOf(":"), ~r ? (l.username = l.auth.slice(0, r), l.username = encodeURIComponent(decodeURIComponent(l.username)), l.password = l.auth.slice(r + 1), l.password = encodeURIComponent(decodeURIComponent(l.password))) : l.username = encodeURIComponent(decodeURIComponent(l.auth)), l.auth = l.password ? l.username + ":" + l.password : l.username), l.origin = l.protocol !== "file:" && S(l.protocol) && l.host ? l.protocol + "//" + l.host : "null", l.href = l.toString();
 }
-function Bo(i, a, o) {
-  var e = this;
-  switch (i) {
+function Ro(e, a, o) {
+  var i = this;
+  switch (e) {
     case "query":
-      typeof a == "string" && a.length && (a = (o || W.parse)(a)), e[i] = a;
+      typeof a == "string" && a.length && (a = (o || W.parse)(a)), i[e] = a;
       break;
     case "port":
-      e[i] = a, Qa(a, e.protocol) ? a && (e.host = e.hostname + ":" + a) : (e.host = e.hostname, e[i] = "");
+      i[e] = a, Qa(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
       break;
     case "hostname":
-      e[i] = a, e.port && (a += ":" + e.port), e.host = a;
+      i[e] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      e[i] = a, Ja.test(a) ? (a = a.split(":"), e.port = a.pop(), e.hostname = a.join(":")) : (e.hostname = a, e.port = "");
+      i[e] = a, Ja.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
-      e.protocol = a.toLowerCase(), e.slashes = !o;
+      i.protocol = a.toLowerCase(), i.slashes = !o;
       break;
     case "pathname":
     case "hash":
       if (a) {
-        var s = i === "pathname" ? "/" : "#";
-        e[i] = a.charAt(0) !== s ? s + a : a;
+        var s = e === "pathname" ? "/" : "#";
+        i[e] = a.charAt(0) !== s ? s + a : a;
       } else
-        e[i] = a;
+        i[e] = a;
       break;
     case "username":
     case "password":
-      e[i] = encodeURIComponent(a);
+      i[e] = encodeURIComponent(a);
       break;
     case "auth":
       var n = a.indexOf(":");
-      ~n ? (e.username = a.slice(0, n), e.username = encodeURIComponent(decodeURIComponent(e.username)), e.password = a.slice(n + 1), e.password = encodeURIComponent(decodeURIComponent(e.password))) : e.username = encodeURIComponent(decodeURIComponent(a));
+      ~n ? (i.username = a.slice(0, n), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(n + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < ia.length; t++) {
-    var r = ia[t];
-    r[4] && (e[r[1]] = e[r[1]].toLowerCase());
+  for (var t = 0; t < ea.length; t++) {
+    var r = ea[t];
+    r[4] && (i[r[1]] = i[r[1]].toLowerCase());
   }
-  return e.auth = e.password ? e.username + ":" + e.password : e.username, e.origin = e.protocol !== "file:" && O(e.protocol) && e.host ? e.protocol + "//" + e.host : "null", e.href = e.toString(), e;
+  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && S(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function To(i) {
-  (!i || typeof i != "function") && (i = W.stringify);
-  var a, o = this, e = o.host, s = o.protocol;
+function Lo(e) {
+  (!e || typeof e != "function") && (e = W.stringify);
+  var a, o = this, i = o.host, s = o.protocol;
   s && s.charAt(s.length - 1) !== ":" && (s += ":");
-  var n = s + (o.protocol && o.slashes || O(o.protocol) ? "//" : "");
-  return o.username ? (n += o.username, o.password && (n += ":" + o.password), n += "@") : o.password ? (n += ":" + o.password, n += "@") : o.protocol !== "file:" && O(o.protocol) && !e && o.pathname !== "/" && (n += "@"), (e[e.length - 1] === ":" || Ja.test(o.hostname) && !o.port) && (e += ":"), n += e + o.pathname, a = typeof o.query == "object" ? i(o.query) : o.query, a && (n += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (n += o.hash), n;
+  var n = s + (o.protocol && o.slashes || S(o.protocol) ? "//" : "");
+  return o.username ? (n += o.username, o.password && (n += ":" + o.password), n += "@") : o.password ? (n += ":" + o.password, n += "@") : o.protocol !== "file:" && S(o.protocol) && !i && o.pathname !== "/" && (n += "@"), (i[i.length - 1] === ":" || Ja.test(o.hostname) && !o.port) && (i += ":"), n += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (n += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (n += o.hash), n;
 }
-F.prototype = { set: Bo, toString: To };
-F.extractProtocol = Za;
-F.location = Wa;
-F.trimLeft = da;
-F.qs = W;
-var Ro = F, ha = {}, Ka = {};
-const Lo = [
+C.prototype = { set: Ro, toString: Lo };
+C.extractProtocol = Za;
+C.location = Wa;
+C.trimLeft = pa;
+C.qs = W;
+var Uo = C, da = {}, Ka = {};
+const No = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -907,7 +928,7 @@ const Lo = [
   "net.ci",
   "go.ci",
   "asso.ci",
-  "a\xE9roport.ci",
+  "aéroport.ci",
   "int.ci",
   "presse.ci",
   "md.ci",
@@ -932,9 +953,9 @@ const Lo = [
   "net.cn",
   "org.cn",
   "mil.cn",
-  "\u516C\u53F8.cn",
-  "\u7F51\u7EDC.cn",
-  "\u7DB2\u7D61.cn",
+  "公司.cn",
+  "网络.cn",
+  "網絡.cn",
   "ah.cn",
   "bj.cn",
   "cq.cn",
@@ -1245,21 +1266,21 @@ const Lo = [
   "idv.hk",
   "net.hk",
   "org.hk",
-  "\u516C\u53F8.hk",
-  "\u6559\u80B2.hk",
-  "\u654E\u80B2.hk",
-  "\u653F\u5E9C.hk",
-  "\u500B\u4EBA.hk",
-  "\u4E2A\uFFFD\uFFFD.hk",
-  "\u7B87\u4EBA.hk",
-  "\u7DB2\u7EDC.hk",
-  "\u7F51\u7EDC.hk",
-  "\u7EC4\u7E54.hk",
-  "\u7DB2\u7D61.hk",
-  "\u7F51\u7D61.hk",
-  "\u7EC4\u7EC7.hk",
-  "\u7D44\u7E54.hk",
-  "\u7D44\u7EC7.hk",
+  "公司.hk",
+  "教育.hk",
+  "敎育.hk",
+  "政府.hk",
+  "個人.hk",
+  "个��.hk",
+  "箇人.hk",
+  "網络.hk",
+  "网络.hk",
+  "组織.hk",
+  "網絡.hk",
+  "网絡.hk",
+  "组织.hk",
+  "組織.hk",
+  "組织.hk",
   "hm",
   "hn",
   "com.hn",
@@ -1390,8 +1411,8 @@ const Lo = [
   "net.ir",
   "org.ir",
   "sch.ir",
-  "\u0627\u06CC\u0631\u0627\u0646.ir",
-  "\u0627\u064A\u0631\u0627\u0646.ir",
+  "ایران.ir",
+  "ايران.ir",
   "is",
   "net.is",
   "com.is",
@@ -1455,9 +1476,9 @@ const Lo = [
   "tos.it",
   "toscana.it",
   "trentin-sud-tirol.it",
-  "trentin-s\xFCd-tirol.it",
+  "trentin-süd-tirol.it",
   "trentin-sudtirol.it",
-  "trentin-s\xFCdtirol.it",
+  "trentin-südtirol.it",
   "trentin-sued-tirol.it",
   "trentin-suedtirol.it",
   "trentino-a-adige.it",
@@ -1467,9 +1488,9 @@ const Lo = [
   "trentino-s-tirol.it",
   "trentino-stirol.it",
   "trentino-sud-tirol.it",
-  "trentino-s\xFCd-tirol.it",
+  "trentino-süd-tirol.it",
   "trentino-sudtirol.it",
-  "trentino-s\xFCdtirol.it",
+  "trentino-südtirol.it",
   "trentino-sued-tirol.it",
   "trentino-suedtirol.it",
   "trentino.it",
@@ -1480,15 +1501,15 @@ const Lo = [
   "trentinos-tirol.it",
   "trentinostirol.it",
   "trentinosud-tirol.it",
-  "trentinos\xFCd-tirol.it",
+  "trentinosüd-tirol.it",
   "trentinosudtirol.it",
-  "trentinos\xFCdtirol.it",
+  "trentinosüdtirol.it",
   "trentinosued-tirol.it",
   "trentinosuedtirol.it",
   "trentinsud-tirol.it",
-  "trentins\xFCd-tirol.it",
+  "trentinsüd-tirol.it",
   "trentinsudtirol.it",
-  "trentins\xFCdtirol.it",
+  "trentinsüdtirol.it",
   "trentinsued-tirol.it",
   "trentinsuedtirol.it",
   "tuscany.it",
@@ -1505,13 +1526,13 @@ const Lo = [
   "valled-aosta.it",
   "valledaosta.it",
   "vallee-aoste.it",
-  "vall\xE9e-aoste.it",
+  "vallée-aoste.it",
   "vallee-d-aoste.it",
-  "vall\xE9e-d-aoste.it",
+  "vallée-d-aoste.it",
   "valleeaoste.it",
-  "vall\xE9eaoste.it",
+  "valléeaoste.it",
   "valleedaoste.it",
-  "vall\xE9edaoste.it",
+  "valléedaoste.it",
   "vao.it",
   "vda.it",
   "ven.it",
@@ -1544,7 +1565,7 @@ const Lo = [
   "avellino.it",
   "ba.it",
   "balsan-sudtirol.it",
-  "balsan-s\xFCdtirol.it",
+  "balsan-südtirol.it",
   "balsan-suedtirol.it",
   "balsan.it",
   "bari.it",
@@ -1563,7 +1584,7 @@ const Lo = [
   "bolzano-altoadige.it",
   "bolzano.it",
   "bozen-sudtirol.it",
-  "bozen-s\xFCdtirol.it",
+  "bozen-südtirol.it",
   "bozen-suedtirol.it",
   "bozen.it",
   "br.it",
@@ -1572,7 +1593,7 @@ const Lo = [
   "bs.it",
   "bt.it",
   "bulsan-sudtirol.it",
-  "bulsan-s\xFCdtirol.it",
+  "bulsan-südtirol.it",
   "bulsan-suedtirol.it",
   "bulsan.it",
   "bz.it",
@@ -1592,9 +1613,9 @@ const Lo = [
   "cb.it",
   "ce.it",
   "cesena-forli.it",
-  "cesena-forl\xEC.it",
+  "cesena-forlì.it",
   "cesenaforli.it",
-  "cesenaforl\xEC.it",
+  "cesenaforlì.it",
   "ch.it",
   "chieti.it",
   "ci.it",
@@ -1625,9 +1646,9 @@ const Lo = [
   "fm.it",
   "foggia.it",
   "forli-cesena.it",
-  "forl\xEC-cesena.it",
+  "forlì-cesena.it",
   "forlicesena.it",
-  "forl\xECcesena.it",
+  "forlìcesena.it",
   "fr.it",
   "frosinone.it",
   "ge.it",
@@ -1758,7 +1779,7 @@ const Lo = [
   "sr.it",
   "ss.it",
   "suedtirol.it",
-  "s\xFCdtirol.it",
+  "südtirol.it",
   "sv.it",
   "ta.it",
   "taranto.it",
@@ -1878,53 +1899,53 @@ const Lo = [
   "yamagata.jp",
   "yamaguchi.jp",
   "yamanashi.jp",
-  "\u6803\u6728.jp",
-  "\u611B\u77E5.jp",
-  "\u611B\u5A9B.jp",
-  "\u5175\u5EAB.jp",
-  "\u718A\u672C.jp",
-  "\u8328\u57CE.jp",
-  "\u5317\u6D77\u9053.jp",
-  "\u5343\u8449.jp",
-  "\u548C\u6B4C\u5C71.jp",
-  "\u9577\u5D0E.jp",
-  "\u9577\u91CE.jp",
-  "\u65B0\u6F5F.jp",
-  "\u9752\u68EE.jp",
-  "\u9759\u5CA1.jp",
-  "\u6771\u4EAC.jp",
-  "\u77F3\u5DDD.jp",
-  "\u57FC\u7389.jp",
-  "\u4E09\u91CD.jp",
-  "\u4EAC\u90FD.jp",
-  "\u4F50\u8CC0.jp",
-  "\u5927\u5206.jp",
-  "\u5927\u962A.jp",
-  "\u5948\u826F.jp",
-  "\u5BAE\u57CE.jp",
-  "\u5BAE\u5D0E.jp",
-  "\u5BCC\u5C71.jp",
-  "\u5C71\u53E3.jp",
-  "\u5C71\u5F62.jp",
-  "\u5C71\u68A8.jp",
-  "\u5CA9\u624B.jp",
-  "\u5C90\u961C.jp",
-  "\u5CA1\u5C71.jp",
-  "\u5CF6\u6839.jp",
-  "\u5E83\u5CF6.jp",
-  "\u5FB3\u5CF6.jp",
-  "\u6C96\u7E04.jp",
-  "\u6ECB\u8CC0.jp",
-  "\u795E\u5948\u5DDD.jp",
-  "\u798F\u4E95.jp",
-  "\u798F\u5CA1.jp",
-  "\u798F\u5CF6.jp",
-  "\u79CB\u7530.jp",
-  "\u7FA4\u99AC.jp",
-  "\u9999\u5DDD.jp",
-  "\u9AD8\u77E5.jp",
-  "\u9CE5\u53D6.jp",
-  "\u9E7F\u5150\u5CF6.jp",
+  "栃木.jp",
+  "愛知.jp",
+  "愛媛.jp",
+  "兵庫.jp",
+  "熊本.jp",
+  "茨城.jp",
+  "北海道.jp",
+  "千葉.jp",
+  "和歌山.jp",
+  "長崎.jp",
+  "長野.jp",
+  "新潟.jp",
+  "青森.jp",
+  "静岡.jp",
+  "東京.jp",
+  "石川.jp",
+  "埼玉.jp",
+  "三重.jp",
+  "京都.jp",
+  "佐賀.jp",
+  "大分.jp",
+  "大阪.jp",
+  "奈良.jp",
+  "宮城.jp",
+  "宮崎.jp",
+  "富山.jp",
+  "山口.jp",
+  "山形.jp",
+  "山梨.jp",
+  "岩手.jp",
+  "岐阜.jp",
+  "岡山.jp",
+  "島根.jp",
+  "広島.jp",
+  "徳島.jp",
+  "沖縄.jp",
+  "滋賀.jp",
+  "神奈川.jp",
+  "福井.jp",
+  "福岡.jp",
+  "福島.jp",
+  "秋田.jp",
+  "群馬.jp",
+  "香川.jp",
+  "高知.jp",
+  "鳥取.jp",
+  "鹿児島.jp",
   "*.kawasaki.jp",
   "*.kitakyushu.jp",
   "*.kobe.jp",
@@ -4009,13 +4030,13 @@ const Lo = [
   "community.museum",
   "computer.museum",
   "computerhistory.museum",
-  "comunica\xE7\xF5es.museum",
+  "comunicações.museum",
   "contemporary.museum",
   "contemporaryart.museum",
   "convent.museum",
   "copenhagen.museum",
   "corporation.museum",
-  "correios-e-telecomunica\xE7\xF5es.museum",
+  "correios-e-telecomunicações.museum",
   "corvette.museum",
   "costume.museum",
   "countryestate.museum",
@@ -4164,7 +4185,7 @@ const Lo = [
   "lancashire.museum",
   "landes.museum",
   "lans.museum",
-  "l\xE4ns.museum",
+  "läns.museum",
   "larsson.museum",
   "lewismiller.museum",
   "lincoln.museum",
@@ -4424,8 +4445,8 @@ const Lo = [
   "youth.museum",
   "zoological.museum",
   "zoology.museum",
-  "\u05D9\u05E8\u05D5\u05E9\u05DC\u05D9\u05DD.museum",
-  "\u0438\u043A\u043E\u043C.museum",
+  "ירושלים.museum",
+  "иком.museum",
   "mv",
   "aero.mv",
   "biz.mv",
@@ -4595,160 +4616,160 @@ const Lo = [
   "gs.va.no",
   "gs.vf.no",
   "akrehamn.no",
-  "\xE5krehamn.no",
+  "åkrehamn.no",
   "algard.no",
-  "\xE5lg\xE5rd.no",
+  "ålgård.no",
   "arna.no",
   "brumunddal.no",
   "bryne.no",
   "bronnoysund.no",
-  "br\xF8nn\xF8ysund.no",
+  "brønnøysund.no",
   "drobak.no",
-  "dr\xF8bak.no",
+  "drøbak.no",
   "egersund.no",
   "fetsund.no",
   "floro.no",
-  "flor\xF8.no",
+  "florø.no",
   "fredrikstad.no",
   "hokksund.no",
   "honefoss.no",
-  "h\xF8nefoss.no",
+  "hønefoss.no",
   "jessheim.no",
   "jorpeland.no",
-  "j\xF8rpeland.no",
+  "jørpeland.no",
   "kirkenes.no",
   "kopervik.no",
   "krokstadelva.no",
   "langevag.no",
-  "langev\xE5g.no",
+  "langevåg.no",
   "leirvik.no",
   "mjondalen.no",
-  "mj\xF8ndalen.no",
+  "mjøndalen.no",
   "mo-i-rana.no",
   "mosjoen.no",
-  "mosj\xF8en.no",
+  "mosjøen.no",
   "nesoddtangen.no",
   "orkanger.no",
   "osoyro.no",
-  "os\xF8yro.no",
+  "osøyro.no",
   "raholt.no",
-  "r\xE5holt.no",
+  "råholt.no",
   "sandnessjoen.no",
-  "sandnessj\xF8en.no",
+  "sandnessjøen.no",
   "skedsmokorset.no",
   "slattum.no",
   "spjelkavik.no",
   "stathelle.no",
   "stavern.no",
   "stjordalshalsen.no",
-  "stj\xF8rdalshalsen.no",
+  "stjørdalshalsen.no",
   "tananger.no",
   "tranby.no",
   "vossevangen.no",
   "afjord.no",
-  "\xE5fjord.no",
+  "åfjord.no",
   "agdenes.no",
   "al.no",
-  "\xE5l.no",
+  "ål.no",
   "alesund.no",
-  "\xE5lesund.no",
+  "ålesund.no",
   "alstahaug.no",
   "alta.no",
-  "\xE1lt\xE1.no",
+  "áltá.no",
   "alaheadju.no",
-  "\xE1laheadju.no",
+  "álaheadju.no",
   "alvdal.no",
   "amli.no",
-  "\xE5mli.no",
+  "åmli.no",
   "amot.no",
-  "\xE5mot.no",
+  "åmot.no",
   "andebu.no",
   "andoy.no",
-  "and\xF8y.no",
+  "andøy.no",
   "andasuolo.no",
   "ardal.no",
-  "\xE5rdal.no",
+  "årdal.no",
   "aremark.no",
   "arendal.no",
-  "\xE5s.no",
+  "ås.no",
   "aseral.no",
-  "\xE5seral.no",
+  "åseral.no",
   "asker.no",
   "askim.no",
   "askvoll.no",
   "askoy.no",
-  "ask\xF8y.no",
+  "askøy.no",
   "asnes.no",
-  "\xE5snes.no",
+  "åsnes.no",
   "audnedaln.no",
   "aukra.no",
   "aure.no",
   "aurland.no",
   "aurskog-holand.no",
-  "aurskog-h\xF8land.no",
+  "aurskog-høland.no",
   "austevoll.no",
   "austrheim.no",
   "averoy.no",
-  "aver\xF8y.no",
+  "averøy.no",
   "balestrand.no",
   "ballangen.no",
   "balat.no",
-  "b\xE1l\xE1t.no",
+  "bálát.no",
   "balsfjord.no",
   "bahccavuotna.no",
-  "b\xE1hccavuotna.no",
+  "báhccavuotna.no",
   "bamble.no",
   "bardu.no",
   "beardu.no",
   "beiarn.no",
   "bajddar.no",
-  "b\xE1jddar.no",
+  "bájddar.no",
   "baidar.no",
-  "b\xE1id\xE1r.no",
+  "báidár.no",
   "berg.no",
   "bergen.no",
   "berlevag.no",
-  "berlev\xE5g.no",
+  "berlevåg.no",
   "bearalvahki.no",
-  "bearalv\xE1hki.no",
+  "bearalváhki.no",
   "bindal.no",
   "birkenes.no",
   "bjarkoy.no",
-  "bjark\xF8y.no",
+  "bjarkøy.no",
   "bjerkreim.no",
   "bjugn.no",
   "bodo.no",
-  "bod\xF8.no",
+  "bodø.no",
   "badaddja.no",
-  "b\xE5d\xE5ddj\xE5.no",
+  "bådåddjå.no",
   "budejju.no",
   "bokn.no",
   "bremanger.no",
   "bronnoy.no",
-  "br\xF8nn\xF8y.no",
+  "brønnøy.no",
   "bygland.no",
   "bykle.no",
   "barum.no",
-  "b\xE6rum.no",
+  "bærum.no",
   "bo.telemark.no",
-  "b\xF8.telemark.no",
+  "bø.telemark.no",
   "bo.nordland.no",
-  "b\xF8.nordland.no",
+  "bø.nordland.no",
   "bievat.no",
-  "biev\xE1t.no",
+  "bievát.no",
   "bomlo.no",
-  "b\xF8mlo.no",
+  "bømlo.no",
   "batsfjord.no",
-  "b\xE5tsfjord.no",
+  "båtsfjord.no",
   "bahcavuotna.no",
-  "b\xE1hcavuotna.no",
+  "báhcavuotna.no",
   "dovre.no",
   "drammen.no",
   "drangedal.no",
   "dyroy.no",
-  "dyr\xF8y.no",
+  "dyrøy.no",
   "donna.no",
-  "d\xF8nna.no",
+  "dønna.no",
   "eid.no",
   "eidfjord.no",
   "eidsberg.no",
@@ -4762,7 +4783,7 @@ const Lo = [
   "etnedal.no",
   "evenes.no",
   "evenassi.no",
-  "even\xE1\u0161\u0161i.no",
+  "evenášši.no",
   "evje-og-hornnes.no",
   "farsund.no",
   "fauske.no",
@@ -4771,7 +4792,7 @@ const Lo = [
   "fedje.no",
   "fet.no",
   "finnoy.no",
-  "finn\xF8y.no",
+  "finnøy.no",
   "fitjar.no",
   "fjaler.no",
   "fjell.no",
@@ -4781,7 +4802,7 @@ const Lo = [
   "flesberg.no",
   "flora.no",
   "fla.no",
-  "fl\xE5.no",
+  "flå.no",
   "folldal.no",
   "forsand.no",
   "fosnes.no",
@@ -4790,27 +4811,27 @@ const Lo = [
   "froland.no",
   "frosta.no",
   "frana.no",
-  "fr\xE6na.no",
+  "fræna.no",
   "froya.no",
-  "fr\xF8ya.no",
+  "frøya.no",
   "fusa.no",
   "fyresdal.no",
   "forde.no",
-  "f\xF8rde.no",
+  "førde.no",
   "gamvik.no",
   "gangaviika.no",
-  "g\xE1\u014Bgaviika.no",
+  "gáŋgaviika.no",
   "gaular.no",
   "gausdal.no",
   "gildeskal.no",
-  "gildesk\xE5l.no",
+  "gildeskål.no",
   "giske.no",
   "gjemnes.no",
   "gjerdrum.no",
   "gjerstad.no",
   "gjesdal.no",
   "gjovik.no",
-  "gj\xF8vik.no",
+  "gjøvik.no",
   "gloppen.no",
   "gol.no",
   "gran.no",
@@ -4820,7 +4841,7 @@ const Lo = [
   "grimstad.no",
   "grong.no",
   "kraanghke.no",
-  "kr\xE5anghke.no",
+  "kråanghke.no",
   "grue.no",
   "gulen.no",
   "hadsel.no",
@@ -4829,18 +4850,18 @@ const Lo = [
   "hamar.no",
   "hamaroy.no",
   "habmer.no",
-  "h\xE1bmer.no",
+  "hábmer.no",
   "hapmir.no",
-  "h\xE1pmir.no",
+  "hápmir.no",
   "hammerfest.no",
   "hammarfeasta.no",
-  "h\xE1mm\xE1rfeasta.no",
+  "hámmárfeasta.no",
   "haram.no",
   "hareid.no",
   "harstad.no",
   "hasvik.no",
   "aknoluokta.no",
-  "\xE1k\u014Boluokta.no",
+  "ákŋoluokta.no",
   "hattfjelldal.no",
   "aarborte.no",
   "haugesund.no",
@@ -4848,20 +4869,20 @@ const Lo = [
   "hemnes.no",
   "hemsedal.no",
   "heroy.more-og-romsdal.no",
-  "her\xF8y.m\xF8re-og-romsdal.no",
+  "herøy.møre-og-romsdal.no",
   "heroy.nordland.no",
-  "her\xF8y.nordland.no",
+  "herøy.nordland.no",
   "hitra.no",
   "hjartdal.no",
   "hjelmeland.no",
   "hobol.no",
-  "hob\xF8l.no",
+  "hobøl.no",
   "hof.no",
   "hol.no",
   "hole.no",
   "holmestrand.no",
   "holtalen.no",
-  "holt\xE5len.no",
+  "holtålen.no",
   "hornindal.no",
   "horten.no",
   "hurdal.no",
@@ -4869,67 +4890,67 @@ const Lo = [
   "hvaler.no",
   "hyllestad.no",
   "hagebostad.no",
-  "h\xE6gebostad.no",
+  "hægebostad.no",
   "hoyanger.no",
-  "h\xF8yanger.no",
+  "høyanger.no",
   "hoylandet.no",
-  "h\xF8ylandet.no",
+  "høylandet.no",
   "ha.no",
-  "h\xE5.no",
+  "hå.no",
   "ibestad.no",
   "inderoy.no",
-  "inder\xF8y.no",
+  "inderøy.no",
   "iveland.no",
   "jevnaker.no",
   "jondal.no",
   "jolster.no",
-  "j\xF8lster.no",
+  "jølster.no",
   "karasjok.no",
   "karasjohka.no",
-  "k\xE1r\xE1\u0161johka.no",
+  "kárášjohka.no",
   "karlsoy.no",
   "galsa.no",
-  "g\xE1ls\xE1.no",
+  "gálsá.no",
   "karmoy.no",
-  "karm\xF8y.no",
+  "karmøy.no",
   "kautokeino.no",
   "guovdageaidnu.no",
   "klepp.no",
   "klabu.no",
-  "kl\xE6bu.no",
+  "klæbu.no",
   "kongsberg.no",
   "kongsvinger.no",
   "kragero.no",
-  "krager\xF8.no",
+  "kragerø.no",
   "kristiansand.no",
   "kristiansund.no",
   "krodsherad.no",
-  "kr\xF8dsherad.no",
+  "krødsherad.no",
   "kvalsund.no",
   "rahkkeravju.no",
-  "r\xE1hkker\xE1vju.no",
+  "ráhkkerávju.no",
   "kvam.no",
   "kvinesdal.no",
   "kvinnherad.no",
   "kviteseid.no",
   "kvitsoy.no",
-  "kvits\xF8y.no",
+  "kvitsøy.no",
   "kvafjord.no",
-  "kv\xE6fjord.no",
+  "kvæfjord.no",
   "giehtavuoatna.no",
   "kvanangen.no",
-  "kv\xE6nangen.no",
+  "kvænangen.no",
   "navuotna.no",
-  "n\xE1vuotna.no",
+  "návuotna.no",
   "kafjord.no",
-  "k\xE5fjord.no",
+  "kåfjord.no",
   "gaivuotna.no",
-  "g\xE1ivuotna.no",
+  "gáivuotna.no",
   "larvik.no",
   "lavangen.no",
   "lavagis.no",
   "loabat.no",
-  "loab\xE1t.no",
+  "loabát.no",
   "lebesby.no",
   "davvesiida.no",
   "leikanger.no",
@@ -4938,7 +4959,7 @@ const Lo = [
   "leksvik.no",
   "lenvik.no",
   "leangaviika.no",
-  "lea\u014Bgaviika.no",
+  "leaŋgaviika.no",
   "lesja.no",
   "levanger.no",
   "lier.no",
@@ -4947,33 +4968,33 @@ const Lo = [
   "lillesand.no",
   "lindesnes.no",
   "lindas.no",
-  "lind\xE5s.no",
+  "lindås.no",
   "lom.no",
   "loppa.no",
   "lahppi.no",
-  "l\xE1hppi.no",
+  "láhppi.no",
   "lund.no",
   "lunner.no",
   "luroy.no",
-  "lur\xF8y.no",
+  "lurøy.no",
   "luster.no",
   "lyngdal.no",
   "lyngen.no",
   "ivgu.no",
   "lardal.no",
   "lerdal.no",
-  "l\xE6rdal.no",
+  "lærdal.no",
   "lodingen.no",
-  "l\xF8dingen.no",
+  "lødingen.no",
   "lorenskog.no",
-  "l\xF8renskog.no",
+  "lørenskog.no",
   "loten.no",
-  "l\xF8ten.no",
+  "løten.no",
   "malvik.no",
   "masoy.no",
-  "m\xE5s\xF8y.no",
+  "måsøy.no",
   "muosat.no",
-  "muos\xE1t.no",
+  "muosát.no",
   "mandal.no",
   "marker.no",
   "marnardal.no",
@@ -4982,11 +5003,11 @@ const Lo = [
   "meldal.no",
   "melhus.no",
   "meloy.no",
-  "mel\xF8y.no",
+  "meløy.no",
   "meraker.no",
-  "mer\xE5ker.no",
+  "meråker.no",
   "moareke.no",
-  "mo\xE5reke.no",
+  "moåreke.no",
   "midsund.no",
   "midtre-gauldal.no",
   "modalen.no",
@@ -4996,15 +5017,15 @@ const Lo = [
   "moss.no",
   "mosvik.no",
   "malselv.no",
-  "m\xE5lselv.no",
+  "målselv.no",
   "malatvuopmi.no",
-  "m\xE1latvuopmi.no",
+  "málatvuopmi.no",
   "namdalseid.no",
   "aejrie.no",
   "namsos.no",
   "namsskogan.no",
   "naamesjevuemie.no",
-  "n\xE5\xE5mesjevuemie.no",
+  "nååmesjevuemie.no",
   "laakesvuemie.no",
   "nannestad.no",
   "narvik.no",
@@ -5017,7 +5038,7 @@ const Lo = [
   "nesodden.no",
   "nesseby.no",
   "unjarga.no",
-  "unj\xE1rga.no",
+  "unjárga.no",
   "nesset.no",
   "nissedal.no",
   "nittedal.no",
@@ -5027,52 +5048,52 @@ const Lo = [
   "norddal.no",
   "nordkapp.no",
   "davvenjarga.no",
-  "davvenj\xE1rga.no",
+  "davvenjárga.no",
   "nordre-land.no",
   "nordreisa.no",
   "raisa.no",
-  "r\xE1isa.no",
+  "ráisa.no",
   "nore-og-uvdal.no",
   "notodden.no",
   "naroy.no",
-  "n\xE6r\xF8y.no",
+  "nærøy.no",
   "notteroy.no",
-  "n\xF8tter\xF8y.no",
+  "nøtterøy.no",
   "odda.no",
   "oksnes.no",
-  "\xF8ksnes.no",
+  "øksnes.no",
   "oppdal.no",
   "oppegard.no",
-  "oppeg\xE5rd.no",
+  "oppegård.no",
   "orkdal.no",
   "orland.no",
-  "\xF8rland.no",
+  "ørland.no",
   "orskog.no",
-  "\xF8rskog.no",
+  "ørskog.no",
   "orsta.no",
-  "\xF8rsta.no",
+  "ørsta.no",
   "os.hedmark.no",
   "os.hordaland.no",
   "osen.no",
   "osteroy.no",
-  "oster\xF8y.no",
+  "osterøy.no",
   "ostre-toten.no",
-  "\xF8stre-toten.no",
+  "østre-toten.no",
   "overhalla.no",
   "ovre-eiker.no",
-  "\xF8vre-eiker.no",
+  "øvre-eiker.no",
   "oyer.no",
-  "\xF8yer.no",
+  "øyer.no",
   "oygarden.no",
-  "\xF8ygarden.no",
+  "øygarden.no",
   "oystre-slidre.no",
-  "\xF8ystre-slidre.no",
+  "øystre-slidre.no",
   "porsanger.no",
   "porsangu.no",
-  "pors\xE1\u014Bgu.no",
+  "porsáŋgu.no",
   "porsgrunn.no",
   "radoy.no",
-  "rad\xF8y.no",
+  "radøy.no",
   "rakkestad.no",
   "rana.no",
   "ruovat.no",
@@ -5081,47 +5102,47 @@ const Lo = [
   "rendalen.no",
   "rennebu.no",
   "rennesoy.no",
-  "rennes\xF8y.no",
+  "rennesøy.no",
   "rindal.no",
   "ringebu.no",
   "ringerike.no",
   "ringsaker.no",
   "rissa.no",
   "risor.no",
-  "ris\xF8r.no",
+  "risør.no",
   "roan.no",
   "rollag.no",
   "rygge.no",
   "ralingen.no",
-  "r\xE6lingen.no",
+  "rælingen.no",
   "rodoy.no",
-  "r\xF8d\xF8y.no",
+  "rødøy.no",
   "romskog.no",
-  "r\xF8mskog.no",
+  "rømskog.no",
   "roros.no",
-  "r\xF8ros.no",
+  "røros.no",
   "rost.no",
-  "r\xF8st.no",
+  "røst.no",
   "royken.no",
-  "r\xF8yken.no",
+  "røyken.no",
   "royrvik.no",
-  "r\xF8yrvik.no",
+  "røyrvik.no",
   "rade.no",
-  "r\xE5de.no",
+  "råde.no",
   "salangen.no",
   "siellak.no",
   "saltdal.no",
   "salat.no",
-  "s\xE1l\xE1t.no",
-  "s\xE1lat.no",
+  "sálát.no",
+  "sálat.no",
   "samnanger.no",
   "sande.more-og-romsdal.no",
-  "sande.m\xF8re-og-romsdal.no",
+  "sande.møre-og-romsdal.no",
   "sande.vestfold.no",
   "sandefjord.no",
   "sandnes.no",
   "sandoy.no",
-  "sand\xF8y.no",
+  "sandøy.no",
   "sarpsborg.no",
   "sauda.no",
   "sauherad.no",
@@ -5138,24 +5159,24 @@ const Lo = [
   "skien.no",
   "skiptvet.no",
   "skjervoy.no",
-  "skjerv\xF8y.no",
+  "skjervøy.no",
   "skierva.no",
-  "skierv\xE1.no",
+  "skiervá.no",
   "skjak.no",
-  "skj\xE5k.no",
+  "skjåk.no",
   "skodje.no",
   "skanland.no",
-  "sk\xE5nland.no",
+  "skånland.no",
   "skanit.no",
-  "sk\xE1nit.no",
+  "skánit.no",
   "smola.no",
-  "sm\xF8la.no",
+  "smøla.no",
   "snillfjord.no",
   "snasa.no",
-  "sn\xE5sa.no",
+  "snåsa.no",
   "snoasa.no",
   "snaase.no",
-  "sn\xE5ase.no",
+  "snåase.no",
   "sogndal.no",
   "sokndal.no",
   "sola.no",
@@ -5168,7 +5189,7 @@ const Lo = [
   "steigen.no",
   "steinkjer.no",
   "stjordal.no",
-  "stj\xF8rdal.no",
+  "stjørdal.no",
   "stokke.no",
   "stor-elvdal.no",
   "stord.no",
@@ -5187,27 +5208,27 @@ const Lo = [
   "svelvik.no",
   "sykkylven.no",
   "sogne.no",
-  "s\xF8gne.no",
+  "søgne.no",
   "somna.no",
-  "s\xF8mna.no",
+  "sømna.no",
   "sondre-land.no",
-  "s\xF8ndre-land.no",
+  "søndre-land.no",
   "sor-aurdal.no",
-  "s\xF8r-aurdal.no",
+  "sør-aurdal.no",
   "sor-fron.no",
-  "s\xF8r-fron.no",
+  "sør-fron.no",
   "sor-odal.no",
-  "s\xF8r-odal.no",
+  "sør-odal.no",
   "sor-varanger.no",
-  "s\xF8r-varanger.no",
+  "sør-varanger.no",
   "matta-varjjat.no",
-  "m\xE1tta-v\xE1rjjat.no",
+  "mátta-várjjat.no",
   "sorfold.no",
-  "s\xF8rfold.no",
+  "sørfold.no",
   "sorreisa.no",
-  "s\xF8rreisa.no",
+  "sørreisa.no",
   "sorum.no",
-  "s\xF8rum.no",
+  "sørum.no",
   "tana.no",
   "deatnu.no",
   "time.no",
@@ -5216,23 +5237,23 @@ const Lo = [
   "tjeldsund.no",
   "dielddanuorri.no",
   "tjome.no",
-  "tj\xF8me.no",
+  "tjøme.no",
   "tokke.no",
   "tolga.no",
   "torsken.no",
   "tranoy.no",
-  "tran\xF8y.no",
+  "tranøy.no",
   "tromso.no",
-  "troms\xF8.no",
+  "tromsø.no",
   "tromsa.no",
   "romsa.no",
   "trondheim.no",
   "troandin.no",
   "trysil.no",
   "trana.no",
-  "tr\xE6na.no",
+  "træna.no",
   "trogstad.no",
-  "tr\xF8gstad.no",
+  "trøgstad.no",
   "tvedestrand.no",
   "tydal.no",
   "tynset.no",
@@ -5241,30 +5262,30 @@ const Lo = [
   "divttasvuotna.no",
   "tysnes.no",
   "tysvar.no",
-  "tysv\xE6r.no",
+  "tysvær.no",
   "tonsberg.no",
-  "t\xF8nsberg.no",
+  "tønsberg.no",
   "ullensaker.no",
   "ullensvang.no",
   "ulvik.no",
   "utsira.no",
   "vadso.no",
-  "vads\xF8.no",
+  "vadsø.no",
   "cahcesuolo.no",
-  "\u010D\xE1hcesuolo.no",
+  "čáhcesuolo.no",
   "vaksdal.no",
   "valle.no",
   "vang.no",
   "vanylven.no",
   "vardo.no",
-  "vard\xF8.no",
+  "vardø.no",
   "varggat.no",
-  "v\xE1rgg\xE1t.no",
+  "várggát.no",
   "vefsn.no",
   "vaapste.no",
   "vega.no",
   "vegarshei.no",
-  "veg\xE5rshei.no",
+  "vegårshei.no",
   "vennesla.no",
   "verdal.no",
   "verran.no",
@@ -5273,7 +5294,7 @@ const Lo = [
   "vestre-slidre.no",
   "vestre-toten.no",
   "vestvagoy.no",
-  "vestv\xE5g\xF8y.no",
+  "vestvågøy.no",
   "vevelstad.no",
   "vik.no",
   "vikna.no",
@@ -5281,18 +5302,18 @@ const Lo = [
   "volda.no",
   "voss.no",
   "varoy.no",
-  "v\xE6r\xF8y.no",
+  "værøy.no",
   "vagan.no",
-  "v\xE5gan.no",
+  "vågan.no",
   "voagat.no",
   "vagsoy.no",
-  "v\xE5gs\xF8y.no",
+  "vågsøy.no",
   "vaga.no",
-  "v\xE5g\xE5.no",
+  "vågå.no",
   "valer.ostfold.no",
-  "v\xE5ler.\xF8stfold.no",
+  "våler.østfold.no",
   "valer.hedmark.no",
-  "v\xE5ler.hedmark.no",
+  "våler.hedmark.no",
   "*.np",
   "nr",
   "biz.nr",
@@ -5315,7 +5336,7 @@ const Lo = [
   "kiwi.nz",
   "maori.nz",
   "mil.nz",
-  "m\u0101ori.nz",
+  "māori.nz",
   "net.nz",
   "org.nz",
   "parliament.nz",
@@ -5955,9 +5976,9 @@ const Lo = [
   "game.tw",
   "ebiz.tw",
   "club.tw",
-  "\u7DB2\u8DEF.tw",
-  "\u7D44\u7E54.tw",
-  "\u5546\u696D.tw",
+  "網路.tw",
+  "組織.tw",
+  "商業.tw",
   "tz",
   "ac.tz",
   "co.tz",
@@ -6372,93 +6393,93 @@ const Lo = [
   "gov.ws",
   "edu.ws",
   "yt",
-  "\u0627\u0645\u0627\u0631\u0627\u062A",
-  "\u0570\u0561\u0575",
-  "\u09AC\u09BE\u0982\u09B2\u09BE",
-  "\u0431\u0433",
-  "\u0627\u0644\u0628\u062D\u0631\u064A\u0646",
-  "\u0431\u0435\u043B",
-  "\u4E2D\u56FD",
-  "\u4E2D\u570B",
-  "\u0627\u0644\u062C\u0632\u0627\u0626\u0631",
-  "\u0645\u0635\u0631",
-  "\u0435\u044E",
-  "\u03B5\u03C5",
-  "\u0645\u0648\u0631\u064A\u062A\u0627\u0646\u064A\u0627",
-  "\u10D2\u10D4",
-  "\u03B5\u03BB",
-  "\u9999\u6E2F",
-  "\u516C\u53F8.\u9999\u6E2F",
-  "\u6559\u80B2.\u9999\u6E2F",
-  "\u653F\u5E9C.\u9999\u6E2F",
-  "\u500B\u4EBA.\u9999\u6E2F",
-  "\u7DB2\u7D61.\u9999\u6E2F",
-  "\u7D44\u7E54.\u9999\u6E2F",
-  "\u0CAD\u0CBE\u0CB0\u0CA4",
-  "\u0B2D\u0B3E\u0B30\u0B24",
-  "\u09AD\u09BE\u09F0\u09A4",
-  "\u092D\u093E\u0930\u0924\u092E\u094D",
-  "\u092D\u093E\u0930\u094B\u0924",
-  "\u0680\u0627\u0631\u062A",
-  "\u0D2D\u0D3E\u0D30\u0D24\u0D02",
-  "\u092D\u093E\u0930\u0924",
-  "\u0628\u0627\u0631\u062A",
-  "\u0628\u06BE\u0627\u0631\u062A",
-  "\u0C2D\u0C3E\u0C30\u0C24\u0C4D",
-  "\u0AAD\u0ABE\u0AB0\u0AA4",
-  "\u0A2D\u0A3E\u0A30\u0A24",
-  "\u09AD\u09BE\u09B0\u09A4",
-  "\u0B87\u0BA8\u0BCD\u0BA4\u0BBF\u0BAF\u0BBE",
-  "\u0627\u06CC\u0631\u0627\u0646",
-  "\u0627\u064A\u0631\u0627\u0646",
-  "\u0639\u0631\u0627\u0642",
-  "\u0627\u0644\u0627\u0631\u062F\u0646",
-  "\uD55C\uAD6D",
-  "\u049B\u0430\u0437",
-  "\u0EA5\u0EB2\u0EA7",
-  "\u0DBD\u0D82\u0D9A\u0DCF",
-  "\u0B87\u0BB2\u0B99\u0BCD\u0B95\u0BC8",
-  "\u0627\u0644\u0645\u063A\u0631\u0628",
-  "\u043C\u043A\u0434",
-  "\u043C\u043E\u043D",
-  "\u6FB3\u9580",
-  "\u6FB3\u95E8",
-  "\u0645\u0644\u064A\u0633\u064A\u0627",
-  "\u0639\u0645\u0627\u0646",
-  "\u067E\u0627\u06A9\u0633\u062A\u0627\u0646",
-  "\u067E\u0627\u0643\u0633\u062A\u0627\u0646",
-  "\u0641\u0644\u0633\u0637\u064A\u0646",
-  "\u0441\u0440\u0431",
-  "\u043F\u0440.\u0441\u0440\u0431",
-  "\u043E\u0440\u0433.\u0441\u0440\u0431",
-  "\u043E\u0431\u0440.\u0441\u0440\u0431",
-  "\u043E\u0434.\u0441\u0440\u0431",
-  "\u0443\u043F\u0440.\u0441\u0440\u0431",
-  "\u0430\u043A.\u0441\u0440\u0431",
-  "\u0440\u0444",
-  "\u0642\u0637\u0631",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u06CC\u0629",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u06CC\u06C3",
-  "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0647",
-  "\u0633\u0648\u062F\u0627\u0646",
-  "\u65B0\u52A0\u5761",
-  "\u0B9A\u0BBF\u0B99\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0BC2\u0BB0\u0BCD",
-  "\u0633\u0648\u0631\u064A\u0629",
-  "\u0633\u0648\u0631\u064A\u0627",
-  "\u0E44\u0E17\u0E22",
-  "\u0E28\u0E36\u0E01\u0E29\u0E32.\u0E44\u0E17\u0E22",
-  "\u0E18\u0E38\u0E23\u0E01\u0E34\u0E08.\u0E44\u0E17\u0E22",
-  "\u0E23\u0E31\u0E10\u0E1A\u0E32\u0E25.\u0E44\u0E17\u0E22",
-  "\u0E17\u0E2B\u0E32\u0E23.\u0E44\u0E17\u0E22",
-  "\u0E40\u0E19\u0E47\u0E15.\u0E44\u0E17\u0E22",
-  "\u0E2D\u0E07\u0E04\u0E4C\u0E01\u0E23.\u0E44\u0E17\u0E22",
-  "\u062A\u0648\u0646\u0633",
-  "\u53F0\u7063",
-  "\u53F0\u6E7E",
-  "\u81FA\u7063",
-  "\u0443\u043A\u0440",
-  "\u0627\u0644\u064A\u0645\u0646",
+  "امارات",
+  "հայ",
+  "বাংলা",
+  "бг",
+  "البحرين",
+  "бел",
+  "中国",
+  "中國",
+  "الجزائر",
+  "مصر",
+  "ею",
+  "ευ",
+  "موريتانيا",
+  "გე",
+  "ελ",
+  "香港",
+  "公司.香港",
+  "教育.香港",
+  "政府.香港",
+  "個人.香港",
+  "網絡.香港",
+  "組織.香港",
+  "ಭಾರತ",
+  "ଭାରତ",
+  "ভাৰত",
+  "भारतम्",
+  "भारोत",
+  "ڀارت",
+  "ഭാരതം",
+  "भारत",
+  "بارت",
+  "بھارت",
+  "భారత్",
+  "ભારત",
+  "ਭਾਰਤ",
+  "ভারত",
+  "இந்தியா",
+  "ایران",
+  "ايران",
+  "عراق",
+  "الاردن",
+  "한국",
+  "қаз",
+  "ລາວ",
+  "ලංකා",
+  "இலங்கை",
+  "المغرب",
+  "мкд",
+  "мон",
+  "澳門",
+  "澳门",
+  "مليسيا",
+  "عمان",
+  "پاکستان",
+  "پاكستان",
+  "فلسطين",
+  "срб",
+  "пр.срб",
+  "орг.срб",
+  "обр.срб",
+  "од.срб",
+  "упр.срб",
+  "ак.срб",
+  "рф",
+  "قطر",
+  "السعودية",
+  "السعودیة",
+  "السعودیۃ",
+  "السعوديه",
+  "سودان",
+  "新加坡",
+  "சிங்கப்பூர்",
+  "سورية",
+  "سوريا",
+  "ไทย",
+  "ศึกษา.ไทย",
+  "ธุรกิจ.ไทย",
+  "รัฐบาล.ไทย",
+  "ทหาร.ไทย",
+  "เน็ต.ไทย",
+  "องค์กร.ไทย",
+  "تونس",
+  "台灣",
+  "台湾",
+  "臺灣",
+  "укр",
+  "اليمن",
   "xxx",
   "ye",
   "com.ye",
@@ -7549,98 +7570,98 @@ const Lo = [
   "xfinity",
   "xihuan",
   "xin",
-  "\u0915\u0949\u092E",
-  "\u30BB\u30FC\u30EB",
-  "\u4F5B\u5C71",
-  "\u6148\u5584",
-  "\u96C6\u56E2",
-  "\u5728\u7EBF",
-  "\u70B9\u770B",
-  "\u0E04\u0E2D\u0E21",
-  "\u516B\u5366",
-  "\u0645\u0648\u0642\u0639",
-  "\u516C\u76CA",
-  "\u516C\u53F8",
-  "\u9999\u683C\u91CC\u62C9",
-  "\u7F51\u7AD9",
-  "\u79FB\u52A8",
-  "\u6211\u7231\u4F60",
-  "\u043C\u043E\u0441\u043A\u0432\u0430",
-  "\u043A\u0430\u0442\u043E\u043B\u0438\u043A",
-  "\u043E\u043D\u043B\u0430\u0439\u043D",
-  "\u0441\u0430\u0439\u0442",
-  "\u8054\u901A",
-  "\u05E7\u05D5\u05DD",
-  "\u65F6\u5C1A",
-  "\u5FAE\u535A",
-  "\u6DE1\u9A6C\u9521",
-  "\u30D5\u30A1\u30C3\u30B7\u30E7\u30F3",
-  "\u043E\u0440\u0433",
-  "\u0928\u0947\u091F",
-  "\u30B9\u30C8\u30A2",
-  "\u30A2\u30DE\u30BE\u30F3",
-  "\uC0BC\uC131",
-  "\u5546\u6807",
-  "\u5546\u5E97",
-  "\u5546\u57CE",
-  "\u0434\u0435\u0442\u0438",
-  "\u30DD\u30A4\u30F3\u30C8",
-  "\u65B0\u95FB",
-  "\u5BB6\u96FB",
-  "\u0643\u0648\u0645",
-  "\u4E2D\u6587\u7F51",
-  "\u4E2D\u4FE1",
-  "\u5A31\u4E50",
-  "\u8C37\u6B4C",
-  "\u96FB\u8A0A\u76C8\u79D1",
-  "\u8D2D\u7269",
-  "\u30AF\u30E9\u30A6\u30C9",
-  "\u901A\u8CA9",
-  "\u7F51\u5E97",
-  "\u0938\u0902\u0917\u0920\u0928",
-  "\u9910\u5385",
-  "\u7F51\u7EDC",
-  "\u043A\u043E\u043C",
-  "\u4E9A\u9A6C\u900A",
-  "\u8BFA\u57FA\u4E9A",
-  "\u98DF\u54C1",
-  "\u98DE\u5229\u6D66",
-  "\u624B\u673A",
-  "\u0627\u0631\u0627\u0645\u0643\u0648",
-  "\u0627\u0644\u0639\u0644\u064A\u0627\u0646",
-  "\u0627\u062A\u0635\u0627\u0644\u0627\u062A",
-  "\u0628\u0627\u0632\u0627\u0631",
-  "\u0627\u0628\u0648\u0638\u0628\u064A",
-  "\u0643\u0627\u062B\u0648\u0644\u064A\u0643",
-  "\u0647\u0645\u0631\u0627\u0647",
-  "\uB2F7\uCEF4",
-  "\u653F\u5E9C",
-  "\u0634\u0628\u0643\u0629",
-  "\u0628\u064A\u062A\u0643",
-  "\u0639\u0631\u0628",
-  "\u673A\u6784",
-  "\u7EC4\u7EC7\u673A\u6784",
-  "\u5065\u5EB7",
-  "\u62DB\u8058",
-  "\u0440\u0443\u0441",
-  "\u5927\u62FF",
-  "\u307F\u3093\u306A",
-  "\u30B0\u30FC\u30B0\u30EB",
-  "\u4E16\u754C",
-  "\u66F8\u7C4D",
-  "\u7F51\u5740",
-  "\uB2F7\uB137",
-  "\u30B3\u30E0",
-  "\u5929\u4E3B\u6559",
-  "\u6E38\u620F",
-  "verm\xF6gensberater",
-  "verm\xF6gensberatung",
-  "\u4F01\u4E1A",
-  "\u4FE1\u606F",
-  "\u5609\u91CC\u5927\u9152\u5E97",
-  "\u5609\u91CC",
-  "\u5E7F\u4E1C",
-  "\u653F\u52A1",
+  "कॉम",
+  "セール",
+  "佛山",
+  "慈善",
+  "集团",
+  "在线",
+  "点看",
+  "คอม",
+  "八卦",
+  "موقع",
+  "公益",
+  "公司",
+  "香格里拉",
+  "网站",
+  "移动",
+  "我爱你",
+  "москва",
+  "католик",
+  "онлайн",
+  "сайт",
+  "联通",
+  "קום",
+  "时尚",
+  "微博",
+  "淡马锡",
+  "ファッション",
+  "орг",
+  "नेट",
+  "ストア",
+  "アマゾン",
+  "삼성",
+  "商标",
+  "商店",
+  "商城",
+  "дети",
+  "ポイント",
+  "新闻",
+  "家電",
+  "كوم",
+  "中文网",
+  "中信",
+  "娱乐",
+  "谷歌",
+  "電訊盈科",
+  "购物",
+  "クラウド",
+  "通販",
+  "网店",
+  "संगठन",
+  "餐厅",
+  "网络",
+  "ком",
+  "亚马逊",
+  "诺基亚",
+  "食品",
+  "飞利浦",
+  "手机",
+  "ارامكو",
+  "العليان",
+  "اتصالات",
+  "بازار",
+  "ابوظبي",
+  "كاثوليك",
+  "همراه",
+  "닷컴",
+  "政府",
+  "شبكة",
+  "بيتك",
+  "عرب",
+  "机构",
+  "组织机构",
+  "健康",
+  "招聘",
+  "рус",
+  "大拿",
+  "みんな",
+  "グーグル",
+  "世界",
+  "書籍",
+  "网址",
+  "닷넷",
+  "コム",
+  "天主教",
+  "游戏",
+  "vermögensberater",
+  "vermögensberatung",
+  "企业",
+  "信息",
+  "嘉里大酒店",
+  "嘉里",
+  "广东",
+  "政务",
   "xyz",
   "yachts",
   "yahoo",
@@ -8767,8 +8788,8 @@ const Lo = [
   "goupile.fr",
   "gov.nl",
   "awsmppl.com",
-  "g\xFCnstigbestellen.de",
-  "g\xFCnstigliefern.de",
+  "günstigbestellen.de",
+  "günstigliefern.de",
   "fin.ci",
   "free.hr",
   "caa.li",
@@ -8802,7 +8823,7 @@ const Lo = [
   "edu.scot",
   "sch.so",
   "hostyhosting.io",
-  "h\xE4kkinen.fi",
+  "häkkinen.fi",
   "*.moonscale.io",
   "moonscale.net",
   "iki.fi",
@@ -9351,16 +9372,16 @@ const Lo = [
   "itcouldbewor.se",
   "git-pages.rit.edu",
   "rocky.page",
-  "\u0431\u0438\u0437.\u0440\u0443\u0441",
-  "\u043A\u043E\u043C.\u0440\u0443\u0441",
-  "\u043A\u0440\u044B\u043C.\u0440\u0443\u0441",
-  "\u043C\u0438\u0440.\u0440\u0443\u0441",
-  "\u043C\u0441\u043A.\u0440\u0443\u0441",
-  "\u043E\u0440\u0433.\u0440\u0443\u0441",
-  "\u0441\u0430\u043C\u0430\u0440\u0430.\u0440\u0443\u0441",
-  "\u0441\u043E\u0447\u0438.\u0440\u0443\u0441",
-  "\u0441\u043F\u0431.\u0440\u0443\u0441",
-  "\u044F.\u0440\u0443\u0441",
+  "биз.рус",
+  "ком.рус",
+  "крым.рус",
+  "мир.рус",
+  "мск.рус",
+  "орг.рус",
+  "самара.рус",
+  "сочи.рус",
+  "спб.рус",
+  "я.рус",
   "*.builder.code.com",
   "*.dev-builder.code.com",
   "*.stg-builder.code.com",
@@ -9698,24 +9719,24 @@ const Lo = [
   "virtualserver.io",
   "enterprisecloud.nu"
 ];
-(function(i) {
+(function(e) {
   var a = Ha, o = {};
-  o.rules = Lo.map(function(e) {
+  o.rules = No.map(function(i) {
     return {
-      rule: e,
-      suffix: e.replace(/^(\*\.|\!)/, ""),
+      rule: i,
+      suffix: i.replace(/^(\*\.|\!)/, ""),
       punySuffix: -1,
-      wildcard: e.charAt(0) === "*",
-      exception: e.charAt(0) === "!"
+      wildcard: i.charAt(0) === "*",
+      exception: i.charAt(0) === "!"
     };
-  }), o.endsWith = function(e, s) {
-    return e.indexOf(s, e.length - s.length) !== -1;
-  }, o.findRule = function(e) {
-    var s = a.toASCII(e);
+  }), o.endsWith = function(i, s) {
+    return i.indexOf(s, i.length - s.length) !== -1;
+  }, o.findRule = function(i) {
+    var s = a.toASCII(i);
     return o.rules.reduce(function(n, t) {
       return t.punySuffix === -1 && (t.punySuffix = a.toASCII(t.suffix)), !o.endsWith(s, "." + t.punySuffix) && s !== t.punySuffix ? n : t;
     }, null);
-  }, i.errorCodes = {
+  }, e.errorCodes = {
     DOMAIN_TOO_SHORT: "Domain name too short.",
     DOMAIN_TOO_LONG: "Domain name too long. It should be no more than 255 chars.",
     LABEL_STARTS_WITH_DASH: "Domain name label can not start with a dash.",
@@ -9723,8 +9744,8 @@ const Lo = [
     LABEL_TOO_LONG: "Domain name label should be at most 63 chars long.",
     LABEL_TOO_SHORT: "Domain name label should be at least 1 character long.",
     LABEL_INVALID_CHARS: "Domain name label can only contain alphanumeric characters or dashes."
-  }, o.validate = function(e) {
-    var s = a.toASCII(e);
+  }, o.validate = function(i) {
+    var s = a.toASCII(i);
     if (s.length < 1)
       return "DOMAIN_TOO_SHORT";
     if (s.length > 255)
@@ -9741,22 +9762,22 @@ const Lo = [
       if (!/^[a-z0-9\-]+$/.test(t))
         return "LABEL_INVALID_CHARS";
     }
-  }, i.parse = function(e) {
-    if (typeof e != "string")
+  }, e.parse = function(i) {
+    if (typeof i != "string")
       throw new TypeError("Domain name must be a string.");
-    var s = e.slice(0).toLowerCase();
+    var s = i.slice(0).toLowerCase();
     s.charAt(s.length - 1) === "." && (s = s.slice(0, s.length - 1));
     var n = o.validate(s);
     if (n)
       return {
-        input: e,
+        input: i,
         error: {
-          message: i.errorCodes[n],
+          message: e.errorCodes[n],
           code: n
         }
       };
     var t = {
-      input: e,
+      input: i,
       tld: null,
       sld: null,
       domain: null,
@@ -9765,19 +9786,19 @@ const Lo = [
     }, r = s.split(".");
     if (r[r.length - 1] === "local")
       return t;
-    var u = function() {
+    var m = function() {
       return /xn--/.test(s) && (t.domain && (t.domain = a.toASCII(t.domain)), t.subdomain && (t.subdomain = a.toASCII(t.subdomain))), t;
-    }, m = o.findRule(s);
-    if (!m)
-      return r.length < 2 ? t : (t.tld = r.pop(), t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.pop()), u());
+    }, u = o.findRule(s);
+    if (!u)
+      return r.length < 2 ? t : (t.tld = r.pop(), t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.pop()), m());
     t.listed = !0;
-    var c = m.suffix.split("."), l = r.slice(0, r.length - c.length);
-    return m.exception && l.push(c.shift()), t.tld = c.join("."), !l.length || (m.wildcard && (c.unshift(l.pop()), t.tld = c.join(".")), !l.length) || (t.sld = l.pop(), t.domain = [t.sld, t.tld].join("."), l.length && (t.subdomain = l.join("."))), u();
-  }, i.get = function(e) {
-    return e && i.parse(e).domain || null;
-  }, i.isValid = function(e) {
-    var s = i.parse(e);
-    return Boolean(s.domain && s.listed);
+    var c = u.suffix.split("."), l = r.slice(0, r.length - c.length);
+    return u.exception && l.push(c.shift()), t.tld = c.join("."), !l.length || (u.wildcard && (c.unshift(l.pop()), t.tld = c.join(".")), !l.length) || (t.sld = l.pop(), t.domain = [t.sld, t.tld].join("."), l.length && (t.subdomain = l.join("."))), m();
+  }, e.get = function(i) {
+    return i && e.parse(i).domain || null;
+  }, e.isValid = function(i) {
+    var s = e.parse(i);
+    return !!(s.domain && s.listed);
   };
 })(Ka);
 /*!
@@ -9810,29 +9831,29 @@ const Lo = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Uo = Ka, Ea = [
+const _o = Ka, xa = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], No = ["localhost", "invalid"];
-function _o(i, a = {}) {
-  const o = i.split("."), e = o[o.length - 1], s = !!a.allowSpecialUseDomain, n = !!a.ignoreError;
-  if (s && Ea.includes(e)) {
+], Fo = ["localhost", "invalid"];
+function qo(e, a = {}) {
+  const o = e.split("."), i = o[o.length - 1], s = !!a.allowSpecialUseDomain, n = !!a.ignoreError;
+  if (s && xa.includes(i)) {
     if (o.length > 1)
-      return `${o[o.length - 2]}.${e}`;
-    if (No.includes(e))
-      return `${e}`;
+      return `${o[o.length - 2]}.${i}`;
+    if (Fo.includes(i))
+      return `${i}`;
   }
-  if (!n && Ea.includes(e))
+  if (!n && xa.includes(i))
     throw new Error(
-      `Cookie has domain set to the public suffix "${e}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
+      `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return Uo.get(i);
+  return _o.get(e);
 }
-ha.getPublicSuffix = _o;
-var ka = {};
+da.getPublicSuffix = qo;
+var ha = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9863,60 +9884,60 @@ var ka = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-class qo {
+let Bo = class {
   constructor() {
     this.synchronous = !1;
   }
-  findCookie(a, o, e, s) {
+  findCookie(e, a, o, i) {
     throw new Error("findCookie is not implemented");
   }
-  findCookies(a, o, e, s) {
+  findCookies(e, a, o, i) {
     throw new Error("findCookies is not implemented");
   }
-  putCookie(a, o) {
+  putCookie(e, a) {
     throw new Error("putCookie is not implemented");
   }
-  updateCookie(a, o, e) {
+  updateCookie(e, a, o) {
     throw new Error("updateCookie is not implemented");
   }
-  removeCookie(a, o, e, s) {
+  removeCookie(e, a, o, i) {
     throw new Error("removeCookie is not implemented");
   }
-  removeCookies(a, o, e) {
+  removeCookies(e, a, o) {
     throw new Error("removeCookies is not implemented");
   }
-  removeAllCookies(a) {
+  removeAllCookies(e) {
     throw new Error("removeAllCookies is not implemented");
   }
-  getAllCookies(a) {
+  getAllCookies(e) {
     throw new Error(
       "getAllCookies is not implemented (therefore jar cannot be serialized)"
     );
   }
-}
-ka.Store = qo;
-var ga = {}, Z = {};
-Z.fromCallback = function(i) {
+};
+ha.Store = Bo;
+var ka = {}, Z = {};
+Z.fromCallback = function(e) {
   return Object.defineProperty(function() {
     if (typeof arguments[arguments.length - 1] == "function")
-      i.apply(this, arguments);
+      e.apply(this, arguments);
     else
       return new Promise((a, o) => {
-        arguments[arguments.length] = (e, s) => {
-          if (e)
-            return o(e);
+        arguments[arguments.length] = (i, s) => {
+          if (i)
+            return o(i);
           a(s);
-        }, arguments.length++, i.apply(this, arguments);
+        }, arguments.length++, e.apply(this, arguments);
       });
-  }, "name", { value: i.name });
+  }, "name", { value: e.name });
 };
-Z.fromPromise = function(i) {
+Z.fromPromise = function(e) {
   return Object.defineProperty(function() {
     const a = arguments[arguments.length - 1];
     if (typeof a != "function")
-      return i.apply(this, arguments);
-    delete arguments[arguments.length - 1], arguments.length--, i.apply(this, arguments).then((o) => a(null, o), a);
-  }, "name", { value: i.name });
+      return e.apply(this, arguments);
+    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
+  }, "name", { value: e.name });
 };
 var Xa = {};
 /*!
@@ -9949,25 +9970,25 @@ var Xa = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const $o = ha;
-function Mo(i, a) {
-  const o = $o.getPublicSuffix(i, {
+const $o = da;
+function Mo(e, a) {
+  const o = $o.getPublicSuffix(e, {
     allowSpecialUseDomain: a
   });
   if (!o)
     return null;
-  if (o == i)
-    return [i];
-  i.slice(-1) == "." && (i = i.slice(0, -1));
-  const e = i.slice(0, -(o.length + 1)).split(".").reverse();
+  if (o == e)
+    return [e];
+  e.slice(-1) == "." && (e = e.slice(0, -1));
+  const i = e.slice(0, -(o.length + 1)).split(".").reverse();
   let s = o;
   const n = [s];
-  for (; e.length; )
-    s = `${e.shift()}.${s}`, n.push(s);
+  for (; i.length; )
+    s = `${i.shift()}.${s}`, n.push(s);
   return n;
 }
 Xa.permuteDomain = Mo;
-var ja = {};
+var ga = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9998,15 +10019,15 @@ var ja = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-function Ho(i, a) {
-  return a === i || i.indexOf(a) === 0 && (a.substr(-1) === "/" || i.substr(a.length, 1) === "/");
+function Ho(e, a) {
+  return a === e || e.indexOf(a) === 0 && (a.substr(-1) === "/" || e.substr(a.length, 1) === "/");
 }
-ja.pathMatch = Ho;
+ga.pathMatch = Ho;
 var K = {};
 const Qo = {}, Go = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Qo
-}, Symbol.toStringTag, { value: "Module" })), Jo = /* @__PURE__ */ Ta(Go);
+}, Symbol.toStringTag, { value: "Module" })), Jo = /* @__PURE__ */ La(Go);
 function Ya() {
   try {
     return Jo;
@@ -10017,18 +10038,18 @@ function Ya() {
 function Wo() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
-function Zo(i) {
-  const a = (i.requireUtil || Ya)();
+function Zo(e) {
+  const a = (e.requireUtil || Ya)();
   return a ? a.inspect.custom : null;
 }
-K.getUtilInspect = function(i, a = {}) {
+K.getUtilInspect = function(e, a = {}) {
   const o = (a.requireUtil || Ya)();
-  return function(e, s, n) {
-    return o ? o.inspect(e, s, n) : i(e);
+  return function(i, s, n) {
+    return o ? o.inspect(i, s, n) : e(i);
   };
 };
-K.getCustomInspectSymbol = function(i = {}) {
-  return (i.lookupCustomInspectSymbol || Wo)() || Zo(i);
+K.getCustomInspectSymbol = function(e = {}) {
+  return (e.lookupCustomInspectSymbol || Wo)() || Zo(e);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -10060,71 +10081,71 @@ K.getCustomInspectSymbol = function(i = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: Ko } = Z, Xo = ka.Store, Yo = Xa.permuteDomain, ae = ja.pathMatch, { getCustomInspectSymbol: oe, getUtilInspect: ee } = K;
-class sa extends Xo {
+const { fromCallback: Ko } = Z, Xo = ha.Store, Yo = Xa.permuteDomain, ae = ga.pathMatch, { getCustomInspectSymbol: oe, getUtilInspect: ee } = K;
+let ia = class extends Xo {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
-    const a = oe();
-    a && (this[a] = this.inspect);
+    const e = oe();
+    e && (this[e] = this.inspect);
   }
   inspect() {
     return `{ idx: ${{ inspect: ee(ao) }.inspect(this.idx, !1, 2)} }`;
   }
-  findCookie(a, o, e, s) {
-    return !this.idx[a] || !this.idx[a][o] ? s(null, void 0) : s(null, this.idx[a][o][e] || null);
+  findCookie(e, a, o, i) {
+    return !this.idx[e] || !this.idx[e][a] ? i(null, void 0) : i(null, this.idx[e][a][o] || null);
   }
-  findCookies(a, o, e, s) {
-    const n = [];
-    if (typeof e == "function" && (s = e, e = !0), !a)
-      return s(null, []);
-    let t;
-    o ? t = function(m) {
-      Object.keys(m).forEach((c) => {
-        if (ae(o, c)) {
-          const l = m[c];
-          for (const d in l)
-            n.push(l[d]);
+  findCookies(e, a, o, i) {
+    const s = [];
+    if (typeof o == "function" && (i = o, o = !0), !e)
+      return i(null, []);
+    let n;
+    a ? n = function(m) {
+      Object.keys(m).forEach((u) => {
+        if (ae(a, u)) {
+          const c = m[u];
+          for (const l in c)
+            s.push(c[l]);
         }
       });
-    } : t = function(m) {
-      for (const c in m) {
-        const l = m[c];
-        for (const d in l)
-          n.push(l[d]);
+    } : n = function(m) {
+      for (const u in m) {
+        const c = m[u];
+        for (const l in c)
+          s.push(c[l]);
       }
     };
-    const r = Yo(a, e) || [a], u = this.idx;
-    r.forEach((m) => {
-      const c = u[m];
-      !c || t(c);
-    }), s(null, n);
+    const t = Yo(e, o) || [e], r = this.idx;
+    t.forEach((m) => {
+      const u = r[m];
+      u && n(u);
+    }), i(null, s);
   }
-  putCookie(a, o) {
-    this.idx[a.domain] || (this.idx[a.domain] = /* @__PURE__ */ Object.create(null)), this.idx[a.domain][a.path] || (this.idx[a.domain][a.path] = /* @__PURE__ */ Object.create(null)), this.idx[a.domain][a.path][a.key] = a, o(null);
+  putCookie(e, a) {
+    this.idx[e.domain] || (this.idx[e.domain] = /* @__PURE__ */ Object.create(null)), this.idx[e.domain][e.path] || (this.idx[e.domain][e.path] = /* @__PURE__ */ Object.create(null)), this.idx[e.domain][e.path][e.key] = e, a(null);
   }
-  updateCookie(a, o, e) {
-    this.putCookie(o, e);
+  updateCookie(e, a, o) {
+    this.putCookie(a, o);
   }
-  removeCookie(a, o, e, s) {
-    this.idx[a] && this.idx[a][o] && this.idx[a][o][e] && delete this.idx[a][o][e], s(null);
+  removeCookie(e, a, o, i) {
+    this.idx[e] && this.idx[e][a] && this.idx[e][a][o] && delete this.idx[e][a][o], i(null);
   }
-  removeCookies(a, o, e) {
-    return this.idx[a] && (o ? delete this.idx[a][o] : delete this.idx[a]), e(null);
+  removeCookies(e, a, o) {
+    return this.idx[e] && (a ? delete this.idx[e][a] : delete this.idx[e]), o(null);
   }
-  removeAllCookies(a) {
-    return this.idx = /* @__PURE__ */ Object.create(null), a(null);
+  removeAllCookies(e) {
+    return this.idx = /* @__PURE__ */ Object.create(null), e(null);
   }
-  getAllCookies(a) {
-    const o = [], e = this.idx;
-    Object.keys(e).forEach((s) => {
-      Object.keys(e[s]).forEach((n) => {
-        Object.keys(e[s][n]).forEach((t) => {
-          t !== null && o.push(e[s][n][t]);
+  getAllCookies(e) {
+    const a = [], o = this.idx;
+    Object.keys(o).forEach((i) => {
+      Object.keys(o[i]).forEach((s) => {
+        Object.keys(o[i][s]).forEach((n) => {
+          n !== null && a.push(o[i][s][n]);
         });
       });
-    }), o.sort((s, n) => (s.creationIndex || 0) - (n.creationIndex || 0)), a(null, o);
+    }), a.sort((i, s) => (i.creationIndex || 0) - (s.creationIndex || 0)), e(null, a);
   }
-}
+};
 [
   "findCookie",
   "findCookies",
@@ -10134,92 +10155,92 @@ class sa extends Xo {
   "removeCookies",
   "removeAllCookies",
   "getAllCookies"
-].forEach((i) => {
-  sa.prototype[i] = Ko(
-    sa.prototype[i]
+].forEach((e) => {
+  ia.prototype[e] = Ko(
+    ia.prototype[e]
   );
 });
-ga.MemoryCookieStore = sa;
-function ao(i) {
-  const a = Object.keys(i);
+ka.MemoryCookieStore = ia;
+function ao(e) {
+  const a = Object.keys(e);
   if (a.length === 0)
     return "[Object: null prototype] {}";
   let o = `[Object: null prototype] {
 `;
-  return Object.keys(i).forEach((e, s) => {
-    o += ie(e, i[e]), s < a.length - 1 && (o += ","), o += `
+  return Object.keys(e).forEach((i, s) => {
+    o += ie(i, e[i]), s < a.length - 1 && (o += ","), o += `
 `;
   }), o += "}", o;
 }
-function ie(i, a) {
+function ie(e, a) {
   const o = "  ";
-  let e = `${o}'${i}': [Object: null prototype] {
+  let i = `${o}'${e}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((s, n, t) => {
-    e += se(s, a[s]), n < t.length - 1 && (e += ","), e += `
+    i += se(s, a[s]), n < t.length - 1 && (i += ","), i += `
 `;
-  }), e += `${o}}`, e;
+  }), i += `${o}}`, i;
 }
-function se(i, a) {
+function se(e, a) {
   const o = "    ";
-  let e = `${o}'${i}': [Object: null prototype] {
+  let i = `${o}'${e}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((s, n, t) => {
     const r = a[s];
-    e += `      ${s}: ${r.inspect()}`, n < t.length - 1 && (e += ","), e += `
+    i += `      ${s}: ${r.inspect()}`, n < t.length - 1 && (i += ","), i += `
 `;
-  }), e += `${o}}`, e;
+  }), i += `${o}}`, i;
 }
-ga.inspectFallback = ao;
-var S = {};
-function oo(i) {
-  return typeof i == "function";
+ka.inspectFallback = ao;
+var E = {};
+function oo(e) {
+  return typeof e == "function";
 }
-function ne(i) {
-  return eo(i) && i !== "";
+function ne(e) {
+  return eo(e) && e !== "";
 }
-function te(i) {
-  return ue(i, Date) && me(i.getTime());
+function te(e) {
+  return me(e, Date) && ue(e.getTime());
 }
-function re(i) {
-  return i === "" || i instanceof String && i.toString() === "";
+function re(e) {
+  return e === "" || e instanceof String && e.toString() === "";
 }
-function eo(i) {
-  return typeof i == "string" || i instanceof String;
+function eo(e) {
+  return typeof e == "string" || e instanceof String;
 }
-function io(i) {
-  return toString.call(i) === "[object Object]";
+function io(e) {
+  return toString.call(e) === "[object Object]";
 }
-function ue(i, a) {
+function me(e, a) {
   try {
-    return i instanceof a;
+    return e instanceof a;
   } catch {
     return !1;
   }
 }
-function me(i) {
-  return typeof i == "number" && i % 1 === 0;
+function ue(e) {
+  return typeof e == "number" && e % 1 === 0;
 }
-function ce(i, a, o) {
-  if (oo(a) || (o = a, a = null), io(o) || (o = { Error: "Failed Check" }), !i)
+function ce(e, a, o) {
+  if (oo(a) || (o = a, a = null), io(o) || (o = { Error: "Failed Check" }), !e)
     if (a)
-      a(new na(o));
+      a(new sa(o));
     else
-      throw new na(o);
+      throw new sa(o);
 }
-class na extends Error {
+class sa extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-S.ParameterError = na;
-S.isFunction = oo;
-S.isNonEmptyString = ne;
-S.isDate = te;
-S.isEmptyString = re;
-S.isString = eo;
-S.isObject = io;
-S.validate = ce;
+E.ParameterError = sa;
+E.isFunction = oo;
+E.isNonEmptyString = ne;
+E.isDate = te;
+E.isEmptyString = re;
+E.isString = eo;
+E.isObject = io;
+E.validate = ce;
 var le = "4.1.3";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
@@ -10251,7 +10272,7 @@ var le = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Aa = Ha, pe = Ro, ba = ha, de = ka.Store, he = ga.MemoryCookieStore, ke = ja.pathMatch, p = S, ge = le, { fromCallback: so } = Z, { getCustomInspectSymbol: je } = K, be = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Da = /[\x00-\x1F]/, Ca = [`
+const Oa = Ha, pe = Uo, ja = da, de = ha.Store, he = ka.MemoryCookieStore, ke = ga.pathMatch, p = E, ge = le, { fromCallback: so } = Z, { getCustomInspectSymbol: je } = K, be = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Da = /[\x00-\x1F]/, Ia = [`
 `, "\r", "\0"], ye = /[\x20-\x3A\x3C-\x7E]+/, fe = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, we = {
   jan: 0,
   feb: 1,
@@ -10265,17 +10286,17 @@ const Aa = Ha, pe = Ro, ba = ha, de = ka.Store, he = ga.MemoryCookieStore, ke = 
   oct: 9,
   nov: 10,
   dec: 11
-}, ta = 2147483647e3, ve = 0, Oa = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function Fa(i) {
-  p.validate(p.isNonEmptyString(i), i);
-  const a = String(i).toLowerCase();
+}, na = 2147483647e3, ve = 0, Aa = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function Sa(e) {
+  p.validate(p.isNonEmptyString(e), e);
+  const a = String(e).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
 }
-const U = Object.freeze({
+const _ = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), xe = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, ze = `
+}), ze = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, xe = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -10286,117 +10307,117 @@ const U = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), no = new RegExp(`^${ze}$`);
-function ra(i, a, o, e) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), no = new RegExp(`^${xe}$`);
+function ta(e, a, o, i) {
   let s = 0;
-  for (; s < i.length; ) {
-    const n = i.charCodeAt(s);
+  for (; s < e.length; ) {
+    const n = e.charCodeAt(s);
     if (n <= 47 || n >= 58)
       break;
     s++;
   }
-  return s < a || s > o || !e && s != i.length ? null : parseInt(i.substr(0, s), 10);
+  return s < a || s > o || !i && s != e.length ? null : parseInt(e.substr(0, s), 10);
 }
-function Ee(i) {
-  const a = i.split(":"), o = [0, 0, 0];
+function Oe(e) {
+  const a = e.split(":"), o = [0, 0, 0];
   if (a.length !== 3)
     return null;
-  for (let e = 0; e < 3; e++) {
-    const s = e == 2, n = ra(a[e], 1, 2, s);
+  for (let i = 0; i < 3; i++) {
+    const s = i == 2, n = ta(a[i], 1, 2, s);
     if (n === null)
       return null;
-    o[e] = n;
+    o[i] = n;
   }
   return o;
 }
-function Ae(i) {
-  i = String(i).substr(0, 3).toLowerCase();
-  const a = we[i];
+function De(e) {
+  e = String(e).substr(0, 3).toLowerCase();
+  const a = we[e];
   return a >= 0 ? a : null;
 }
-function J(i) {
-  if (!i)
+function J(e) {
+  if (!e)
     return;
-  const a = i.split(fe);
+  const a = e.split(fe);
   if (!a)
     return;
-  let o = null, e = null, s = null, n = null, t = null, r = null;
-  for (let u = 0; u < a.length; u++) {
-    const m = a[u].trim();
-    if (!m.length)
+  let o = null, i = null, s = null, n = null, t = null, r = null;
+  for (let m = 0; m < a.length; m++) {
+    const u = a[m].trim();
+    if (!u.length)
       continue;
     let c;
-    if (s === null && (c = Ee(m), c)) {
-      o = c[0], e = c[1], s = c[2];
+    if (s === null && (c = Oe(u), c)) {
+      o = c[0], i = c[1], s = c[2];
       continue;
     }
-    if (n === null && (c = ra(m, 1, 2, !0), c !== null)) {
+    if (n === null && (c = ta(u, 1, 2, !0), c !== null)) {
       n = c;
       continue;
     }
-    if (t === null && (c = Ae(m), c !== null)) {
+    if (t === null && (c = De(u), c !== null)) {
       t = c;
       continue;
     }
-    r === null && (c = ra(m, 2, 4, !0), c !== null && (r = c, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
+    r === null && (c = ta(u, 2, 4, !0), c !== null && (r = c, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
   }
-  if (!(n === null || t === null || r === null || s === null || n < 1 || n > 31 || r < 1601 || o > 23 || e > 59 || s > 59))
-    return new Date(Date.UTC(r, t, n, o, e, s));
+  if (!(n === null || t === null || r === null || s === null || n < 1 || n > 31 || r < 1601 || o > 23 || i > 59 || s > 59))
+    return new Date(Date.UTC(r, t, n, o, i, s));
 }
-function De(i) {
-  return p.validate(p.isDate(i), i), i.toUTCString();
+function Ie(e) {
+  return p.validate(p.isDate(e), e), e.toUTCString();
 }
-function H(i) {
-  return i == null ? null : (i = i.trim().replace(/^\./, ""), no.test(i) && (i = i.replace("[", "").replace("]", "")), Aa && /[^\u0001-\u007f]/.test(i) && (i = Aa.toASCII(i)), i.toLowerCase());
+function H(e) {
+  return e == null ? null : (e = e.trim().replace(/^\./, ""), no.test(e) && (e = e.replace("[", "").replace("]", "")), Oa && /[^\u0001-\u007f]/.test(e) && (e = Oa.toASCII(e)), e.toLowerCase());
 }
-function Ia(i, a, o) {
-  if (i == null || a == null)
+function Ca(e, a, o) {
+  if (e == null || a == null)
     return null;
-  if (o !== !1 && (i = H(i), a = H(a)), i == a)
+  if (o !== !1 && (e = H(e), a = H(a)), e == a)
     return !0;
-  const e = i.lastIndexOf(a);
-  return !(e <= 0 || i.length !== a.length + e || i.substr(e - 1, 1) !== "." || xe.test(i));
+  const i = e.lastIndexOf(a);
+  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || ze.test(e));
 }
-function Ce(i) {
-  if (!i || i.substr(0, 1) !== "/")
+function Ae(e) {
+  if (!e || e.substr(0, 1) !== "/")
     return "/";
-  if (i === "/")
-    return i;
-  const a = i.lastIndexOf("/");
-  return a === 0 ? "/" : i.slice(0, a);
+  if (e === "/")
+    return e;
+  const a = e.lastIndexOf("/");
+  return a === 0 ? "/" : e.slice(0, a);
 }
-function Oe(i) {
-  if (p.isEmptyString(i))
-    return i;
-  for (let a = 0; a < Ca.length; a++) {
-    const o = i.indexOf(Ca[a]);
-    o !== -1 && (i = i.substr(0, o));
+function Se(e) {
+  if (p.isEmptyString(e))
+    return e;
+  for (let a = 0; a < Ia.length; a++) {
+    const o = e.indexOf(Ia[a]);
+    o !== -1 && (e = e.substr(0, o));
   }
-  return i;
+  return e;
 }
-function Fe(i, a) {
-  i = Oe(i), p.validate(p.isString(i), i);
-  let o = i.indexOf("=");
+function Ce(e, a) {
+  e = Se(e), p.validate(p.isString(e), e);
+  let o = e.indexOf("=");
   if (a)
-    o === 0 && (i = i.substr(1), o = i.indexOf("="));
+    o === 0 && (e = e.substr(1), o = e.indexOf("="));
   else if (o <= 0)
     return;
-  let e, s;
-  if (o <= 0 ? (e = "", s = i.trim()) : (e = i.substr(0, o).trim(), s = i.substr(o + 1).trim()), Da.test(e) || Da.test(s))
+  let i, s;
+  if (o <= 0 ? (i = "", s = e.trim()) : (i = e.substr(0, o).trim(), s = e.substr(o + 1).trim()), Da.test(i) || Da.test(s))
     return;
-  const n = new x();
-  return n.key = e, n.value = s, n;
+  const n = new z();
+  return n.key = i, n.value = s, n;
 }
-function Ie(i, a) {
-  if ((!a || typeof a != "object") && (a = {}), p.isEmptyString(i) || !p.isString(i))
+function Ve(e, a) {
+  if ((!a || typeof a != "object") && (a = {}), p.isEmptyString(e) || !p.isString(e))
     return null;
-  i = i.trim();
-  const o = i.indexOf(";"), e = o === -1 ? i : i.substr(0, o), s = Fe(e, !!a.loose);
+  e = e.trim();
+  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), s = Ce(i, !!a.loose);
   if (!s)
     return;
   if (o === -1)
     return s;
-  const n = i.slice(o + 1).trim();
+  const n = e.slice(o + 1).trim();
   if (n.length === 0)
     return s;
   const t = n.split(";");
@@ -10404,9 +10425,9 @@ function Ie(i, a) {
     const r = t.shift().trim();
     if (r.length === 0)
       continue;
-    const u = r.indexOf("=");
-    let m, c;
-    switch (u === -1 ? (m = r, c = null) : (m = r.substr(0, u), c = r.substr(u + 1)), m = m.trim().toLowerCase(), c && (c = c.trim()), m) {
+    const m = r.indexOf("=");
+    let u, c;
+    switch (m === -1 ? (u = r, c = null) : (u = r.substr(0, m), c = r.substr(m + 1)), u = u.trim().toLowerCase(), c && (c = c.trim()), u) {
       case "expires":
         if (c) {
           const l = J(c);
@@ -10457,56 +10478,57 @@ function Ie(i, a) {
   }
   return s;
 }
-function Se(i) {
-  return p.validate(p.isObject(i), i), !i.key.startsWith("__Secure-") || i.secure;
+function Ee(e) {
+  return p.validate(p.isObject(e), e), !e.key.startsWith("__Secure-") || e.secure;
 }
-function Ve(i) {
-  return p.validate(p.isObject(i)), !i.key.startsWith("__Host-") || i.secure && i.hostOnly && i.path != null && i.path === "/";
+function Pe(e) {
+  return p.validate(p.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
 }
-function to(i) {
+function to(e) {
   let a;
   try {
-    a = JSON.parse(i);
+    a = JSON.parse(e);
   } catch (o) {
     return o;
   }
   return a;
 }
-function ya(i) {
-  if (!i || p.isEmptyString(i))
+function ba(e) {
+  if (!e || p.isEmptyString(e))
     return null;
   let a;
-  if (typeof i == "string") {
-    if (a = to(i), a instanceof Error)
+  if (typeof e == "string") {
+    if (a = to(e), a instanceof Error)
       return null;
   } else
-    a = i;
-  const o = new x();
-  for (let e = 0; e < x.serializableProperties.length; e++) {
-    const s = x.serializableProperties[e];
-    a[s] === void 0 || a[s] === q[s] || (s === "expires" || s === "creation" || s === "lastAccessed" ? a[s] === null ? o[s] = null : o[s] = a[s] == "Infinity" ? "Infinity" : new Date(a[s]) : o[s] = a[s]);
+    a = e;
+  const o = new z();
+  for (let i = 0; i < z.serializableProperties.length; i++) {
+    const s = z.serializableProperties[i];
+    a[s] === void 0 || a[s] === $[s] || (s === "expires" || s === "creation" || s === "lastAccessed" ? a[s] === null ? o[s] = null : o[s] = a[s] == "Infinity" ? "Infinity" : new Date(a[s]) : o[s] = a[s]);
   }
   return o;
 }
-function Sa(i, a) {
-  p.validate(p.isObject(i), i), p.validate(p.isObject(a), a);
+function Va(e, a) {
+  p.validate(p.isObject(e), e), p.validate(p.isObject(a), a);
   let o = 0;
-  const e = i.path ? i.path.length : 0;
-  if (o = (a.path ? a.path.length : 0) - e, o !== 0)
+  const i = e.path ? e.path.length : 0;
+  if (o = (a.path ? a.path.length : 0) - i, o !== 0)
     return o;
-  const s = i.creation ? i.creation.getTime() : ta, n = a.creation ? a.creation.getTime() : ta;
-  return o = s - n, o !== 0 || (o = i.creationIndex - a.creationIndex), o;
+  const s = e.creation ? e.creation.getTime() : na, n = a.creation ? a.creation.getTime() : na;
+  return o = s - n, o !== 0 || (o = e.creationIndex - a.creationIndex), o;
 }
-function Va(i) {
-  if (i instanceof Object)
-    return i;
+function Ea(e) {
+  if (e instanceof Object)
+    return e;
   try {
-    i = decodeURI(i);
+    e = decodeURI(e);
   } catch {
   }
-  return pe(i);
+  return pe(e);
 }
-const q = {
+const $ = {
+  // the order in which the RFC has them:
   key: "",
   value: "",
   expires: "Infinity",
@@ -10516,40 +10538,42 @@ const q = {
   secure: !1,
   httpOnly: !1,
   extensions: null,
+  // set by the CookieJar:
   hostOnly: null,
   pathIsDefault: null,
   creation: null,
   lastAccessed: null,
   sameSite: void 0
 };
-class x {
+class z {
   constructor(a = {}) {
     const o = je();
-    o && (this[o] = this.inspect), Object.assign(this, q, a), this.creation = this.creation || new Date(), Object.defineProperty(this, "creationIndex", {
+    o && (this[o] = this.inspect), Object.assign(this, $, a), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
+      // important for assert.deepEqual checks
       writable: !0,
-      value: ++x.cookiesCreated
+      value: ++z.cookiesCreated
     });
   }
   inspect() {
-    const a = Date.now(), o = this.hostOnly != null ? this.hostOnly : "?", e = this.creation ? `${a - this.creation.getTime()}ms` : "?", s = this.lastAccessed ? `${a - this.lastAccessed.getTime()}ms` : "?";
-    return `Cookie="${this.toString()}; hostOnly=${o}; aAge=${s}; cAge=${e}"`;
+    const a = Date.now(), o = this.hostOnly != null ? this.hostOnly : "?", i = this.creation ? `${a - this.creation.getTime()}ms` : "?", s = this.lastAccessed ? `${a - this.lastAccessed.getTime()}ms` : "?";
+    return `Cookie="${this.toString()}; hostOnly=${o}; aAge=${s}; cAge=${i}"`;
   }
   toJSON() {
     const a = {};
-    for (const o of x.serializableProperties)
-      this[o] !== q[o] && (o === "expires" || o === "creation" || o === "lastAccessed" ? this[o] === null ? a[o] = null : a[o] = this[o] == "Infinity" ? "Infinity" : this[o].toISOString() : o === "maxAge" ? this[o] !== null && (a[o] = this[o] == 1 / 0 || this[o] == -1 / 0 ? this[o].toString() : this[o]) : this[o] !== q[o] && (a[o] = this[o]));
+    for (const o of z.serializableProperties)
+      this[o] !== $[o] && (o === "expires" || o === "creation" || o === "lastAccessed" ? this[o] === null ? a[o] = null : a[o] = this[o] == "Infinity" ? "Infinity" : this[o].toISOString() : o === "maxAge" ? this[o] !== null && (a[o] = this[o] == 1 / 0 || this[o] == -1 / 0 ? this[o].toString() : this[o]) : this[o] !== $[o] && (a[o] = this[o]));
     return a;
   }
   clone() {
-    return ya(this.toJSON());
+    return ba(this.toJSON());
   }
   validate() {
     if (!be.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !J(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !ye.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || ba.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || ja.getPublicSuffix(a) == null));
   }
   setExpires(a) {
     a instanceof Date ? this.expires = a : this.expires = J(a) || "Infinity";
@@ -10561,36 +10585,47 @@ class x {
     let a = this.value;
     return a == null && (a = ""), this.key === "" ? a : `${this.key}=${a}`;
   }
+  // gives Set-Cookie header format
   toString() {
     let a = this.cookieString();
-    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${De(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
-      const o = x.sameSiteCanonical[this.sameSite.toLowerCase()];
+    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${Ie(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
+      const o = z.sameSiteCanonical[this.sameSite.toLowerCase()];
       a += `; SameSite=${o || this.sameSite}`;
     }
     return this.extensions && this.extensions.forEach((o) => {
       a += `; ${o}`;
     }), a;
   }
+  // TTL() partially replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere)
+  // S5.3 says to give the "latest representable date" for which we use Infinity
+  // For "expired" we use 0
   TTL(a) {
     if (this.maxAge != null)
       return this.maxAge <= 0 ? 0 : this.maxAge * 1e3;
     let o = this.expires;
     return o != 1 / 0 ? (o instanceof Date || (o = J(o) || 1 / 0), o == 1 / 0 ? 1 / 0 : o.getTime() - (a || Date.now())) : 1 / 0;
   }
+  // expiryTime() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere)
   expiryTime(a) {
     if (this.maxAge != null) {
-      const o = a || this.creation || new Date(), e = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
-      return o.getTime() + e;
+      const o = a || this.creation || /* @__PURE__ */ new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
+      return o.getTime() + i;
     }
     return this.expires == 1 / 0 ? 1 / 0 : this.expires.getTime();
   }
+  // expiryDate() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
+  // elsewhere), except it returns a Date
   expiryDate(a) {
     const o = this.expiryTime(a);
-    return o == 1 / 0 ? new Date(ta) : o == -1 / 0 ? new Date(ve) : new Date(o);
+    return o == 1 / 0 ? new Date(na) : o == -1 / 0 ? new Date(ve) : new Date(o);
   }
+  // This replaces the "persistent-flag" parts of S5.3 step 3
   isPersistent() {
     return this.maxAge != null || this.expires != 1 / 0;
   }
+  // Mostly S5.1.2 and S5.2.3:
   canonicalizedDomain() {
     return this.domain == null ? null : H(this.domain);
   }
@@ -10598,176 +10633,183 @@ class x {
     return this.canonicalizedDomain();
   }
 }
-x.cookiesCreated = 0;
-x.parse = Ie;
-x.fromJSON = ya;
-x.serializableProperties = Object.keys(q);
-x.sameSiteLevel = {
+z.cookiesCreated = 0;
+z.parse = Ve;
+z.fromJSON = ba;
+z.serializableProperties = Object.keys($);
+z.sameSiteLevel = {
   strict: 3,
   lax: 2,
   none: 1
 };
-x.sameSiteCanonical = {
+z.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function Pa(i) {
-  if (i != null) {
-    const a = i.toLowerCase();
+function Pa(e) {
+  if (e != null) {
+    const a = e.toLowerCase();
     switch (a) {
-      case U.STRICT:
-      case U.SILENT:
-      case U.DISABLED:
+      case _.STRICT:
+      case _.SILENT:
+      case _.DISABLED:
         return a;
     }
   }
-  return U.SILENT;
+  return _.SILENT;
 }
-class A {
+class D {
   constructor(a, o = { rejectPublicSuffixes: !0 }) {
-    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), p.validate(p.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new he(), this.prefixSecurity = Pa(o.prefixSecurity), this._cloneSync = V("clone"), this._importCookiesSync = V("_importCookies"), this.getCookiesSync = V("getCookies"), this.getCookieStringSync = V("getCookieString"), this.getSetCookieStringsSync = V("getSetCookieStrings"), this.removeAllCookiesSync = V("removeAllCookies"), this.setCookieSync = V("setCookie"), this.serializeSync = V("serialize");
+    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), p.validate(p.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new he(), this.prefixSecurity = Pa(o.prefixSecurity), this._cloneSync = P("clone"), this._importCookiesSync = P("_importCookies"), this.getCookiesSync = P("getCookies"), this.getCookieStringSync = P("getCookieString"), this.getSetCookieStringsSync = P("getSetCookieStrings"), this.removeAllCookiesSync = P("removeAllCookies"), this.setCookieSync = P("setCookie"), this.serializeSync = P("serialize");
   }
-  setCookie(a, o, e, s) {
-    p.validate(p.isNonEmptyString(o), s, e);
+  setCookie(a, o, i, s) {
+    p.validate(p.isNonEmptyString(o), s, i);
     let n;
     if (p.isFunction(o))
       return s = o, s(new Error("No URL was specified"));
-    const t = Va(o);
-    if (p.isFunction(e) && (s = e, e = {}), p.validate(p.isFunction(s), s), !p.isNonEmptyString(a) && !p.isObject(a) && a instanceof String && a.length == 0)
+    const t = Ea(o);
+    if (p.isFunction(i) && (s = i, i = {}), p.validate(p.isFunction(s), s), !p.isNonEmptyString(a) && !p.isObject(a) && a instanceof String && a.length == 0)
       return s(null);
-    const r = H(t.hostname), u = e.loose || this.enableLooseMode;
-    let m = null;
-    if (e.sameSiteContext && (m = Fa(e.sameSiteContext), !m))
-      return s(new Error(Oa));
+    const r = H(t.hostname), m = i.loose || this.enableLooseMode;
+    let u = null;
+    if (i.sameSiteContext && (u = Sa(i.sameSiteContext), !u))
+      return s(new Error(Aa));
     if (typeof a == "string" || a instanceof String) {
-      if (a = x.parse(a, { loose: u }), !a)
-        return n = new Error("Cookie failed to parse"), s(e.ignoreError ? null : n);
-    } else if (!(a instanceof x))
+      if (a = z.parse(a, { loose: m }), !a)
+        return n = new Error("Cookie failed to parse"), s(i.ignoreError ? null : n);
+    } else if (!(a instanceof z))
       return n = new Error(
         "First argument to setCookie must be a Cookie object or string"
-      ), s(e.ignoreError ? null : n);
-    const c = e.now || new Date();
-    if (this.rejectPublicSuffixes && a.domain && ba.getPublicSuffix(a.cdomain(), {
+      ), s(i.ignoreError ? null : n);
+    const c = i.now || /* @__PURE__ */ new Date();
+    if (this.rejectPublicSuffixes && a.domain && ja.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
-      ignoreError: e.ignoreError
+      ignoreError: i.ignoreError
     }) == null && !no.test(a.domain))
-      return n = new Error("Cookie has domain set to a public suffix"), s(e.ignoreError ? null : n);
+      return n = new Error("Cookie has domain set to a public suffix"), s(i.ignoreError ? null : n);
     if (a.domain) {
-      if (!Ia(r, a.cdomain(), !1))
+      if (!Ca(r, a.cdomain(), !1))
         return n = new Error(
           `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${r}`
-        ), s(e.ignoreError ? null : n);
+        ), s(i.ignoreError ? null : n);
       a.hostOnly == null && (a.hostOnly = !1);
     } else
       a.hostOnly = !0, a.domain = r;
-    if ((!a.path || a.path[0] !== "/") && (a.path = Ce(t.pathname), a.pathIsDefault = !0), e.http === !1 && a.httpOnly)
-      return n = new Error("Cookie is HttpOnly and this isn't an HTTP API"), s(e.ignoreError ? null : n);
-    if (a.sameSite !== "none" && a.sameSite !== void 0 && m && m === "none")
+    if ((!a.path || a.path[0] !== "/") && (a.path = Ae(t.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+      return n = new Error("Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : n);
+    if (a.sameSite !== "none" && a.sameSite !== void 0 && u && u === "none")
       return n = new Error(
         "Cookie is SameSite but this is a cross-origin request"
-      ), s(e.ignoreError ? null : n);
-    const l = this.prefixSecurity === U.SILENT;
-    if (this.prefixSecurity !== U.DISABLED) {
+      ), s(i.ignoreError ? null : n);
+    const l = this.prefixSecurity === _.SILENT;
+    if (this.prefixSecurity !== _.DISABLED) {
       let v = !1, y;
-      if (Se(a) ? Ve(a) || (v = !0, y = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (v = !0, y = "Cookie has __Secure prefix but Secure attribute is not set"), v)
+      if (Ee(a) ? Pe(a) || (v = !0, y = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (v = !0, y = "Cookie has __Secure prefix but Secure attribute is not set"), v)
         return s(
-          e.ignoreError || l ? null : new Error(y)
+          i.ignoreError || l ? null : new Error(y)
         );
     }
-    const d = this.store;
-    d.updateCookie || (d.updateCookie = function(v, y, E) {
-      this.putCookie(y, E);
+    const h = this.store;
+    h.updateCookie || (h.updateCookie = function(v, y, O) {
+      this.putCookie(y, O);
     });
     function f(v, y) {
       if (v)
         return s(v);
-      const E = function(G) {
+      const O = function(G) {
         if (G)
           return s(G);
         s(null, a);
       };
       if (y) {
-        if (e.http === !1 && y.httpOnly)
-          return v = new Error("old Cookie is HttpOnly and this isn't an HTTP API"), s(e.ignoreError ? null : v);
-        a.creation = y.creation, a.creationIndex = y.creationIndex, a.lastAccessed = c, d.updateCookie(y, a, E);
+        if (i.http === !1 && y.httpOnly)
+          return v = new Error("old Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : v);
+        a.creation = y.creation, a.creationIndex = y.creationIndex, a.lastAccessed = c, h.updateCookie(y, a, O);
       } else
-        a.creation = a.lastAccessed = c, d.putCookie(a, E);
+        a.creation = a.lastAccessed = c, h.putCookie(a, O);
     }
-    d.findCookie(a.domain, a.path, a.key, f);
+    h.findCookie(a.domain, a.path, a.key, f);
   }
-  getCookies(a, o, e) {
-    p.validate(p.isNonEmptyString(a), e, a);
-    const s = Va(a);
-    p.isFunction(o) && (e = o, o = {}), p.validate(p.isObject(o), e, o), p.validate(p.isFunction(e), e);
+  // RFC6365 S5.4
+  getCookies(a, o, i) {
+    p.validate(p.isNonEmptyString(a), i, a);
+    const s = Ea(a);
+    p.isFunction(o) && (i = o, o = {}), p.validate(p.isObject(o), i, o), p.validate(p.isFunction(i), i);
     const n = H(s.hostname), t = s.pathname || "/";
     let r = o.secure;
     r == null && s.protocol && (s.protocol == "https:" || s.protocol == "wss:") && (r = !0);
-    let u = 0;
+    let m = 0;
     if (o.sameSiteContext) {
-      const y = Fa(o.sameSiteContext);
-      if (u = x.sameSiteLevel[y], !u)
-        return e(new Error(Oa));
+      const y = Sa(o.sameSiteContext);
+      if (m = z.sameSiteLevel[y], !m)
+        return i(new Error(Aa));
     }
-    let m = o.http;
-    m == null && (m = !0);
-    const c = o.now || Date.now(), l = o.expire !== !1, d = !!o.allPaths, f = this.store;
+    let u = o.http;
+    u == null && (u = !0);
+    const c = o.now || Date.now(), l = o.expire !== !1, h = !!o.allPaths, f = this.store;
     function v(y) {
       if (y.hostOnly) {
         if (y.domain != n)
           return !1;
-      } else if (!Ia(n, y.domain, !1))
+      } else if (!Ca(n, y.domain, !1))
         return !1;
-      return !d && !ke(t, y.path) || y.secure && !r || y.httpOnly && !m || u && x.sameSiteLevel[y.sameSite || "none"] > u ? !1 : l && y.expiryTime() <= c ? (f.removeCookie(y.domain, y.path, y.key, () => {
+      return !h && !ke(t, y.path) || y.secure && !r || y.httpOnly && !u || m && z.sameSiteLevel[y.sameSite || "none"] > m ? !1 : l && y.expiryTime() <= c ? (f.removeCookie(y.domain, y.path, y.key, () => {
       }), !1) : !0;
     }
     f.findCookies(
       n,
-      d ? null : t,
+      h ? null : t,
       this.allowSpecialUseDomain,
-      (y, E) => {
+      (y, O) => {
         if (y)
-          return e(y);
-        E = E.filter(v), o.sort !== !1 && (E = E.sort(Sa));
-        const G = new Date();
-        for (const mo of E)
-          mo.lastAccessed = G;
-        e(null, E);
+          return i(y);
+        O = O.filter(v), o.sort !== !1 && (O = O.sort(Va));
+        const G = /* @__PURE__ */ new Date();
+        for (const uo of O)
+          uo.lastAccessed = G;
+        i(null, O);
       }
     );
   }
   getCookieString(...a) {
     const o = a.pop();
     p.validate(p.isFunction(o), o);
-    const e = function(s, n) {
+    const i = function(s, n) {
       s ? o(s) : o(
         null,
-        n.sort(Sa).map((t) => t.cookieString()).join("; ")
+        n.sort(Va).map((t) => t.cookieString()).join("; ")
       );
     };
-    a.push(e), this.getCookies.apply(this, a);
+    a.push(i), this.getCookies.apply(this, a);
   }
   getSetCookieStrings(...a) {
     const o = a.pop();
     p.validate(p.isFunction(o), o);
-    const e = function(s, n) {
+    const i = function(s, n) {
       s ? o(s) : o(
         null,
         n.map((t) => t.toString())
       );
     };
-    a.push(e), this.getCookies.apply(this, a);
+    a.push(i), this.getCookies.apply(this, a);
   }
   serialize(a) {
     p.validate(p.isFunction(a), a);
     let o = this.store.constructor.name;
     p.isObject(o) && (o = null);
-    const e = {
+    const i = {
+      // The version of tough-cookie that serialized this jar. Generally a good
+      // practice since future versions can make data import decisions based on
+      // known past behavior. When/if this matters, use `semver`.
       version: `tough-cookie@${ge}`,
+      // add the store type, to make humans happy:
       storeType: o,
+      // CookieJar configuration:
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
       prefixSecurity: Pa(this.prefixSecurity),
+      // this gets filled from getAllCookies:
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
@@ -10776,24 +10818,25 @@ class A {
           "store does not support getAllCookies and cannot be serialized"
         )
       );
-    this.store.getAllCookies((s, n) => s ? a(s) : (e.cookies = n.map((t) => (t = t instanceof x ? t.toJSON() : t, delete t.creationIndex, t)), a(null, e)));
+    this.store.getAllCookies((s, n) => s ? a(s) : (i.cookies = n.map((t) => (t = t instanceof z ? t.toJSON() : t, delete t.creationIndex, t)), a(null, i)));
   }
   toJSON() {
     return this.serializeSync();
   }
+  // use the class method CookieJar.deserialize instead of calling this directly
   _importCookies(a, o) {
-    let e = a.cookies;
-    if (!e || !Array.isArray(e))
+    let i = a.cookies;
+    if (!i || !Array.isArray(i))
       return o(new Error("serialized jar has no cookies array"));
-    e = e.slice();
+    i = i.slice();
     const s = (n) => {
       if (n)
         return o(n);
-      if (!e.length)
+      if (!i.length)
         return o(n, this);
       let t;
       try {
-        t = ya(e.shift());
+        t = ba(i.shift());
       } catch (r) {
         return o(r);
       }
@@ -10804,10 +10847,10 @@ class A {
     s();
   }
   clone(a, o) {
-    arguments.length === 1 && (o = a, a = null), this.serialize((e, s) => {
-      if (e)
-        return o(e);
-      A.deserialize(s, a, o);
+    arguments.length === 1 && (o = a, a = null), this.serialize((i, s) => {
+      if (i)
+        return o(i);
+      D.deserialize(s, a, o);
     });
   }
   cloneSync(a) {
@@ -10824,36 +10867,36 @@ class A {
     const o = this.store;
     if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== de.prototype.removeAllCookies)
       return o.removeAllCookies(a);
-    o.getAllCookies((e, s) => {
-      if (e)
-        return a(e);
+    o.getAllCookies((i, s) => {
+      if (i)
+        return a(i);
       if (s.length === 0)
         return a(null);
       let n = 0;
       const t = [];
-      function r(u) {
-        if (u && t.push(u), n++, n === s.length)
+      function r(m) {
+        if (m && t.push(m), n++, n === s.length)
           return a(t.length ? t[0] : null);
       }
-      s.forEach((u) => {
+      s.forEach((m) => {
         o.removeCookie(
-          u.domain,
-          u.path,
-          u.key,
+          m.domain,
+          m.path,
+          m.key,
           r
         );
       });
     });
   }
-  static deserialize(a, o, e) {
-    arguments.length !== 3 && (e = o, o = null), p.validate(p.isFunction(e), e);
+  static deserialize(a, o, i) {
+    arguments.length !== 3 && (i = o, o = null), p.validate(p.isFunction(i), i);
     let s;
     if (typeof a == "string") {
       if (s = to(a), s instanceof Error)
-        return e(s);
+        return i(s);
     } else
       s = a;
-    const n = new A(o, {
+    const n = new D(o, {
       rejectPublicSuffixes: s.rejectPublicSuffixes,
       looseMode: s.enableLooseMode,
       allowSpecialUseDomain: s.allowSpecialUseDomain,
@@ -10861,23 +10904,23 @@ class A {
     });
     n._importCookies(s, (t) => {
       if (t)
-        return e(t);
-      e(null, n);
+        return i(t);
+      i(null, n);
     });
   }
   static deserializeSync(a, o) {
-    const e = typeof a == "string" ? JSON.parse(a) : a, s = new A(o, {
-      rejectPublicSuffixes: e.rejectPublicSuffixes,
-      looseMode: e.enableLooseMode
+    const i = typeof a == "string" ? JSON.parse(a) : a, s = new D(o, {
+      rejectPublicSuffixes: i.rejectPublicSuffixes,
+      looseMode: i.enableLooseMode
     });
     if (!s.store.synchronous)
       throw new Error(
         "CookieJar store is not synchronous; use async API instead."
       );
-    return s._importCookiesSync(e), s;
+    return s._importCookiesSync(i), s;
   }
 }
-A.fromJSON = A.deserializeSync;
+D.fromJSON = D.deserializeSync;
 [
   "_importCookies",
   "clone",
@@ -10887,836 +10930,1770 @@ A.fromJSON = A.deserializeSync;
   "removeAllCookies",
   "serialize",
   "setCookie"
-].forEach((i) => {
-  A.prototype[i] = so(A.prototype[i]);
+].forEach((e) => {
+  D.prototype[e] = so(D.prototype[e]);
 });
-A.deserialize = so(A.deserialize);
-function V(i) {
+D.deserialize = so(D.deserialize);
+function P(e) {
   return function(...a) {
     if (!this.store.synchronous)
       throw new Error(
         "CookieJar store is not synchronous; use async API instead."
       );
-    let o, e;
-    if (this[i](...a, (s, n) => {
-      o = s, e = n;
+    let o, i;
+    if (this[e](...a, (s, n) => {
+      o = s, i = n;
     }), o)
       throw o;
-    return e;
+    return i;
   };
 }
-var Pe = A;
-ba.getPublicSuffix;
+var Te = D;
+ja.getPublicSuffix;
 p.ParameterError;
 var ro = {};
 Object.defineProperty(ro, "__esModule", { value: !0 });
-function Be(i) {
-  return i;
+function Re(e) {
+  return e;
 }
-var Te = ro.wrapper = Be;
-const Re = new Pe();
-Te && (h.defaults.jar = Re);
-h.defaults.withCredentials = !0;
-class Ba {
-  constructor(a = uo) {
-    _(this, "basePath"), _(this, "baseOptions"), _(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
+var Le = ro.wrapper = Re;
+const Ue = new Te();
+Le && (d.defaults.jar = Ue);
+d.defaults.withCredentials = !0;
+class Ta {
+  constructor(a = mo) {
+    B(this, "basePath"), B(this, "baseOptions"), B(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
+  /**
+   * Check if the given MIME is a JSON MIME.
+   * JSON MIME examples:
+   *   application/json
+   *   application/json; charset=UTF8
+   *   APPLICATION/JSON
+   *   application/vnd.company+json
+   * @param mime - MIME (Multipurpose Internet Mail Extensions)
+   * @return True if the given MIME is JSON, false otherwise.
+   */
   isJsonMime(a) {
     const o = new RegExp("^(application/json|[^;/ 	]+/[^;/ 	]+[+]json)[ 	]*(;.*)?$", "i");
     return a !== null && (o.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const uo = typeof window == "object" && window.self === self && self ? new Ba({ basePath: "" }) : new Ba({ basePath: "https://learning.cultofbits.com" });
+const mo = typeof window == "object" && window.self === self && self ? new Ta({ basePath: "" }) : new Ta({ basePath: "https://learning.cultofbits.com" });
 class Q {
-  constructor(a, o = h) {
-    _(this, "configuration"), this.axios = o, this.configuration = a != null ? a : uo;
+  constructor(a, o = d) {
+    B(this, "configuration"), this.axios = o, this.configuration = a ?? mo;
   }
 }
-class Le extends Error {
+class Ne extends Error {
   constructor(a, o) {
-    super(o), _(this, "name", "RequiredError"), this.field = a;
+    super(o), B(this, "name", "RequiredError"), this.field = a;
   }
 }
-const k = "https://example.com", w = function(i, a, o) {
+const k = "https://example.com", w = function(e, a, o) {
   if (o == null)
-    throw new Le(
+    throw new Ne(
       a,
-      `Required parameter ${a} was null or undefined when calling ${i}.`
+      `Required parameter ${a} was null or undefined when calling ${e}.`
     );
-}, g = function(i, ...a) {
-  const o = new URLSearchParams(i.search);
-  for (const e of a)
-    for (const s in e)
-      if (Array.isArray(e[s])) {
+}, g = function(e, ...a) {
+  const o = new URLSearchParams(e.search);
+  for (const i of a)
+    for (const s in i)
+      if (Array.isArray(i[s])) {
         o.delete(s);
-        for (const n of e[s])
+        for (const n of i[s])
           o.append(s, n);
       } else
-        o.set(s, e[s]);
-  i.search = o.toString();
-}, z = function(i, a, o) {
-  const e = typeof i != "string";
-  return (e && o && o.isJsonMime ? o.isJsonMime(a.headers["Content-Type"]) : e) ? JSON.stringify(i !== void 0 ? i : {}) : i || "";
-}, j = function(i) {
-  return i.pathname + i.search + i.hash;
-}, b = function(i, a, o) {
-  return (e = a) => {
-    const s = { ...i.options, url: o.basePath + i.url };
-    return e.request(s);
+        o.set(s, i[s]);
+  e.search = o.toString();
+}, x = function(e, a, o) {
+  const i = typeof e != "string";
+  return (i && o && o.isJsonMime ? o.isJsonMime(a.headers["Content-Type"]) : i) ? JSON.stringify(e !== void 0 ? e : {}) : e || "";
+}, j = function(e) {
+  return e.pathname + e.search + e.hash;
+}, b = function(e, a, o) {
+  return (i = a) => {
+    const s = { ...e.options, url: o.basePath + e.url };
+    return i.request(s);
   };
-}, Ue = function(i) {
+}, _e = function(e) {
   return {
+    /**
+     * 
+     * @summary Clones an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     cloneDefinition: async (a, o = {}) => {
       w("cloneDefinition", "definitionId", a);
-      const e = "/recordm/recordm/definitions/{definitionId}/clone".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(e, k);
+      const i = "/recordm/recordm/definitions/{definitionId}/clone".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
+      e && (n = e.baseOptions);
       const t = { method: "POST", ...n, ...o }, r = {};
       g(s, {});
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, {
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, {
         url: j(s),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Delete an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     deleteDefinition: async (a, o = {}) => {
       w("deleteDefinition", "definitionId", a);
-      const e = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(e, k);
+      const i = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
+      e && (n = e.baseOptions);
       const t = { method: "DELETE", ...n, ...o }, r = {};
       g(s, {});
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, {
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, {
         url: j(s),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Download a definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     exportDefinition: async (a, o = {}) => {
       w("exportDefinition", "definitionId", a);
-      const e = "/recordm/recordm/definitions/{definitionId}/export".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(e, k);
+      const i = "/recordm/recordm/definitions/{definitionId}/export".replace("{definitionId}", encodeURIComponent(String(a))), s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
+      e && (n = e.baseOptions);
       const t = { method: "GET", ...n, ...o }, r = {};
       g(s, {});
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, {
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, {
         url: j(s),
         options: t
       };
     },
-    getAllDefinitions: async (a, o, e = {}) => {
+    /**
+     * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
+     * @summary Retrieves all definitions
+     * @param {boolean} [includeDisabled] If it should include inactive definitions
+     * @param {string} [name] Restrict results to definitons with name matching
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllDefinitions: async (a, o, i = {}) => {
       const s = "/recordm/recordm/definitions", n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "GET", ...t, ...e }, u = {}, m = {};
-      a !== void 0 && (m.includeDisabled = a), o !== void 0 && (m.name = o), g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "GET", ...t, ...i }, m = {}, u = {};
+      a !== void 0 && (u.includeDisabled = a), o !== void 0 && (u.name = o), g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
-    getDefinition: async (a, o, e, s = {}) => {
+    /**
+     * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
+     * @summary Retrieves a specific definition including its fields.
+     * @param {number} definitionId The definition identifier
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the definition and if they are equal, a 304 will be returned.
+     * @param {boolean} [_export] When true it will return a clone of the definition
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDefinition: async (a, o, i, s = {}) => {
       w("getDefinition", "definitionId", a);
       const n = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), t = new URL(n, k);
       let r;
-      i && (r = i.baseOptions);
-      const u = { method: "GET", ...r, ...s }, m = {}, c = {};
-      e !== void 0 && (c.export = e), o != null && (m["If-None-Match"] = String(o)), g(t, c);
+      e && (r = e.baseOptions);
+      const m = { method: "GET", ...r, ...s }, u = {}, c = {};
+      i !== void 0 && (c.export = i), o != null && (u["If-None-Match"] = String(o)), g(t, c);
       let l = r && r.headers ? r.headers : {};
-      return u.headers = { ...m, ...l, ...s.headers }, {
+      return m.headers = { ...u, ...l, ...s.headers }, {
         url: j(t),
-        options: u
+        options: m
       };
     },
+    /**
+     * Retrieves the full details about a definition.
+     * @summary Retrieves a specific that match a provided name.
+     * @param {string} name The definition name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getDefinitionByName: async (a, o = {}) => {
       w("getDefinitionByName", "name", a);
-      const e = "/recordm/recordm/definitions/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(e, k);
+      const i = "/recordm/recordm/definitions/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
+      e && (n = e.baseOptions);
       const t = { method: "GET", ...n, ...o }, r = {};
       g(s, {});
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, {
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, {
         url: j(s),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Create a new definition
+     * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     saveDefinition: async (a, o = {}) => {
-      const e = "/recordm/recordm/definitions", s = new URL(e, k);
+      const i = "/recordm/recordm/definitions", s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
-      const t = { method: "POST", ...n, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", g(s, u);
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, t.data = z(a, t, i), {
+      e && (n = e.baseOptions);
+      const t = { method: "POST", ...n, ...o }, r = {}, m = {};
+      r["Content-Type"] = "application/json", g(s, m);
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, t.data = x(a, t, e), {
         url: j(s),
         options: t
       };
     },
-    updateDefinition: async (a, o, e = {}) => {
+    /**
+     * 
+     * @summary Update an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDefinition: async (a, o, i = {}) => {
       w("updateDefinition", "definitionId", a);
       const s = "/recordm/recordm/definitions/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "PUT", ...t, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "PUT", ...t, ...i }, m = {}, u = {};
+      m["Content-Type"] = "application/json", g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, r.data = z(o, r, i), {
+      return r.headers = { ...m, ...c, ...i.headers }, r.data = x(o, r, e), {
         url: j(n),
         options: r
       };
     },
-    updateDefinitionState: async (a, o, e = {}) => {
+    /**
+     * 
+     * @summary Change the state of an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {string} state The new state
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDefinitionState: async (a, o, i = {}) => {
       w("updateDefinitionState", "definitionId", a), w("updateDefinitionState", "state", o);
       const s = "/recordm/recordm/definitions/{definitionId}/state/{state}".replace("{definitionId}", encodeURIComponent(String(a))).replace("{state}", encodeURIComponent(String(o))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "PUT", ...t, ...e }, u = {};
+      e && (t = e.baseOptions);
+      const r = { method: "PUT", ...t, ...i }, m = {};
       g(n, {});
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     }
   };
-}, I = function(i) {
-  const a = Ue(i);
+}, V = function(e) {
+  const a = _e(e);
   return {
-    async cloneDefinition(o, e) {
-      const s = await a.cloneDefinition(o, e);
-      return b(s, h, i);
+    /**
+     * 
+     * @summary Clones an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async cloneDefinition(o, i) {
+      const s = await a.cloneDefinition(o, i);
+      return b(s, d, e);
     },
-    async deleteDefinition(o, e) {
-      const s = await a.deleteDefinition(o, e);
-      return b(s, h, i);
+    /**
+     * 
+     * @summary Delete an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteDefinition(o, i) {
+      const s = await a.deleteDefinition(o, i);
+      return b(s, d, e);
     },
-    async exportDefinition(o, e) {
-      const s = await a.exportDefinition(o, e);
-      return b(s, h, i);
+    /**
+     * 
+     * @summary Download a definition
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async exportDefinition(o, i) {
+      const s = await a.exportDefinition(o, i);
+      return b(s, d, e);
     },
-    async getAllDefinitions(o, e, s) {
-      const n = await a.getAllDefinitions(o, e, s);
-      return b(n, h, i);
+    /**
+     * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
+     * @summary Retrieves all definitions
+     * @param {boolean} [includeDisabled] If it should include inactive definitions
+     * @param {string} [name] Restrict results to definitons with name matching
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getAllDefinitions(o, i, s) {
+      const n = await a.getAllDefinitions(o, i, s);
+      return b(n, d, e);
     },
-    async getDefinition(o, e, s, n) {
-      const t = await a.getDefinition(o, e, s, n);
-      return b(t, h, i);
+    /**
+     * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
+     * @summary Retrieves a specific definition including its fields.
+     * @param {number} definitionId The definition identifier
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the definition and if they are equal, a 304 will be returned.
+     * @param {boolean} [_export] When true it will return a clone of the definition
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getDefinition(o, i, s, n) {
+      const t = await a.getDefinition(o, i, s, n);
+      return b(t, d, e);
     },
-    async getDefinitionByName(o, e) {
-      const s = await a.getDefinitionByName(o, e);
-      return b(s, h, i);
+    /**
+     * Retrieves the full details about a definition.
+     * @summary Retrieves a specific that match a provided name.
+     * @param {string} name The definition name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getDefinitionByName(o, i) {
+      const s = await a.getDefinitionByName(o, i);
+      return b(s, d, e);
     },
-    async saveDefinition(o, e) {
-      const s = await a.saveDefinition(o, e);
-      return b(s, h, i);
+    /**
+     * 
+     * @summary Create a new definition
+     * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async saveDefinition(o, i) {
+      const s = await a.saveDefinition(o, i);
+      return b(s, d, e);
     },
-    async updateDefinition(o, e, s) {
-      const n = await a.updateDefinition(o, e, s);
-      return b(n, h, i);
+    /**
+     * 
+     * @summary Update an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateDefinition(o, i, s) {
+      const n = await a.updateDefinition(o, i, s);
+      return b(n, d, e);
     },
-    async updateDefinitionState(o, e, s) {
-      const n = await a.updateDefinitionState(o, e, s);
-      return b(n, h, i);
+    /**
+     * 
+     * @summary Change the state of an existing definition
+     * @param {number} definitionId The definition identifier
+     * @param {string} state The new state
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateDefinitionState(o, i, s) {
+      const n = await a.updateDefinitionState(o, i, s);
+      return b(n, d, e);
     }
   };
 };
 class Ge extends Q {
+  /**
+   * 
+   * @summary Clones an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   cloneDefinition(a, o) {
-    return I(this.configuration).cloneDefinition(a, o).then((e) => e(this.axios));
+    return V(this.configuration).cloneDefinition(a, o).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Delete an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   deleteDefinition(a, o) {
-    return I(this.configuration).deleteDefinition(a, o).then((e) => e(this.axios));
+    return V(this.configuration).deleteDefinition(a, o).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Download a definition
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   exportDefinition(a, o) {
-    return I(this.configuration).exportDefinition(a, o).then((e) => e(this.axios));
+    return V(this.configuration).exportDefinition(a, o).then((i) => i(this.axios));
   }
-  getAllDefinitions(a, o, e) {
-    return I(this.configuration).getAllDefinitions(a, o, e).then((s) => s(this.axios));
+  /**
+   * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
+   * @summary Retrieves all definitions
+   * @param {boolean} [includeDisabled] If it should include inactive definitions
+   * @param {string} [name] Restrict results to definitons with name matching
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
+  getAllDefinitions(a, o, i) {
+    return V(this.configuration).getAllDefinitions(a, o, i).then((s) => s(this.axios));
   }
-  getDefinition(a, o, e, s) {
-    return I(this.configuration).getDefinition(a, o, e, s).then((n) => n(this.axios));
+  /**
+   * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
+   * @summary Retrieves a specific definition including its fields.
+   * @param {number} definitionId The definition identifier
+   * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the definition and if they are equal, a 304 will be returned.
+   * @param {boolean} [_export] When true it will return a clone of the definition
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
+  getDefinition(a, o, i, s) {
+    return V(this.configuration).getDefinition(a, o, i, s).then((n) => n(this.axios));
   }
+  /**
+   * Retrieves the full details about a definition.
+   * @summary Retrieves a specific that match a provided name.
+   * @param {string} name The definition name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   getDefinitionByName(a, o) {
-    return I(this.configuration).getDefinitionByName(a, o).then((e) => e(this.axios));
+    return V(this.configuration).getDefinitionByName(a, o).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Create a new definition
+   * @param {CreateDefinitionRequest} [createDefinitionRequest] The new definition payload
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
   saveDefinition(a, o) {
-    return I(this.configuration).saveDefinition(a, o).then((e) => e(this.axios));
+    return V(this.configuration).saveDefinition(a, o).then((i) => i(this.axios));
   }
-  updateDefinition(a, o, e) {
-    return I(this.configuration).updateDefinition(a, o, e).then((s) => s(this.axios));
+  /**
+   * 
+   * @summary Update an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {UpdateDefinitionRequest} [updateDefinitionRequest] The definition object with the updated details
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
+  updateDefinition(a, o, i) {
+    return V(this.configuration).updateDefinition(a, o, i).then((s) => s(this.axios));
   }
-  updateDefinitionState(a, o, e) {
-    return I(this.configuration).updateDefinitionState(a, o, e).then((s) => s(this.axios));
+  /**
+   * 
+   * @summary Change the state of an existing definition
+   * @param {number} definitionId The definition identifier
+   * @param {string} state The new state
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefinitionsApi
+   */
+  updateDefinitionState(a, o, i) {
+    return V(this.configuration).updateDefinitionState(a, o, i).then((s) => s(this.axios));
   }
 }
-const Ne = function(i) {
+const Fe = function(e) {
   return {
-    addDefinitionToDomain: async (a, o, e = {}) => {
+    /**
+     * The response will return the domain with its definitions but not with it\'s field definitions.
+     * @summary Add a new definition to an existing domain
+     * @param {number} domainId The domain identifier
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addDefinitionToDomain: async (a, o, i = {}) => {
       w("addDefinitionToDomain", "domainId", a), w("addDefinitionToDomain", "definitionId", o);
       const s = "/recordm/recordm/domains/{domainId}/definitions/{definitionId}".replace("{domainId}", encodeURIComponent(String(a))).replace("{definitionId}", encodeURIComponent(String(o))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "PUT", ...t, ...e }, u = {};
+      e && (t = e.baseOptions);
+      const r = { method: "PUT", ...t, ...i }, m = {};
       g(n, {});
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
+    /**
+     * 
+     * @summary Creates a new domain
+     * @param {CreateDomainRequest} [createDomainRequest] The new definition details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     addDomain: async (a, o = {}) => {
-      const e = "/recordm/recordm/domains", s = new URL(e, k);
+      const i = "/recordm/recordm/domains", s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
-      const t = { method: "POST", ...n, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", g(s, u);
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, t.data = z(a, t, i), {
+      e && (n = e.baseOptions);
+      const t = { method: "POST", ...n, ...o }, r = {}, m = {};
+      r["Content-Type"] = "application/json", g(s, m);
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, t.data = x(a, t, e), {
         url: j(s),
         options: t
       };
     },
+    /**
+     * 
+     * @summary Delete an existing domain
+     * @param {number} domainId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     deleteDomain: async (a, o = {}) => {
       w("deleteDomain", "domainId", a);
-      const e = "/recordm/recordm/domains/{domainId}".replace("{domainId}", encodeURIComponent(String(a))), s = new URL(e, k);
+      const i = "/recordm/recordm/domains/{domainId}".replace("{domainId}", encodeURIComponent(String(a))), s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
+      e && (n = e.baseOptions);
       const t = { method: "DELETE", ...n, ...o }, r = {};
       g(s, {});
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, {
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, {
         url: j(s),
         options: t
       };
     },
+    /**
+     * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+     * @summary Find a domain by name
+     * @param {string} name The domain name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     findDomainByName: async (a, o = {}) => {
       w("findDomainByName", "name", a);
-      const e = "/recordm/recordm/domains/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(e, k);
+      const i = "/recordm/recordm/domains/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
+      e && (n = e.baseOptions);
       const t = { method: "GET", ...n, ...o }, r = {};
       g(s, {});
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, {
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, {
         url: j(s),
         options: t
       };
     },
+    /**
+     * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+     * @summary Retrieves all domains
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     getAllDomains: async (a = {}) => {
-      const o = "/recordm/recordm/domains", e = new URL(o, k);
+      const o = "/recordm/recordm/domains", i = new URL(o, k);
       let s;
-      i && (s = i.baseOptions);
+      e && (s = e.baseOptions);
       const n = { method: "GET", ...s, ...a }, t = {};
-      g(e, {});
-      let u = s && s.headers ? s.headers : {};
-      return n.headers = { ...t, ...u, ...a.headers }, {
-        url: j(e),
+      g(i, {});
+      let m = s && s.headers ? s.headers : {};
+      return n.headers = { ...t, ...m, ...a.headers }, {
+        url: j(i),
         options: n
       };
     },
-    getDomain: async (a, o, e = {}) => {
+    /**
+     * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+     * @summary Retrieve a domain by it\'s identifier
+     * @param {number} domainId The domain identifier
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the domain and if they are equal, a 304 will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDomain: async (a, o, i = {}) => {
       w("getDomain", "domainId", a);
       const s = "/recordm/recordm/domains/{domainId}".replace("{domainId}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "GET", ...t, ...e }, u = {}, m = {};
-      o != null && (u["If-None-Match"] = String(o)), g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "GET", ...t, ...i }, m = {}, u = {};
+      o != null && (m["If-None-Match"] = String(o)), g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
-    removeDefinitionFromDomain: async (a, o, e = {}) => {
+    /**
+     * The response will return the domain with its definitions but not with it\'s field definitions.
+     * @summary Remove a definition from an existing domain
+     * @param {number} domainId The domain identifier
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    removeDefinitionFromDomain: async (a, o, i = {}) => {
       w("removeDefinitionFromDomain", "domainId", a), w("removeDefinitionFromDomain", "definitionId", o);
       const s = "/recordm/recordm/domains/{domainId}/definitions/{definitionId}".replace("{domainId}", encodeURIComponent(String(a))).replace("{definitionId}", encodeURIComponent(String(o))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "DELETE", ...t, ...e }, u = {};
+      e && (t = e.baseOptions);
+      const r = { method: "DELETE", ...t, ...i }, m = {};
       g(n, {});
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
-    updateDomain: async (a, o, e = {}) => {
+    /**
+     * 
+     * @summary Update an existing domain
+     * @param {number} domainId The domain identifier
+     * @param {UpdateDomainRequest} [updateDomainRequest] The new definition details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDomain: async (a, o, i = {}) => {
       w("updateDomain", "domainId", a);
       const s = "/recordm/recordm/domains/{domainId}".replace("{domainId}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "PUT", ...t, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "PUT", ...t, ...i }, m = {}, u = {};
+      m["Content-Type"] = "application/json", g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, r.data = z(o, r, i), {
+      return r.headers = { ...m, ...c, ...i.headers }, r.data = x(o, r, e), {
         url: j(n),
         options: r
       };
     }
   };
-}, P = function(i) {
-  const a = Ne(i);
+}, T = function(e) {
+  const a = Fe(e);
   return {
-    async addDefinitionToDomain(o, e, s) {
-      const n = await a.addDefinitionToDomain(o, e, s);
-      return b(n, h, i);
+    /**
+     * The response will return the domain with its definitions but not with it\'s field definitions.
+     * @summary Add a new definition to an existing domain
+     * @param {number} domainId The domain identifier
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addDefinitionToDomain(o, i, s) {
+      const n = await a.addDefinitionToDomain(o, i, s);
+      return b(n, d, e);
     },
-    async addDomain(o, e) {
-      const s = await a.addDomain(o, e);
-      return b(s, h, i);
+    /**
+     * 
+     * @summary Creates a new domain
+     * @param {CreateDomainRequest} [createDomainRequest] The new definition details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addDomain(o, i) {
+      const s = await a.addDomain(o, i);
+      return b(s, d, e);
     },
-    async deleteDomain(o, e) {
-      const s = await a.deleteDomain(o, e);
-      return b(s, h, i);
+    /**
+     * 
+     * @summary Delete an existing domain
+     * @param {number} domainId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteDomain(o, i) {
+      const s = await a.deleteDomain(o, i);
+      return b(s, d, e);
     },
-    async findDomainByName(o, e) {
-      const s = await a.findDomainByName(o, e);
-      return b(s, h, i);
+    /**
+     * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+     * @summary Find a domain by name
+     * @param {string} name The domain name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async findDomainByName(o, i) {
+      const s = await a.findDomainByName(o, i);
+      return b(s, d, e);
     },
+    /**
+     * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+     * @summary Retrieves all domains
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     async getAllDomains(o) {
-      const e = await a.getAllDomains(o);
-      return b(e, h, i);
+      const i = await a.getAllDomains(o);
+      return b(i, d, e);
     },
-    async getDomain(o, e, s) {
-      const n = await a.getDomain(o, e, s);
-      return b(n, h, i);
+    /**
+     * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+     * @summary Retrieve a domain by it\'s identifier
+     * @param {number} domainId The domain identifier
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the domain and if they are equal, a 304 will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getDomain(o, i, s) {
+      const n = await a.getDomain(o, i, s);
+      return b(n, d, e);
     },
-    async removeDefinitionFromDomain(o, e, s) {
-      const n = await a.removeDefinitionFromDomain(o, e, s);
-      return b(n, h, i);
+    /**
+     * The response will return the domain with its definitions but not with it\'s field definitions.
+     * @summary Remove a definition from an existing domain
+     * @param {number} domainId The domain identifier
+     * @param {number} definitionId The definition identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async removeDefinitionFromDomain(o, i, s) {
+      const n = await a.removeDefinitionFromDomain(o, i, s);
+      return b(n, d, e);
     },
-    async updateDomain(o, e, s) {
-      const n = await a.updateDomain(o, e, s);
-      return b(n, h, i);
+    /**
+     * 
+     * @summary Update an existing domain
+     * @param {number} domainId The domain identifier
+     * @param {UpdateDomainRequest} [updateDomainRequest] The new definition details
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateDomain(o, i, s) {
+      const n = await a.updateDomain(o, i, s);
+      return b(n, d, e);
     }
   };
 };
 class Je extends Q {
-  addDefinitionToDomain(a, o, e) {
-    return P(this.configuration).addDefinitionToDomain(a, o, e).then((s) => s(this.axios));
+  /**
+   * The response will return the domain with its definitions but not with it\'s field definitions.
+   * @summary Add a new definition to an existing domain
+   * @param {number} domainId The domain identifier
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
+  addDefinitionToDomain(a, o, i) {
+    return T(this.configuration).addDefinitionToDomain(a, o, i).then((s) => s(this.axios));
   }
+  /**
+   * 
+   * @summary Creates a new domain
+   * @param {CreateDomainRequest} [createDomainRequest] The new definition details
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
   addDomain(a, o) {
-    return P(this.configuration).addDomain(a, o).then((e) => e(this.axios));
+    return T(this.configuration).addDomain(a, o).then((i) => i(this.axios));
   }
+  /**
+   * 
+   * @summary Delete an existing domain
+   * @param {number} domainId 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
   deleteDomain(a, o) {
-    return P(this.configuration).deleteDomain(a, o).then((e) => e(this.axios));
+    return T(this.configuration).deleteDomain(a, o).then((i) => i(this.axios));
   }
+  /**
+   * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+   * @summary Find a domain by name
+   * @param {string} name The domain name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
   findDomainByName(a, o) {
-    return P(this.configuration).findDomainByName(a, o).then((e) => e(this.axios));
+    return T(this.configuration).findDomainByName(a, o).then((i) => i(this.axios));
   }
+  /**
+   * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+   * @summary Retrieves all domains
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
   getAllDomains(a) {
-    return P(this.configuration).getAllDomains(a).then((o) => o(this.axios));
+    return T(this.configuration).getAllDomains(a).then((o) => o(this.axios));
   }
-  getDomain(a, o, e) {
-    return P(this.configuration).getDomain(a, o, e).then((s) => s(this.axios));
+  /**
+   * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
+   * @summary Retrieve a domain by it\'s identifier
+   * @param {number} domainId The domain identifier
+   * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the domain and if they are equal, a 304 will be returned.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
+  getDomain(a, o, i) {
+    return T(this.configuration).getDomain(a, o, i).then((s) => s(this.axios));
   }
-  removeDefinitionFromDomain(a, o, e) {
-    return P(this.configuration).removeDefinitionFromDomain(a, o, e).then((s) => s(this.axios));
+  /**
+   * The response will return the domain with its definitions but not with it\'s field definitions.
+   * @summary Remove a definition from an existing domain
+   * @param {number} domainId The domain identifier
+   * @param {number} definitionId The definition identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
+  removeDefinitionFromDomain(a, o, i) {
+    return T(this.configuration).removeDefinitionFromDomain(a, o, i).then((s) => s(this.axios));
   }
-  updateDomain(a, o, e) {
-    return P(this.configuration).updateDomain(a, o, e).then((s) => s(this.axios));
+  /**
+   * 
+   * @summary Update an existing domain
+   * @param {number} domainId The domain identifier
+   * @param {UpdateDomainRequest} [updateDomainRequest] The new definition details
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
+  updateDomain(a, o, i) {
+    return T(this.configuration).updateDomain(a, o, i).then((s) => s(this.axios));
   }
 }
-const _e = function(i) {
+const qe = function(e) {
   return {
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Add an instance
+     * @param {Instance} instance the instance to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     addInstance: async (a, o = {}) => {
       w("addInstance", "instance", a);
-      const e = "/recordm/recordm/instances", s = new URL(e, k);
+      const i = "/recordm/recordm/instances", s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
-      const t = { method: "POST", ...n, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", g(s, u);
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, t.data = z(a, t, i), {
+      e && (n = e.baseOptions);
+      const t = { method: "POST", ...n, ...o }, r = {}, m = {};
+      r["Content-Type"] = "application/json", g(s, m);
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, t.data = x(a, t, e), {
         url: j(s),
         options: t
       };
     },
-    addLogMessageToInstance: async (a, o, e = {}) => {
+    /**
+     * Adds a LogM log entry to an instance.
+     * @summary Add log to instance
+     * @param {number} id The instance id
+     * @param {string} [body] The log message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addLogMessageToInstance: async (a, o, i = {}) => {
       w("addLogMessageToInstance", "id", a);
       const s = "/recordm/recordm/instances/{id}/log".replace("{id}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "POST", ...t, ...e }, u = {}, m = {};
-      u["Content-Type"] = "application/json", g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "POST", ...t, ...i }, m = {}, u = {};
+      m["Content-Type"] = "application/json", g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, r.data = z(o, r, i), {
+      return r.headers = { ...m, ...c, ...i.headers }, r.data = x(o, r, e), {
         url: j(n),
         options: r
       };
     },
-    deleteInstance: async (a, o, e = {}) => {
+    /**
+     * Deletes an instance.
+     * @summary Delete an instance
+     * @param {number} id The id of the instance to delete
+     * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteInstance: async (a, o, i = {}) => {
       w("deleteInstance", "id", a);
       const s = "/recordm/recordm/instances/{id}".replace("{id}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "DELETE", ...t, ...e }, u = {}, m = {};
-      o !== void 0 && (m.ignoreRefs = o), g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "DELETE", ...t, ...i }, m = {}, u = {};
+      o !== void 0 && (u.ignoreRefs = o), g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
-    downloadFile: async (a, o, e, s, n = {}) => {
-      w("downloadFile", "id", a), w("downloadFile", "fieldDefinitionId", o), w("downloadFile", "filename", e);
-      const t = "/recordm/recordm/instances/{id}/files/{fieldDefinitionId}/{filename}".replace("{id}", encodeURIComponent(String(a))).replace("{fieldDefinitionId}", encodeURIComponent(String(o))).replace("{filename}", encodeURIComponent(String(e))), r = new URL(t, k);
-      let u;
-      i && (u = i.baseOptions);
-      const m = { method: "GET", ...u, ...n }, c = {}, l = {};
+    /**
+     * Download a file that is attached to a $file field
+     * @summary Download file from field in instance
+     * @param {string} id The id of the instance
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {string} filename The filename of the file to download.
+     * @param {string} [disposition] The Content-Disposition to use when downloading the file. Only useful when used as link in a webpage, to control if it should be downloaded or shown inline.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    downloadFile: async (a, o, i, s, n = {}) => {
+      w("downloadFile", "id", a), w("downloadFile", "fieldDefinitionId", o), w("downloadFile", "filename", i);
+      const t = "/recordm/recordm/instances/{id}/files/{fieldDefinitionId}/{filename}".replace("{id}", encodeURIComponent(String(a))).replace("{fieldDefinitionId}", encodeURIComponent(String(o))).replace("{filename}", encodeURIComponent(String(i))), r = new URL(t, k);
+      let m;
+      e && (m = e.baseOptions);
+      const u = { method: "GET", ...m, ...n }, c = {}, l = {};
       s !== void 0 && (l.disposition = s), g(r, l);
-      let d = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...d, ...n.headers }, {
+      let h = m && m.headers ? m.headers : {};
+      return u.headers = { ...c, ...h, ...n.headers }, {
         url: j(r),
-        options: m
+        options: u
       };
     },
-    getInstance: async (a, o, e = {}) => {
+    /**
+     * Obtains a representation of an instance.
+     * @summary Get an instance
+     * @param {number} id 
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getInstance: async (a, o, i = {}) => {
       w("getInstance", "id", a);
       const s = "/recordm/recordm/instances/{id}".replace("{id}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "GET", ...t, ...e }, u = {}, m = {};
-      o != null && (u["If-None-Match"] = String(o)), g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "GET", ...t, ...i }, m = {}, u = {};
+      o != null && (m["If-None-Match"] = String(o)), g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
-    getNewInstance: async (a, o, e = {}) => {
+    /**
+     * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
+     * @summary Get a new empty instance
+     * @param {number} definitionId The id of the definition of which we want the empty instance.
+     * @param {boolean} [withDefaults] If true, all the fields with defined default values will have them already filled. If false, all the fields will have empty values.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getNewInstance: async (a, o, i = {}) => {
       w("getNewInstance", "definitionId", a);
       const s = "/recordm/recordm/instances/empty/definition/{definitionId}".replace("{definitionId}", encodeURIComponent(String(a))), n = new URL(s, k);
       let t;
-      i && (t = i.baseOptions);
-      const r = { method: "GET", ...t, ...e }, u = {}, m = {};
-      o !== void 0 && (m.withDefaults = o), g(n, m);
+      e && (t = e.baseOptions);
+      const r = { method: "GET", ...t, ...i }, m = {}, u = {};
+      o !== void 0 && (u.withDefaults = o), g(n, u);
       let c = t && t.headers ? t.headers : {};
-      return r.headers = { ...u, ...c, ...e.headers }, {
+      return r.headers = { ...m, ...c, ...i.headers }, {
         url: j(n),
         options: r
       };
     },
-    updateInstance: async (a, o, e, s = {}) => {
+    /**
+     * Updates an instance with the complete representation passed.
+     * @summary Update an instance
+     * @param {number} id The id of the instance to update
+     * @param {Instance} instance the updated instance
+     * @param {boolean} [acceptOutdated] Should outdated $extRef fields be accepted?
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateInstance: async (a, o, i, s = {}) => {
       w("updateInstance", "id", a), w("updateInstance", "instance", o);
       const n = "/recordm/recordm/instances/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(n, k);
       let r;
-      i && (r = i.baseOptions);
-      const u = { method: "PUT", ...r, ...s }, m = {}, c = {};
-      e !== void 0 && (c.acceptOutdated = e), m["Content-Type"] = "application/json", g(t, c);
+      e && (r = e.baseOptions);
+      const m = { method: "PUT", ...r, ...s }, u = {}, c = {};
+      i !== void 0 && (c.acceptOutdated = i), u["Content-Type"] = "application/json", g(t, c);
       let l = r && r.headers ? r.headers : {};
-      return u.headers = { ...m, ...l, ...s.headers }, u.data = z(o, u, i), {
+      return m.headers = { ...u, ...l, ...s.headers }, m.data = x(o, m, e), {
         url: j(t),
-        options: u
+        options: m
       };
     },
-    uploadFile: async (a, o, e, s = {}) => {
+    /**
+     * Upload a file to be used as a value for a $file field
+     * @summary Upload file to field in instance
+     * @param {string} id When uploading to an existing instance, it\&#39;s the id of the instance. When uploading for an instance that doesn\&#39;t yet exist, it should be an UUID that matches the one the instance will have on creation. This way the already uploaded files will be moved to the final destination.
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {any} [file] The file to upload.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadFile: async (a, o, i, s = {}) => {
       w("uploadFile", "id", a), w("uploadFile", "fieldDefinitionId", o);
       const n = "/recordm/recordm/instances/{id}/files/{fieldDefinitionId}".replace("{id}", encodeURIComponent(String(a))).replace("{fieldDefinitionId}", encodeURIComponent(String(o))), t = new URL(n, k);
       let r;
-      i && (r = i.baseOptions);
-      const u = { method: "POST", ...r, ...s }, m = {}, c = {}, l = new (i && i.formDataCtor || FormData)();
-      e !== void 0 && l.append("file", new Blob([JSON.stringify(e)], { type: "application/json" })), m["Content-Type"] = "multipart/form-data", g(t, c);
-      let d = r && r.headers ? r.headers : {};
-      return u.headers = { ...m, ...d, ...s.headers }, u.data = l, {
+      e && (r = e.baseOptions);
+      const m = { method: "POST", ...r, ...s }, u = {}, c = {}, l = new (e && e.formDataCtor || FormData)();
+      i !== void 0 && l.append("file", new Blob([JSON.stringify(i)], { type: "application/json" })), u["Content-Type"] = "multipart/form-data", g(t, c);
+      let h = r && r.headers ? r.headers : {};
+      return m.headers = { ...u, ...h, ...s.headers }, m.data = l, {
         url: j(t),
-        options: u
+        options: m
       };
     }
   };
-}, B = function(i) {
-  const a = _e(i);
+}, R = function(e) {
+  const a = qe(e);
   return {
-    async addInstance(o, e) {
-      const s = await a.addInstance(o, e);
-      return b(s, h, i);
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Add an instance
+     * @param {Instance} instance the instance to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addInstance(o, i) {
+      const s = await a.addInstance(o, i);
+      return b(s, d, e);
     },
-    async addLogMessageToInstance(o, e, s) {
-      const n = await a.addLogMessageToInstance(o, e, s);
-      return b(n, h, i);
+    /**
+     * Adds a LogM log entry to an instance.
+     * @summary Add log to instance
+     * @param {number} id The instance id
+     * @param {string} [body] The log message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addLogMessageToInstance(o, i, s) {
+      const n = await a.addLogMessageToInstance(o, i, s);
+      return b(n, d, e);
     },
-    async deleteInstance(o, e, s) {
-      const n = await a.deleteInstance(o, e, s);
-      return b(n, h, i);
+    /**
+     * Deletes an instance.
+     * @summary Delete an instance
+     * @param {number} id The id of the instance to delete
+     * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteInstance(o, i, s) {
+      const n = await a.deleteInstance(o, i, s);
+      return b(n, d, e);
     },
-    async downloadFile(o, e, s, n, t) {
-      const r = await a.downloadFile(o, e, s, n, t);
-      return b(r, h, i);
+    /**
+     * Download a file that is attached to a $file field
+     * @summary Download file from field in instance
+     * @param {string} id The id of the instance
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {string} filename The filename of the file to download.
+     * @param {string} [disposition] The Content-Disposition to use when downloading the file. Only useful when used as link in a webpage, to control if it should be downloaded or shown inline.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async downloadFile(o, i, s, n, t) {
+      const r = await a.downloadFile(o, i, s, n, t);
+      return b(r, d, e);
     },
-    async getInstance(o, e, s) {
-      const n = await a.getInstance(o, e, s);
-      return b(n, h, i);
+    /**
+     * Obtains a representation of an instance.
+     * @summary Get an instance
+     * @param {number} id 
+     * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getInstance(o, i, s) {
+      const n = await a.getInstance(o, i, s);
+      return b(n, d, e);
     },
-    async getNewInstance(o, e, s) {
-      const n = await a.getNewInstance(o, e, s);
-      return b(n, h, i);
+    /**
+     * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
+     * @summary Get a new empty instance
+     * @param {number} definitionId The id of the definition of which we want the empty instance.
+     * @param {boolean} [withDefaults] If true, all the fields with defined default values will have them already filled. If false, all the fields will have empty values.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getNewInstance(o, i, s) {
+      const n = await a.getNewInstance(o, i, s);
+      return b(n, d, e);
     },
-    async updateInstance(o, e, s, n) {
-      const t = await a.updateInstance(o, e, s, n);
-      return b(t, h, i);
+    /**
+     * Updates an instance with the complete representation passed.
+     * @summary Update an instance
+     * @param {number} id The id of the instance to update
+     * @param {Instance} instance the updated instance
+     * @param {boolean} [acceptOutdated] Should outdated $extRef fields be accepted?
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateInstance(o, i, s, n) {
+      const t = await a.updateInstance(o, i, s, n);
+      return b(t, d, e);
     },
-    async uploadFile(o, e, s, n) {
-      const t = await a.uploadFile(o, e, s, n);
-      return b(t, h, i);
+    /**
+     * Upload a file to be used as a value for a $file field
+     * @summary Upload file to field in instance
+     * @param {string} id When uploading to an existing instance, it\&#39;s the id of the instance. When uploading for an instance that doesn\&#39;t yet exist, it should be an UUID that matches the one the instance will have on creation. This way the already uploaded files will be moved to the final destination.
+     * @param {string} fieldDefinitionId The id of the field definition of the $file field
+     * @param {any} [file] The file to upload.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async uploadFile(o, i, s, n) {
+      const t = await a.uploadFile(o, i, s, n);
+      return b(t, d, e);
     }
   };
 };
-class qe extends Q {
+class Be extends Q {
+  /**
+   * Adds a new instance represented by the passed Object.
+   * @summary Add an instance
+   * @param {Instance} instance the instance to add
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
   addInstance(a, o) {
-    return B(this.configuration).addInstance(a, o).then((e) => e(this.axios));
+    return R(this.configuration).addInstance(a, o).then((i) => i(this.axios));
   }
-  addLogMessageToInstance(a, o, e) {
-    return B(this.configuration).addLogMessageToInstance(a, o, e).then((s) => s(this.axios));
+  /**
+   * Adds a LogM log entry to an instance.
+   * @summary Add log to instance
+   * @param {number} id The instance id
+   * @param {string} [body] The log message
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  addLogMessageToInstance(a, o, i) {
+    return R(this.configuration).addLogMessageToInstance(a, o, i).then((s) => s(this.axios));
   }
-  deleteInstance(a, o, e) {
-    return B(this.configuration).deleteInstance(a, o, e).then((s) => s(this.axios));
+  /**
+   * Deletes an instance.
+   * @summary Delete an instance
+   * @param {number} id The id of the instance to delete
+   * @param {boolean} [ignoreRefs] If ignoreRefs is true, then the instance will be deleted even if other instances are referencing it. Otherwise an error will be returned if there are instances with a reference to it. 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  deleteInstance(a, o, i) {
+    return R(this.configuration).deleteInstance(a, o, i).then((s) => s(this.axios));
   }
-  downloadFile(a, o, e, s, n) {
-    return B(this.configuration).downloadFile(a, o, e, s, n).then((t) => t(this.axios));
+  /**
+   * Download a file that is attached to a $file field
+   * @summary Download file from field in instance
+   * @param {string} id The id of the instance
+   * @param {string} fieldDefinitionId The id of the field definition of the $file field
+   * @param {string} filename The filename of the file to download.
+   * @param {string} [disposition] The Content-Disposition to use when downloading the file. Only useful when used as link in a webpage, to control if it should be downloaded or shown inline.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  downloadFile(a, o, i, s, n) {
+    return R(this.configuration).downloadFile(a, o, i, s, n).then((t) => t(this.axios));
   }
-  getInstance(a, o, e) {
-    return B(this.configuration).getInstance(a, o, e).then((s) => s(this.axios));
+  /**
+   * Obtains a representation of an instance.
+   * @summary Get an instance
+   * @param {number} id 
+   * @param {string} [ifNoneMatch] If a value is given, it will be compared to the current version of the instance and if they are equal, a 304 will be returned.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  getInstance(a, o, i) {
+    return R(this.configuration).getInstance(a, o, i).then((s) => s(this.axios));
   }
-  getNewInstance(a, o, e) {
-    return B(this.configuration).getNewInstance(a, o, e).then((s) => s(this.axios));
+  /**
+   * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
+   * @summary Get a new empty instance
+   * @param {number} definitionId The id of the definition of which we want the empty instance.
+   * @param {boolean} [withDefaults] If true, all the fields with defined default values will have them already filled. If false, all the fields will have empty values.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  getNewInstance(a, o, i) {
+    return R(this.configuration).getNewInstance(a, o, i).then((s) => s(this.axios));
   }
-  updateInstance(a, o, e, s) {
-    return B(this.configuration).updateInstance(a, o, e, s).then((n) => n(this.axios));
+  /**
+   * Updates an instance with the complete representation passed.
+   * @summary Update an instance
+   * @param {number} id The id of the instance to update
+   * @param {Instance} instance the updated instance
+   * @param {boolean} [acceptOutdated] Should outdated $extRef fields be accepted?
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  updateInstance(a, o, i, s) {
+    return R(this.configuration).updateInstance(a, o, i, s).then((n) => n(this.axios));
   }
-  uploadFile(a, o, e, s) {
-    return B(this.configuration).uploadFile(a, o, e, s).then((n) => n(this.axios));
+  /**
+   * Upload a file to be used as a value for a $file field
+   * @summary Upload file to field in instance
+   * @param {string} id When uploading to an existing instance, it\&#39;s the id of the instance. When uploading for an instance that doesn\&#39;t yet exist, it should be an UUID that matches the one the instance will have on creation. This way the already uploaded files will be moved to the final destination.
+   * @param {string} fieldDefinitionId The id of the field definition of the $file field
+   * @param {any} [file] The file to upload.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof InstancesApi
+   */
+  uploadFile(a, o, i, s) {
+    return R(this.configuration).uploadFile(a, o, i, s).then((n) => n(this.axios));
   }
 }
-const $e = function(i) {
+const $e = function(e) {
   return {
+    /**
+     * Deletes the instances that match the condition.
+     * @summary Deletes one or more instances
+     * @param {IntegrationDeleteMessage} [integrationDeleteMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     _delete: async (a, o = {}) => {
-      const e = "/recordm/recordm/instances/integration", s = new URL(e, k);
+      const i = "/recordm/recordm/instances/integration", s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
-      const t = { method: "DELETE", ...n, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", g(s, u);
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, t.data = z(a, t, i), {
+      e && (n = e.baseOptions);
+      const t = { method: "DELETE", ...n, ...o }, r = {}, m = {};
+      r["Content-Type"] = "application/json", g(s, m);
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, t.data = x(a, t, e), {
         url: j(s),
         options: t
       };
     },
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Create an instance
+     * @param {IntegrationAddMessage} [integrationAddMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     add: async (a, o = {}) => {
-      const e = "/recordm/recordm/instances/integration", s = new URL(e, k);
+      const i = "/recordm/recordm/instances/integration", s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
-      const t = { method: "POST", ...n, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", g(s, u);
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, t.data = z(a, t, i), {
+      e && (n = e.baseOptions);
+      const t = { method: "POST", ...n, ...o }, r = {}, m = {};
+      r["Content-Type"] = "application/json", g(s, m);
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, t.data = x(a, t, e), {
         url: j(s),
         options: t
       };
     },
+    /**
+     * Updates the matching instances with the passed updates.
+     * @summary Update one or more instances
+     * @param {IntegrationUpdateMessage} [integrationUpdateMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
     update: async (a, o = {}) => {
-      const e = "/recordm/recordm/instances/integration", s = new URL(e, k);
+      const i = "/recordm/recordm/instances/integration", s = new URL(i, k);
       let n;
-      i && (n = i.baseOptions);
-      const t = { method: "PUT", ...n, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", g(s, u);
-      let m = n && n.headers ? n.headers : {};
-      return t.headers = { ...r, ...m, ...o.headers }, t.data = z(a, t, i), {
+      e && (n = e.baseOptions);
+      const t = { method: "PUT", ...n, ...o }, r = {}, m = {};
+      r["Content-Type"] = "application/json", g(s, m);
+      let u = n && n.headers ? n.headers : {};
+      return t.headers = { ...r, ...u, ...o.headers }, t.data = x(a, t, e), {
         url: j(s),
         options: t
       };
     }
   };
-}, aa = function(i) {
-  const a = $e(i);
+}, aa = function(e) {
+  const a = $e(e);
   return {
-    async _delete(o, e) {
-      const s = await a._delete(o, e);
-      return b(s, h, i);
+    /**
+     * Deletes the instances that match the condition.
+     * @summary Deletes one or more instances
+     * @param {IntegrationDeleteMessage} [integrationDeleteMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async _delete(o, i) {
+      const s = await a._delete(o, i);
+      return b(s, d, e);
     },
-    async add(o, e) {
-      const s = await a.add(o, e);
-      return b(s, h, i);
+    /**
+     * Adds a new instance represented by the passed Object.
+     * @summary Create an instance
+     * @param {IntegrationAddMessage} [integrationAddMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async add(o, i) {
+      const s = await a.add(o, i);
+      return b(s, d, e);
     },
-    async update(o, e) {
-      const s = await a.update(o, e);
-      return b(s, h, i);
+    /**
+     * Updates the matching instances with the passed updates.
+     * @summary Update one or more instances
+     * @param {IntegrationUpdateMessage} [integrationUpdateMessage] A JSON doc of the specified format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async update(o, i) {
+      const s = await a.update(o, i);
+      return b(s, d, e);
     }
   };
 };
 class We extends Q {
+  /**
+   * Deletes the instances that match the condition.
+   * @summary Deletes one or more instances
+   * @param {IntegrationDeleteMessage} [integrationDeleteMessage] A JSON doc of the specified format
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
   _delete(a, o) {
-    return aa(this.configuration)._delete(a, o).then((e) => e(this.axios));
+    return aa(this.configuration)._delete(a, o).then((i) => i(this.axios));
   }
+  /**
+   * Adds a new instance represented by the passed Object.
+   * @summary Create an instance
+   * @param {IntegrationAddMessage} [integrationAddMessage] A JSON doc of the specified format
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
   add(a, o) {
-    return aa(this.configuration).add(a, o).then((e) => e(this.axios));
+    return aa(this.configuration).add(a, o).then((i) => i(this.axios));
   }
+  /**
+   * Updates the matching instances with the passed updates.
+   * @summary Update one or more instances
+   * @param {IntegrationUpdateMessage} [integrationUpdateMessage] A JSON doc of the specified format
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
   update(a, o) {
-    return aa(this.configuration).update(a, o).then((e) => e(this.axios));
+    return aa(this.configuration).update(a, o).then((i) => i(this.axios));
   }
 }
-const Me = function(i) {
+const Me = function(e) {
   return {
-    searchInDefinition: async (a, o, e, s, n, t, r = {}) => {
-      const u = "/recordm/recordm/definitions/search", m = new URL(u, k);
+    /**
+     * The preferred endpoint for searches. Search instances of a definition specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
+     * @summary Search Definition
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {string} [q] The query
+     * @param {number} [from] the first result to return
+     * @param {number} [size] the number of results to return
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchInDefinition: async (a, o, i, s, n, t, r = {}) => {
+      const m = "/recordm/recordm/definitions/search", u = new URL(m, k);
       let c;
-      i && (c = i.baseOptions);
-      const l = { method: "GET", ...c, ...r }, d = {}, f = {};
-      a !== void 0 && (f.defId = a), o !== void 0 && (f.def = o), e !== void 0 && (f.q = e), s !== void 0 && (f.from = s), n !== void 0 && (f.size = n), t !== void 0 && (f.sort = t), g(m, f);
+      e && (c = e.baseOptions);
+      const l = { method: "GET", ...c, ...r }, h = {}, f = {};
+      a !== void 0 && (f.defId = a), o !== void 0 && (f.def = o), i !== void 0 && (f.q = i), s !== void 0 && (f.from = s), n !== void 0 && (f.size = n), t !== void 0 && (f.sort = t), g(u, f);
       let v = c && c.headers ? c.headers : {};
-      return l.headers = { ...d, ...v, ...r.headers }, {
-        url: j(m),
+      return l.headers = { ...h, ...v, ...r.headers }, {
+        url: j(u),
         options: l
       };
     },
-    searchInDomain: async (a, o, e, s, n, t, r = {}) => {
-      const u = "/recordm/recordm/domains/search", m = new URL(u, k);
+    /**
+     * Search instances of all definitions of a Domain, specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
+     * @summary Search Domain
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [q] The query
+     * @param {number} [from] the first result to return
+     * @param {number} [size] the number of results to return
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchInDomain: async (a, o, i, s, n, t, r = {}) => {
+      const m = "/recordm/recordm/domains/search", u = new URL(m, k);
       let c;
-      i && (c = i.baseOptions);
-      const l = { method: "GET", ...c, ...r }, d = {}, f = {};
-      a !== void 0 && (f.domainId = a), o !== void 0 && (f.domain = o), e !== void 0 && (f.q = e), s !== void 0 && (f.from = s), n !== void 0 && (f.size = n), t !== void 0 && (f.sort = t), g(m, f);
+      e && (c = e.baseOptions);
+      const l = { method: "GET", ...c, ...r }, h = {}, f = {};
+      a !== void 0 && (f.domainId = a), o !== void 0 && (f.domain = o), i !== void 0 && (f.q = i), s !== void 0 && (f.from = s), n !== void 0 && (f.size = n), t !== void 0 && (f.sort = t), g(u, f);
       let v = c && c.headers ? c.headers : {};
-      return l.headers = { ...d, ...v, ...r.headers }, {
-        url: j(m),
+      return l.headers = { ...h, ...v, ...r.headers }, {
+        url: j(u),
         options: l
       };
     },
-    searchStructuredInDomain: async (a, o, e, s = {}) => {
+    /**
+     * Search instances of all definitions of a Domain, specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
+     * @summary Structured Search of Domain
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchStructuredInDomain: async (a, o, i, s = {}) => {
       const n = "/recordm/recordm/domains/search", t = new URL(n, k);
       let r;
-      i && (r = i.baseOptions);
-      const u = { method: "POST", ...r, ...s }, m = {}, c = {};
-      a !== void 0 && (c.domainId = a), o !== void 0 && (c.domain = o), m["Content-Type"] = "application/json", g(t, c);
+      e && (r = e.baseOptions);
+      const m = { method: "POST", ...r, ...s }, u = {}, c = {};
+      a !== void 0 && (c.domainId = a), o !== void 0 && (c.domain = o), u["Content-Type"] = "application/json", g(t, c);
       let l = r && r.headers ? r.headers : {};
-      return u.headers = { ...m, ...l, ...s.headers }, u.data = z(e, u, i), {
+      return m.headers = { ...u, ...l, ...s.headers }, m.data = x(i, m, e), {
         url: j(t),
+        options: m
+      };
+    },
+    /**
+     * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
+     * @summary Stream a Definition Search
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {string} [q] The query
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    streamSearchInDefinition: async (a, o, i, s, n = {}) => {
+      const t = "/recordm/recordm/definitions/search/stream", r = new URL(t, k);
+      let m;
+      e && (m = e.baseOptions);
+      const u = { method: "GET", ...m, ...n }, c = {}, l = {};
+      a !== void 0 && (l.defId = a), o !== void 0 && (l.def = o), i !== void 0 && (l.q = i), s !== void 0 && (l.sort = s), g(r, l);
+      let h = m && m.headers ? m.headers : {};
+      return u.headers = { ...c, ...h, ...n.headers }, {
+        url: j(r),
         options: u
       };
     },
-    streamSearchInDefinition: async (a, o, e, s, n = {}) => {
-      const t = "/recordm/recordm/definitions/search/stream", r = new URL(t, k);
-      let u;
-      i && (u = i.baseOptions);
-      const m = { method: "GET", ...u, ...n }, c = {}, l = {};
-      a !== void 0 && (l.defId = a), o !== void 0 && (l.def = o), e !== void 0 && (l.q = e), s !== void 0 && (l.sort = s), g(r, l);
-      let d = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...d, ...n.headers }, {
-        url: j(r),
-        options: m
-      };
-    },
-    streamSearchInDomain: async (a, o, e, s, n = {}) => {
+    /**
+     * Stream through all the results of a Domain search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
+     * @summary Stream a Domain Search
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [q] The query
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    streamSearchInDomain: async (a, o, i, s, n = {}) => {
       const t = "/recordm/recordm/domains/search/stream", r = new URL(t, k);
-      let u;
-      i && (u = i.baseOptions);
-      const m = { method: "GET", ...u, ...n }, c = {}, l = {};
-      a !== void 0 && (l.domainId = a), o !== void 0 && (l.domain = o), e !== void 0 && (l.q = e), s !== void 0 && (l.sort = s), g(r, l);
-      let d = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...d, ...n.headers }, {
+      let m;
+      e && (m = e.baseOptions);
+      const u = { method: "GET", ...m, ...n }, c = {}, l = {};
+      a !== void 0 && (l.domainId = a), o !== void 0 && (l.domain = o), i !== void 0 && (l.q = i), s !== void 0 && (l.sort = s), g(r, l);
+      let h = m && m.headers ? m.headers : {};
+      return u.headers = { ...c, ...h, ...n.headers }, {
         url: j(r),
-        options: m
+        options: u
       };
     },
-    streamStructuredSearchInDefinition: async (a, o, e, s = {}) => {
+    /**
+     * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
+     * @summary Stream a Definition Search
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    streamStructuredSearchInDefinition: async (a, o, i, s = {}) => {
       const n = "/recordm/recordm/definitions/search/stream", t = new URL(n, k);
       let r;
-      i && (r = i.baseOptions);
-      const u = { method: "POST", ...r, ...s }, m = {}, c = {};
-      a !== void 0 && (c.defId = a), o !== void 0 && (c.def = o), m["Content-Type"] = "application/json", g(t, c);
+      e && (r = e.baseOptions);
+      const m = { method: "POST", ...r, ...s }, u = {}, c = {};
+      a !== void 0 && (c.defId = a), o !== void 0 && (c.def = o), u["Content-Type"] = "application/json", g(t, c);
       let l = r && r.headers ? r.headers : {};
-      return u.headers = { ...m, ...l, ...s.headers }, u.data = z(e, u, i), {
+      return m.headers = { ...u, ...l, ...s.headers }, m.data = x(i, m, e), {
         url: j(t),
-        options: u
+        options: m
       };
     },
-    streamStructuredSearchInDomain: async (a, o, e, s = {}) => {
+    /**
+     * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
+     * @summary Stream a Definition Search
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    streamStructuredSearchInDomain: async (a, o, i, s = {}) => {
       const n = "/recordm/recordm/domains/search/stream", t = new URL(n, k);
       let r;
-      i && (r = i.baseOptions);
-      const u = { method: "POST", ...r, ...s }, m = {}, c = {};
-      a !== void 0 && (c.domainId = a), o !== void 0 && (c.domain = o), m["Content-Type"] = "application/json", g(t, c);
+      e && (r = e.baseOptions);
+      const m = { method: "POST", ...r, ...s }, u = {}, c = {};
+      a !== void 0 && (c.domainId = a), o !== void 0 && (c.domain = o), u["Content-Type"] = "application/json", g(t, c);
       let l = r && r.headers ? r.headers : {};
-      return u.headers = { ...m, ...l, ...s.headers }, u.data = z(e, u, i), {
+      return m.headers = { ...u, ...l, ...s.headers }, m.data = x(i, m, e), {
         url: j(t),
-        options: u
+        options: m
       };
     },
-    structuredSearchInDefinition: async (a, o, e, s, n = {}) => {
+    /**
+     * Search the definition specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
+     * @summary Structured Search of Definition
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {boolean} [typedKeys] When asking for aggregations, should they be prefixed with the aggregation type? The same behaviour as specified in [ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/search-aggregations.html#return-agg-type)
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    structuredSearchInDefinition: async (a, o, i, s, n = {}) => {
       const t = "/recordm/recordm/definitions/search", r = new URL(t, k);
-      let u;
-      i && (u = i.baseOptions);
-      const m = { method: "POST", ...u, ...n }, c = {}, l = {};
-      a !== void 0 && (l.defId = a), o !== void 0 && (l.def = o), e !== void 0 && (l.typed_keys = e), c["Content-Type"] = "application/json", g(r, l);
-      let d = u && u.headers ? u.headers : {};
-      return m.headers = { ...c, ...d, ...n.headers }, m.data = z(s, m, i), {
+      let m;
+      e && (m = e.baseOptions);
+      const u = { method: "POST", ...m, ...n }, c = {}, l = {};
+      a !== void 0 && (l.defId = a), o !== void 0 && (l.def = o), i !== void 0 && (l.typed_keys = i), c["Content-Type"] = "application/json", g(r, l);
+      let h = m && m.headers ? m.headers : {};
+      return u.headers = { ...c, ...h, ...n.headers }, u.data = x(s, u, e), {
         url: j(r),
-        options: m
+        options: u
       };
     }
   };
-}, T = function(i) {
-  const a = Me(i);
+}, L = function(e) {
+  const a = Me(e);
   return {
-    async searchInDefinition(o, e, s, n, t, r, u) {
-      const m = await a.searchInDefinition(o, e, s, n, t, r, u);
-      return b(m, h, i);
+    /**
+     * The preferred endpoint for searches. Search instances of a definition specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
+     * @summary Search Definition
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {string} [q] The query
+     * @param {number} [from] the first result to return
+     * @param {number} [size] the number of results to return
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchInDefinition(o, i, s, n, t, r, m) {
+      const u = await a.searchInDefinition(o, i, s, n, t, r, m);
+      return b(u, d, e);
     },
-    async searchInDomain(o, e, s, n, t, r, u) {
-      const m = await a.searchInDomain(o, e, s, n, t, r, u);
-      return b(m, h, i);
+    /**
+     * Search instances of all definitions of a Domain, specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
+     * @summary Search Domain
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [q] The query
+     * @param {number} [from] the first result to return
+     * @param {number} [size] the number of results to return
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchInDomain(o, i, s, n, t, r, m) {
+      const u = await a.searchInDomain(o, i, s, n, t, r, m);
+      return b(u, d, e);
     },
-    async searchStructuredInDomain(o, e, s, n) {
-      const t = await a.searchStructuredInDomain(o, e, s, n);
-      return b(t, h, i);
+    /**
+     * Search instances of all definitions of a Domain, specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
+     * @summary Structured Search of Domain
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchStructuredInDomain(o, i, s, n) {
+      const t = await a.searchStructuredInDomain(o, i, s, n);
+      return b(t, d, e);
     },
-    async streamSearchInDefinition(o, e, s, n, t) {
-      const r = await a.streamSearchInDefinition(o, e, s, n, t);
-      return b(r, h, i);
+    /**
+     * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
+     * @summary Stream a Definition Search
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {string} [q] The query
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async streamSearchInDefinition(o, i, s, n, t) {
+      const r = await a.streamSearchInDefinition(o, i, s, n, t);
+      return b(r, d, e);
     },
-    async streamSearchInDomain(o, e, s, n, t) {
-      const r = await a.streamSearchInDomain(o, e, s, n, t);
-      return b(r, h, i);
+    /**
+     * Stream through all the results of a Domain search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
+     * @summary Stream a Domain Search
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [q] The query
+     * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async streamSearchInDomain(o, i, s, n, t) {
+      const r = await a.streamSearchInDomain(o, i, s, n, t);
+      return b(r, d, e);
     },
-    async streamStructuredSearchInDefinition(o, e, s, n) {
-      const t = await a.streamStructuredSearchInDefinition(o, e, s, n);
-      return b(t, h, i);
+    /**
+     * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
+     * @summary Stream a Definition Search
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async streamStructuredSearchInDefinition(o, i, s, n) {
+      const t = await a.streamStructuredSearchInDefinition(o, i, s, n);
+      return b(t, d, e);
     },
-    async streamStructuredSearchInDomain(o, e, s, n) {
-      const t = await a.streamStructuredSearchInDomain(o, e, s, n);
-      return b(t, h, i);
+    /**
+     * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
+     * @summary Stream a Definition Search
+     * @param {number} [domainId] The domain Id
+     * @param {string} [domain] The domain name
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async streamStructuredSearchInDomain(o, i, s, n) {
+      const t = await a.streamStructuredSearchInDomain(o, i, s, n);
+      return b(t, d, e);
     },
-    async structuredSearchInDefinition(o, e, s, n, t) {
-      const r = await a.structuredSearchInDefinition(o, e, s, n, t);
-      return b(r, h, i);
+    /**
+     * Search the definition specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
+     * @summary Structured Search of Definition
+     * @param {number} [defId] The definition Id
+     * @param {string} [def] The definition name
+     * @param {boolean} [typedKeys] When asking for aggregations, should they be prefixed with the aggregation type? The same behaviour as specified in [ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/search-aggregations.html#return-agg-type)
+     * @param {string} [body] The JSON of the ES query.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async structuredSearchInDefinition(o, i, s, n, t) {
+      const r = await a.structuredSearchInDefinition(o, i, s, n, t);
+      return b(r, d, e);
     }
   };
 };
 class Ze extends Q {
-  searchInDefinition(a, o, e, s, n, t, r) {
-    return T(this.configuration).searchInDefinition(a, o, e, s, n, t, r).then((u) => u(this.axios));
+  /**
+   * The preferred endpoint for searches. Search instances of a definition specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
+   * @summary Search Definition
+   * @param {number} [defId] The definition Id
+   * @param {string} [def] The definition name
+   * @param {string} [q] The query
+   * @param {number} [from] the first result to return
+   * @param {number} [size] the number of results to return
+   * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  searchInDefinition(a, o, i, s, n, t, r) {
+    return L(this.configuration).searchInDefinition(a, o, i, s, n, t, r).then((m) => m(this.axios));
   }
-  searchInDomain(a, o, e, s, n, t, r) {
-    return T(this.configuration).searchInDomain(a, o, e, s, n, t, r).then((u) => u(this.axios));
+  /**
+   * Search instances of all definitions of a Domain, specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
+   * @summary Search Domain
+   * @param {number} [domainId] The domain Id
+   * @param {string} [domain] The domain name
+   * @param {string} [q] The query
+   * @param {number} [from] the first result to return
+   * @param {number} [size] the number of results to return
+   * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  searchInDomain(a, o, i, s, n, t, r) {
+    return L(this.configuration).searchInDomain(a, o, i, s, n, t, r).then((m) => m(this.axios));
   }
-  searchStructuredInDomain(a, o, e, s) {
-    return T(this.configuration).searchStructuredInDomain(a, o, e, s).then((n) => n(this.axios));
+  /**
+   * Search instances of all definitions of a Domain, specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
+   * @summary Structured Search of Domain
+   * @param {number} [domainId] The domain Id
+   * @param {string} [domain] The domain name
+   * @param {string} [body] The JSON of the ES query.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  searchStructuredInDomain(a, o, i, s) {
+    return L(this.configuration).searchStructuredInDomain(a, o, i, s).then((n) => n(this.axios));
   }
-  streamSearchInDefinition(a, o, e, s, n) {
-    return T(this.configuration).streamSearchInDefinition(a, o, e, s, n).then((t) => t(this.axios));
+  /**
+   * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
+   * @summary Stream a Definition Search
+   * @param {number} [defId] The definition Id
+   * @param {string} [def] The definition name
+   * @param {string} [q] The query
+   * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  streamSearchInDefinition(a, o, i, s, n) {
+    return L(this.configuration).streamSearchInDefinition(a, o, i, s, n).then((t) => t(this.axios));
   }
-  streamSearchInDomain(a, o, e, s, n) {
-    return T(this.configuration).streamSearchInDomain(a, o, e, s, n).then((t) => t(this.axios));
+  /**
+   * Stream through all the results of a Domain search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
+   * @summary Stream a Domain Search
+   * @param {number} [domainId] The domain Id
+   * @param {string} [domain] The domain name
+   * @param {string} [q] The query
+   * @param {string} [sort] A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  streamSearchInDomain(a, o, i, s, n) {
+    return L(this.configuration).streamSearchInDomain(a, o, i, s, n).then((t) => t(this.axios));
   }
-  streamStructuredSearchInDefinition(a, o, e, s) {
-    return T(this.configuration).streamStructuredSearchInDefinition(a, o, e, s).then((n) => n(this.axios));
+  /**
+   * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
+   * @summary Stream a Definition Search
+   * @param {number} [defId] The definition Id
+   * @param {string} [def] The definition name
+   * @param {string} [body] The JSON of the ES query.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  streamStructuredSearchInDefinition(a, o, i, s) {
+    return L(this.configuration).streamStructuredSearchInDefinition(a, o, i, s).then((n) => n(this.axios));
   }
-  streamStructuredSearchInDomain(a, o, e, s) {
-    return T(this.configuration).streamStructuredSearchInDomain(a, o, e, s).then((n) => n(this.axios));
+  /**
+   * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
+   * @summary Stream a Definition Search
+   * @param {number} [domainId] The domain Id
+   * @param {string} [domain] The domain name
+   * @param {string} [body] The JSON of the ES query.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  streamStructuredSearchInDomain(a, o, i, s) {
+    return L(this.configuration).streamStructuredSearchInDomain(a, o, i, s).then((n) => n(this.axios));
   }
-  structuredSearchInDefinition(a, o, e, s, n) {
-    return T(this.configuration).structuredSearchInDefinition(a, o, e, s, n).then((t) => t(this.axios));
+  /**
+   * Search the definition specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
+   * @summary Structured Search of Definition
+   * @param {number} [defId] The definition Id
+   * @param {string} [def] The definition name
+   * @param {boolean} [typedKeys] When asking for aggregations, should they be prefixed with the aggregation type? The same behaviour as specified in [ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/search-aggregations.html#return-agg-type)
+   * @param {string} [body] The JSON of the ES query.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SearchApi
+   */
+  structuredSearchInDefinition(a, o, i, s, n) {
+    return L(this.configuration).structuredSearchInDefinition(a, o, i, s, n).then((t) => t(this.axios));
   }
 }
 const Ke = {
@@ -11758,11 +12735,11 @@ const Ke = {
   DELETE_IN_PROGRESS: "deleteInProgress"
 };
 class oa {
-  constructor(a, o, e) {
-    R(this, "instanceId");
-    R(this, "fieldDefinitionId");
-    R(this, "filename");
-    this.instanceId = a, this.fieldDefinitionId = o, this.filename = e;
+  constructor(a, o, i) {
+    U(this, "instanceId");
+    U(this, "fieldDefinitionId");
+    U(this, "filename");
+    this.instanceId = a, this.fieldDefinitionId = o, this.filename = i;
   }
   get name() {
     return this.filename;
@@ -11771,15 +12748,22 @@ class oa {
     return `/recordm/recordm/instances/${this.instanceId}/files/${this.fieldDefinitionId}/${this.filename}`;
   }
 }
-const $ = class {
+const F = class F {
   constructor(a) {
-    R(this, "instance");
-    R(this, "fieldsNameMap");
+    U(this, "instance");
+    // Allows for easy lookup by field name
+    U(this, "fieldsNameMap");
     this.instance = a, this.fieldsNameMap = {}, this.updateInternalDataStructure(this.instance.fields || []);
   }
+  /**
+   * Updates internal data structures for quick access and findings
+   * @param fields the list of fields to analyze
+   * @param parent the parent field
+   * @private
+   */
   updateInternalDataStructure(a, o) {
-    this.flattenFields(a).forEach((e) => {
-      this.fieldsNameMap[e.fieldDefinition.name] ? this.fieldsNameMap[e.fieldDefinition.name].push(e) : this.fieldsNameMap[e.fieldDefinition.name] = [e];
+    this.flattenFields(a).forEach((i) => {
+      this.fieldsNameMap[i.fieldDefinition.name] ? this.fieldsNameMap[i.fieldDefinition.name].push(i) : this.fieldsNameMap[i.fieldDefinition.name] = [i];
     });
   }
   flattenFields(a) {
@@ -11791,73 +12775,126 @@ const $ = class {
   get version() {
     return this.instance.version;
   }
+  /**
+   * Lookup all instance fields with a specific name
+   * @param name the name of the field to look for
+   */
   field(a) {
     var o;
     return ((o = this.fieldsNameMap[a]) == null ? void 0 : o[0]) || null;
   }
+  /**
+   * Lookup all instance fields with a specific name.
+   * @param name the name of the field to look for
+   */
   fields(a) {
     return this.fieldsNameMap[a] || [];
   }
+  /**
+   * Shortcut method to get the first value of a field of the Instance.
+   * @param name the field name
+   */
   value(a) {
-    var e;
-    const o = (e = this.fields(a)) == null ? void 0 : e.find((s) => !!s.value);
+    var i;
+    const o = (i = this.fields(a)) == null ? void 0 : i.find((s) => !!s.value);
     return (o == null ? void 0 : o.value) || void 0;
   }
+  /**
+   * Shortcut method to get the first value of a field of the Instance and turn it into a specific type
+   * @param name the field name
+   * @param transformer the transformer function to return the value as a specific type
+   */
   valueAndTransform(a, o) {
-    const e = this.value(a);
-    return e ? o(e) : void 0;
+    const i = this.value(a);
+    return i ? o(i) : void 0;
   }
+  /**
+   * Shortcut method to get the first value of a field of the Instance as a number.
+   * @param name the field name
+   */
   valueAsNumber(a) {
     return this.valueAndTransform(a, (o) => parseInt(o, 10));
   }
+  /**
+   * Shortcut method to get the first value of a field of the Instance as a Date.
+   * @param name the field name
+   */
   valueAsDate(a) {
     return this.valueAndTransform(a, (o) => new Date(parseInt(o, 10)));
   }
+  /**
+   * Shortcut method to get the first value of a field of the Instance as an RmInstanceFile.
+   * @param name the field name
+   */
   valueAsFile(a) {
     let o = this.field(a);
-    if (!!(o != null && o.value))
+    if (o != null && o.value)
       return new oa(this.id, o.fieldDefinition.id, o.value);
   }
+  /**
+   * Get all the values of fields with the specified name.
+   * @param name the field name
+   */
   values(a) {
     return this.fields(a).filter((o) => !!o.value).map((o) => o.value);
   }
+  /**
+   * Get all the values of fields with the specified name as numbers
+   * @param name the field name
+   */
   valuesAsNumbers(a) {
     return this.values(a).map((o) => parseInt(o, 10));
   }
+  /**
+   * Get all the values of fields with the specified name as numbers
+   * @param name the field name
+   */
   valuesAsDates(a) {
     return this.values(a).map((o) => new Date(parseInt(o, 10)));
   }
+  /**
+   * Shortcut method to get all values of a field of the Instance as an RmInstanceFile.
+   * @param name the field name
+   */
   valuesAsFiles(a) {
     return this.fields(a).filter((o) => !!o.value).map((o) => new oa(this.id, o.fieldDefinition.id, o.value));
   }
+  /**
+   * Upload a file into a $file field.
+   * @param field the target field to upload the files
+   * @param fieldUploads a Pair of field and the file to upload
+   */
   async uploadFiles(a, o) {
-    const e = o.map((s) => $.API.uploadFile(`${this.id}`, `${a.fieldDefinition.id}`, s).then((n) => {
+    const i = o.map((s) => F.API.uploadFile(`${this.id}`, `${a.fieldDefinition.id}`, s).then((n) => {
       let t = n.data.replaceAll("<textarea>", "").replaceAll("</textarea>", "");
       return new oa(this.id, a.fieldDefinition.id, t);
     }));
-    return await Promise.all(e);
+    return await Promise.all(i);
   }
+  /**
+   * Veriify if this instance is updatable
+   */
   canUpdate() {
     return !!this.instance._links.update;
   }
   static async load(a) {
     try {
-      const o = (await $.API.getInstance(a)).data;
-      return Promise.resolve(new $(o));
+      const o = (await F.API.getInstance(a)).data;
+      return Promise.resolve(new F(o));
     } catch (o) {
       return console.error("Error loading instance with id", a), Promise.reject(o);
     }
   }
 };
-let ea = $;
-R(ea, "API", new qe());
+U(F, "API", new Be());
+let Ra = F;
 export {
   Ke as DecoratedDefinitionStateEnum,
   Xe as DefinitionStateEnum,
   Ge as DefinitionsApi,
   Je as DomainsApi,
   Ye as FieldErrorErrorTypeEnum,
-  qe as InstancesApi,
+  Be as InstancesApi,
   We as IntegrationApi,
   Ze as SearchApi,
   ai as TaskStateEnum,

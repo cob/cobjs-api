@@ -47,4 +47,4 @@ export declare const UpdateDefinitionRequestStateEnum: {
     readonly DISABLED: "disabled";
     readonly DELETE_IN_PROGRESS: "deleteInProgress";
 };
-export declare type UpdateDefinitionRequestStateEnum = typeof UpdateDefinitionRequestStateEnum[keyof typeof UpdateDefinitionRequestStateEnum];
+export type UpdateDefinitionRequestStateEnum = typeof UpdateDefinitionRequestStateEnum[keyof typeof UpdateDefinitionRequestStateEnum];

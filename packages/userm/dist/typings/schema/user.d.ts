@@ -95,4 +95,4 @@ export declare const UserStateEnum: {
     readonly ENABLED: "enabled";
     readonly DISABLED: "disabled";
 };
-export declare type UserStateEnum = typeof UserStateEnum[keyof typeof UserStateEnum];
+export type UserStateEnum = typeof UserStateEnum[keyof typeof UserStateEnum];

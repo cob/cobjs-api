@@ -34,4 +34,4 @@ export declare const FieldErrorErrorTypeEnum: {
     readonly INVALID_SUBSTITUTE_USER: "INVALID_SUBSTITUTE_USER";
     readonly NOT_ALLOWED: "NOT_ALLOWED";
 };
-export declare type FieldErrorErrorTypeEnum = typeof FieldErrorErrorTypeEnum[keyof typeof FieldErrorErrorTypeEnum];
+export type FieldErrorErrorTypeEnum = typeof FieldErrorErrorTypeEnum[keyof typeof FieldErrorErrorTypeEnum];

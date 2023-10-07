@@ -49,4 +49,4 @@ export declare const TaskStateEnum: {
     readonly COMPLETE: "COMPLETE";
     readonly PLANNED: "PLANNED";
 };
-export declare type TaskStateEnum = typeof TaskStateEnum[keyof typeof TaskStateEnum];
+export type TaskStateEnum = typeof TaskStateEnum[keyof typeof TaskStateEnum];

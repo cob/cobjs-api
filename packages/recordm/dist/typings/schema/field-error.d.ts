@@ -45,4 +45,4 @@ export declare const FieldErrorErrorTypeEnum: {
     readonly NOT_VALID_TASKS_FORMAT: "NOT_VALID_TASKS_FORMAT";
     readonly NOT_VALID_TASK: "NOT_VALID_TASK";
 };
-export declare type FieldErrorErrorTypeEnum = typeof FieldErrorErrorTypeEnum[keyof typeof FieldErrorErrorTypeEnum];
+export type FieldErrorErrorTypeEnum = typeof FieldErrorErrorTypeEnum[keyof typeof FieldErrorErrorTypeEnum];
