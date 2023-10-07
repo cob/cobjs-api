@@ -24,19 +24,31 @@ export interface UserLinks {
      * @type {string}
      * @memberof UserLinks
      */
+    'enable'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserLinks
+     */
+    'disable'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserLinks
+     */
     'assignSubstitute'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserLinks
      */
-    'addTo'?: string;
+    'addToGroup'?: string;
     /**
      * 
      * @type {string}
      * @memberof UserLinks
      */
-    'removeFrom'?: string;
+    'removeFromGroup'?: string;
     /**
      * 
      * @type {string}
@@ -55,7 +67,7 @@ export interface UserLinks {
      * @memberof UserLinks
      * @deprecated
      */
-    'assign-substitute'?: string;
+    'remove-from'?: string;
     /**
      * 
      * @type {string}
@@ -69,5 +81,5 @@ export interface UserLinks {
      * @memberof UserLinks
      * @deprecated
      */
-    'remove-from'?: string;
+    'assign-substitute'?: string;
 }

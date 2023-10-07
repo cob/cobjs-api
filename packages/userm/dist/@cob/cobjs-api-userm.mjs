@@ -1,132 +1,132 @@
-import D from "axios";
-var ao = Object.defineProperty, oo = (a, o, e) => o in a ? ao(a, o, { enumerable: !0, configurable: !0, writable: !0, value: e }) : a[o] = e, E = (a, o, e) => (oo(a, typeof o != "symbol" ? o + "" : o, e), e), sa = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Ca(a) {
-  if (a.__esModule)
-    return a;
-  var o = a.default;
-  if (typeof o == "function") {
-    var e = function i() {
-      return this instanceof i ? Reflect.construct(o, arguments, this.constructor) : o.apply(this, arguments);
+import d from "axios";
+var ro = Object.defineProperty, uo = (e, a, o) => a in e ? ro(e, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[a] = o, _ = (e, a, o) => (uo(e, typeof a != "symbol" ? a + "" : a, o), o), ga = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function Ea(e) {
+  if (e.__esModule)
+    return e;
+  var a = e.default;
+  if (typeof a == "function") {
+    var o = function i() {
+      return this instanceof i ? Reflect.construct(a, arguments, this.constructor) : a.apply(this, arguments);
     };
-    e.prototype = o.prototype;
+    o.prototype = a.prototype;
   } else
-    e = {};
-  return Object.defineProperty(e, "__esModule", { value: !0 }), Object.keys(a).forEach(function(i) {
-    var s = Object.getOwnPropertyDescriptor(a, i);
-    Object.defineProperty(e, i, s.get ? s : {
+    o = {};
+  return Object.defineProperty(o, "__esModule", { value: !0 }), Object.keys(e).forEach(function(i) {
+    var s = Object.getOwnPropertyDescriptor(e, i);
+    Object.defineProperty(o, i, s.get ? s : {
       enumerable: !0,
       get: function() {
-        return a[i];
+        return e[i];
       }
     });
-  }), e;
+  }), o;
 }
-const O = 2147483647, f = 36, J = 1, q = 26, eo = 38, io = 700, Aa = 72, Oa = 128, Ea = "-", so = /^xn--/, no = /[^\0-\x7E]/, to = /[\x2E\u3002\uFF0E\uFF61]/g, ro = {
+const D = 2147483647, C = 36, sa = 1, B = 26, mo = 38, co = 700, Ia = 72, Ta = 128, qa = "-", po = /^xn--/, lo = /[^\0-\x7E]/, ho = /[\x2E\u3002\uFF0E\uFF61]/g, ko = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, R = f - J, w = Math.floor, $ = String.fromCharCode;
-function C(a) {
-  throw new RangeError(ro[a]);
+}, Z = C - sa, P = Math.floor, Y = String.fromCharCode;
+function q(e) {
+  throw new RangeError(ko[e]);
 }
-function uo(a, o) {
-  const e = [];
-  let i = a.length;
-  for (; i--; )
-    e[i] = o(a[i]);
-  return e;
-}
-function Ia(a, o) {
-  const e = a.split("@");
-  let i = "";
-  e.length > 1 && (i = e[0] + "@", a = e[1]), a = a.replace(to, ".");
-  const s = a.split("."), n = uo(s, o).join(".");
-  return i + n;
-}
-function W(a) {
+function go(e, a) {
   const o = [];
-  let e = 0;
-  const i = a.length;
-  for (; e < i; ) {
-    const s = a.charCodeAt(e++);
-    if (s >= 55296 && s <= 56319 && e < i) {
-      const n = a.charCodeAt(e++);
-      (n & 64512) == 56320 ? o.push(((s & 1023) << 10) + (n & 1023) + 65536) : (o.push(s), e--);
-    } else
-      o.push(s);
-  }
+  let i = e.length;
+  for (; i--; )
+    o[i] = a(e[i]);
   return o;
 }
-const Da = (a) => String.fromCodePoint(...a), mo = function(a) {
-  return a - 48 < 10 ? a - 22 : a - 65 < 26 ? a - 65 : a - 97 < 26 ? a - 97 : f;
-}, na = function(a, o) {
-  return a + 22 + 75 * (a < 26) - ((o != 0) << 5);
-}, qa = function(a, o, e) {
-  let i = 0;
-  for (a = e ? w(a / io) : a >> 1, a += w(a / o); a > R * q >> 1; i += f)
-    a = w(a / R);
-  return w(i + (R + 1) * a / (a + eo));
-}, G = function(a) {
-  const o = [], e = a.length;
-  let i = 0, s = Oa, n = Aa, t = a.lastIndexOf(Ea);
-  t < 0 && (t = 0);
-  for (let r = 0; r < t; ++r)
-    a.charCodeAt(r) >= 128 && C("not-basic"), o.push(a.charCodeAt(r));
-  for (let r = t > 0 ? t + 1 : 0; r < e; ) {
-    let p = i;
-    for (let m = 1, u = f; ; u += f) {
-      r >= e && C("invalid-input");
-      const g = mo(a.charCodeAt(r++));
-      (g >= f || g > w((O - i) / m)) && C("overflow"), i += g * m;
-      const j = u <= n ? J : u >= n + q ? q : u - n;
-      if (g < j)
-        break;
-      const d = f - j;
-      m > w(O / d) && C("overflow"), m *= d;
-    }
-    const c = o.length + 1;
-    n = qa(i - p, c, p == 0), w(i / c) > O - s && C("overflow"), s += w(i / c), i %= c, o.splice(i++, 0, s);
+function La(e, a) {
+  const o = e.split("@");
+  let i = "";
+  o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(ho, ".");
+  const s = e.split("."), t = go(s, a).join(".");
+  return i + t;
+}
+function ta(e) {
+  const a = [];
+  let o = 0;
+  const i = e.length;
+  for (; o < i; ) {
+    const s = e.charCodeAt(o++);
+    if (s >= 55296 && s <= 56319 && o < i) {
+      const t = e.charCodeAt(o++);
+      (t & 64512) == 56320 ? a.push(((s & 1023) << 10) + (t & 1023) + 65536) : (a.push(s), o--);
+    } else
+      a.push(s);
   }
-  return String.fromCodePoint(...o);
-}, Q = function(a) {
-  const o = [];
-  a = W(a);
-  let e = a.length, i = Oa, s = 0, n = Aa;
-  for (const p of a)
-    p < 128 && o.push($(p));
-  let t = o.length, r = t;
-  for (t && o.push(Ea); r < e; ) {
-    let p = O;
-    for (const m of a)
-      m >= i && m < p && (p = m);
-    const c = r + 1;
-    p - i > w((O - s) / c) && C("overflow"), s += (p - i) * c, i = p;
-    for (const m of a)
-      if (m < i && ++s > O && C("overflow"), m == i) {
-        let u = s;
-        for (let g = f; ; g += f) {
-          const j = g <= n ? J : g >= n + q ? q : g - n;
-          if (u < j)
+  return a;
+}
+const Da = (e) => String.fromCodePoint(...e), jo = function(e) {
+  return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : C;
+}, ja = function(e, a) {
+  return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
+}, Na = function(e, a, o) {
+  let i = 0;
+  for (e = o ? P(e / co) : e >> 1, e += P(e / a); e > Z * B >> 1; i += C)
+    e = P(e / Z);
+  return P(i + (Z + 1) * e / (e + mo));
+}, na = function(e) {
+  const a = [], o = e.length;
+  let i = 0, s = Ta, t = Ia, n = e.lastIndexOf(qa);
+  n < 0 && (n = 0);
+  for (let r = 0; r < n; ++r)
+    e.charCodeAt(r) >= 128 && q("not-basic"), a.push(e.charCodeAt(r));
+  for (let r = n > 0 ? n + 1 : 0; r < o; ) {
+    let u = i;
+    for (let c = 1, p = C; ; p += C) {
+      r >= o && q("invalid-input");
+      const g = jo(e.charCodeAt(r++));
+      (g >= C || g > P((D - i) / c)) && q("overflow"), i += g * c;
+      const z = p <= t ? sa : p >= t + B ? B : p - t;
+      if (g < z)
+        break;
+      const v = C - z;
+      c > P(D / v) && q("overflow"), c *= v;
+    }
+    const m = a.length + 1;
+    t = Na(i - u, m, u == 0), P(i / m) > D - s && q("overflow"), s += P(i / m), i %= m, a.splice(i++, 0, s);
+  }
+  return String.fromCodePoint(...a);
+}, ra = function(e) {
+  const a = [];
+  e = ta(e);
+  let o = e.length, i = Ta, s = 0, t = Ia;
+  for (const u of e)
+    u < 128 && a.push(Y(u));
+  let n = a.length, r = n;
+  for (n && a.push(qa); r < o; ) {
+    let u = D;
+    for (const c of e)
+      c >= i && c < u && (u = c);
+    const m = r + 1;
+    u - i > P((D - s) / m) && q("overflow"), s += (u - i) * m, i = u;
+    for (const c of e)
+      if (c < i && ++s > D && q("overflow"), c == i) {
+        let p = s;
+        for (let g = C; ; g += C) {
+          const z = g <= t ? sa : g >= t + B ? B : g - t;
+          if (p < z)
             break;
-          const d = u - j, k = f - j;
-          o.push(
-            $(na(j + d % k, 0))
-          ), u = w(d / k);
+          const v = p - z, k = C - z;
+          a.push(
+            Y(ja(z + v % k, 0))
+          ), p = P(v / k);
         }
-        o.push($(na(u, 0))), n = qa(s, c, r == t), s = 0, ++r;
+        a.push(Y(ja(p, 0))), t = Na(s, m, r == n), s = 0, ++r;
       }
     ++s, ++i;
   }
-  return o.join("");
-}, Ua = function(a) {
-  return Ia(a, function(o) {
-    return so.test(o) ? G(o.slice(4).toLowerCase()) : o;
+  return a.join("");
+}, _a = function(e) {
+  return La(e, function(a) {
+    return po.test(a) ? na(a.slice(4).toLowerCase()) : a;
   });
-}, Ta = function(a) {
-  return Ia(a, function(o) {
-    return no.test(o) ? "xn--" + Q(o) : o;
+}, Fa = function(e) {
+  return La(e, function(a) {
+    return lo.test(a) ? "xn--" + ra(a) : a;
   });
-}, po = {
+}, bo = {
   /**
    * A string representing the current Punycode.js version number.
    * @memberOf punycode
@@ -141,88 +141,88 @@ const Da = (a) => String.fromCodePoint(...a), mo = function(a) {
    * @type Object
    */
   ucs2: {
-    decode: W,
+    decode: ta,
     encode: Da
   },
-  decode: G,
-  encode: Q,
-  toASCII: Ta,
-  toUnicode: Ua
-}, co = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: na,
+  encode: ra,
+  toASCII: Fa,
+  toUnicode: _a
+}, yo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  decode: G,
-  default: po,
-  encode: Q,
-  toASCII: Ta,
-  toUnicode: Ua,
-  ucs2decode: W,
+  decode: na,
+  default: bo,
+  encode: ra,
+  toASCII: Fa,
+  toUnicode: _a,
+  ucs2decode: ta,
   ucs2encode: Da
-}, Symbol.toStringTag, { value: "Module" })), La = /* @__PURE__ */ Ca(co);
-var lo = function(a, o) {
-  if (o = o.split(":")[0], a = +a, !a)
+}, Symbol.toStringTag, { value: "Module" })), Ba = /* @__PURE__ */ Ea(yo);
+var fo = function(e, a) {
+  if (a = a.split(":")[0], e = +e, !e)
     return !1;
-  switch (o) {
+  switch (a) {
     case "http":
     case "ws":
-      return a !== 80;
+      return e !== 80;
     case "https":
     case "wss":
-      return a !== 443;
+      return e !== 443;
     case "ftp":
-      return a !== 21;
+      return e !== 21;
     case "gopher":
-      return a !== 70;
+      return e !== 70;
     case "file":
       return !1;
   }
-  return a !== 0;
-}, Z = {}, ko = Object.prototype.hasOwnProperty, go;
-function ta(a) {
+  return e !== 0;
+}, ua = {}, wo = Object.prototype.hasOwnProperty, vo;
+function ba(e) {
   try {
-    return decodeURIComponent(a.replace(/\+/g, " "));
+    return decodeURIComponent(e.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function ra(a) {
+function ya(e) {
   try {
-    return encodeURIComponent(a);
+    return encodeURIComponent(e);
   } catch {
     return null;
   }
 }
-function ho(a) {
-  for (var o = /([^=?#&]+)=?([^&]*)/g, e = {}, i; i = o.exec(a); ) {
-    var s = ta(i[1]), n = ta(i[2]);
-    s === null || n === null || s in e || (e[s] = n);
+function zo(e) {
+  for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, i; i = a.exec(e); ) {
+    var s = ba(i[1]), t = ba(i[2]);
+    s === null || t === null || s in o || (o[s] = t);
   }
-  return e;
+  return o;
 }
-function jo(a, o) {
-  o = o || "";
-  var e = [], i, s;
-  typeof o != "string" && (o = "?");
-  for (s in a)
-    if (ko.call(a, s)) {
-      if (i = a[s], !i && (i === null || i === go || isNaN(i)) && (i = ""), s = ra(s), i = ra(i), s === null || i === null)
+function xo(e, a) {
+  a = a || "";
+  var o = [], i, s;
+  typeof a != "string" && (a = "?");
+  for (s in e)
+    if (wo.call(e, s)) {
+      if (i = e[s], !i && (i === null || i === vo || isNaN(i)) && (i = ""), s = ya(s), i = ya(i), s === null || i === null)
         continue;
-      e.push(s + "=" + i);
+      o.push(s + "=" + i);
     }
-  return e.length ? o + e.join("&") : "";
+  return o.length ? a + o.join("&") : "";
 }
-Z.stringify = jo;
-Z.parse = ho;
-var _a = lo, _ = Z, bo = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Pa = /[\n\r\t]/g, yo = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Na = /:\d+$/, fo = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, wo = /^[a-zA-Z]:/;
-function Y(a) {
-  return (a || "").toString().replace(bo, "");
+ua.stringify = xo;
+ua.parse = zo;
+var $a = fo, Q = ua, Oo = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ga = /[\n\r\t]/g, Ao = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Ha = /:\d+$/, So = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Co = /^[a-zA-Z]:/;
+function ma(e) {
+  return (e || "").toString().replace(Oo, "");
 }
-var F = [
+var X = [
   ["#", "hash"],
   // Extract from the back.
   ["?", "query"],
   // Extract from the back.
-  function(a, o) {
-    return v(o.protocol) ? a.replace(/\\/g, "/") : a;
+  function(e, a) {
+    return U(a.protocol) ? e.replace(/\\/g, "/") : e;
   },
   ["/", "pathname"],
   // Extract from the back.
@@ -234,113 +234,113 @@ var F = [
   // RegExp the back.
   [NaN, "hostname", void 0, 1, 1]
   // Set left over.
-], ua = { hash: 1, query: 1 };
-function Ra(a) {
-  var o;
-  typeof window < "u" ? o = window : typeof sa < "u" ? o = sa : typeof self < "u" ? o = self : o = {};
-  var e = o.location || {};
-  a = a || e;
-  var i = {}, s = typeof a, n;
-  if (a.protocol === "blob:")
-    i = new z(unescape(a.pathname), {});
+], fa = { hash: 1, query: 1 };
+function Qa(e) {
+  var a;
+  typeof window < "u" ? a = window : typeof ga < "u" ? a = ga : typeof self < "u" ? a = self : a = {};
+  var o = a.location || {};
+  e = e || o;
+  var i = {}, s = typeof e, t;
+  if (e.protocol === "blob:")
+    i = new V(unescape(e.pathname), {});
   else if (s === "string") {
-    i = new z(a, {});
-    for (n in ua)
-      delete i[n];
+    i = new V(e, {});
+    for (t in fa)
+      delete i[t];
   } else if (s === "object") {
-    for (n in a)
-      n in ua || (i[n] = a[n]);
-    i.slashes === void 0 && (i.slashes = yo.test(a.href));
+    for (t in e)
+      t in fa || (i[t] = e[t]);
+    i.slashes === void 0 && (i.slashes = Ao.test(e.href));
   }
   return i;
 }
-function v(a) {
-  return a === "file:" || a === "ftp:" || a === "http:" || a === "https:" || a === "ws:" || a === "wss:";
+function U(e) {
+  return e === "file:" || e === "ftp:" || e === "http:" || e === "https:" || e === "ws:" || e === "wss:";
 }
-function $a(a, o) {
-  a = Y(a), a = a.replace(Pa, ""), o = o || {};
-  var e = fo.exec(a), i = e[1] ? e[1].toLowerCase() : "", s = !!e[2], n = !!e[3], t = 0, r;
-  return s ? n ? (r = e[2] + e[3] + e[4], t = e[2].length + e[3].length) : (r = e[2] + e[4], t = e[2].length) : n ? (r = e[3] + e[4], t = e[3].length) : r = e[4], i === "file:" ? t >= 2 && (r = r.slice(2)) : v(i) ? r = e[4] : i ? s && (r = r.slice(2)) : t >= 2 && v(o.protocol) && (r = e[4]), {
+function Ma(e, a) {
+  e = ma(e), e = e.replace(Ga, ""), a = a || {};
+  var o = So.exec(e), i = o[1] ? o[1].toLowerCase() : "", s = !!o[2], t = !!o[3], n = 0, r;
+  return s ? t ? (r = o[2] + o[3] + o[4], n = o[2].length + o[3].length) : (r = o[2] + o[4], n = o[2].length) : t ? (r = o[3] + o[4], n = o[3].length) : r = o[4], i === "file:" ? n >= 2 && (r = r.slice(2)) : U(i) ? r = o[4] : i ? s && (r = r.slice(2)) : n >= 2 && U(a.protocol) && (r = o[4]), {
     protocol: i,
-    slashes: s || v(i),
-    slashesCount: t,
+    slashes: s || U(i),
+    slashesCount: n,
     rest: r
   };
 }
-function vo(a, o) {
-  if (a === "")
-    return o;
-  for (var e = (o || "/").split("/").slice(0, -1).concat(a.split("/")), i = e.length, s = e[i - 1], n = !1, t = 0; i--; )
-    e[i] === "." ? e.splice(i, 1) : e[i] === ".." ? (e.splice(i, 1), t++) : t && (i === 0 && (n = !0), e.splice(i, 1), t--);
-  return n && e.unshift(""), (s === "." || s === "..") && e.push(""), e.join("/");
+function Po(e, a) {
+  if (e === "")
+    return a;
+  for (var o = (a || "/").split("/").slice(0, -1).concat(e.split("/")), i = o.length, s = o[i - 1], t = !1, n = 0; i--; )
+    o[i] === "." ? o.splice(i, 1) : o[i] === ".." ? (o.splice(i, 1), n++) : n && (i === 0 && (t = !0), o.splice(i, 1), n--);
+  return t && o.unshift(""), (s === "." || s === "..") && o.push(""), o.join("/");
 }
-function z(a, o, e) {
-  if (a = Y(a), a = a.replace(Pa, ""), !(this instanceof z))
-    return new z(a, o, e);
-  var i, s, n, t, r, p, c = F.slice(), m = typeof o, u = this, g = 0;
-  for (m !== "object" && m !== "string" && (e = o, o = null), e && typeof e != "function" && (e = _.parse), o = Ra(o), s = $a(a || "", o), i = !s.protocol && !s.slashes, u.slashes = s.slashes || i && o.slashes, u.protocol = s.protocol || o.protocol || "", a = s.rest, (s.protocol === "file:" && (s.slashesCount !== 2 || wo.test(a)) || !s.slashes && (s.protocol || s.slashesCount < 2 || !v(u.protocol))) && (c[3] = [/(.*)/, "pathname"]); g < c.length; g++) {
-    if (t = c[g], typeof t == "function") {
-      a = t(a, u);
+function V(e, a, o) {
+  if (e = ma(e), e = e.replace(Ga, ""), !(this instanceof V))
+    return new V(e, a, o);
+  var i, s, t, n, r, u, m = X.slice(), c = typeof a, p = this, g = 0;
+  for (c !== "object" && c !== "string" && (o = a, a = null), o && typeof o != "function" && (o = Q.parse), a = Qa(a), s = Ma(e || "", a), i = !s.protocol && !s.slashes, p.slashes = s.slashes || i && a.slashes, p.protocol = s.protocol || a.protocol || "", e = s.rest, (s.protocol === "file:" && (s.slashesCount !== 2 || Co.test(e)) || !s.slashes && (s.protocol || s.slashesCount < 2 || !U(p.protocol))) && (m[3] = [/(.*)/, "pathname"]); g < m.length; g++) {
+    if (n = m[g], typeof n == "function") {
+      e = n(e, p);
       continue;
     }
-    n = t[0], p = t[1], n !== n ? u[p] = a : typeof n == "string" ? (r = n === "@" ? a.lastIndexOf(n) : a.indexOf(n), ~r && (typeof t[2] == "number" ? (u[p] = a.slice(0, r), a = a.slice(r + t[2])) : (u[p] = a.slice(r), a = a.slice(0, r)))) : (r = n.exec(a)) && (u[p] = r[1], a = a.slice(0, r.index)), u[p] = u[p] || i && t[3] && o[p] || "", t[4] && (u[p] = u[p].toLowerCase());
+    t = n[0], u = n[1], t !== t ? p[u] = e : typeof t == "string" ? (r = t === "@" ? e.lastIndexOf(t) : e.indexOf(t), ~r && (typeof n[2] == "number" ? (p[u] = e.slice(0, r), e = e.slice(r + n[2])) : (p[u] = e.slice(r), e = e.slice(0, r)))) : (r = t.exec(e)) && (p[u] = r[1], e = e.slice(0, r.index)), p[u] = p[u] || i && n[3] && a[u] || "", n[4] && (p[u] = p[u].toLowerCase());
   }
-  e && (u.query = e(u.query)), i && o.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || o.pathname !== "") && (u.pathname = vo(u.pathname, o.pathname)), u.pathname.charAt(0) !== "/" && v(u.protocol) && (u.pathname = "/" + u.pathname), _a(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && v(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
+  o && (p.query = o(p.query)), i && a.slashes && p.pathname.charAt(0) !== "/" && (p.pathname !== "" || a.pathname !== "") && (p.pathname = Po(p.pathname, a.pathname)), p.pathname.charAt(0) !== "/" && U(p.protocol) && (p.pathname = "/" + p.pathname), $a(p.port, p.protocol) || (p.host = p.hostname, p.port = ""), p.username = p.password = "", p.auth && (r = p.auth.indexOf(":"), ~r ? (p.username = p.auth.slice(0, r), p.username = encodeURIComponent(decodeURIComponent(p.username)), p.password = p.auth.slice(r + 1), p.password = encodeURIComponent(decodeURIComponent(p.password))) : p.username = encodeURIComponent(decodeURIComponent(p.auth)), p.auth = p.password ? p.username + ":" + p.password : p.username), p.origin = p.protocol !== "file:" && U(p.protocol) && p.host ? p.protocol + "//" + p.host : "null", p.href = p.toString();
 }
-function zo(a, o, e) {
+function Uo(e, a, o) {
   var i = this;
-  switch (a) {
+  switch (e) {
     case "query":
-      typeof o == "string" && o.length && (o = (e || _.parse)(o)), i[a] = o;
+      typeof a == "string" && a.length && (a = (o || Q.parse)(a)), i[e] = a;
       break;
     case "port":
-      i[a] = o, _a(o, i.protocol) ? o && (i.host = i.hostname + ":" + o) : (i.host = i.hostname, i[a] = "");
+      i[e] = a, $a(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
       break;
     case "hostname":
-      i[a] = o, i.port && (o += ":" + i.port), i.host = o;
+      i[e] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[a] = o, Na.test(o) ? (o = o.split(":"), i.port = o.pop(), i.hostname = o.join(":")) : (i.hostname = o, i.port = "");
+      i[e] = a, Ha.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
-      i.protocol = o.toLowerCase(), i.slashes = !e;
+      i.protocol = a.toLowerCase(), i.slashes = !o;
       break;
     case "pathname":
     case "hash":
-      if (o) {
-        var s = a === "pathname" ? "/" : "#";
-        i[a] = o.charAt(0) !== s ? s + o : o;
+      if (a) {
+        var s = e === "pathname" ? "/" : "#";
+        i[e] = a.charAt(0) !== s ? s + a : a;
       } else
-        i[a] = o;
+        i[e] = a;
       break;
     case "username":
     case "password":
-      i[a] = encodeURIComponent(o);
+      i[e] = encodeURIComponent(a);
       break;
     case "auth":
-      var n = o.indexOf(":");
-      ~n ? (i.username = o.slice(0, n), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = o.slice(n + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(o));
+      var t = a.indexOf(":");
+      ~t ? (i.username = a.slice(0, t), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(t + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var t = 0; t < F.length; t++) {
-    var r = F[t];
+  for (var n = 0; n < X.length; n++) {
+    var r = X[n];
     r[4] && (i[r[1]] = i[r[1]].toLowerCase());
   }
-  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && v(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
+  return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && U(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function xo(a) {
-  (!a || typeof a != "function") && (a = _.stringify);
-  var o, e = this, i = e.host, s = e.protocol;
+function Vo(e) {
+  (!e || typeof e != "function") && (e = Q.stringify);
+  var a, o = this, i = o.host, s = o.protocol;
   s && s.charAt(s.length - 1) !== ":" && (s += ":");
-  var n = s + (e.protocol && e.slashes || v(e.protocol) ? "//" : "");
-  return e.username ? (n += e.username, e.password && (n += ":" + e.password), n += "@") : e.password ? (n += ":" + e.password, n += "@") : e.protocol !== "file:" && v(e.protocol) && !i && e.pathname !== "/" && (n += "@"), (i[i.length - 1] === ":" || Na.test(e.hostname) && !e.port) && (i += ":"), n += i + e.pathname, o = typeof e.query == "object" ? a(e.query) : e.query, o && (n += o.charAt(0) !== "?" ? "?" + o : o), e.hash && (n += e.hash), n;
+  var t = s + (o.protocol && o.slashes || U(o.protocol) ? "//" : "");
+  return o.username ? (t += o.username, o.password && (t += ":" + o.password), t += "@") : o.password ? (t += ":" + o.password, t += "@") : o.protocol !== "file:" && U(o.protocol) && !i && o.pathname !== "/" && (t += "@"), (i[i.length - 1] === ":" || Ha.test(o.hostname) && !o.port) && (i += ":"), t += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (t += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (t += o.hash), t;
 }
-z.prototype = { set: zo, toString: xo };
-z.extractProtocol = $a;
-z.location = Ra;
-z.trimLeft = Y;
-z.qs = _;
-var So = z, K = {}, Fa = {};
-const Co = [
+V.prototype = { set: Uo, toString: Vo };
+V.extractProtocol = Ma;
+V.location = Qa;
+V.trimLeft = ma;
+V.qs = Q;
+var Ro = V, ca = {}, Ja = {};
+const Eo = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -9716,9 +9716,9 @@ const Co = [
   "virtualserver.io",
   "enterprisecloud.nu"
 ];
-(function(a) {
-  var o = La, e = {};
-  e.rules = Co.map(function(i) {
+(function(e) {
+  var a = Ba, o = {};
+  o.rules = Eo.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -9726,14 +9726,14 @@ const Co = [
       wildcard: i.charAt(0) === "*",
       exception: i.charAt(0) === "!"
     };
-  }), e.endsWith = function(i, s) {
+  }), o.endsWith = function(i, s) {
     return i.indexOf(s, i.length - s.length) !== -1;
-  }, e.findRule = function(i) {
-    var s = o.toASCII(i);
-    return e.rules.reduce(function(n, t) {
-      return t.punySuffix === -1 && (t.punySuffix = o.toASCII(t.suffix)), !e.endsWith(s, "." + t.punySuffix) && s !== t.punySuffix ? n : t;
+  }, o.findRule = function(i) {
+    var s = a.toASCII(i);
+    return o.rules.reduce(function(t, n) {
+      return n.punySuffix === -1 && (n.punySuffix = a.toASCII(n.suffix)), !o.endsWith(s, "." + n.punySuffix) && s !== n.punySuffix ? t : n;
     }, null);
-  }, a.errorCodes = {
+  }, e.errorCodes = {
     DOMAIN_TOO_SHORT: "Domain name too short.",
     DOMAIN_TOO_LONG: "Domain name too long. It should be no more than 255 chars.",
     LABEL_STARTS_WITH_DASH: "Domain name label can not start with a dash.",
@@ -9741,39 +9741,39 @@ const Co = [
     LABEL_TOO_LONG: "Domain name label should be at most 63 chars long.",
     LABEL_TOO_SHORT: "Domain name label should be at least 1 character long.",
     LABEL_INVALID_CHARS: "Domain name label can only contain alphanumeric characters or dashes."
-  }, e.validate = function(i) {
-    var s = o.toASCII(i);
+  }, o.validate = function(i) {
+    var s = a.toASCII(i);
     if (s.length < 1)
       return "DOMAIN_TOO_SHORT";
     if (s.length > 255)
       return "DOMAIN_TOO_LONG";
-    for (var n = s.split("."), t, r = 0; r < n.length; ++r) {
-      if (t = n[r], !t.length)
+    for (var t = s.split("."), n, r = 0; r < t.length; ++r) {
+      if (n = t[r], !n.length)
         return "LABEL_TOO_SHORT";
-      if (t.length > 63)
+      if (n.length > 63)
         return "LABEL_TOO_LONG";
-      if (t.charAt(0) === "-")
+      if (n.charAt(0) === "-")
         return "LABEL_STARTS_WITH_DASH";
-      if (t.charAt(t.length - 1) === "-")
+      if (n.charAt(n.length - 1) === "-")
         return "LABEL_ENDS_WITH_DASH";
-      if (!/^[a-z0-9\-]+$/.test(t))
+      if (!/^[a-z0-9\-]+$/.test(n))
         return "LABEL_INVALID_CHARS";
     }
-  }, a.parse = function(i) {
+  }, e.parse = function(i) {
     if (typeof i != "string")
       throw new TypeError("Domain name must be a string.");
     var s = i.slice(0).toLowerCase();
     s.charAt(s.length - 1) === "." && (s = s.slice(0, s.length - 1));
-    var n = e.validate(s);
-    if (n)
+    var t = o.validate(s);
+    if (t)
       return {
         input: i,
         error: {
-          message: a.errorCodes[n],
-          code: n
+          message: e.errorCodes[t],
+          code: t
         }
       };
-    var t = {
+    var n = {
       input: i,
       tld: null,
       sld: null,
@@ -9782,22 +9782,22 @@ const Co = [
       listed: !1
     }, r = s.split(".");
     if (r[r.length - 1] === "local")
-      return t;
-    var p = function() {
-      return /xn--/.test(s) && (t.domain && (t.domain = o.toASCII(t.domain)), t.subdomain && (t.subdomain = o.toASCII(t.subdomain))), t;
-    }, c = e.findRule(s);
-    if (!c)
-      return r.length < 2 ? t : (t.tld = r.pop(), t.sld = r.pop(), t.domain = [t.sld, t.tld].join("."), r.length && (t.subdomain = r.pop()), p());
-    t.listed = !0;
-    var m = c.suffix.split("."), u = r.slice(0, r.length - m.length);
-    return c.exception && u.push(m.shift()), t.tld = m.join("."), !u.length || (c.wildcard && (m.unshift(u.pop()), t.tld = m.join(".")), !u.length) || (t.sld = u.pop(), t.domain = [t.sld, t.tld].join("."), u.length && (t.subdomain = u.join("."))), p();
-  }, a.get = function(i) {
-    return i && a.parse(i).domain || null;
-  }, a.isValid = function(i) {
-    var s = a.parse(i);
+      return n;
+    var u = function() {
+      return /xn--/.test(s) && (n.domain && (n.domain = a.toASCII(n.domain)), n.subdomain && (n.subdomain = a.toASCII(n.subdomain))), n;
+    }, m = o.findRule(s);
+    if (!m)
+      return r.length < 2 ? n : (n.tld = r.pop(), n.sld = r.pop(), n.domain = [n.sld, n.tld].join("."), r.length && (n.subdomain = r.pop()), u());
+    n.listed = !0;
+    var c = m.suffix.split("."), p = r.slice(0, r.length - c.length);
+    return m.exception && p.push(c.shift()), n.tld = c.join("."), !p.length || (m.wildcard && (c.unshift(p.pop()), n.tld = c.join(".")), !p.length) || (n.sld = p.pop(), n.domain = [n.sld, n.tld].join("."), p.length && (n.subdomain = p.join("."))), u();
+  }, e.get = function(i) {
+    return i && e.parse(i).domain || null;
+  }, e.isValid = function(i) {
+    var s = e.parse(i);
     return !!(s.domain && s.listed);
   };
-})(Fa);
+})(Ja);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -9828,29 +9828,29 @@ const Co = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Ao = Fa, ma = [
+const Io = Ja, wa = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], Oo = ["localhost", "invalid"];
-function Eo(a, o = {}) {
-  const e = a.split("."), i = e[e.length - 1], s = !!o.allowSpecialUseDomain, n = !!o.ignoreError;
-  if (s && ma.includes(i)) {
-    if (e.length > 1)
-      return `${e[e.length - 2]}.${i}`;
-    if (Oo.includes(i))
+], To = ["localhost", "invalid"];
+function qo(e, a = {}) {
+  const o = e.split("."), i = o[o.length - 1], s = !!a.allowSpecialUseDomain, t = !!a.ignoreError;
+  if (s && wa.includes(i)) {
+    if (o.length > 1)
+      return `${o[o.length - 2]}.${i}`;
+    if (To.includes(i))
       return `${i}`;
   }
-  if (!n && ma.includes(i))
+  if (!t && wa.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return Ao.get(a);
+  return Io.get(e);
 }
-K.getPublicSuffix = Eo;
-var X = {};
+ca.getPublicSuffix = qo;
+var pa = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9881,62 +9881,62 @@ var X = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-let Io = class {
+let Lo = class {
   constructor() {
     this.synchronous = !1;
   }
-  findCookie(a, o, e, i) {
+  findCookie(e, a, o, i) {
     throw new Error("findCookie is not implemented");
   }
-  findCookies(a, o, e, i) {
+  findCookies(e, a, o, i) {
     throw new Error("findCookies is not implemented");
   }
-  putCookie(a, o) {
+  putCookie(e, a) {
     throw new Error("putCookie is not implemented");
   }
-  updateCookie(a, o, e) {
+  updateCookie(e, a, o) {
     throw new Error("updateCookie is not implemented");
   }
-  removeCookie(a, o, e, i) {
+  removeCookie(e, a, o, i) {
     throw new Error("removeCookie is not implemented");
   }
-  removeCookies(a, o, e) {
+  removeCookies(e, a, o) {
     throw new Error("removeCookies is not implemented");
   }
-  removeAllCookies(a) {
+  removeAllCookies(e) {
     throw new Error("removeAllCookies is not implemented");
   }
-  getAllCookies(a) {
+  getAllCookies(e) {
     throw new Error(
       "getAllCookies is not implemented (therefore jar cannot be serialized)"
     );
   }
 };
-X.Store = Io;
-var aa = {}, P = {};
-P.fromCallback = function(a) {
+pa.Store = Lo;
+var la = {}, M = {};
+M.fromCallback = function(e) {
   return Object.defineProperty(function() {
     if (typeof arguments[arguments.length - 1] == "function")
-      a.apply(this, arguments);
+      e.apply(this, arguments);
     else
-      return new Promise((o, e) => {
+      return new Promise((a, o) => {
         arguments[arguments.length] = (i, s) => {
           if (i)
-            return e(i);
-          o(s);
-        }, arguments.length++, a.apply(this, arguments);
+            return o(i);
+          a(s);
+        }, arguments.length++, e.apply(this, arguments);
       });
-  }, "name", { value: a.name });
+  }, "name", { value: e.name });
 };
-P.fromPromise = function(a) {
+M.fromPromise = function(e) {
   return Object.defineProperty(function() {
-    const o = arguments[arguments.length - 1];
-    if (typeof o != "function")
-      return a.apply(this, arguments);
-    delete arguments[arguments.length - 1], arguments.length--, a.apply(this, arguments).then((e) => o(null, e), o);
-  }, "name", { value: a.name });
+    const a = arguments[arguments.length - 1];
+    if (typeof a != "function")
+      return e.apply(this, arguments);
+    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
+  }, "name", { value: e.name });
 };
-var Ma = {};
+var K = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -9967,25 +9967,31 @@ var Ma = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Do = K;
-function qo(a, o) {
-  const e = Do.getPublicSuffix(a, {
-    allowSpecialUseDomain: o
-  });
-  if (!e)
-    return null;
-  if (e == a)
-    return [a];
-  a.slice(-1) == "." && (a = a.slice(0, -1));
-  const i = a.slice(0, -(e.length + 1)).split(".").reverse();
-  let s = e;
-  const n = [s];
-  for (; i.length; )
-    s = `${i.shift()}.${s}`, n.push(s);
-  return n;
+var va;
+function Wa() {
+  if (va)
+    return K;
+  va = 1;
+  const e = ca;
+  function a(o, i) {
+    const s = e.getPublicSuffix(o, {
+      allowSpecialUseDomain: i
+    });
+    if (!s)
+      return null;
+    if (s == o)
+      return [o];
+    o.slice(-1) == "." && (o = o.slice(0, -1));
+    const t = o.slice(0, -(s.length + 1)).split(".").reverse();
+    let n = s;
+    const r = [n];
+    for (; t.length; )
+      n = `${t.shift()}.${n}`, r.push(n);
+    return r;
+  }
+  return K.permuteDomain = a, K;
 }
-Ma.permuteDomain = qo;
-var oa = {};
+var ha = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -10016,37 +10022,37 @@ var oa = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-function Uo(a, o) {
-  return o === a || a.indexOf(o) === 0 && (o.substr(-1) === "/" || a.substr(o.length, 1) === "/");
+function Do(e, a) {
+  return a === e || e.indexOf(a) === 0 && (a.substr(-1) === "/" || e.substr(a.length, 1) === "/");
 }
-oa.pathMatch = Uo;
-var N = {};
-const To = {}, Lo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+ha.pathMatch = Do;
+var J = {};
+const No = {}, _o = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: To
-}, Symbol.toStringTag, { value: "Module" })), _o = /* @__PURE__ */ Ca(Lo);
-function Ba() {
+  default: No
+}, Symbol.toStringTag, { value: "Module" })), Fo = /* @__PURE__ */ Ea(_o);
+function Za() {
   try {
-    return _o;
+    return Fo;
   } catch {
     return null;
   }
 }
-function Po() {
+function Bo() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
-function No(a) {
-  const o = (a.requireUtil || Ba)();
-  return o ? o.inspect.custom : null;
+function $o(e) {
+  const a = (e.requireUtil || Za)();
+  return a ? a.inspect.custom : null;
 }
-N.getUtilInspect = function(a, o = {}) {
-  const e = (o.requireUtil || Ba)();
-  return function(i, s, n) {
-    return e ? e.inspect(i, s, n) : a(i);
+J.getUtilInspect = function(e, a = {}) {
+  const o = (a.requireUtil || Za)();
+  return function(i, s, t) {
+    return o ? o.inspect(i, s, t) : e(i);
   };
 };
-N.getCustomInspectSymbol = function(a = {}) {
-  return (a.lookupCustomInspectSymbol || Po)() || No(a);
+J.getCustomInspectSymbol = function(e = {}) {
+  return (e.lookupCustomInspectSymbol || Bo)() || $o(e);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -10078,69 +10084,69 @@ N.getCustomInspectSymbol = function(a = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: Ro } = P, $o = X.Store, Fo = Ma.permuteDomain, Mo = oa.pathMatch, { getCustomInspectSymbol: Bo, getUtilInspect: Ho } = N;
-let M = class extends $o {
+const { fromCallback: Go } = M, Ho = pa.Store, Qo = Wa().permuteDomain, Mo = ha.pathMatch, { getCustomInspectSymbol: Jo, getUtilInspect: Wo } = J;
+let aa = class extends Ho {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
-    const a = Bo();
-    a && (this[a] = this.inspect);
+    const e = Jo();
+    e && (this[e] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: Ho(Ha) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: Wo(Ya) }.inspect(this.idx, !1, 2)} }`;
   }
-  findCookie(a, o, e, i) {
-    return !this.idx[a] || !this.idx[a][o] ? i(null, void 0) : i(null, this.idx[a][o][e] || null);
+  findCookie(e, a, o, i) {
+    return !this.idx[e] || !this.idx[e][a] ? i(null, void 0) : i(null, this.idx[e][a][o] || null);
   }
-  findCookies(a, o, e, i) {
+  findCookies(e, a, o, i) {
     const s = [];
-    if (typeof e == "function" && (i = e, e = !0), !a)
+    if (typeof o == "function" && (i = o, o = !0), !e)
       return i(null, []);
-    let n;
-    o ? n = function(p) {
-      Object.keys(p).forEach((c) => {
-        if (Mo(o, c)) {
-          const m = p[c];
-          for (const u in m)
-            s.push(m[u]);
+    let t;
+    a ? t = function(u) {
+      Object.keys(u).forEach((m) => {
+        if (Mo(a, m)) {
+          const c = u[m];
+          for (const p in c)
+            s.push(c[p]);
         }
       });
-    } : n = function(p) {
-      for (const c in p) {
-        const m = p[c];
-        for (const u in m)
-          s.push(m[u]);
+    } : t = function(u) {
+      for (const m in u) {
+        const c = u[m];
+        for (const p in c)
+          s.push(c[p]);
       }
     };
-    const t = Fo(a, e) || [a], r = this.idx;
-    t.forEach((p) => {
-      const c = r[p];
-      c && n(c);
+    const n = Qo(e, o) || [e], r = this.idx;
+    n.forEach((u) => {
+      const m = r[u];
+      m && t(m);
     }), i(null, s);
   }
-  putCookie(a, o) {
-    this.idx[a.domain] || (this.idx[a.domain] = /* @__PURE__ */ Object.create(null)), this.idx[a.domain][a.path] || (this.idx[a.domain][a.path] = /* @__PURE__ */ Object.create(null)), this.idx[a.domain][a.path][a.key] = a, o(null);
+  putCookie(e, a) {
+    this.idx[e.domain] || (this.idx[e.domain] = /* @__PURE__ */ Object.create(null)), this.idx[e.domain][e.path] || (this.idx[e.domain][e.path] = /* @__PURE__ */ Object.create(null)), this.idx[e.domain][e.path][e.key] = e, a(null);
   }
-  updateCookie(a, o, e) {
-    this.putCookie(o, e);
+  updateCookie(e, a, o) {
+    this.putCookie(a, o);
   }
-  removeCookie(a, o, e, i) {
-    this.idx[a] && this.idx[a][o] && this.idx[a][o][e] && delete this.idx[a][o][e], i(null);
+  removeCookie(e, a, o, i) {
+    this.idx[e] && this.idx[e][a] && this.idx[e][a][o] && delete this.idx[e][a][o], i(null);
   }
-  removeCookies(a, o, e) {
-    return this.idx[a] && (o ? delete this.idx[a][o] : delete this.idx[a]), e(null);
+  removeCookies(e, a, o) {
+    return this.idx[e] && (a ? delete this.idx[e][a] : delete this.idx[e]), o(null);
   }
-  removeAllCookies(a) {
-    return this.idx = /* @__PURE__ */ Object.create(null), a(null);
+  removeAllCookies(e) {
+    return this.idx = /* @__PURE__ */ Object.create(null), e(null);
   }
-  getAllCookies(a) {
-    const o = [], e = this.idx;
-    Object.keys(e).forEach((i) => {
-      Object.keys(e[i]).forEach((s) => {
-        Object.keys(e[i][s]).forEach((n) => {
-          n !== null && o.push(e[i][s][n]);
+  getAllCookies(e) {
+    const a = [], o = this.idx;
+    Object.keys(o).forEach((i) => {
+      Object.keys(o[i]).forEach((s) => {
+        Object.keys(o[i][s]).forEach((t) => {
+          t !== null && a.push(o[i][s][t]);
         });
       });
-    }), o.sort((i, s) => (i.creationIndex || 0) - (s.creationIndex || 0)), a(null, o);
+    }), a.sort((i, s) => (i.creationIndex || 0) - (s.creationIndex || 0)), e(null, a);
   }
 };
 [
@@ -10152,93 +10158,93 @@ let M = class extends $o {
   "removeCookies",
   "removeAllCookies",
   "getAllCookies"
-].forEach((a) => {
-  M.prototype[a] = Ro(
-    M.prototype[a]
+].forEach((e) => {
+  aa.prototype[e] = Go(
+    aa.prototype[e]
   );
 });
-aa.MemoryCookieStore = M;
-function Ha(a) {
-  const o = Object.keys(a);
-  if (o.length === 0)
+la.MemoryCookieStore = aa;
+function Ya(e) {
+  const a = Object.keys(e);
+  if (a.length === 0)
     return "[Object: null prototype] {}";
-  let e = `[Object: null prototype] {
+  let o = `[Object: null prototype] {
 `;
-  return Object.keys(a).forEach((i, s) => {
-    e += Vo(i, a[i]), s < o.length - 1 && (e += ","), e += `
+  return Object.keys(e).forEach((i, s) => {
+    o += Zo(i, e[i]), s < a.length - 1 && (o += ","), o += `
 `;
-  }), e += "}", e;
+  }), o += "}", o;
 }
-function Vo(a, o) {
-  const e = "  ";
-  let i = `${e}'${a}': [Object: null prototype] {
+function Zo(e, a) {
+  const o = "  ";
+  let i = `${o}'${e}': [Object: null prototype] {
 `;
-  return Object.keys(o).forEach((s, n, t) => {
-    i += Jo(s, o[s]), n < t.length - 1 && (i += ","), i += `
+  return Object.keys(a).forEach((s, t, n) => {
+    i += Yo(s, a[s]), t < n.length - 1 && (i += ","), i += `
 `;
-  }), i += `${e}}`, i;
+  }), i += `${o}}`, i;
 }
-function Jo(a, o) {
-  const e = "    ";
-  let i = `${e}'${a}': [Object: null prototype] {
+function Yo(e, a) {
+  const o = "    ";
+  let i = `${o}'${e}': [Object: null prototype] {
 `;
-  return Object.keys(o).forEach((s, n, t) => {
-    const r = o[s];
-    i += `      ${s}: ${r.inspect()}`, n < t.length - 1 && (i += ","), i += `
+  return Object.keys(a).forEach((s, t, n) => {
+    const r = a[s];
+    i += `      ${s}: ${r.inspect()}`, t < n.length - 1 && (i += ","), i += `
 `;
-  }), i += `${e}}`, i;
+  }), i += `${o}}`, i;
 }
-aa.inspectFallback = Ha;
-var x = {};
-function Va(a) {
-  return typeof a == "function";
+la.inspectFallback = Ya;
+var R = {};
+function Ka(e) {
+  return typeof e == "function";
 }
-function Wo(a) {
-  return Ja(a) && a !== "";
+function Ko(e) {
+  return Xa(e) && e !== "";
 }
-function Go(a) {
-  return Zo(a, Date) && Yo(a.getTime());
+function Xo(e) {
+  return oe(e, Date) && ee(e.getTime());
 }
-function Qo(a) {
-  return a === "" || a instanceof String && a.toString() === "";
+function ae(e) {
+  return e === "" || e instanceof String && e.toString() === "";
 }
-function Ja(a) {
-  return typeof a == "string" || a instanceof String;
+function Xa(e) {
+  return typeof e == "string" || e instanceof String;
 }
-function Wa(a) {
-  return toString.call(a) === "[object Object]";
+function ao(e) {
+  return toString.call(e) === "[object Object]";
 }
-function Zo(a, o) {
+function oe(e, a) {
   try {
-    return a instanceof o;
+    return e instanceof a;
   } catch {
     return !1;
   }
 }
-function Yo(a) {
-  return typeof a == "number" && a % 1 === 0;
+function ee(e) {
+  return typeof e == "number" && e % 1 === 0;
 }
-function Ko(a, o, e) {
-  if (Va(o) || (e = o, o = null), Wa(e) || (e = { Error: "Failed Check" }), !a)
-    if (o)
-      o(new B(e));
+function ie(e, a, o) {
+  if (Ka(a) || (o = a, a = null), ao(o) || (o = { Error: "Failed Check" }), !e)
+    if (a)
+      a(new oa(o));
     else
-      throw new B(e);
+      throw new oa(o);
 }
-class B extends Error {
-  constructor(...o) {
-    super(...o);
+class oa extends Error {
+  constructor(...a) {
+    super(...a);
   }
 }
-x.ParameterError = B;
-x.isFunction = Va;
-x.isNonEmptyString = Wo;
-x.isDate = Go;
-x.isEmptyString = Qo;
-x.isString = Ja;
-x.isObject = Wa;
-x.validate = Ko;
-var Xo = "4.1.3";
+R.ParameterError = oa;
+R.isFunction = Ka;
+R.isNonEmptyString = Ko;
+R.isDate = Xo;
+R.isEmptyString = ae;
+R.isString = Xa;
+R.isObject = ao;
+R.validate = ie;
+var se = "4.1.3";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
  * All rights reserved.
@@ -10269,8 +10275,8 @@ var Xo = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const pa = La, ae = So, ea = K, oe = X.Store, ee = aa.MemoryCookieStore, ie = oa.pathMatch, l = x, se = Xo, { fromCallback: Ga } = P, { getCustomInspectSymbol: ne } = N, te = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, ca = /[\x00-\x1F]/, la = [`
-`, "\r", "\0"], re = /[\x20-\x3A\x3C-\x7E]+/, ue = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, me = {
+const za = Ba, te = Ro, da = ca, ne = pa.Store, re = la.MemoryCookieStore, ue = ha.pathMatch, l = R, me = se, { fromCallback: oo } = M, { getCustomInspectSymbol: ce } = J, pe = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, xa = /[\x00-\x1F]/, Oa = [`
+`, "\r", "\0"], le = /[\x20-\x3A\x3C-\x7E]+/, he = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, de = {
   jan: 0,
   feb: 1,
   mar: 2,
@@ -10283,17 +10289,17 @@ const pa = La, ae = So, ea = K, oe = X.Store, ee = aa.MemoryCookieStore, ie = oa
   oct: 9,
   nov: 10,
   dec: 11
-}, H = 2147483647e3, pe = 0, ka = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function ga(a) {
-  l.validate(l.isNonEmptyString(a), a);
-  const o = String(a).toLowerCase();
-  return o === "none" || o === "lax" || o === "strict" ? o : null;
+}, ea = 2147483647e3, ke = 0, Aa = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function Sa(e) {
+  l.validate(l.isNonEmptyString(e), e);
+  const a = String(e).toLowerCase();
+  return a === "none" || a === "lax" || a === "strict" ? a : null;
 }
-const A = Object.freeze({
+const L = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), ce = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, le = `
+}), ge = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, je = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -10304,147 +10310,147 @@ const A = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), Qa = new RegExp(`^${le}$`);
-function V(a, o, e, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), eo = new RegExp(`^${je}$`);
+function ia(e, a, o, i) {
   let s = 0;
-  for (; s < a.length; ) {
-    const n = a.charCodeAt(s);
-    if (n <= 47 || n >= 58)
+  for (; s < e.length; ) {
+    const t = e.charCodeAt(s);
+    if (t <= 47 || t >= 58)
       break;
     s++;
   }
-  return s < o || s > e || !i && s != a.length ? null : parseInt(a.substr(0, s), 10);
+  return s < a || s > o || !i && s != e.length ? null : parseInt(e.substr(0, s), 10);
 }
-function ke(a) {
-  const o = a.split(":"), e = [0, 0, 0];
-  if (o.length !== 3)
+function be(e) {
+  const a = e.split(":"), o = [0, 0, 0];
+  if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const s = i == 2, n = V(o[i], 1, 2, s);
-    if (n === null)
+    const s = i == 2, t = ia(a[i], 1, 2, s);
+    if (t === null)
       return null;
-    e[i] = n;
+    o[i] = t;
+  }
+  return o;
+}
+function ye(e) {
+  e = String(e).substr(0, 3).toLowerCase();
+  const a = de[e];
+  return a >= 0 ? a : null;
+}
+function H(e) {
+  if (!e)
+    return;
+  const a = e.split(he);
+  if (!a)
+    return;
+  let o = null, i = null, s = null, t = null, n = null, r = null;
+  for (let u = 0; u < a.length; u++) {
+    const m = a[u].trim();
+    if (!m.length)
+      continue;
+    let c;
+    if (s === null && (c = be(m), c)) {
+      o = c[0], i = c[1], s = c[2];
+      continue;
+    }
+    if (t === null && (c = ia(m, 1, 2, !0), c !== null)) {
+      t = c;
+      continue;
+    }
+    if (n === null && (c = ye(m), c !== null)) {
+      n = c;
+      continue;
+    }
+    r === null && (c = ia(m, 2, 4, !0), c !== null && (r = c, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
+  }
+  if (!(t === null || n === null || r === null || s === null || t < 1 || t > 31 || r < 1601 || o > 23 || i > 59 || s > 59))
+    return new Date(Date.UTC(r, n, t, o, i, s));
+}
+function fe(e) {
+  return l.validate(l.isDate(e), e), e.toUTCString();
+}
+function $(e) {
+  return e == null ? null : (e = e.trim().replace(/^\./, ""), eo.test(e) && (e = e.replace("[", "").replace("]", "")), za && /[^\u0001-\u007f]/.test(e) && (e = za.toASCII(e)), e.toLowerCase());
+}
+function Ca(e, a, o) {
+  if (e == null || a == null)
+    return null;
+  if (o !== !1 && (e = $(e), a = $(a)), e == a)
+    return !0;
+  const i = e.lastIndexOf(a);
+  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || ge.test(e));
+}
+function we(e) {
+  if (!e || e.substr(0, 1) !== "/")
+    return "/";
+  if (e === "/")
+    return e;
+  const a = e.lastIndexOf("/");
+  return a === 0 ? "/" : e.slice(0, a);
+}
+function ve(e) {
+  if (l.isEmptyString(e))
+    return e;
+  for (let a = 0; a < Oa.length; a++) {
+    const o = e.indexOf(Oa[a]);
+    o !== -1 && (e = e.substr(0, o));
   }
   return e;
 }
-function ge(a) {
-  a = String(a).substr(0, 3).toLowerCase();
-  const o = me[a];
-  return o >= 0 ? o : null;
-}
-function L(a) {
-  if (!a)
-    return;
-  const o = a.split(ue);
-  if (!o)
-    return;
-  let e = null, i = null, s = null, n = null, t = null, r = null;
-  for (let p = 0; p < o.length; p++) {
-    const c = o[p].trim();
-    if (!c.length)
-      continue;
-    let m;
-    if (s === null && (m = ke(c), m)) {
-      e = m[0], i = m[1], s = m[2];
-      continue;
-    }
-    if (n === null && (m = V(c, 1, 2, !0), m !== null)) {
-      n = m;
-      continue;
-    }
-    if (t === null && (m = ge(c), m !== null)) {
-      t = m;
-      continue;
-    }
-    r === null && (m = V(c, 2, 4, !0), m !== null && (r = m, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
-  }
-  if (!(n === null || t === null || r === null || s === null || n < 1 || n > 31 || r < 1601 || e > 23 || i > 59 || s > 59))
-    return new Date(Date.UTC(r, t, n, e, i, s));
-}
-function he(a) {
-  return l.validate(l.isDate(a), a), a.toUTCString();
-}
-function U(a) {
-  return a == null ? null : (a = a.trim().replace(/^\./, ""), Qa.test(a) && (a = a.replace("[", "").replace("]", "")), pa && /[^\u0001-\u007f]/.test(a) && (a = pa.toASCII(a)), a.toLowerCase());
-}
-function ha(a, o, e) {
-  if (a == null || o == null)
-    return null;
-  if (e !== !1 && (a = U(a), o = U(o)), a == o)
-    return !0;
-  const i = a.lastIndexOf(o);
-  return !(i <= 0 || a.length !== o.length + i || a.substr(i - 1, 1) !== "." || ce.test(a));
-}
-function de(a) {
-  if (!a || a.substr(0, 1) !== "/")
-    return "/";
-  if (a === "/")
-    return a;
-  const o = a.lastIndexOf("/");
-  return o === 0 ? "/" : a.slice(0, o);
-}
-function je(a) {
-  if (l.isEmptyString(a))
-    return a;
-  for (let o = 0; o < la.length; o++) {
-    const e = a.indexOf(la[o]);
-    e !== -1 && (a = a.substr(0, e));
-  }
-  return a;
-}
-function be(a, o) {
-  a = je(a), l.validate(l.isString(a), a);
-  let e = a.indexOf("=");
-  if (o)
-    e === 0 && (a = a.substr(1), e = a.indexOf("="));
-  else if (e <= 0)
+function ze(e, a) {
+  e = ve(e), l.validate(l.isString(e), e);
+  let o = e.indexOf("=");
+  if (a)
+    o === 0 && (e = e.substr(1), o = e.indexOf("="));
+  else if (o <= 0)
     return;
   let i, s;
-  if (e <= 0 ? (i = "", s = a.trim()) : (i = a.substr(0, e).trim(), s = a.substr(e + 1).trim()), ca.test(i) || ca.test(s))
+  if (o <= 0 ? (i = "", s = e.trim()) : (i = e.substr(0, o).trim(), s = e.substr(o + 1).trim()), xa.test(i) || xa.test(s))
     return;
-  const n = new h();
-  return n.key = i, n.value = s, n;
+  const t = new w();
+  return t.key = i, t.value = s, t;
 }
-function ye(a, o) {
-  if ((!o || typeof o != "object") && (o = {}), l.isEmptyString(a) || !l.isString(a))
+function xe(e, a) {
+  if ((!a || typeof a != "object") && (a = {}), l.isEmptyString(e) || !l.isString(e))
     return null;
-  a = a.trim();
-  const e = a.indexOf(";"), i = e === -1 ? a : a.substr(0, e), s = be(i, !!o.loose);
+  e = e.trim();
+  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), s = ze(i, !!a.loose);
   if (!s)
     return;
-  if (e === -1)
+  if (o === -1)
     return s;
-  const n = a.slice(e + 1).trim();
-  if (n.length === 0)
+  const t = e.slice(o + 1).trim();
+  if (t.length === 0)
     return s;
-  const t = n.split(";");
-  for (; t.length; ) {
-    const r = t.shift().trim();
+  const n = t.split(";");
+  for (; n.length; ) {
+    const r = n.shift().trim();
     if (r.length === 0)
       continue;
-    const p = r.indexOf("=");
-    let c, m;
-    switch (p === -1 ? (c = r, m = null) : (c = r.substr(0, p), m = r.substr(p + 1)), c = c.trim().toLowerCase(), m && (m = m.trim()), c) {
+    const u = r.indexOf("=");
+    let m, c;
+    switch (u === -1 ? (m = r, c = null) : (m = r.substr(0, u), c = r.substr(u + 1)), m = m.trim().toLowerCase(), c && (c = c.trim()), m) {
       case "expires":
-        if (m) {
-          const u = L(m);
-          u && (s.expires = u);
+        if (c) {
+          const p = H(c);
+          p && (s.expires = p);
         }
         break;
       case "max-age":
-        if (m && /^-?[0-9]+$/.test(m)) {
-          const u = parseInt(m, 10);
-          s.setMaxAge(u);
+        if (c && /^-?[0-9]+$/.test(c)) {
+          const p = parseInt(c, 10);
+          s.setMaxAge(p);
         }
         break;
       case "domain":
-        if (m) {
-          const u = m.trim().replace(/^\./, "");
-          u && (s.domain = u.toLowerCase());
+        if (c) {
+          const p = c.trim().replace(/^\./, "");
+          p && (s.domain = p.toLowerCase());
         }
         break;
       case "path":
-        s.path = m && m[0] === "/" ? m : null;
+        s.path = c && c[0] === "/" ? c : null;
         break;
       case "secure":
         s.secure = !0;
@@ -10453,7 +10459,7 @@ function ye(a, o) {
         s.httpOnly = !0;
         break;
       case "samesite":
-        switch (m ? m.toLowerCase() : "") {
+        switch (c ? c.toLowerCase() : "") {
           case "strict":
             s.sameSite = "strict";
             break;
@@ -10475,56 +10481,56 @@ function ye(a, o) {
   }
   return s;
 }
-function fe(a) {
-  return l.validate(l.isObject(a), a), !a.key.startsWith("__Secure-") || a.secure;
+function Oe(e) {
+  return l.validate(l.isObject(e), e), !e.key.startsWith("__Secure-") || e.secure;
 }
-function we(a) {
-  return l.validate(l.isObject(a)), !a.key.startsWith("__Host-") || a.secure && a.hostOnly && a.path != null && a.path === "/";
+function Ae(e) {
+  return l.validate(l.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
 }
-function Za(a) {
-  let o;
+function io(e) {
+  let a;
   try {
-    o = JSON.parse(a);
-  } catch (e) {
-    return e;
+    a = JSON.parse(e);
+  } catch (o) {
+    return o;
+  }
+  return a;
+}
+function ka(e) {
+  if (!e || l.isEmptyString(e))
+    return null;
+  let a;
+  if (typeof e == "string") {
+    if (a = io(e), a instanceof Error)
+      return null;
+  } else
+    a = e;
+  const o = new w();
+  for (let i = 0; i < w.serializableProperties.length; i++) {
+    const s = w.serializableProperties[i];
+    a[s] === void 0 || a[s] === F[s] || (s === "expires" || s === "creation" || s === "lastAccessed" ? a[s] === null ? o[s] = null : o[s] = a[s] == "Infinity" ? "Infinity" : new Date(a[s]) : o[s] = a[s]);
   }
   return o;
 }
-function ia(a) {
-  if (!a || l.isEmptyString(a))
-    return null;
-  let o;
-  if (typeof a == "string") {
-    if (o = Za(a), o instanceof Error)
-      return null;
-  } else
-    o = a;
-  const e = new h();
-  for (let i = 0; i < h.serializableProperties.length; i++) {
-    const s = h.serializableProperties[i];
-    o[s] === void 0 || o[s] === I[s] || (s === "expires" || s === "creation" || s === "lastAccessed" ? o[s] === null ? e[s] = null : e[s] = o[s] == "Infinity" ? "Infinity" : new Date(o[s]) : e[s] = o[s]);
-  }
-  return e;
+function Pa(e, a) {
+  l.validate(l.isObject(e), e), l.validate(l.isObject(a), a);
+  let o = 0;
+  const i = e.path ? e.path.length : 0;
+  if (o = (a.path ? a.path.length : 0) - i, o !== 0)
+    return o;
+  const s = e.creation ? e.creation.getTime() : ea, t = a.creation ? a.creation.getTime() : ea;
+  return o = s - t, o !== 0 || (o = e.creationIndex - a.creationIndex), o;
 }
-function da(a, o) {
-  l.validate(l.isObject(a), a), l.validate(l.isObject(o), o);
-  let e = 0;
-  const i = a.path ? a.path.length : 0;
-  if (e = (o.path ? o.path.length : 0) - i, e !== 0)
+function Ua(e) {
+  if (e instanceof Object)
     return e;
-  const s = a.creation ? a.creation.getTime() : H, n = o.creation ? o.creation.getTime() : H;
-  return e = s - n, e !== 0 || (e = a.creationIndex - o.creationIndex), e;
-}
-function ja(a) {
-  if (a instanceof Object)
-    return a;
   try {
-    a = decodeURI(a);
+    e = decodeURI(e);
   } catch {
   }
-  return ae(a);
+  return te(e);
 }
-const I = {
+const F = {
   // the order in which the RFC has them:
   key: "",
   value: "",
@@ -10542,81 +10548,81 @@ const I = {
   lastAccessed: null,
   sameSite: void 0
 };
-class h {
-  constructor(o = {}) {
-    const e = ne();
-    e && (this[e] = this.inspect), Object.assign(this, I, o), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
+class w {
+  constructor(a = {}) {
+    const o = ce();
+    o && (this[o] = this.inspect), Object.assign(this, F, a), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
       // important for assert.deepEqual checks
       writable: !0,
-      value: ++h.cookiesCreated
+      value: ++w.cookiesCreated
     });
   }
   inspect() {
-    const o = Date.now(), e = this.hostOnly != null ? this.hostOnly : "?", i = this.creation ? `${o - this.creation.getTime()}ms` : "?", s = this.lastAccessed ? `${o - this.lastAccessed.getTime()}ms` : "?";
-    return `Cookie="${this.toString()}; hostOnly=${e}; aAge=${s}; cAge=${i}"`;
+    const a = Date.now(), o = this.hostOnly != null ? this.hostOnly : "?", i = this.creation ? `${a - this.creation.getTime()}ms` : "?", s = this.lastAccessed ? `${a - this.lastAccessed.getTime()}ms` : "?";
+    return `Cookie="${this.toString()}; hostOnly=${o}; aAge=${s}; cAge=${i}"`;
   }
   toJSON() {
-    const o = {};
-    for (const e of h.serializableProperties)
-      this[e] !== I[e] && (e === "expires" || e === "creation" || e === "lastAccessed" ? this[e] === null ? o[e] = null : o[e] = this[e] == "Infinity" ? "Infinity" : this[e].toISOString() : e === "maxAge" ? this[e] !== null && (o[e] = this[e] == 1 / 0 || this[e] == -1 / 0 ? this[e].toString() : this[e]) : this[e] !== I[e] && (o[e] = this[e]));
-    return o;
+    const a = {};
+    for (const o of w.serializableProperties)
+      this[o] !== F[o] && (o === "expires" || o === "creation" || o === "lastAccessed" ? this[o] === null ? a[o] = null : a[o] = this[o] == "Infinity" ? "Infinity" : this[o].toISOString() : o === "maxAge" ? this[o] !== null && (a[o] = this[o] == 1 / 0 || this[o] == -1 / 0 ? this[o].toString() : this[o]) : this[o] !== F[o] && (a[o] = this[o]));
+    return a;
   }
   clone() {
-    return ia(this.toJSON());
+    return ka(this.toJSON());
   }
   validate() {
-    if (!te.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !L(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !re.test(this.path))
+    if (!pe.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !H(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !le.test(this.path))
       return !1;
-    const o = this.cdomain();
-    return !(o && (o.match(/\.$/) || ea.getPublicSuffix(o) == null));
+    const a = this.cdomain();
+    return !(a && (a.match(/\.$/) || da.getPublicSuffix(a) == null));
   }
-  setExpires(o) {
-    o instanceof Date ? this.expires = o : this.expires = L(o) || "Infinity";
+  setExpires(a) {
+    a instanceof Date ? this.expires = a : this.expires = H(a) || "Infinity";
   }
-  setMaxAge(o) {
-    o === 1 / 0 || o === -1 / 0 ? this.maxAge = o.toString() : this.maxAge = o;
+  setMaxAge(a) {
+    a === 1 / 0 || a === -1 / 0 ? this.maxAge = a.toString() : this.maxAge = a;
   }
   cookieString() {
-    let o = this.value;
-    return o == null && (o = ""), this.key === "" ? o : `${this.key}=${o}`;
+    let a = this.value;
+    return a == null && (a = ""), this.key === "" ? a : `${this.key}=${a}`;
   }
   // gives Set-Cookie header format
   toString() {
-    let o = this.cookieString();
-    if (this.expires != 1 / 0 && (this.expires instanceof Date ? o += `; Expires=${he(this.expires)}` : o += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (o += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (o += `; Domain=${this.domain}`), this.path && (o += `; Path=${this.path}`), this.secure && (o += "; Secure"), this.httpOnly && (o += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
-      const e = h.sameSiteCanonical[this.sameSite.toLowerCase()];
-      o += `; SameSite=${e || this.sameSite}`;
+    let a = this.cookieString();
+    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${fe(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
+      const o = w.sameSiteCanonical[this.sameSite.toLowerCase()];
+      a += `; SameSite=${o || this.sameSite}`;
     }
-    return this.extensions && this.extensions.forEach((e) => {
-      o += `; ${e}`;
-    }), o;
+    return this.extensions && this.extensions.forEach((o) => {
+      a += `; ${o}`;
+    }), a;
   }
   // TTL() partially replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
   // elsewhere)
   // S5.3 says to give the "latest representable date" for which we use Infinity
   // For "expired" we use 0
-  TTL(o) {
+  TTL(a) {
     if (this.maxAge != null)
       return this.maxAge <= 0 ? 0 : this.maxAge * 1e3;
-    let e = this.expires;
-    return e != 1 / 0 ? (e instanceof Date || (e = L(e) || 1 / 0), e == 1 / 0 ? 1 / 0 : e.getTime() - (o || Date.now())) : 1 / 0;
+    let o = this.expires;
+    return o != 1 / 0 ? (o instanceof Date || (o = H(o) || 1 / 0), o == 1 / 0 ? 1 / 0 : o.getTime() - (a || Date.now())) : 1 / 0;
   }
   // expiryTime() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
   // elsewhere)
-  expiryTime(o) {
+  expiryTime(a) {
     if (this.maxAge != null) {
-      const e = o || this.creation || /* @__PURE__ */ new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
-      return e.getTime() + i;
+      const o = a || this.creation || /* @__PURE__ */ new Date(), i = this.maxAge <= 0 ? -1 / 0 : this.maxAge * 1e3;
+      return o.getTime() + i;
     }
     return this.expires == 1 / 0 ? 1 / 0 : this.expires.getTime();
   }
   // expiryDate() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
   // elsewhere), except it returns a Date
-  expiryDate(o) {
-    const e = this.expiryTime(o);
-    return e == 1 / 0 ? new Date(H) : e == -1 / 0 ? new Date(pe) : new Date(e);
+  expiryDate(a) {
+    const o = this.expiryTime(a);
+    return o == 1 / 0 ? new Date(ea) : o == -1 / 0 ? new Date(ke) : new Date(o);
   }
   // This replaces the "persistent-flag" parts of S5.3 step 3
   isPersistent() {
@@ -10624,289 +10630,289 @@ class h {
   }
   // Mostly S5.1.2 and S5.2.3:
   canonicalizedDomain() {
-    return this.domain == null ? null : U(this.domain);
+    return this.domain == null ? null : $(this.domain);
   }
   cdomain() {
     return this.canonicalizedDomain();
   }
 }
-h.cookiesCreated = 0;
-h.parse = ye;
-h.fromJSON = ia;
-h.serializableProperties = Object.keys(I);
-h.sameSiteLevel = {
+w.cookiesCreated = 0;
+w.parse = xe;
+w.fromJSON = ka;
+w.serializableProperties = Object.keys(F);
+w.sameSiteLevel = {
   strict: 3,
   lax: 2,
   none: 1
 };
-h.sameSiteCanonical = {
+w.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function ba(a) {
-  if (a != null) {
-    const o = a.toLowerCase();
-    switch (o) {
-      case A.STRICT:
-      case A.SILENT:
-      case A.DISABLED:
-        return o;
+function Va(e) {
+  if (e != null) {
+    const a = e.toLowerCase();
+    switch (a) {
+      case L.STRICT:
+      case L.SILENT:
+      case L.DISABLED:
+        return a;
     }
   }
-  return A.SILENT;
+  return L.SILENT;
 }
-class y {
-  constructor(o, e = { rejectPublicSuffixes: !0 }) {
-    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), l.validate(l.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = o || new ee(), this.prefixSecurity = ba(e.prefixSecurity), this._cloneSync = S("clone"), this._importCookiesSync = S("_importCookies"), this.getCookiesSync = S("getCookies"), this.getCookieStringSync = S("getCookieString"), this.getSetCookieStringsSync = S("getSetCookieStrings"), this.removeAllCookiesSync = S("removeAllCookies"), this.setCookieSync = S("setCookie"), this.serializeSync = S("serialize");
+class A {
+  constructor(a, o = { rejectPublicSuffixes: !0 }) {
+    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), l.validate(l.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new re(), this.prefixSecurity = Va(o.prefixSecurity), this._cloneSync = E("clone"), this._importCookiesSync = E("_importCookies"), this.getCookiesSync = E("getCookies"), this.getCookieStringSync = E("getCookieString"), this.getSetCookieStringsSync = E("getSetCookieStrings"), this.removeAllCookiesSync = E("removeAllCookies"), this.setCookieSync = E("setCookie"), this.serializeSync = E("serialize");
   }
-  setCookie(o, e, i, s) {
-    l.validate(l.isNonEmptyString(e), s, i);
-    let n;
-    if (l.isFunction(e))
-      return s = e, s(new Error("No URL was specified"));
-    const t = ja(e);
-    if (l.isFunction(i) && (s = i, i = {}), l.validate(l.isFunction(s), s), !l.isNonEmptyString(o) && !l.isObject(o) && o instanceof String && o.length == 0)
+  setCookie(a, o, i, s) {
+    l.validate(l.isNonEmptyString(o), s, i);
+    let t;
+    if (l.isFunction(o))
+      return s = o, s(new Error("No URL was specified"));
+    const n = Ua(o);
+    if (l.isFunction(i) && (s = i, i = {}), l.validate(l.isFunction(s), s), !l.isNonEmptyString(a) && !l.isObject(a) && a instanceof String && a.length == 0)
       return s(null);
-    const r = U(t.hostname), p = i.loose || this.enableLooseMode;
-    let c = null;
-    if (i.sameSiteContext && (c = ga(i.sameSiteContext), !c))
-      return s(new Error(ka));
-    if (typeof o == "string" || o instanceof String) {
-      if (o = h.parse(o, { loose: p }), !o)
-        return n = new Error("Cookie failed to parse"), s(i.ignoreError ? null : n);
-    } else if (!(o instanceof h))
-      return n = new Error(
+    const r = $(n.hostname), u = i.loose || this.enableLooseMode;
+    let m = null;
+    if (i.sameSiteContext && (m = Sa(i.sameSiteContext), !m))
+      return s(new Error(Aa));
+    if (typeof a == "string" || a instanceof String) {
+      if (a = w.parse(a, { loose: u }), !a)
+        return t = new Error("Cookie failed to parse"), s(i.ignoreError ? null : t);
+    } else if (!(a instanceof w))
+      return t = new Error(
         "First argument to setCookie must be a Cookie object or string"
-      ), s(i.ignoreError ? null : n);
-    const m = i.now || /* @__PURE__ */ new Date();
-    if (this.rejectPublicSuffixes && o.domain && ea.getPublicSuffix(o.cdomain(), {
+      ), s(i.ignoreError ? null : t);
+    const c = i.now || /* @__PURE__ */ new Date();
+    if (this.rejectPublicSuffixes && a.domain && da.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !Qa.test(o.domain))
-      return n = new Error("Cookie has domain set to a public suffix"), s(i.ignoreError ? null : n);
-    if (o.domain) {
-      if (!ha(r, o.cdomain(), !1))
-        return n = new Error(
-          `Cookie not in this host's domain. Cookie:${o.cdomain()} Request:${r}`
-        ), s(i.ignoreError ? null : n);
-      o.hostOnly == null && (o.hostOnly = !1);
+    }) == null && !eo.test(a.domain))
+      return t = new Error("Cookie has domain set to a public suffix"), s(i.ignoreError ? null : t);
+    if (a.domain) {
+      if (!Ca(r, a.cdomain(), !1))
+        return t = new Error(
+          `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${r}`
+        ), s(i.ignoreError ? null : t);
+      a.hostOnly == null && (a.hostOnly = !1);
     } else
-      o.hostOnly = !0, o.domain = r;
-    if ((!o.path || o.path[0] !== "/") && (o.path = de(t.pathname), o.pathIsDefault = !0), i.http === !1 && o.httpOnly)
-      return n = new Error("Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : n);
-    if (o.sameSite !== "none" && o.sameSite !== void 0 && c && c === "none")
-      return n = new Error(
+      a.hostOnly = !0, a.domain = r;
+    if ((!a.path || a.path[0] !== "/") && (a.path = we(n.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+      return t = new Error("Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : t);
+    if (a.sameSite !== "none" && a.sameSite !== void 0 && m && m === "none")
+      return t = new Error(
         "Cookie is SameSite but this is a cross-origin request"
-      ), s(i.ignoreError ? null : n);
-    const u = this.prefixSecurity === A.SILENT;
-    if (this.prefixSecurity !== A.DISABLED) {
-      let d = !1, k;
-      if (fe(o) ? we(o) || (d = !0, k = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, k = "Cookie has __Secure prefix but Secure attribute is not set"), d)
+      ), s(i.ignoreError ? null : t);
+    const p = this.prefixSecurity === L.SILENT;
+    if (this.prefixSecurity !== L.DISABLED) {
+      let v = !1, k;
+      if (Oe(a) ? Ae(a) || (v = !0, k = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (v = !0, k = "Cookie has __Secure prefix but Secure attribute is not set"), v)
         return s(
-          i.ignoreError || u ? null : new Error(k)
+          i.ignoreError || p ? null : new Error(k)
         );
     }
     const g = this.store;
-    g.updateCookie || (g.updateCookie = function(d, k, b) {
-      this.putCookie(k, b);
+    g.updateCookie || (g.updateCookie = function(v, k, O) {
+      this.putCookie(k, O);
     });
-    function j(d, k) {
-      if (d)
-        return s(d);
-      const b = function(T) {
-        if (T)
-          return s(T);
-        s(null, o);
+    function z(v, k) {
+      if (v)
+        return s(v);
+      const O = function(G) {
+        if (G)
+          return s(G);
+        s(null, a);
       };
       if (k) {
         if (i.http === !1 && k.httpOnly)
-          return d = new Error("old Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : d);
-        o.creation = k.creation, o.creationIndex = k.creationIndex, o.lastAccessed = m, g.updateCookie(k, o, b);
+          return v = new Error("old Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : v);
+        a.creation = k.creation, a.creationIndex = k.creationIndex, a.lastAccessed = c, g.updateCookie(k, a, O);
       } else
-        o.creation = o.lastAccessed = m, g.putCookie(o, b);
+        a.creation = a.lastAccessed = c, g.putCookie(a, O);
     }
-    g.findCookie(o.domain, o.path, o.key, j);
+    g.findCookie(a.domain, a.path, a.key, z);
   }
   // RFC6365 S5.4
-  getCookies(o, e, i) {
-    l.validate(l.isNonEmptyString(o), i, o);
-    const s = ja(o);
-    l.isFunction(e) && (i = e, e = {}), l.validate(l.isObject(e), i, e), l.validate(l.isFunction(i), i);
-    const n = U(s.hostname), t = s.pathname || "/";
-    let r = e.secure;
+  getCookies(a, o, i) {
+    l.validate(l.isNonEmptyString(a), i, a);
+    const s = Ua(a);
+    l.isFunction(o) && (i = o, o = {}), l.validate(l.isObject(o), i, o), l.validate(l.isFunction(i), i);
+    const t = $(s.hostname), n = s.pathname || "/";
+    let r = o.secure;
     r == null && s.protocol && (s.protocol == "https:" || s.protocol == "wss:") && (r = !0);
-    let p = 0;
-    if (e.sameSiteContext) {
-      const k = ga(e.sameSiteContext);
-      if (p = h.sameSiteLevel[k], !p)
-        return i(new Error(ka));
+    let u = 0;
+    if (o.sameSiteContext) {
+      const k = Sa(o.sameSiteContext);
+      if (u = w.sameSiteLevel[k], !u)
+        return i(new Error(Aa));
     }
-    let c = e.http;
-    c == null && (c = !0);
-    const m = e.now || Date.now(), u = e.expire !== !1, g = !!e.allPaths, j = this.store;
-    function d(k) {
+    let m = o.http;
+    m == null && (m = !0);
+    const c = o.now || Date.now(), p = o.expire !== !1, g = !!o.allPaths, z = this.store;
+    function v(k) {
       if (k.hostOnly) {
-        if (k.domain != n)
+        if (k.domain != t)
           return !1;
-      } else if (!ha(n, k.domain, !1))
+      } else if (!Ca(t, k.domain, !1))
         return !1;
-      return !g && !ie(t, k.path) || k.secure && !r || k.httpOnly && !c || p && h.sameSiteLevel[k.sameSite || "none"] > p ? !1 : u && k.expiryTime() <= m ? (j.removeCookie(k.domain, k.path, k.key, () => {
+      return !g && !ue(n, k.path) || k.secure && !r || k.httpOnly && !m || u && w.sameSiteLevel[k.sameSite || "none"] > u ? !1 : p && k.expiryTime() <= c ? (z.removeCookie(k.domain, k.path, k.key, () => {
       }), !1) : !0;
     }
-    j.findCookies(
-      n,
-      g ? null : t,
+    z.findCookies(
+      t,
+      g ? null : n,
       this.allowSpecialUseDomain,
-      (k, b) => {
+      (k, O) => {
         if (k)
           return i(k);
-        b = b.filter(d), e.sort !== !1 && (b = b.sort(da));
-        const T = /* @__PURE__ */ new Date();
-        for (const Xa of b)
-          Xa.lastAccessed = T;
-        i(null, b);
+        O = O.filter(v), o.sort !== !1 && (O = O.sort(Pa));
+        const G = /* @__PURE__ */ new Date();
+        for (const no of O)
+          no.lastAccessed = G;
+        i(null, O);
       }
     );
   }
-  getCookieString(...o) {
-    const e = o.pop();
-    l.validate(l.isFunction(e), e);
-    const i = function(s, n) {
-      s ? e(s) : e(
-        null,
-        n.sort(da).map((t) => t.cookieString()).join("; ")
-      );
-    };
-    o.push(i), this.getCookies.apply(this, o);
-  }
-  getSetCookieStrings(...o) {
-    const e = o.pop();
-    l.validate(l.isFunction(e), e);
-    const i = function(s, n) {
-      s ? e(s) : e(
-        null,
-        n.map((t) => t.toString())
-      );
-    };
-    o.push(i), this.getCookies.apply(this, o);
-  }
-  serialize(o) {
+  getCookieString(...a) {
+    const o = a.pop();
     l.validate(l.isFunction(o), o);
-    let e = this.store.constructor.name;
-    l.isObject(e) && (e = null);
+    const i = function(s, t) {
+      s ? o(s) : o(
+        null,
+        t.sort(Pa).map((n) => n.cookieString()).join("; ")
+      );
+    };
+    a.push(i), this.getCookies.apply(this, a);
+  }
+  getSetCookieStrings(...a) {
+    const o = a.pop();
+    l.validate(l.isFunction(o), o);
+    const i = function(s, t) {
+      s ? o(s) : o(
+        null,
+        t.map((n) => n.toString())
+      );
+    };
+    a.push(i), this.getCookies.apply(this, a);
+  }
+  serialize(a) {
+    l.validate(l.isFunction(a), a);
+    let o = this.store.constructor.name;
+    l.isObject(o) && (o = null);
     const i = {
       // The version of tough-cookie that serialized this jar. Generally a good
       // practice since future versions can make data import decisions based on
       // known past behavior. When/if this matters, use `semver`.
-      version: `tough-cookie@${se}`,
+      version: `tough-cookie@${me}`,
       // add the store type, to make humans happy:
-      storeType: e,
+      storeType: o,
       // CookieJar configuration:
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: ba(this.prefixSecurity),
+      prefixSecurity: Va(this.prefixSecurity),
       // this gets filled from getAllCookies:
       cookies: []
     };
     if (!(this.store.getAllCookies && typeof this.store.getAllCookies == "function"))
-      return o(
+      return a(
         new Error(
           "store does not support getAllCookies and cannot be serialized"
         )
       );
-    this.store.getAllCookies((s, n) => s ? o(s) : (i.cookies = n.map((t) => (t = t instanceof h ? t.toJSON() : t, delete t.creationIndex, t)), o(null, i)));
+    this.store.getAllCookies((s, t) => s ? a(s) : (i.cookies = t.map((n) => (n = n instanceof w ? n.toJSON() : n, delete n.creationIndex, n)), a(null, i)));
   }
   toJSON() {
     return this.serializeSync();
   }
   // use the class method CookieJar.deserialize instead of calling this directly
-  _importCookies(o, e) {
-    let i = o.cookies;
+  _importCookies(a, o) {
+    let i = a.cookies;
     if (!i || !Array.isArray(i))
-      return e(new Error("serialized jar has no cookies array"));
+      return o(new Error("serialized jar has no cookies array"));
     i = i.slice();
-    const s = (n) => {
-      if (n)
-        return e(n);
+    const s = (t) => {
+      if (t)
+        return o(t);
       if (!i.length)
-        return e(n, this);
-      let t;
+        return o(t, this);
+      let n;
       try {
-        t = ia(i.shift());
+        n = ka(i.shift());
       } catch (r) {
-        return e(r);
+        return o(r);
       }
-      if (t === null)
+      if (n === null)
         return s(null);
-      this.store.putCookie(t, s);
+      this.store.putCookie(n, s);
     };
     s();
   }
-  clone(o, e) {
-    arguments.length === 1 && (e = o, o = null), this.serialize((i, s) => {
+  clone(a, o) {
+    arguments.length === 1 && (o = a, a = null), this.serialize((i, s) => {
       if (i)
-        return e(i);
-      y.deserialize(s, o, e);
+        return o(i);
+      A.deserialize(s, a, o);
     });
   }
-  cloneSync(o) {
+  cloneSync(a) {
     if (arguments.length === 0)
       return this._cloneSync();
-    if (!o.synchronous)
+    if (!a.synchronous)
       throw new Error(
         "CookieJar clone destination store is not synchronous; use async API instead."
       );
-    return this._cloneSync(o);
+    return this._cloneSync(a);
   }
-  removeAllCookies(o) {
-    l.validate(l.isFunction(o), o);
-    const e = this.store;
-    if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== oe.prototype.removeAllCookies)
-      return e.removeAllCookies(o);
-    e.getAllCookies((i, s) => {
+  removeAllCookies(a) {
+    l.validate(l.isFunction(a), a);
+    const o = this.store;
+    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== ne.prototype.removeAllCookies)
+      return o.removeAllCookies(a);
+    o.getAllCookies((i, s) => {
       if (i)
-        return o(i);
+        return a(i);
       if (s.length === 0)
-        return o(null);
-      let n = 0;
-      const t = [];
-      function r(p) {
-        if (p && t.push(p), n++, n === s.length)
-          return o(t.length ? t[0] : null);
+        return a(null);
+      let t = 0;
+      const n = [];
+      function r(u) {
+        if (u && n.push(u), t++, t === s.length)
+          return a(n.length ? n[0] : null);
       }
-      s.forEach((p) => {
-        e.removeCookie(
-          p.domain,
-          p.path,
-          p.key,
+      s.forEach((u) => {
+        o.removeCookie(
+          u.domain,
+          u.path,
+          u.key,
           r
         );
       });
     });
   }
-  static deserialize(o, e, i) {
-    arguments.length !== 3 && (i = e, e = null), l.validate(l.isFunction(i), i);
+  static deserialize(a, o, i) {
+    arguments.length !== 3 && (i = o, o = null), l.validate(l.isFunction(i), i);
     let s;
-    if (typeof o == "string") {
-      if (s = Za(o), s instanceof Error)
+    if (typeof a == "string") {
+      if (s = io(a), s instanceof Error)
         return i(s);
     } else
-      s = o;
-    const n = new y(e, {
+      s = a;
+    const t = new A(o, {
       rejectPublicSuffixes: s.rejectPublicSuffixes,
       looseMode: s.enableLooseMode,
       allowSpecialUseDomain: s.allowSpecialUseDomain,
       prefixSecurity: s.prefixSecurity
     });
-    n._importCookies(s, (t) => {
-      if (t)
-        return i(t);
-      i(null, n);
+    t._importCookies(s, (n) => {
+      if (n)
+        return i(n);
+      i(null, t);
     });
   }
-  static deserializeSync(o, e) {
-    const i = typeof o == "string" ? JSON.parse(o) : o, s = new y(e, {
+  static deserializeSync(a, o) {
+    const i = typeof a == "string" ? JSON.parse(a) : a, s = new A(o, {
       rejectPublicSuffixes: i.rejectPublicSuffixes,
       looseMode: i.enableLooseMode
     });
@@ -10917,7 +10923,7 @@ class y {
     return s._importCookiesSync(i), s;
   }
 }
-y.fromJSON = y.deserializeSync;
+A.fromJSON = A.deserializeSync;
 [
   "_importCookies",
   "clone",
@@ -10927,39 +10933,40 @@ y.fromJSON = y.deserializeSync;
   "removeAllCookies",
   "serialize",
   "setCookie"
-].forEach((a) => {
-  y.prototype[a] = Ga(y.prototype[a]);
+].forEach((e) => {
+  A.prototype[e] = oo(A.prototype[e]);
 });
-y.deserialize = Ga(y.deserialize);
-function S(a) {
-  return function(...o) {
+A.deserialize = oo(A.deserialize);
+function E(e) {
+  return function(...a) {
     if (!this.store.synchronous)
       throw new Error(
         "CookieJar store is not synchronous; use async API instead."
       );
-    let e, i;
-    if (this[a](...o, (s, n) => {
-      e = s, i = n;
-    }), e)
-      throw e;
+    let o, i;
+    if (this[e](...a, (s, t) => {
+      o = s, i = t;
+    }), o)
+      throw o;
     return i;
   };
 }
-var ve = y;
-ea.getPublicSuffix;
+var Se = A;
+da.getPublicSuffix;
+Wa().permuteDomain;
 l.ParameterError;
-var Ya = {};
-Object.defineProperty(Ya, "__esModule", { value: !0 });
-function ze(a) {
-  return a;
+var so = {};
+Object.defineProperty(so, "__esModule", { value: !0 });
+function Ce(e) {
+  return e;
 }
-var xe = Ya.wrapper = ze;
-const Se = new ve();
-xe && (D.defaults.jar = Se);
-D.defaults.withCredentials = !0;
-class ya {
-  constructor(o = Ka) {
-    E(this, "basePath"), E(this, "baseOptions"), E(this, "formDataCtor"), this.basePath = o.basePath, this.baseOptions = o.baseOptions, this.formDataCtor = o.formDataCtor;
+var Pe = so.wrapper = Ce;
+const Ue = new Se();
+Pe && (d.defaults.jar = Ue);
+d.defaults.withCredentials = !0;
+class Ra {
+  constructor(a = to) {
+    _(this, "basePath"), _(this, "baseOptions"), _(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
   /**
    * Check if the given MIME is a JSON MIME.
@@ -10971,124 +10978,1344 @@ class ya {
    * @param mime - MIME (Multipurpose Internet Mail Extensions)
    * @return True if the given MIME is JSON, false otherwise.
    */
-  isJsonMime(o) {
-    const e = new RegExp("^(application/json|[^;/ 	]+/[^;/ 	]+[+]json)[ 	]*(;.*)?$", "i");
-    return o !== null && (e.test(o) || o.toLowerCase() === "application/json-patch+json");
+  isJsonMime(a) {
+    const o = new RegExp("^(application/json|[^;/ 	]+/[^;/ 	]+[+]json)[ 	]*(;.*)?$", "i");
+    return a !== null && (o.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const Ka = typeof window == "object" && window.self === self && self ? new ya({ basePath: "" }) : new ya({ basePath: "https://learning.cultofbits.com" });
-class Ce {
-  constructor(o, e = D) {
-    E(this, "configuration"), this.axios = e, this.configuration = o ?? Ka;
+const to = typeof window == "object" && window.self === self && self ? new Ra({ basePath: "" }) : new Ra({ basePath: "https://learning.cultofbits.com" });
+class W {
+  constructor(a, o = d) {
+    _(this, "configuration"), this.axios = o, this.configuration = a ?? to;
   }
 }
-class Ae extends Error {
-  constructor(o, e) {
-    super(e), E(this, "name", "RequiredError"), this.field = o;
+class Ve extends Error {
+  constructor(a, o) {
+    super(o), _(this, "name", "RequiredError"), this.field = a;
   }
 }
-const fa = "https://example.com", wa = function(a, o, e) {
-  if (e == null)
-    throw new Ae(
-      o,
-      `Required parameter ${o} was null or undefined when calling ${a}.`
+const j = "https://example.com", h = function(e, a, o) {
+  if (o == null)
+    throw new Ve(
+      a,
+      `Required parameter ${a} was null or undefined when calling ${e}.`
     );
-}, va = function(a, ...o) {
-  const e = new URLSearchParams(a.search);
-  for (const i of o)
+}, b = function(e, ...a) {
+  const o = new URLSearchParams(e.search);
+  for (const i of a)
     for (const s in i)
       if (Array.isArray(i[s])) {
-        e.delete(s);
-        for (const n of i[s])
-          e.append(s, n);
+        o.delete(s);
+        for (const t of i[s])
+          o.append(s, t);
       } else
-        e.set(s, i[s]);
-  a.search = e.toString();
-}, Oe = function(a, o, e) {
-  const i = typeof a != "string";
-  return (i && e && e.isJsonMime ? e.isJsonMime(o.headers["Content-Type"]) : i) ? JSON.stringify(a !== void 0 ? a : {}) : a || "";
-}, za = function(a) {
-  return a.pathname + a.search + a.hash;
-}, xa = function(a, o, e) {
-  return (i = o) => {
-    const s = { ...a.options, url: e.basePath + a.url };
+        o.set(s, i[s]);
+  e.search = o.toString();
+}, x = function(e, a, o) {
+  const i = typeof e != "string";
+  return (i && o && o.isJsonMime ? o.isJsonMime(a.headers["Content-Type"]) : i) ? JSON.stringify(e !== void 0 ? e : {}) : e || "";
+}, y = function(e) {
+  return e.pathname + e.search + e.hash;
+}, f = function(e, a, o) {
+  return (i = a) => {
+    const s = { ...e.options, url: o.basePath + e.url };
     return i.request(s);
   };
-}, Ee = function(a) {
+}, Re = function(e) {
   return {
     /**
-     * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
-     * @summary Retrieves a user by it\'s username
-     * @param {string} username The user username
-     * @param {boolean} [substitutedUsers] If it should load the substituted users
+     * 
+     * @summary Adds a role to a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of role identifiers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getUserByUsername: async (o, e, i = {}) => {
-      wa("getUserByUsername", "username", o);
-      const s = "/userm/userm/user/username/{username}".replace("{username}", encodeURIComponent(String(o))), n = new URL(s, fa);
-      let t;
-      a && (t = a.baseOptions);
-      const r = { method: "GET", ...t, ...i }, p = {}, c = {};
-      e !== void 0 && (c.substitutedUsers = e), va(n, c);
-      let m = t && t.headers ? t.headers : {};
-      return r.headers = { ...p, ...m, ...i.headers }, {
-        url: za(n),
+    addRoles: async (a, o, i = {}) => {
+      h("addRoles", "id", a), h("addRoles", "requestBody", o);
+      const s = "/userm/userm/group/{id}/roles".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
         options: r
       };
     },
     /**
      * 
-     * @summary Update an existing user
-     * @param {number} id The user identifier
-     * @param {UpdateUserRequest} [updateUserRequest] The updated user information
+     * @summary Adds a role to a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of user identifiers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateUser: async (o, e, i = {}) => {
-      wa("updateUser", "id", o);
-      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(o))), n = new URL(s, fa);
+    addUsers: async (a, o, i = {}) => {
+      h("addUsers", "id", a), h("addUsers", "requestBody", o);
+      const s = "/userm/userm/group/{id}/users".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Creates a new group
+     * @param {CreateGroupRequest} createGroupRequest The group information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createGroup: async (a, o = {}) => {
+      h("createGroup", "createGroupRequest", a);
+      const i = "/userm/userm/group", s = new URL(i, j);
       let t;
-      a && (t = a.baseOptions);
-      const r = { method: "PUT", ...t, ...i }, p = {}, c = {};
-      p["Content-Type"] = "application/json", va(n, c);
+      e && (t = e.baseOptions);
+      const n = { method: "POST", ...t, ...o }, r = {}, u = {};
+      r["Content-Type"] = "application/json", b(s, u);
       let m = t && t.headers ? t.headers : {};
-      return r.headers = { ...p, ...m, ...i.headers }, r.data = Oe(e, r, a), {
-        url: za(n),
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Delete an existing user
+     * @param {number} id The group identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteGroup: async (a, o = {}) => {
+      h("deleteGroup", "id", a);
+      const i = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "DELETE", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * Retrieves the full details of a group.
+     * @summary Retrieves a group by it\'s id
+     * @param {number} id The group identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGroup: async (a, o, i = {}) => {
+      h("getGroup", "id", a);
+      const s = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {}, m = {};
+      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * Retrieves the full details of a group.
+     * @summary Retrieves a group by it\'s name
+     * @param {string} name The group name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGroupByName: async (a, o = {}) => {
+      h("getGroupByName", "name", a);
+      const i = "/userm/userm/group/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "GET", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Removes a role from a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of role identifiers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    removeRoles: async (a, o, i = {}) => {
+      h("removeRoles", "id", a), h("removeRoles", "requestBody", o);
+      const s = "/userm/userm/group/{id}/roles".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Removes a user from a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of user identifiers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    removeUsers: async (a, o, i = {}) => {
+      h("removeUsers", "id", a), h("removeUsers", "requestBody", o);
+      const s = "/userm/userm/group/{id}/users".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Search groups
+     * @param {string} [q] The query
+     * @param {number} [from] the first result to return
+     * @param {number} [size] the number of results to return
+     * @param {string} [sort] 
+     * @param {boolean} [ascending] Should the results be returned in asceding order
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchGroups: async (a, o, i, s, t, n = {}) => {
+      const r = "/userm/userm/group/search", u = new URL(r, j);
+      let m;
+      e && (m = e.baseOptions);
+      const c = { method: "GET", ...m, ...n }, p = {}, g = {};
+      a !== void 0 && (g.q = a), o !== void 0 && (g.from = o), i !== void 0 && (g.size = i), s !== void 0 && (g.sort = s), t !== void 0 && (g.ascending = t), b(u, g);
+      let z = m && m.headers ? m.headers : {};
+      return c.headers = { ...p, ...z, ...n.headers }, {
+        url: y(u),
+        options: c
+      };
+    },
+    /**
+     * 
+     * @summary Update an existing group
+     * @param {number} id The group identifier
+     * @param {UpdateGroupRequest} updateGroupRequest The updated group information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGroup: async (a, o, i = {}) => {
+      h("updateGroup", "id", a), h("updateGroup", "updateGroupRequest", o);
+      const s = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
         options: r
       };
     }
   };
-}, Sa = function(a) {
-  const o = Ee(a);
+}, S = function(e) {
+  const a = Re(e);
   return {
     /**
-     * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
-     * @summary Retrieves a user by it\'s username
-     * @param {string} username The user username
-     * @param {boolean} [substitutedUsers] If it should load the substituted users
+     * 
+     * @summary Adds a role to a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of role identifiers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getUserByUsername(e, i, s) {
-      const n = await o.getUserByUsername(e, i, s);
-      return xa(n, D, a);
+    async addRoles(o, i, s) {
+      const t = await a.addRoles(o, i, s);
+      return f(t, d, e);
     },
     /**
      * 
-     * @summary Update an existing user
-     * @param {number} id The user identifier
-     * @param {UpdateUserRequest} [updateUserRequest] The updated user information
+     * @summary Adds a role to a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of user identifiers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateUser(e, i, s) {
-      const n = await o.updateUser(e, i, s);
-      return xa(n, D, a);
+    async addUsers(o, i, s) {
+      const t = await a.addUsers(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Creates a new group
+     * @param {CreateGroupRequest} createGroupRequest The group information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createGroup(o, i) {
+      const s = await a.createGroup(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Delete an existing user
+     * @param {number} id The group identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteGroup(o, i) {
+      const s = await a.deleteGroup(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * Retrieves the full details of a group.
+     * @summary Retrieves a group by it\'s id
+     * @param {number} id The group identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGroup(o, i, s) {
+      const t = await a.getGroup(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * Retrieves the full details of a group.
+     * @summary Retrieves a group by it\'s name
+     * @param {string} name The group name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGroupByName(o, i) {
+      const s = await a.getGroupByName(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Removes a role from a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of role identifiers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async removeRoles(o, i, s) {
+      const t = await a.removeRoles(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Removes a user from a group
+     * @param {number} id The group identifier
+     * @param {Array<number>} requestBody The list of user identifiers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async removeUsers(o, i, s) {
+      const t = await a.removeUsers(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Search groups
+     * @param {string} [q] The query
+     * @param {number} [from] the first result to return
+     * @param {number} [size] the number of results to return
+     * @param {string} [sort] 
+     * @param {boolean} [ascending] Should the results be returned in asceding order
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchGroups(o, i, s, t, n, r) {
+      const u = await a.searchGroups(o, i, s, t, n, r);
+      return f(u, d, e);
+    },
+    /**
+     * 
+     * @summary Update an existing group
+     * @param {number} id The group identifier
+     * @param {UpdateGroupRequest} updateGroupRequest The updated group information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateGroup(o, i, s) {
+      const t = await a.updateGroup(o, i, s);
+      return f(t, d, e);
     }
   };
 };
-class De extends Ce {
+class Le extends W {
+  /**
+   * 
+   * @summary Adds a role to a group
+   * @param {number} id The group identifier
+   * @param {Array<number>} requestBody The list of role identifiers
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  addRoles(a, o, i) {
+    return S(this.configuration).addRoles(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Adds a role to a group
+   * @param {number} id The group identifier
+   * @param {Array<number>} requestBody The list of user identifiers
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  addUsers(a, o, i) {
+    return S(this.configuration).addUsers(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Creates a new group
+   * @param {CreateGroupRequest} createGroupRequest The group information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  createGroup(a, o) {
+    return S(this.configuration).createGroup(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Delete an existing user
+   * @param {number} id The group identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  deleteGroup(a, o) {
+    return S(this.configuration).deleteGroup(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * Retrieves the full details of a group.
+   * @summary Retrieves a group by it\'s id
+   * @param {number} id The group identifier
+   * @param {string} [ifNoneMatch] 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  getGroup(a, o, i) {
+    return S(this.configuration).getGroup(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * Retrieves the full details of a group.
+   * @summary Retrieves a group by it\'s name
+   * @param {string} name The group name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  getGroupByName(a, o) {
+    return S(this.configuration).getGroupByName(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Removes a role from a group
+   * @param {number} id The group identifier
+   * @param {Array<number>} requestBody The list of role identifiers
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  removeRoles(a, o, i) {
+    return S(this.configuration).removeRoles(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Removes a user from a group
+   * @param {number} id The group identifier
+   * @param {Array<number>} requestBody The list of user identifiers
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  removeUsers(a, o, i) {
+    return S(this.configuration).removeUsers(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Search groups
+   * @param {string} [q] The query
+   * @param {number} [from] the first result to return
+   * @param {number} [size] the number of results to return
+   * @param {string} [sort] 
+   * @param {boolean} [ascending] Should the results be returned in asceding order
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  searchGroups(a, o, i, s, t, n) {
+    return S(this.configuration).searchGroups(a, o, i, s, t, n).then((r) => r(this.axios));
+  }
+  /**
+   * 
+   * @summary Update an existing group
+   * @param {number} id The group identifier
+   * @param {UpdateGroupRequest} updateGroupRequest The updated group information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  updateGroup(a, o, i) {
+    return S(this.configuration).updateGroup(a, o, i).then((s) => s(this.axios));
+  }
+}
+const Ee = function(e) {
+  return {
+    /**
+     * 
+     * @summary Creates a new permission
+     * @param {CreatePermissionRequest} createPermissionRequest The permission information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createPermission: async (a, o = {}) => {
+      h("createPermission", "createPermissionRequest", a);
+      const i = "/userm/userm/permissions", s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "POST", ...t, ...o }, r = {}, u = {};
+      r["Content-Type"] = "application/json", b(s, u);
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Delete an existing permission
+     * @param {number} id The permission identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePermission: async (a, o = {}) => {
+      h("deletePermission", "id", a);
+      const i = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "DELETE", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * Retrieves the full details of a permission.
+     * @summary Retrieves a permission by it\'s id
+     * @param {number} id The permission identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPermission: async (a, o, i = {}) => {
+      h("getPermission", "id", a);
+      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {}, m = {};
+      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * Retrieves the full details of a permission.
+     * @summary Retrieves a permission by it\'s product and name
+     * @param {ProductName} product 
+     * @param {string} name The permission name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPermissionByProductAndName: async (a, o, i = {}) => {
+      h("getPermissionByProductAndName", "product", a), h("getPermissionByProductAndName", "name", o);
+      const s = "/userm/userm/permissions/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {};
+      b(t, {});
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Update an existing permission
+     * @param {number} id The permission identifier
+     * @param {UpdatePermissionRequest} updatePermissionRequest The updated permission information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePermission: async (a, o, i = {}) => {
+      h("updatePermission", "id", a), h("updatePermission", "updatePermissionRequest", o);
+      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    }
+  };
+}, N = function(e) {
+  const a = Ee(e);
+  return {
+    /**
+     * 
+     * @summary Creates a new permission
+     * @param {CreatePermissionRequest} createPermissionRequest The permission information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createPermission(o, i) {
+      const s = await a.createPermission(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Delete an existing permission
+     * @param {number} id The permission identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deletePermission(o, i) {
+      const s = await a.deletePermission(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * Retrieves the full details of a permission.
+     * @summary Retrieves a permission by it\'s id
+     * @param {number} id The permission identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPermission(o, i, s) {
+      const t = await a.getPermission(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * Retrieves the full details of a permission.
+     * @summary Retrieves a permission by it\'s product and name
+     * @param {ProductName} product 
+     * @param {string} name The permission name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPermissionByProductAndName(o, i, s) {
+      const t = await a.getPermissionByProductAndName(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Update an existing permission
+     * @param {number} id The permission identifier
+     * @param {UpdatePermissionRequest} updatePermissionRequest The updated permission information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updatePermission(o, i, s) {
+      const t = await a.updatePermission(o, i, s);
+      return f(t, d, e);
+    }
+  };
+};
+class De extends W {
+  /**
+   * 
+   * @summary Creates a new permission
+   * @param {CreatePermissionRequest} createPermissionRequest The permission information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PermissionsApi
+   */
+  createPermission(a, o) {
+    return N(this.configuration).createPermission(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Delete an existing permission
+   * @param {number} id The permission identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PermissionsApi
+   */
+  deletePermission(a, o) {
+    return N(this.configuration).deletePermission(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * Retrieves the full details of a permission.
+   * @summary Retrieves a permission by it\'s id
+   * @param {number} id The permission identifier
+   * @param {string} [ifNoneMatch] 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PermissionsApi
+   */
+  getPermission(a, o, i) {
+    return N(this.configuration).getPermission(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * Retrieves the full details of a permission.
+   * @summary Retrieves a permission by it\'s product and name
+   * @param {ProductName} product 
+   * @param {string} name The permission name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PermissionsApi
+   */
+  getPermissionByProductAndName(a, o, i) {
+    return N(this.configuration).getPermissionByProductAndName(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Update an existing permission
+   * @param {number} id The permission identifier
+   * @param {UpdatePermissionRequest} updatePermissionRequest The updated permission information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PermissionsApi
+   */
+  updatePermission(a, o, i) {
+    return N(this.configuration).updatePermission(a, o, i).then((s) => s(this.axios));
+  }
+}
+const Ie = function(e) {
+  return {
+    /**
+     * 
+     * @summary Adds permissions to a role
+     * @param {number} id The role identifier
+     * @param {Array<number>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addPermissions: async (a, o, i = {}) => {
+      h("addPermissions", "id", a), h("addPermissions", "requestBody", o);
+      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Creates a new role
+     * @param {CreateRoleRequest} createRoleRequest The role information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createRole: async (a, o = {}) => {
+      h("createRole", "createRoleRequest", a);
+      const i = "/userm/userm/roles", s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "POST", ...t, ...o }, r = {}, u = {};
+      r["Content-Type"] = "application/json", b(s, u);
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Delete an existing role
+     * @param {number} id The role identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteRole: async (a, o = {}) => {
+      h("deleteRole", "id", a);
+      const i = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "DELETE", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * Retrieves the full details of a role.
+     * @summary Retrieves a role by it\'s id
+     * @param {number} id The role identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getRole: async (a, o, i = {}) => {
+      h("getRole", "id", a);
+      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {}, m = {};
+      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * Retrieves the full details of a role.
+     * @summary Retrieves a role by it\'s product and name
+     * @param {ProductName} product 
+     * @param {string} name The role name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getRoleByProductAndName: async (a, o, i = {}) => {
+      h("getRoleByProductAndName", "product", a), h("getRoleByProductAndName", "name", o);
+      const s = "/userm/userm/roles/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {};
+      b(t, {});
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Removes permissions from a role
+     * @param {number} id The role identifier
+     * @param {Array<number>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    removePermissions: async (a, o, i = {}) => {
+      h("removePermissions", "id", a), h("removePermissions", "requestBody", o);
+      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Update an existing role
+     * @param {number} id The role identifier
+     * @param {UpdateRoleRequest} updateRoleRequest The updated role information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateRole: async (a, o, i = {}) => {
+      h("updateRole", "id", a), h("updateRole", "updateRoleRequest", o);
+      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    }
+  };
+}, I = function(e) {
+  const a = Ie(e);
+  return {
+    /**
+     * 
+     * @summary Adds permissions to a role
+     * @param {number} id The role identifier
+     * @param {Array<number>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addPermissions(o, i, s) {
+      const t = await a.addPermissions(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Creates a new role
+     * @param {CreateRoleRequest} createRoleRequest The role information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createRole(o, i) {
+      const s = await a.createRole(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Delete an existing role
+     * @param {number} id The role identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteRole(o, i) {
+      const s = await a.deleteRole(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * Retrieves the full details of a role.
+     * @summary Retrieves a role by it\'s id
+     * @param {number} id The role identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getRole(o, i, s) {
+      const t = await a.getRole(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * Retrieves the full details of a role.
+     * @summary Retrieves a role by it\'s product and name
+     * @param {ProductName} product 
+     * @param {string} name The role name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getRoleByProductAndName(o, i, s) {
+      const t = await a.getRoleByProductAndName(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Removes permissions from a role
+     * @param {number} id The role identifier
+     * @param {Array<number>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async removePermissions(o, i, s) {
+      const t = await a.removePermissions(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Update an existing role
+     * @param {number} id The role identifier
+     * @param {UpdateRoleRequest} updateRoleRequest The updated role information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateRole(o, i, s) {
+      const t = await a.updateRole(o, i, s);
+      return f(t, d, e);
+    }
+  };
+};
+class Ne extends W {
+  /**
+   * 
+   * @summary Adds permissions to a role
+   * @param {number} id The role identifier
+   * @param {Array<number>} requestBody 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  addPermissions(a, o, i) {
+    return I(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Creates a new role
+   * @param {CreateRoleRequest} createRoleRequest The role information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  createRole(a, o) {
+    return I(this.configuration).createRole(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Delete an existing role
+   * @param {number} id The role identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  deleteRole(a, o) {
+    return I(this.configuration).deleteRole(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * Retrieves the full details of a role.
+   * @summary Retrieves a role by it\'s id
+   * @param {number} id The role identifier
+   * @param {string} [ifNoneMatch] 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  getRole(a, o, i) {
+    return I(this.configuration).getRole(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * Retrieves the full details of a role.
+   * @summary Retrieves a role by it\'s product and name
+   * @param {ProductName} product 
+   * @param {string} name The role name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  getRoleByProductAndName(a, o, i) {
+    return I(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Removes permissions from a role
+   * @param {number} id The role identifier
+   * @param {Array<number>} requestBody 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  removePermissions(a, o, i) {
+    return I(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios));
+  }
+  /**
+   * 
+   * @summary Update an existing role
+   * @param {number} id The role identifier
+   * @param {UpdateRoleRequest} updateRoleRequest The updated role information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RolesApi
+   */
+  updateRole(a, o, i) {
+    return I(this.configuration).updateRole(a, o, i).then((s) => s(this.axios));
+  }
+}
+const Te = function(e) {
+  return {
+    /**
+     * 
+     * @summary Creates a new user
+     * @param {CreateUserRequest} createUserRequest The user information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createUser: async (a, o = {}) => {
+      h("createUser", "createUserRequest", a);
+      const i = "/userm/userm/user", s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "POST", ...t, ...o }, r = {}, u = {};
+      r["Content-Type"] = "application/json", b(s, u);
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Delete an existing user
+     * @param {number} id The user identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteUser: async (a, o = {}) => {
+      h("deleteUser", "id", a);
+      const i = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "DELETE", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Disables an existing user
+     * @param {number} id The user identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    disableUser: async (a, o = {}) => {
+      h("disableUser", "id", a);
+      const i = "/userm/userm/user/{id}/disable".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "PUT", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Enables an existing user
+     * @param {number} id The user identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    enableUser: async (a, o = {}) => {
+      h("enableUser", "id", a);
+      const i = "/userm/userm/user/{id}/enable".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "PUT", ...t, ...o }, r = {};
+      b(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: y(s),
+        options: n
+      };
+    },
+    /**
+     * Retrieves the full details of a user. 
+     * @summary Retrieves a user by it\'s id
+     * @param {number} id The user identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUser: async (a, o, i = {}) => {
+      h("getUser", "id", a);
+      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {}, m = {};
+      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
+     * @summary Retrieves a user by it\'s username
+     * @param {string} username The user username
+     * @param {boolean} [substitutedUsers] If it should load the substituted users
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUserByUsername: async (a, o, i = {}) => {
+      h("getUserByUsername", "username", a);
+      const s = "/userm/userm/user/username/{username}".replace("{username}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "GET", ...n, ...i }, u = {}, m = {};
+      o !== void 0 && (m.substitutedUsers = o), b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, {
+        url: y(t),
+        options: r
+      };
+    },
+    /**
+     * 
+     * @summary Update an existing user
+     * @param {number} id The user identifier
+     * @param {UpdateUserRequest} updateUserRequest The updated user information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateUser: async (a, o, i = {}) => {
+      h("updateUser", "id", a), h("updateUser", "updateUserRequest", o);
+      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      let n;
+      e && (n = e.baseOptions);
+      const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
+      u["Content-Type"] = "application/json", b(t, m);
+      let c = n && n.headers ? n.headers : {};
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
+        url: y(t),
+        options: r
+      };
+    }
+  };
+}, T = function(e) {
+  const a = Te(e);
+  return {
+    /**
+     * 
+     * @summary Creates a new user
+     * @param {CreateUserRequest} createUserRequest The user information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createUser(o, i) {
+      const s = await a.createUser(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Delete an existing user
+     * @param {number} id The user identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteUser(o, i) {
+      const s = await a.deleteUser(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Disables an existing user
+     * @param {number} id The user identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async disableUser(o, i) {
+      const s = await a.disableUser(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * 
+     * @summary Enables an existing user
+     * @param {number} id The user identifier
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async enableUser(o, i) {
+      const s = await a.enableUser(o, i);
+      return f(s, d, e);
+    },
+    /**
+     * Retrieves the full details of a user. 
+     * @summary Retrieves a user by it\'s id
+     * @param {number} id The user identifier
+     * @param {string} [ifNoneMatch] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getUser(o, i, s) {
+      const t = await a.getUser(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
+     * @summary Retrieves a user by it\'s username
+     * @param {string} username The user username
+     * @param {boolean} [substitutedUsers] If it should load the substituted users
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getUserByUsername(o, i, s) {
+      const t = await a.getUserByUsername(o, i, s);
+      return f(t, d, e);
+    },
+    /**
+     * 
+     * @summary Update an existing user
+     * @param {number} id The user identifier
+     * @param {UpdateUserRequest} updateUserRequest The updated user information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateUser(o, i, s) {
+      const t = await a.updateUser(o, i, s);
+      return f(t, d, e);
+    }
+  };
+};
+class _e extends W {
+  /**
+   * 
+   * @summary Creates a new user
+   * @param {CreateUserRequest} createUserRequest The user information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  createUser(a, o) {
+    return T(this.configuration).createUser(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Delete an existing user
+   * @param {number} id The user identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  deleteUser(a, o) {
+    return T(this.configuration).deleteUser(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Disables an existing user
+   * @param {number} id The user identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  disableUser(a, o) {
+    return T(this.configuration).disableUser(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Enables an existing user
+   * @param {number} id The user identifier
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  enableUser(a, o) {
+    return T(this.configuration).enableUser(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * Retrieves the full details of a user. 
+   * @summary Retrieves a user by it\'s id
+   * @param {number} id The user identifier
+   * @param {string} [ifNoneMatch] 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  getUser(a, o, i) {
+    return T(this.configuration).getUser(a, o, i).then((s) => s(this.axios));
+  }
   /**
    * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
    * @summary Retrieves a user by it\'s username
@@ -11098,23 +12325,23 @@ class De extends Ce {
    * @throws {RequiredError}
    * @memberof UsersApi
    */
-  getUserByUsername(o, e, i) {
-    return Sa(this.configuration).getUserByUsername(o, e, i).then((s) => s(this.axios));
+  getUserByUsername(a, o, i) {
+    return T(this.configuration).getUserByUsername(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
    * @summary Update an existing user
    * @param {number} id The user identifier
-   * @param {UpdateUserRequest} [updateUserRequest] The updated user information
+   * @param {UpdateUserRequest} updateUserRequest The updated user information
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UsersApi
    */
-  updateUser(o, e, i) {
-    return Sa(this.configuration).updateUser(o, e, i).then((s) => s(this.axios));
+  updateUser(a, o, i) {
+    return T(this.configuration).updateUser(a, o, i).then((s) => s(this.axios));
   }
 }
-const qe = {
+const Fe = {
   MANDATORY: "MANDATORY",
   NON_UNIQUE: "NON_UNIQUE",
   INVALID_FORMAT: "INVALID_FORMAT",
@@ -11124,17 +12351,23 @@ const qe = {
   USER_NOT_FOUND: "USER_NOT_FOUND",
   INVALID_SUBSTITUTE_USER: "INVALID_SUBSTITUTE_USER",
   NOT_ALLOWED: "NOT_ALLOWED"
-}, Ue = {
-  ENABLED: "enabled",
-  DISABLED: "disabled"
-}, Te = {
+}, Be = {
+  RECORDM: "RECORDM",
+  DEVICEM: "DEVICEM",
+  INTEGRATIONM: "INTEGRATIONM",
+  ELASTICSEARCH: "ELASTICSEARCH",
+  USERM: "USERM"
+}, $e = {
   ENABLED: "enabled",
   DISABLED: "disabled"
 };
 export {
-  qe as FieldErrorErrorTypeEnum,
-  Ue as UpdateUserRequestStateEnum,
-  Te as UserStateEnum,
-  De as UsersApi
+  Fe as FieldErrorErrorTypeEnum,
+  Le as GroupsApi,
+  De as PermissionsApi,
+  Be as ProductName,
+  Ne as RolesApi,
+  $e as UserState,
+  _e as UsersApi
 };
 //# sourceMappingURL=cobjs-api-userm.mjs.map

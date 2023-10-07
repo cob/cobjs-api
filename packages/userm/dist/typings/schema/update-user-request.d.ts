@@ -1,5 +1,6 @@
 import { Group } from "./group";
 import { User } from "./user";
+import { UserState } from "./user-state";
 /**
  *
  * @export
@@ -59,7 +60,7 @@ export interface UpdateUserRequest {
      * @type {number}
      * @memberof UpdateUserRequest
      */
-    'version'?: number;
+    'version': number;
     /**
      *
      * @type {Array<Group>}
@@ -68,25 +69,14 @@ export interface UpdateUserRequest {
     'groups'?: Array<Group>;
     /**
      *
-     * @type {string}
+     * @type {UserState}
      * @memberof UpdateUserRequest
      */
-    'state'?: UpdateUserRequestStateEnum;
+    'state'?: UserState;
     /**
      *
      * @type {Array<User>}
      * @memberof UpdateUserRequest
      */
     'substitutedUsers'?: Array<User>;
-    /**
-     *
-     * @type {boolean}
-     * @memberof UpdateUserRequest
-     */
-    'passwordCleared'?: boolean;
 }
-export declare const UpdateUserRequestStateEnum: {
-    readonly ENABLED: "enabled";
-    readonly DISABLED: "disabled";
-};
-export type UpdateUserRequestStateEnum = typeof UpdateUserRequestStateEnum[keyof typeof UpdateUserRequestStateEnum];

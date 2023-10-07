@@ -4,6 +4,8 @@
 import { Group } from "./group"
 // May contain unused imports in some cases
 import { UserLinks } from "./user-links"
+// May contain unused imports in some cases
+import { UserState } from "./user-state"
 
 /**
  * 
@@ -73,10 +75,10 @@ export interface User {
     'groups'?: Array<Group>;
     /**
      * 
-     * @type {string}
+     * @type {UserState}
      * @memberof User
      */
-    'state'?: UserStateEnum;
+    'state'?: UserState;
     /**
      * 
      * @type {Array<User>}
@@ -96,11 +98,3 @@ export interface User {
      */
     'passwordCleared'?: boolean;
 }
-
-export const UserStateEnum = {
-    ENABLED: 'enabled',
-    DISABLED: 'disabled'
-} as const;
-
-export type UserStateEnum = typeof UserStateEnum[keyof typeof UserStateEnum];
-

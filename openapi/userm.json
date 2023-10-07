@@ -12,10 +12,1412 @@
     "cobtoken" : [ ]
   } ],
   "tags" : [ {
+    "name" : "Groups",
+    "description" : "Group endpoints"
+  }, {
+    "name" : "Permissions",
+    "description" : "Permission endpoints"
+  }, {
+    "name" : "Roles",
+    "description" : "Role endpoints"
+  }, {
     "name" : "Users",
     "description" : "User endpoints"
   } ],
   "paths" : {
+    "/userm/group/{id}/roles" : {
+      "put" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Adds a role to a group",
+        "operationId" : "addRoles",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The list of role identifiers",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "The addition was successful"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Group not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Removes a role from a group",
+        "operationId" : "removeRoles",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The list of role identifiers",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "The removal was successful"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Group not found"
+          }
+        }
+      }
+    },
+    "/userm/group/{id}/users" : {
+      "put" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Adds a role to a group",
+        "operationId" : "addUsers",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The list of user identifiers",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "The addition was successful"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Group not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Removes a user from a group",
+        "operationId" : "removeUsers",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The list of user identifiers",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "The removal was successful"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Group not found"
+          }
+        }
+      }
+    },
+    "/userm/group" : {
+      "post" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Creates a new group",
+        "operationId" : "createGroup",
+        "requestBody" : {
+          "description" : "The group information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateGroupRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The creation was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          }
+        }
+      }
+    },
+    "/userm/group/{id}" : {
+      "get" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Retrieves a group by it's id",
+        "description" : "Retrieves the full details of a group.",
+        "operationId" : "getGroup",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "If-None-Match",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full group details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "304" : {
+            "description" : "Not Modified"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No group found with the provided id"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Update an existing group",
+        "operationId" : "updateGroup",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The updated group information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateGroupRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The update was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Group not found"
+          },
+          "409" : {
+            "description" : "The received version is outdated"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Delete an existing user",
+        "operationId" : "deleteGroup",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The group identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The delete was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Group not found"
+          }
+        }
+      }
+    },
+    "/userm/group/name/{name}" : {
+      "get" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Retrieves a group by it's name",
+        "description" : "Retrieves the full details of a group.",
+        "operationId" : "getGroupByName",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "The group name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full group details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "304" : {
+            "description" : "Not Modified"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No group found with the provided id"
+          }
+        }
+      }
+    },
+    "/userm/group/search" : {
+      "get" : {
+        "tags" : [ "Groups" ],
+        "summary" : "Search groups",
+        "operationId" : "searchGroups",
+        "parameters" : [ {
+          "name" : "q",
+          "in" : "query",
+          "description" : "The query",
+          "schema" : {
+            "type" : "string",
+            "default" : "*"
+          }
+        }, {
+          "name" : "from",
+          "in" : "query",
+          "description" : "the first result to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          }
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "description" : "the number of results to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 5
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "schema" : {
+            "type" : "string",
+            "default" : "_score"
+          }
+        }, {
+          "name" : "ascending",
+          "in" : "query",
+          "description" : "Should the results be returned in asceding order",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The search was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Group"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "500" : {
+            "description" : "An internal error ocurred",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userm/permissions" : {
+      "post" : {
+        "tags" : [ "Permissions" ],
+        "summary" : "Creates a new permission",
+        "operationId" : "createPermission",
+        "requestBody" : {
+          "description" : "The permission information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreatePermissionRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The creation was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Permission"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          }
+        }
+      }
+    },
+    "/userm/permissions/{id}" : {
+      "get" : {
+        "tags" : [ "Permissions" ],
+        "summary" : "Retrieves a permission by it's id",
+        "description" : "Retrieves the full details of a permission.",
+        "operationId" : "getPermission",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The permission identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "If-None-Match",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full permission details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Permission"
+                }
+              }
+            }
+          },
+          "304" : {
+            "description" : "Not Modified"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No permission found with the provided id"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Permissions" ],
+        "summary" : "Update an existing permission",
+        "operationId" : "updatePermission",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The permission identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The updated permission information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdatePermissionRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The update was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Permission"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Permission not found"
+          },
+          "409" : {
+            "description" : "The received version is outdated"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Permissions" ],
+        "summary" : "Delete an existing permission",
+        "operationId" : "deletePermission",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The permission identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The delete was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Permission"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Permission not found"
+          }
+        }
+      }
+    },
+    "/userm/permissions/product/{product}/name/{name}" : {
+      "get" : {
+        "tags" : [ "Permissions" ],
+        "summary" : "Retrieves a permission by it's product and name",
+        "description" : "Retrieves the full details of a permission.",
+        "operationId" : "getPermissionByProductAndName",
+        "parameters" : [ {
+          "name" : "product",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/ProductName"
+          }
+        }, {
+          "name" : "name",
+          "in" : "path",
+          "description" : "The permission name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full permission details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Permission"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No permission found with the provided id"
+          }
+        }
+      }
+    },
+    "/userm/roles/{id}/permissions" : {
+      "put" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Adds permissions to a role",
+        "operationId" : "addPermissions",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The role identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "The addition was successful"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Role not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Removes permissions from a role",
+        "operationId" : "removePermissions",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The role identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "The removal was successful"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Role not found"
+          }
+        }
+      }
+    },
+    "/userm/roles" : {
+      "post" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Creates a new role",
+        "operationId" : "createRole",
+        "requestBody" : {
+          "description" : "The role information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateRoleRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The creation was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          }
+        }
+      }
+    },
+    "/userm/roles/{id}" : {
+      "get" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Retrieves a role by it's id",
+        "description" : "Retrieves the full details of a role.",
+        "operationId" : "getRole",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The role identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "If-None-Match",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full role details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "304" : {
+            "description" : "Not Modified"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No role found with the provided id"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Update an existing role",
+        "operationId" : "updateRole",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The role identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The updated role information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateRoleRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The update was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "role not found"
+          },
+          "409" : {
+            "description" : "The received version is outdated"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Delete an existing role",
+        "operationId" : "deleteRole",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The role identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The delete was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "Role not found"
+          }
+        }
+      }
+    },
+    "/userm/roles/product/{product}/name/{name}" : {
+      "get" : {
+        "tags" : [ "Roles" ],
+        "summary" : "Retrieves a role by it's product and name",
+        "description" : "Retrieves the full details of a role.",
+        "operationId" : "getRoleByProductAndName",
+        "parameters" : [ {
+          "name" : "product",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/ProductName"
+          }
+        }, {
+          "name" : "name",
+          "in" : "path",
+          "description" : "The role name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full role details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No role found with the provided id"
+          }
+        }
+      }
+    },
+    "/userm/user" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Creates a new user",
+        "operationId" : "createUser",
+        "requestBody" : {
+          "description" : "The user information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateUserRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The creation was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          }
+        }
+      }
+    },
+    "/userm/user/{id}" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Retrieves a user by it's id",
+        "description" : "Retrieves the full details of a user. ",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The user identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "If-None-Match",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full user details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "304" : {
+            "description" : "Not Modified"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          },
+          "404" : {
+            "description" : "No user found with the provided id"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Users" ],
+        "summary" : "Update an existing user",
+        "operationId" : "updateUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The user identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The updated user information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "The update was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "User not found"
+          },
+          "409" : {
+            "description" : "The received version is outdated"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Users" ],
+        "summary" : "Delete an existing user",
+        "operationId" : "deleteUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The user identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The delete was successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FieldError"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "User not found"
+          }
+        }
+      }
+    },
+    "/userm/user/{id}/disable" : {
+      "put" : {
+        "tags" : [ "Users" ],
+        "summary" : "Disables an existing user",
+        "operationId" : "disableUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The user identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "The user was disabled successfully"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "User not found"
+          }
+        }
+      }
+    },
+    "/userm/user/{id}/enable" : {
+      "put" : {
+        "tags" : [ "Users" ],
+        "summary" : "Enables an existing user",
+        "operationId" : "enableUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The user identifier",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "The user was enabled successfully"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perfom the operation"
+          },
+          "404" : {
+            "description" : "User not found"
+          }
+        }
+      }
+    },
     "/userm/user/username/{username}" : {
       "get" : {
         "tags" : [ "Users" ],
@@ -61,70 +1463,6 @@
           }
         }
       }
-    },
-    "/userm/user/{id}" : {
-      "put" : {
-        "tags" : [ "Users" ],
-        "summary" : "Update an existing user",
-        "operationId" : "updateUser",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The user identifier",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32"
-          }
-        } ],
-        "requestBody" : {
-          "description" : "The updated user information",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateUserRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "The update was successful",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid request",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/FieldError"
-                  }
-                }
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized access."
-          },
-          "403" : {
-            "description" : "The user is not allowed to perfom the operation"
-          },
-          "404" : {
-            "description" : "User not found"
-          },
-          "409" : {
-            "description" : "The received version is outdated"
-          }
-        }
-      }
     }
   },
   "components" : {
@@ -148,6 +1486,53 @@
           "version" : {
             "type" : "integer",
             "format" : "int32"
+          }
+        }
+      },
+      "GroupLinks" : {
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "type" : "string"
+          },
+          "update" : {
+            "type" : "string"
+          },
+          "delete" : {
+            "type" : "string"
+          },
+          "perms" : {
+            "type" : "string"
+          }
+        }
+      },
+      "FieldError" : {
+        "type" : "object",
+        "properties" : {
+          "errorType" : {
+            "type" : "string",
+            "enum" : [ "MANDATORY", "NON_UNIQUE", "INVALID_FORMAT", "SHORT_DATA", "INVALID_PRODUCT", "DATA_TOO_LONG", "USER_NOT_FOUND", "INVALID_SUBSTITUTE_USER", "NOT_ALLOWED" ]
+          },
+          "fieldName" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateGroupRequest" : {
+        "required" : [ "description", "name" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
           }
         }
       },
@@ -192,8 +1577,7 @@
             }
           },
           "state" : {
-            "type" : "string",
-            "enum" : [ "enabled", "disabled" ]
+            "$ref" : "#/components/schemas/UserState"
           },
           "substitutedUsers" : {
             "type" : "array",
@@ -219,13 +1603,19 @@
           "update" : {
             "type" : "string"
           },
+          "enable" : {
+            "type" : "string"
+          },
+          "disable" : {
+            "type" : "string"
+          },
           "assignSubstitute" : {
             "type" : "string"
           },
-          "addTo" : {
+          "addToGroup" : {
             "type" : "string"
           },
-          "removeFrom" : {
+          "removeFromGroup" : {
             "type" : "string"
           },
           "delete" : {
@@ -234,7 +1624,7 @@
           "perms" : {
             "type" : "string"
           },
-          "assign-substitute" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           },
@@ -242,29 +1632,296 @@
             "type" : "string",
             "deprecated" : true
           },
-          "remove-from" : {
+          "assign-substitute" : {
             "type" : "string",
             "deprecated" : true
           }
         }
       },
-      "FieldError" : {
+      "UserState" : {
+        "type" : "string",
+        "enum" : [ "enabled", "disabled" ]
+      },
+      "ErrorMessage" : {
         "type" : "object",
         "properties" : {
-          "errorType" : {
-            "type" : "string",
-            "enum" : [ "MANDATORY", "NON_UNIQUE", "INVALID_FORMAT", "SHORT_DATA", "INVALID_PRODUCT", "DATA_TOO_LONG", "USER_NOT_FOUND", "INVALID_SUBSTITUTE_USER", "NOT_ALLOWED" ]
-          },
-          "fieldName" : {
-            "type" : "string"
-          },
-          "message" : {
+          "error" : {
             "type" : "string"
           }
         }
       },
+      "UpdateGroupRequest" : {
+        "required" : [ "description", "id", "name", "version" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "Permission" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/PermissionLinks"
+          }
+        }
+      },
+      "PermissionLinks" : {
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "type" : "string"
+          },
+          "update" : {
+            "type" : "string"
+          },
+          "addToRole" : {
+            "type" : "string"
+          },
+          "removeFromRole" : {
+            "type" : "string"
+          },
+          "delete" : {
+            "type" : "string"
+          },
+          "perms" : {
+            "type" : "string"
+          },
+          "remove-from" : {
+            "type" : "string",
+            "deprecated" : true
+          },
+          "add-to" : {
+            "type" : "string",
+            "deprecated" : true
+          }
+        }
+      },
+      "CreatePermissionRequest" : {
+        "required" : [ "description", "name", "productName" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "productName" : {
+            "$ref" : "#/components/schemas/ProductName"
+          }
+        }
+      },
+      "ProductName" : {
+        "type" : "string",
+        "enum" : [ "RECORDM", "DEVICEM", "INTEGRATIONM", "ELASTICSEARCH", "USERM" ]
+      },
+      "UpdatePermissionRequest" : {
+        "required" : [ "description", "id", "name", "productName", "version" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "productName" : {
+            "$ref" : "#/components/schemas/ProductName"
+          }
+        }
+      },
+      "Role" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/RoleLinks"
+          }
+        }
+      },
+      "RoleLinks" : {
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "type" : "string"
+          },
+          "update" : {
+            "type" : "string"
+          },
+          "addToGroup" : {
+            "type" : "string"
+          },
+          "removeFromGroup" : {
+            "type" : "string"
+          },
+          "delete" : {
+            "type" : "string"
+          },
+          "perms" : {
+            "type" : "string"
+          },
+          "remove-from" : {
+            "type" : "string",
+            "deprecated" : true
+          },
+          "add-to" : {
+            "type" : "string",
+            "deprecated" : true
+          }
+        }
+      },
+      "CreateRoleRequest" : {
+        "required" : [ "description", "name", "productName" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "productName" : {
+            "$ref" : "#/components/schemas/ProductName"
+          }
+        }
+      },
+      "UpdateRoleRequest" : {
+        "required" : [ "description", "id", "name", "productName", "version" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "product" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "productName" : {
+            "$ref" : "#/components/schemas/ProductName"
+          }
+        }
+      },
+      "CreateUserRequest" : {
+        "required" : [ "email", "name", "username" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "usernameAD" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "contact" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "substitute" : {
+            "$ref" : "#/components/schemas/User"
+          },
+          "groups" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Group"
+            }
+          },
+          "state" : {
+            "$ref" : "#/components/schemas/UserState"
+          },
+          "substitutedUsers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            }
+          }
+        }
+      },
       "UpdateUserRequest" : {
-        "required" : [ "email", "id", "name", "username" ],
+        "required" : [ "email", "id", "name", "username", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -304,17 +1961,13 @@
             }
           },
           "state" : {
-            "type" : "string",
-            "enum" : [ "enabled", "disabled" ]
+            "$ref" : "#/components/schemas/UserState"
           },
           "substitutedUsers" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/User"
             }
-          },
-          "passwordCleared" : {
-            "type" : "boolean"
           }
         }
       }

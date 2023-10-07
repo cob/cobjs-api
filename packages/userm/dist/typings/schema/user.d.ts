@@ -1,5 +1,6 @@
 import { Group } from "./group";
 import { UserLinks } from "./user-links";
+import { UserState } from "./user-state";
 /**
  *
  * @export
@@ -68,10 +69,10 @@ export interface User {
     'groups'?: Array<Group>;
     /**
      *
-     * @type {string}
+     * @type {UserState}
      * @memberof User
      */
-    'state'?: UserStateEnum;
+    'state'?: UserState;
     /**
      *
      * @type {Array<User>}
@@ -91,8 +92,3 @@ export interface User {
      */
     'passwordCleared'?: boolean;
 }
-export declare const UserStateEnum: {
-    readonly ENABLED: "enabled";
-    readonly DISABLED: "disabled";
-};
-export type UserStateEnum = typeof UserStateEnum[keyof typeof UserStateEnum];
