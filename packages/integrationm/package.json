@@ -1,6 +1,6 @@
 {
   "name": "@cob/cobjs-api-integrationm",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Cult Of Bits",
   "keywords": [
     "@cob",
@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "@cob/cobjs-api-core": "0.2.1"
+    "@cob/cobjs-api-core": "0.2.2"
   }
 }
