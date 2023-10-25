@@ -1,6 +1,6 @@
 import d from "axios";
-var to = Object.defineProperty, no = (e, a, o) => a in e ? to(e, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[a] = o, _ = (e, a, o) => (no(e, typeof a != "symbol" ? a + "" : a, o), o), ka = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Va(e) {
+var no = Object.defineProperty, ro = (e, a, o) => a in e ? no(e, a, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[a] = o, B = (e, a, o) => (ro(e, typeof a != "symbol" ? a + "" : a, o), o), ga = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function Ra(e) {
   if (e.__esModule)
     return e;
   var a = e.default;
@@ -21,29 +21,29 @@ function Va(e) {
     });
   }), o;
 }
-const D = 2147483647, C = 36, ia = 1, B = 26, ro = 38, uo = 700, Ra = 72, Ea = 128, Ia = "-", mo = /^xn--/, co = /[^\0-\x7E]/, po = /[\x2E\u3002\uFF0E\uFF61]/g, lo = {
+const D = 2147483647, S = 36, sa = 1, _ = 26, uo = 38, mo = 700, Ea = 72, Ia = 128, Ta = "-", co = /^xn--/, lo = /[^\0-\x7E]/, po = /[\x2E\u3002\uFF0E\uFF61]/g, ho = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, Z = C - ia, P = Math.floor, Y = String.fromCharCode;
+}, Y = S - sa, C = Math.floor, K = String.fromCharCode;
 function q(e) {
-  throw new RangeError(lo[e]);
+  throw new RangeError(ho[e]);
 }
-function ho(e, a) {
+function ko(e, a) {
   const o = [];
   let i = e.length;
   for (; i--; )
     o[i] = a(e[i]);
   return o;
 }
-function Ta(e, a) {
+function qa(e, a) {
   const o = e.split("@");
   let i = "";
   o.length > 1 && (i = o[0] + "@", e = o[1]), e = e.replace(po, ".");
-  const s = e.split("."), t = ho(s, a).join(".");
+  const s = e.split("."), t = ko(s, a).join(".");
   return i + t;
 }
-function sa(e) {
+function ta(e) {
   const a = [];
   let o = 0;
   const i = e.length;
@@ -57,76 +57,76 @@ function sa(e) {
   }
   return a;
 }
-const qa = (e) => String.fromCodePoint(...e), ko = function(e) {
-  return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : C;
-}, ga = function(e, a) {
+const La = (e) => String.fromCodePoint(...e), go = function(e) {
+  return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : S;
+}, ja = function(e, a) {
   return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
-}, La = function(e, a, o) {
+}, Da = function(e, a, o) {
   let i = 0;
-  for (e = o ? P(e / uo) : e >> 1, e += P(e / a); e > Z * B >> 1; i += C)
-    e = P(e / Z);
-  return P(i + (Z + 1) * e / (e + ro));
-}, ta = function(e) {
+  for (e = o ? C(e / mo) : e >> 1, e += C(e / a); e > Y * _ >> 1; i += S)
+    e = C(e / Y);
+  return C(i + (Y + 1) * e / (e + uo));
+}, na = function(e) {
   const a = [], o = e.length;
-  let i = 0, s = Ea, t = Ra, n = e.lastIndexOf(Ia);
+  let i = 0, s = Ia, t = Ea, n = e.lastIndexOf(Ta);
   n < 0 && (n = 0);
   for (let r = 0; r < n; ++r)
     e.charCodeAt(r) >= 128 && q("not-basic"), a.push(e.charCodeAt(r));
   for (let r = n > 0 ? n + 1 : 0; r < o; ) {
     let u = i;
-    for (let c = 1, p = C; ; p += C) {
+    for (let c = 1, l = S; ; l += S) {
       r >= o && q("invalid-input");
-      const g = ko(e.charCodeAt(r++));
-      (g >= C || g > P((D - i) / c)) && q("overflow"), i += g * c;
-      const z = p <= t ? ia : p >= t + B ? B : p - t;
-      if (g < z)
+      const f = go(e.charCodeAt(r++));
+      (f >= S || f > C((D - i) / c)) && q("overflow"), i += f * c;
+      const x = l <= t ? sa : l >= t + _ ? _ : l - t;
+      if (f < x)
         break;
-      const v = C - z;
-      c > P(D / v) && q("overflow"), c *= v;
+      const v = S - x;
+      c > C(D / v) && q("overflow"), c *= v;
     }
     const m = a.length + 1;
-    t = La(i - u, m, u == 0), P(i / m) > D - s && q("overflow"), s += P(i / m), i %= m, a.splice(i++, 0, s);
+    t = Da(i - u, m, u == 0), C(i / m) > D - s && q("overflow"), s += C(i / m), i %= m, a.splice(i++, 0, s);
   }
   return String.fromCodePoint(...a);
-}, na = function(e) {
+}, ra = function(e) {
   const a = [];
-  e = sa(e);
-  let o = e.length, i = Ea, s = 0, t = Ra;
+  e = ta(e);
+  let o = e.length, i = Ia, s = 0, t = Ea;
   for (const u of e)
-    u < 128 && a.push(Y(u));
+    u < 128 && a.push(K(u));
   let n = a.length, r = n;
-  for (n && a.push(Ia); r < o; ) {
+  for (n && a.push(Ta); r < o; ) {
     let u = D;
     for (const c of e)
       c >= i && c < u && (u = c);
     const m = r + 1;
-    u - i > P((D - s) / m) && q("overflow"), s += (u - i) * m, i = u;
+    u - i > C((D - s) / m) && q("overflow"), s += (u - i) * m, i = u;
     for (const c of e)
       if (c < i && ++s > D && q("overflow"), c == i) {
-        let p = s;
-        for (let g = C; ; g += C) {
-          const z = g <= t ? ia : g >= t + B ? B : g - t;
-          if (p < z)
+        let l = s;
+        for (let f = S; ; f += S) {
+          const x = f <= t ? sa : f >= t + _ ? _ : f - t;
+          if (l < x)
             break;
-          const v = p - z, k = C - z;
+          const v = l - x, y = S - x;
           a.push(
-            Y(ga(z + v % k, 0))
-          ), p = P(v / k);
+            K(ja(x + v % y, 0))
+          ), l = C(v / y);
         }
-        a.push(Y(ga(p, 0))), t = La(s, m, r == n), s = 0, ++r;
+        a.push(K(ja(l, 0))), t = Da(s, m, r == n), s = 0, ++r;
       }
     ++s, ++i;
   }
   return a.join("");
-}, Da = function(e) {
-  return Ta(e, function(a) {
-    return mo.test(a) ? ta(a.slice(4).toLowerCase()) : a;
+}, Fa = function(e) {
+  return qa(e, function(a) {
+    return co.test(a) ? na(a.slice(4).toLowerCase()) : a;
   });
-}, Na = function(e) {
-  return Ta(e, function(a) {
-    return co.test(a) ? "xn--" + na(a) : a;
+}, Ba = function(e) {
+  return qa(e, function(a) {
+    return lo.test(a) ? "xn--" + ra(a) : a;
   });
-}, go = {
+}, jo = {
   /**
    * A string representing the current Punycode.js version number.
    * @memberOf punycode
@@ -141,24 +141,24 @@ const qa = (e) => String.fromCodePoint(...e), ko = function(e) {
    * @type Object
    */
   ucs2: {
-    decode: sa,
-    encode: qa
+    decode: ta,
+    encode: La
   },
-  decode: ta,
-  encode: na,
-  toASCII: Na,
-  toUnicode: Da
-}, jo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: na,
+  encode: ra,
+  toASCII: Ba,
+  toUnicode: Fa
+}, bo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  decode: ta,
-  default: go,
-  encode: na,
-  toASCII: Na,
-  toUnicode: Da,
-  ucs2decode: sa,
-  ucs2encode: qa
-}, Symbol.toStringTag, { value: "Module" })), _a = /* @__PURE__ */ Va(jo);
-var bo = function(e, a) {
+  decode: na,
+  default: jo,
+  encode: ra,
+  toASCII: Ba,
+  toUnicode: Fa,
+  ucs2decode: ta,
+  ucs2encode: La
+}, Symbol.toStringTag, { value: "Module" })), Na = /* @__PURE__ */ Ra(bo);
+var yo = function(e, a) {
   if (a = a.split(":")[0], e = +e, !e)
     return !1;
   switch (a) {
@@ -176,47 +176,47 @@ var bo = function(e, a) {
       return !1;
   }
   return e !== 0;
-}, ra = {}, yo = Object.prototype.hasOwnProperty, fo;
-function ja(e) {
+}, ua = {}, fo = Object.prototype.hasOwnProperty, wo;
+function ba(e) {
   try {
     return decodeURIComponent(e.replace(/\+/g, " "));
   } catch {
     return null;
   }
 }
-function ba(e) {
+function ya(e) {
   try {
     return encodeURIComponent(e);
   } catch {
     return null;
   }
 }
-function wo(e) {
+function vo(e) {
   for (var a = /([^=?#&]+)=?([^&]*)/g, o = {}, i; i = a.exec(e); ) {
-    var s = ja(i[1]), t = ja(i[2]);
+    var s = ba(i[1]), t = ba(i[2]);
     s === null || t === null || s in o || (o[s] = t);
   }
   return o;
 }
-function vo(e, a) {
+function zo(e, a) {
   a = a || "";
   var o = [], i, s;
   typeof a != "string" && (a = "?");
   for (s in e)
-    if (yo.call(e, s)) {
-      if (i = e[s], !i && (i === null || i === fo || isNaN(i)) && (i = ""), s = ba(s), i = ba(i), s === null || i === null)
+    if (fo.call(e, s)) {
+      if (i = e[s], !i && (i === null || i === wo || isNaN(i)) && (i = ""), s = ya(s), i = ya(i), s === null || i === null)
         continue;
       o.push(s + "=" + i);
     }
   return o.length ? a + o.join("&") : "";
 }
-ra.stringify = vo;
-ra.parse = wo;
-var Fa = bo, Q = ra, zo = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, Ba = /[\n\r\t]/g, xo = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, $a = /:\d+$/, Oo = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Ao = /^[a-zA-Z]:/;
-function ua(e) {
-  return (e || "").toString().replace(zo, "");
+ua.stringify = zo;
+ua.parse = vo;
+var _a = yo, J = ua, xo = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, $a = /[\n\r\t]/g, Oo = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, Ha = /:\d+$/, Ao = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, Po = /^[a-zA-Z]:/;
+function ma(e) {
+  return (e || "").toString().replace(xo, "");
 }
-var K = [
+var X = [
   ["#", "hash"],
   // Extract from the back.
   ["?", "query"],
@@ -234,10 +234,10 @@ var K = [
   // RegExp the back.
   [NaN, "hostname", void 0, 1, 1]
   // Set left over.
-], ya = { hash: 1, query: 1 };
+], fa = { hash: 1, query: 1 };
 function Ga(e) {
   var a;
-  typeof window < "u" ? a = window : typeof ka < "u" ? a = ka : typeof self < "u" ? a = self : a = {};
+  typeof window < "u" ? a = window : typeof ga < "u" ? a = ga : typeof self < "u" ? a = self : a = {};
   var o = a.location || {};
   e = e || o;
   var i = {}, s = typeof e, t;
@@ -245,21 +245,21 @@ function Ga(e) {
     i = new V(unescape(e.pathname), {});
   else if (s === "string") {
     i = new V(e, {});
-    for (t in ya)
+    for (t in fa)
       delete i[t];
   } else if (s === "object") {
     for (t in e)
-      t in ya || (i[t] = e[t]);
-    i.slashes === void 0 && (i.slashes = xo.test(e.href));
+      t in fa || (i[t] = e[t]);
+    i.slashes === void 0 && (i.slashes = Oo.test(e.href));
   }
   return i;
 }
 function U(e) {
   return e === "file:" || e === "ftp:" || e === "http:" || e === "https:" || e === "ws:" || e === "wss:";
 }
-function Ha(e, a) {
-  e = ua(e), e = e.replace(Ba, ""), a = a || {};
-  var o = Oo.exec(e), i = o[1] ? o[1].toLowerCase() : "", s = !!o[2], t = !!o[3], n = 0, r;
+function Qa(e, a) {
+  e = ma(e), e = e.replace($a, ""), a = a || {};
+  var o = Ao.exec(e), i = o[1] ? o[1].toLowerCase() : "", s = !!o[2], t = !!o[3], n = 0, r;
   return s ? t ? (r = o[2] + o[3] + o[4], n = o[2].length + o[3].length) : (r = o[2] + o[4], n = o[2].length) : t ? (r = o[3] + o[4], n = o[3].length) : r = o[4], i === "file:" ? n >= 2 && (r = r.slice(2)) : U(i) ? r = o[4] : i ? s && (r = r.slice(2)) : n >= 2 && U(a.protocol) && (r = o[4]), {
     protocol: i,
     slashes: s || U(i),
@@ -275,32 +275,32 @@ function So(e, a) {
   return t && o.unshift(""), (s === "." || s === "..") && o.push(""), o.join("/");
 }
 function V(e, a, o) {
-  if (e = ua(e), e = e.replace(Ba, ""), !(this instanceof V))
+  if (e = ma(e), e = e.replace($a, ""), !(this instanceof V))
     return new V(e, a, o);
-  var i, s, t, n, r, u, m = K.slice(), c = typeof a, p = this, g = 0;
-  for (c !== "object" && c !== "string" && (o = a, a = null), o && typeof o != "function" && (o = Q.parse), a = Ga(a), s = Ha(e || "", a), i = !s.protocol && !s.slashes, p.slashes = s.slashes || i && a.slashes, p.protocol = s.protocol || a.protocol || "", e = s.rest, (s.protocol === "file:" && (s.slashesCount !== 2 || Ao.test(e)) || !s.slashes && (s.protocol || s.slashesCount < 2 || !U(p.protocol))) && (m[3] = [/(.*)/, "pathname"]); g < m.length; g++) {
-    if (n = m[g], typeof n == "function") {
-      e = n(e, p);
+  var i, s, t, n, r, u, m = X.slice(), c = typeof a, l = this, f = 0;
+  for (c !== "object" && c !== "string" && (o = a, a = null), o && typeof o != "function" && (o = J.parse), a = Ga(a), s = Qa(e || "", a), i = !s.protocol && !s.slashes, l.slashes = s.slashes || i && a.slashes, l.protocol = s.protocol || a.protocol || "", e = s.rest, (s.protocol === "file:" && (s.slashesCount !== 2 || Po.test(e)) || !s.slashes && (s.protocol || s.slashesCount < 2 || !U(l.protocol))) && (m[3] = [/(.*)/, "pathname"]); f < m.length; f++) {
+    if (n = m[f], typeof n == "function") {
+      e = n(e, l);
       continue;
     }
-    t = n[0], u = n[1], t !== t ? p[u] = e : typeof t == "string" ? (r = t === "@" ? e.lastIndexOf(t) : e.indexOf(t), ~r && (typeof n[2] == "number" ? (p[u] = e.slice(0, r), e = e.slice(r + n[2])) : (p[u] = e.slice(r), e = e.slice(0, r)))) : (r = t.exec(e)) && (p[u] = r[1], e = e.slice(0, r.index)), p[u] = p[u] || i && n[3] && a[u] || "", n[4] && (p[u] = p[u].toLowerCase());
+    t = n[0], u = n[1], t !== t ? l[u] = e : typeof t == "string" ? (r = t === "@" ? e.lastIndexOf(t) : e.indexOf(t), ~r && (typeof n[2] == "number" ? (l[u] = e.slice(0, r), e = e.slice(r + n[2])) : (l[u] = e.slice(r), e = e.slice(0, r)))) : (r = t.exec(e)) && (l[u] = r[1], e = e.slice(0, r.index)), l[u] = l[u] || i && n[3] && a[u] || "", n[4] && (l[u] = l[u].toLowerCase());
   }
-  o && (p.query = o(p.query)), i && a.slashes && p.pathname.charAt(0) !== "/" && (p.pathname !== "" || a.pathname !== "") && (p.pathname = So(p.pathname, a.pathname)), p.pathname.charAt(0) !== "/" && U(p.protocol) && (p.pathname = "/" + p.pathname), Fa(p.port, p.protocol) || (p.host = p.hostname, p.port = ""), p.username = p.password = "", p.auth && (r = p.auth.indexOf(":"), ~r ? (p.username = p.auth.slice(0, r), p.username = encodeURIComponent(decodeURIComponent(p.username)), p.password = p.auth.slice(r + 1), p.password = encodeURIComponent(decodeURIComponent(p.password))) : p.username = encodeURIComponent(decodeURIComponent(p.auth)), p.auth = p.password ? p.username + ":" + p.password : p.username), p.origin = p.protocol !== "file:" && U(p.protocol) && p.host ? p.protocol + "//" + p.host : "null", p.href = p.toString();
+  o && (l.query = o(l.query)), i && a.slashes && l.pathname.charAt(0) !== "/" && (l.pathname !== "" || a.pathname !== "") && (l.pathname = So(l.pathname, a.pathname)), l.pathname.charAt(0) !== "/" && U(l.protocol) && (l.pathname = "/" + l.pathname), _a(l.port, l.protocol) || (l.host = l.hostname, l.port = ""), l.username = l.password = "", l.auth && (r = l.auth.indexOf(":"), ~r ? (l.username = l.auth.slice(0, r), l.username = encodeURIComponent(decodeURIComponent(l.username)), l.password = l.auth.slice(r + 1), l.password = encodeURIComponent(decodeURIComponent(l.password))) : l.username = encodeURIComponent(decodeURIComponent(l.auth)), l.auth = l.password ? l.username + ":" + l.password : l.username), l.origin = l.protocol !== "file:" && U(l.protocol) && l.host ? l.protocol + "//" + l.host : "null", l.href = l.toString();
 }
 function Co(e, a, o) {
   var i = this;
   switch (e) {
     case "query":
-      typeof a == "string" && a.length && (a = (o || Q.parse)(a)), i[e] = a;
+      typeof a == "string" && a.length && (a = (o || J.parse)(a)), i[e] = a;
       break;
     case "port":
-      i[e] = a, Fa(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
+      i[e] = a, _a(a, i.protocol) ? a && (i.host = i.hostname + ":" + a) : (i.host = i.hostname, i[e] = "");
       break;
     case "hostname":
       i[e] = a, i.port && (a += ":" + i.port), i.host = a;
       break;
     case "host":
-      i[e] = a, $a.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
+      i[e] = a, Ha.test(a) ? (a = a.split(":"), i.port = a.pop(), i.hostname = a.join(":")) : (i.hostname = a, i.port = "");
       break;
     case "protocol":
       i.protocol = a.toLowerCase(), i.slashes = !o;
@@ -321,26 +321,26 @@ function Co(e, a, o) {
       var t = a.indexOf(":");
       ~t ? (i.username = a.slice(0, t), i.username = encodeURIComponent(decodeURIComponent(i.username)), i.password = a.slice(t + 1), i.password = encodeURIComponent(decodeURIComponent(i.password))) : i.username = encodeURIComponent(decodeURIComponent(a));
   }
-  for (var n = 0; n < K.length; n++) {
-    var r = K[n];
+  for (var n = 0; n < X.length; n++) {
+    var r = X[n];
     r[4] && (i[r[1]] = i[r[1]].toLowerCase());
   }
   return i.auth = i.password ? i.username + ":" + i.password : i.username, i.origin = i.protocol !== "file:" && U(i.protocol) && i.host ? i.protocol + "//" + i.host : "null", i.href = i.toString(), i;
 }
-function Po(e) {
-  (!e || typeof e != "function") && (e = Q.stringify);
+function Uo(e) {
+  (!e || typeof e != "function") && (e = J.stringify);
   var a, o = this, i = o.host, s = o.protocol;
   s && s.charAt(s.length - 1) !== ":" && (s += ":");
   var t = s + (o.protocol && o.slashes || U(o.protocol) ? "//" : "");
-  return o.username ? (t += o.username, o.password && (t += ":" + o.password), t += "@") : o.password ? (t += ":" + o.password, t += "@") : o.protocol !== "file:" && U(o.protocol) && !i && o.pathname !== "/" && (t += "@"), (i[i.length - 1] === ":" || $a.test(o.hostname) && !o.port) && (i += ":"), t += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (t += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (t += o.hash), t;
+  return o.username ? (t += o.username, o.password && (t += ":" + o.password), t += "@") : o.password ? (t += ":" + o.password, t += "@") : o.protocol !== "file:" && U(o.protocol) && !i && o.pathname !== "/" && (t += "@"), (i[i.length - 1] === ":" || Ha.test(o.hostname) && !o.port) && (i += ":"), t += i + o.pathname, a = typeof o.query == "object" ? e(o.query) : o.query, a && (t += a.charAt(0) !== "?" ? "?" + a : a), o.hash && (t += o.hash), t;
 }
-V.prototype = { set: Co, toString: Po };
-V.extractProtocol = Ha;
+V.prototype = { set: Co, toString: Uo };
+V.extractProtocol = Qa;
 V.location = Ga;
-V.trimLeft = ua;
-V.qs = Q;
-var Uo = V, ma = {}, Qa = {};
-const Vo = [
+V.trimLeft = ma;
+V.qs = J;
+var Vo = V, ca = {}, Ma = {};
+const Ro = [
   "ac",
   "com.ac",
   "edu.ac",
@@ -9717,8 +9717,8 @@ const Vo = [
   "enterprisecloud.nu"
 ];
 (function(e) {
-  var a = _a, o = {};
-  o.rules = Vo.map(function(i) {
+  var a = Na, o = {};
+  o.rules = Ro.map(function(i) {
     return {
       rule: i,
       suffix: i.replace(/^(\*\.|\!)/, ""),
@@ -9789,15 +9789,15 @@ const Vo = [
     if (!m)
       return r.length < 2 ? n : (n.tld = r.pop(), n.sld = r.pop(), n.domain = [n.sld, n.tld].join("."), r.length && (n.subdomain = r.pop()), u());
     n.listed = !0;
-    var c = m.suffix.split("."), p = r.slice(0, r.length - c.length);
-    return m.exception && p.push(c.shift()), n.tld = c.join("."), !p.length || (m.wildcard && (c.unshift(p.pop()), n.tld = c.join(".")), !p.length) || (n.sld = p.pop(), n.domain = [n.sld, n.tld].join("."), p.length && (n.subdomain = p.join("."))), u();
+    var c = m.suffix.split("."), l = r.slice(0, r.length - c.length);
+    return m.exception && l.push(c.shift()), n.tld = c.join("."), !l.length || (m.wildcard && (c.unshift(l.pop()), n.tld = c.join(".")), !l.length) || (n.sld = l.pop(), n.domain = [n.sld, n.tld].join("."), l.length && (n.subdomain = l.join("."))), u();
   }, e.get = function(i) {
     return i && e.parse(i).domain || null;
   }, e.isValid = function(i) {
     var s = e.parse(i);
     return !!(s.domain && s.listed);
   };
-})(Qa);
+})(Ma);
 /*!
  * Copyright (c) 2018, Salesforce.com, Inc.
  * All rights reserved.
@@ -9828,163 +9828,28 @@ const Vo = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const Ro = Qa, fa = [
+const Eo = Ma, wa = [
   "local",
   "example",
   "invalid",
   "localhost",
   "test"
-], Eo = ["localhost", "invalid"];
-function Io(e, a = {}) {
+], Io = ["localhost", "invalid"];
+function To(e, a = {}) {
   const o = e.split("."), i = o[o.length - 1], s = !!a.allowSpecialUseDomain, t = !!a.ignoreError;
-  if (s && fa.includes(i)) {
+  if (s && wa.includes(i)) {
     if (o.length > 1)
       return `${o[o.length - 2]}.${i}`;
-    if (Eo.includes(i))
+    if (Io.includes(i))
       return `${i}`;
   }
-  if (!t && fa.includes(i))
+  if (!t && wa.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
-  return Ro.get(e);
+  return Eo.get(e);
 }
-ma.getPublicSuffix = Io;
-var ca = {};
-/*!
- * Copyright (c) 2015, Salesforce.com, Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. Neither the name of Salesforce.com nor the names of its contributors may
- * be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-let To = class {
-  constructor() {
-    this.synchronous = !1;
-  }
-  findCookie(e, a, o, i) {
-    throw new Error("findCookie is not implemented");
-  }
-  findCookies(e, a, o, i) {
-    throw new Error("findCookies is not implemented");
-  }
-  putCookie(e, a) {
-    throw new Error("putCookie is not implemented");
-  }
-  updateCookie(e, a, o) {
-    throw new Error("updateCookie is not implemented");
-  }
-  removeCookie(e, a, o, i) {
-    throw new Error("removeCookie is not implemented");
-  }
-  removeCookies(e, a, o) {
-    throw new Error("removeCookies is not implemented");
-  }
-  removeAllCookies(e) {
-    throw new Error("removeAllCookies is not implemented");
-  }
-  getAllCookies(e) {
-    throw new Error(
-      "getAllCookies is not implemented (therefore jar cannot be serialized)"
-    );
-  }
-};
-ca.Store = To;
-var pa = {}, M = {};
-M.fromCallback = function(e) {
-  return Object.defineProperty(function() {
-    if (typeof arguments[arguments.length - 1] == "function")
-      e.apply(this, arguments);
-    else
-      return new Promise((a, o) => {
-        arguments[arguments.length] = (i, s) => {
-          if (i)
-            return o(i);
-          a(s);
-        }, arguments.length++, e.apply(this, arguments);
-      });
-  }, "name", { value: e.name });
-};
-M.fromPromise = function(e) {
-  return Object.defineProperty(function() {
-    const a = arguments[arguments.length - 1];
-    if (typeof a != "function")
-      return e.apply(this, arguments);
-    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
-  }, "name", { value: e.name });
-};
-var Ma = {};
-/*!
- * Copyright (c) 2015, Salesforce.com, Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. Neither the name of Salesforce.com nor the names of its contributors may
- * be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-const qo = ma;
-function Lo(e, a) {
-  const o = qo.getPublicSuffix(e, {
-    allowSpecialUseDomain: a
-  });
-  if (!o)
-    return null;
-  if (o == e)
-    return [e];
-  e.slice(-1) == "." && (e = e.slice(0, -1));
-  const i = e.slice(0, -(o.length + 1)).split(".").reverse();
-  let s = o;
-  const t = [s];
-  for (; i.length; )
-    s = `${i.shift()}.${s}`, t.push(s);
-  return t;
-}
-Ma.permuteDomain = Lo;
+ca.getPublicSuffix = To;
 var la = {};
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -10016,37 +9881,172 @@ var la = {};
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+let qo = class {
+  constructor() {
+    this.synchronous = !1;
+  }
+  findCookie(e, a, o, i) {
+    throw new Error("findCookie is not implemented");
+  }
+  findCookies(e, a, o, i) {
+    throw new Error("findCookies is not implemented");
+  }
+  putCookie(e, a) {
+    throw new Error("putCookie is not implemented");
+  }
+  updateCookie(e, a, o) {
+    throw new Error("updateCookie is not implemented");
+  }
+  removeCookie(e, a, o, i) {
+    throw new Error("removeCookie is not implemented");
+  }
+  removeCookies(e, a, o) {
+    throw new Error("removeCookies is not implemented");
+  }
+  removeAllCookies(e) {
+    throw new Error("removeAllCookies is not implemented");
+  }
+  getAllCookies(e) {
+    throw new Error(
+      "getAllCookies is not implemented (therefore jar cannot be serialized)"
+    );
+  }
+};
+la.Store = qo;
+var pa = {}, W = {};
+W.fromCallback = function(e) {
+  return Object.defineProperty(function() {
+    if (typeof arguments[arguments.length - 1] == "function")
+      e.apply(this, arguments);
+    else
+      return new Promise((a, o) => {
+        arguments[arguments.length] = (i, s) => {
+          if (i)
+            return o(i);
+          a(s);
+        }, arguments.length++, e.apply(this, arguments);
+      });
+  }, "name", { value: e.name });
+};
+W.fromPromise = function(e) {
+  return Object.defineProperty(function() {
+    const a = arguments[arguments.length - 1];
+    if (typeof a != "function")
+      return e.apply(this, arguments);
+    delete arguments[arguments.length - 1], arguments.length--, e.apply(this, arguments).then((o) => a(null, o), a);
+  }, "name", { value: e.name });
+};
+var Ja = {};
+/*!
+ * Copyright (c) 2015, Salesforce.com, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of Salesforce.com nor the names of its contributors may
+ * be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+const Lo = ca;
 function Do(e, a) {
+  const o = Lo.getPublicSuffix(e, {
+    allowSpecialUseDomain: a
+  });
+  if (!o)
+    return null;
+  if (o == e)
+    return [e];
+  e.slice(-1) == "." && (e = e.slice(0, -1));
+  const i = e.slice(0, -(o.length + 1)).split(".").reverse();
+  let s = o;
+  const t = [s];
+  for (; i.length; )
+    s = `${i.shift()}.${s}`, t.push(s);
+  return t;
+}
+Ja.permuteDomain = Do;
+var ha = {};
+/*!
+ * Copyright (c) 2015, Salesforce.com, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of Salesforce.com nor the names of its contributors may
+ * be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+function Fo(e, a) {
   return a === e || e.indexOf(a) === 0 && (a.substr(-1) === "/" || e.substr(a.length, 1) === "/");
 }
-la.pathMatch = Do;
-var J = {};
-const No = {}, _o = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+ha.pathMatch = Fo;
+var Z = {};
+const Bo = {}, No = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: No
-}, Symbol.toStringTag, { value: "Module" })), Fo = /* @__PURE__ */ Va(_o);
-function Ja() {
+  default: Bo
+}, Symbol.toStringTag, { value: "Module" })), _o = /* @__PURE__ */ Ra(No);
+function Wa() {
   try {
-    return Fo;
+    return _o;
   } catch {
     return null;
   }
 }
-function Bo() {
+function $o() {
   return Symbol.for("nodejs.util.inspect.custom");
 }
-function $o(e) {
-  const a = (e.requireUtil || Ja)();
+function Ho(e) {
+  const a = (e.requireUtil || Wa)();
   return a ? a.inspect.custom : null;
 }
-J.getUtilInspect = function(e, a = {}) {
-  const o = (a.requireUtil || Ja)();
+Z.getUtilInspect = function(e, a = {}) {
+  const o = (a.requireUtil || Wa)();
   return function(i, s, t) {
     return o ? o.inspect(i, s, t) : e(i);
   };
 };
-J.getCustomInspectSymbol = function(e = {}) {
-  return (e.lookupCustomInspectSymbol || Bo)() || $o(e);
+Z.getCustomInspectSymbol = function(e = {}) {
+  return (e.lookupCustomInspectSymbol || $o)() || Ho(e);
 };
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
@@ -10078,15 +10078,15 @@ J.getCustomInspectSymbol = function(e = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: Go } = M, Ho = ca.Store, Qo = Ma.permuteDomain, Mo = la.pathMatch, { getCustomInspectSymbol: Jo, getUtilInspect: Wo } = J;
-let X = class extends Ho {
+const { fromCallback: Go } = W, Qo = la.Store, Mo = Ja.permuteDomain, Jo = ha.pathMatch, { getCustomInspectSymbol: Wo, getUtilInspect: Zo } = Z;
+let aa = class extends Qo {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
-    const e = Jo();
+    const e = Wo();
     e && (this[e] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: Wo(Wa) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: Zo(Za) }.inspect(this.idx, !1, 2)} }`;
   }
   findCookie(e, a, o, i) {
     return !this.idx[e] || !this.idx[e][a] ? i(null, void 0) : i(null, this.idx[e][a][o] || null);
@@ -10098,20 +10098,20 @@ let X = class extends Ho {
     let t;
     a ? t = function(u) {
       Object.keys(u).forEach((m) => {
-        if (Mo(a, m)) {
+        if (Jo(a, m)) {
           const c = u[m];
-          for (const p in c)
-            s.push(c[p]);
+          for (const l in c)
+            s.push(c[l]);
         }
       });
     } : t = function(u) {
       for (const m in u) {
         const c = u[m];
-        for (const p in c)
-          s.push(c[p]);
+        for (const l in c)
+          s.push(c[l]);
       }
     };
-    const n = Qo(e, o) || [e], r = this.idx;
+    const n = Mo(e, o) || [e], r = this.idx;
     n.forEach((u) => {
       const m = r[u];
       m && t(m);
@@ -10153,32 +10153,32 @@ let X = class extends Ho {
   "removeAllCookies",
   "getAllCookies"
 ].forEach((e) => {
-  X.prototype[e] = Go(
-    X.prototype[e]
+  aa.prototype[e] = Go(
+    aa.prototype[e]
   );
 });
-pa.MemoryCookieStore = X;
-function Wa(e) {
+pa.MemoryCookieStore = aa;
+function Za(e) {
   const a = Object.keys(e);
   if (a.length === 0)
     return "[Object: null prototype] {}";
   let o = `[Object: null prototype] {
 `;
   return Object.keys(e).forEach((i, s) => {
-    o += Zo(i, e[i]), s < a.length - 1 && (o += ","), o += `
+    o += Yo(i, e[i]), s < a.length - 1 && (o += ","), o += `
 `;
   }), o += "}", o;
 }
-function Zo(e, a) {
+function Yo(e, a) {
   const o = "  ";
   let i = `${o}'${e}': [Object: null prototype] {
 `;
   return Object.keys(a).forEach((s, t, n) => {
-    i += Yo(s, a[s]), t < n.length - 1 && (i += ","), i += `
+    i += Ko(s, a[s]), t < n.length - 1 && (i += ","), i += `
 `;
   }), i += `${o}}`, i;
 }
-function Yo(e, a) {
+function Ko(e, a) {
   const o = "    ";
   let i = `${o}'${e}': [Object: null prototype] {
 `;
@@ -10188,57 +10188,57 @@ function Yo(e, a) {
 `;
   }), i += `${o}}`, i;
 }
-pa.inspectFallback = Wa;
+pa.inspectFallback = Za;
 var R = {};
-function Za(e) {
+function Ya(e) {
   return typeof e == "function";
 }
-function Ko(e) {
-  return Ya(e) && e !== "";
-}
 function Xo(e) {
-  return oe(e, Date) && ee(e.getTime());
+  return Ka(e) && e !== "";
 }
 function ae(e) {
+  return ee(e, Date) && ie(e.getTime());
+}
+function oe(e) {
   return e === "" || e instanceof String && e.toString() === "";
 }
-function Ya(e) {
+function Ka(e) {
   return typeof e == "string" || e instanceof String;
 }
-function Ka(e) {
+function Xa(e) {
   return toString.call(e) === "[object Object]";
 }
-function oe(e, a) {
+function ee(e, a) {
   try {
     return e instanceof a;
   } catch {
     return !1;
   }
 }
-function ee(e) {
+function ie(e) {
   return typeof e == "number" && e % 1 === 0;
 }
-function ie(e, a, o) {
-  if (Za(a) || (o = a, a = null), Ka(o) || (o = { Error: "Failed Check" }), !e)
+function se(e, a, o) {
+  if (Ya(a) || (o = a, a = null), Xa(o) || (o = { Error: "Failed Check" }), !e)
     if (a)
-      a(new aa(o));
+      a(new oa(o));
     else
-      throw new aa(o);
+      throw new oa(o);
 }
-class aa extends Error {
+class oa extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-R.ParameterError = aa;
-R.isFunction = Za;
-R.isNonEmptyString = Ko;
-R.isDate = Xo;
-R.isEmptyString = ae;
-R.isString = Ya;
-R.isObject = Ka;
-R.validate = ie;
-var se = "4.1.3";
+R.ParameterError = oa;
+R.isFunction = Ya;
+R.isNonEmptyString = Xo;
+R.isDate = ae;
+R.isEmptyString = oe;
+R.isString = Ka;
+R.isObject = Xa;
+R.validate = se;
+var te = "4.1.3";
 /*!
  * Copyright (c) 2015-2020, Salesforce.com, Inc.
  * All rights reserved.
@@ -10269,8 +10269,8 @@ var se = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const wa = _a, te = Uo, ha = ma, ne = ca.Store, re = pa.MemoryCookieStore, ue = la.pathMatch, l = R, me = se, { fromCallback: Xa } = M, { getCustomInspectSymbol: ce } = J, pe = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, va = /[\x00-\x1F]/, za = [`
-`, "\r", "\0"], le = /[\x20-\x3A\x3C-\x7E]+/, he = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, de = {
+const va = Na, ne = Vo, da = ca, re = la.Store, ue = pa.MemoryCookieStore, me = ha.pathMatch, p = R, ce = te, { fromCallback: ao } = W, { getCustomInspectSymbol: le } = Z, pe = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, za = /[\x00-\x1F]/, xa = [`
+`, "\r", "\0"], he = /[\x20-\x3A\x3C-\x7E]+/, de = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, ke = {
   jan: 0,
   feb: 1,
   mar: 2,
@@ -10283,9 +10283,9 @@ const wa = _a, te = Uo, ha = ma, ne = ca.Store, re = pa.MemoryCookieStore, ue = 
   oct: 9,
   nov: 10,
   dec: 11
-}, oa = 2147483647e3, ke = 0, xa = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
-function Oa(e) {
-  l.validate(l.isNonEmptyString(e), e);
+}, ea = 2147483647e3, ge = 0, Oa = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+function Aa(e) {
+  p.validate(p.isNonEmptyString(e), e);
   const a = String(e).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
 }
@@ -10293,7 +10293,7 @@ const L = Object.freeze({
   SILENT: "silent",
   STRICT: "strict",
   DISABLED: "unsafe-disabled"
-}), ge = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, je = `
+}), je = /(?:^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$)|(?:^(?:(?:[a-f\d]{1,4}:){7}(?:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|:[a-f\d]{1,4}|:)|(?:[a-f\d]{1,4}:){5}(?::(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,2}|:)|(?:[a-f\d]{1,4}:){4}(?:(?::[a-f\d]{1,4}){0,1}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,3}|:)|(?:[a-f\d]{1,4}:){3}(?:(?::[a-f\d]{1,4}){0,2}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,4}|:)|(?:[a-f\d]{1,4}:){2}(?:(?::[a-f\d]{1,4}){0,3}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,5}|:)|(?:[a-f\d]{1,4}:){1}(?:(?::[a-f\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,6}|:)|(?::(?:(?::[a-f\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}|(?::[a-f\d]{1,4}){1,7}|:)))$)/, be = `
 \\[?(?:
 (?:[a-fA-F\\d]{1,4}:){7}(?:[a-fA-F\\d]{1,4}|:)|
 (?:[a-fA-F\\d]{1,4}:){6}(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|:[a-fA-F\\d]{1,4}|:)|
@@ -10304,8 +10304,8 @@ const L = Object.freeze({
 (?:[a-fA-F\\d]{1,4}:){1}(?:(?::[a-fA-F\\d]{1,4}){0,4}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,6}|:)|
 (?::(?:(?::[a-fA-F\\d]{1,4}){0,5}:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}|(?::[a-fA-F\\d]{1,4}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?\\]?
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), ao = new RegExp(`^${je}$`);
-function ea(e, a, o, i) {
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), oo = new RegExp(`^${be}$`);
+function ia(e, a, o, i) {
   let s = 0;
   for (; s < e.length; ) {
     const t = e.charCodeAt(s);
@@ -10315,27 +10315,27 @@ function ea(e, a, o, i) {
   }
   return s < a || s > o || !i && s != e.length ? null : parseInt(e.substr(0, s), 10);
 }
-function be(e) {
+function ye(e) {
   const a = e.split(":"), o = [0, 0, 0];
   if (a.length !== 3)
     return null;
   for (let i = 0; i < 3; i++) {
-    const s = i == 2, t = ea(a[i], 1, 2, s);
+    const s = i == 2, t = ia(a[i], 1, 2, s);
     if (t === null)
       return null;
     o[i] = t;
   }
   return o;
 }
-function ye(e) {
+function fe(e) {
   e = String(e).substr(0, 3).toLowerCase();
-  const a = de[e];
+  const a = ke[e];
   return a >= 0 ? a : null;
 }
-function H(e) {
+function M(e) {
   if (!e)
     return;
-  const a = e.split(he);
+  const a = e.split(de);
   if (!a)
     return;
   let o = null, i = null, s = null, t = null, n = null, r = null;
@@ -10344,38 +10344,38 @@ function H(e) {
     if (!m.length)
       continue;
     let c;
-    if (s === null && (c = be(m), c)) {
+    if (s === null && (c = ye(m), c)) {
       o = c[0], i = c[1], s = c[2];
       continue;
     }
-    if (t === null && (c = ea(m, 1, 2, !0), c !== null)) {
+    if (t === null && (c = ia(m, 1, 2, !0), c !== null)) {
       t = c;
       continue;
     }
-    if (n === null && (c = ye(m), c !== null)) {
+    if (n === null && (c = fe(m), c !== null)) {
       n = c;
       continue;
     }
-    r === null && (c = ea(m, 2, 4, !0), c !== null && (r = c, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
+    r === null && (c = ia(m, 2, 4, !0), c !== null && (r = c, r >= 70 && r <= 99 ? r += 1900 : r >= 0 && r <= 69 && (r += 2e3)));
   }
   if (!(t === null || n === null || r === null || s === null || t < 1 || t > 31 || r < 1601 || o > 23 || i > 59 || s > 59))
     return new Date(Date.UTC(r, n, t, o, i, s));
 }
-function fe(e) {
-  return l.validate(l.isDate(e), e), e.toUTCString();
+function we(e) {
+  return p.validate(p.isDate(e), e), e.toUTCString();
 }
 function $(e) {
-  return e == null ? null : (e = e.trim().replace(/^\./, ""), ao.test(e) && (e = e.replace("[", "").replace("]", "")), wa && /[^\u0001-\u007f]/.test(e) && (e = wa.toASCII(e)), e.toLowerCase());
+  return e == null ? null : (e = e.trim().replace(/^\./, ""), oo.test(e) && (e = e.replace("[", "").replace("]", "")), va && /[^\u0001-\u007f]/.test(e) && (e = va.toASCII(e)), e.toLowerCase());
 }
-function Aa(e, a, o) {
+function Pa(e, a, o) {
   if (e == null || a == null)
     return null;
   if (o !== !1 && (e = $(e), a = $(a)), e == a)
     return !0;
   const i = e.lastIndexOf(a);
-  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || ge.test(e));
+  return !(i <= 0 || e.length !== a.length + i || e.substr(i - 1, 1) !== "." || je.test(e));
 }
-function we(e) {
+function ve(e) {
   if (!e || e.substr(0, 1) !== "/")
     return "/";
   if (e === "/")
@@ -10383,33 +10383,33 @@ function we(e) {
   const a = e.lastIndexOf("/");
   return a === 0 ? "/" : e.slice(0, a);
 }
-function ve(e) {
-  if (l.isEmptyString(e))
+function ze(e) {
+  if (p.isEmptyString(e))
     return e;
-  for (let a = 0; a < za.length; a++) {
-    const o = e.indexOf(za[a]);
+  for (let a = 0; a < xa.length; a++) {
+    const o = e.indexOf(xa[a]);
     o !== -1 && (e = e.substr(0, o));
   }
   return e;
 }
-function ze(e, a) {
-  e = ve(e), l.validate(l.isString(e), e);
+function xe(e, a) {
+  e = ze(e), p.validate(p.isString(e), e);
   let o = e.indexOf("=");
   if (a)
     o === 0 && (e = e.substr(1), o = e.indexOf("="));
   else if (o <= 0)
     return;
   let i, s;
-  if (o <= 0 ? (i = "", s = e.trim()) : (i = e.substr(0, o).trim(), s = e.substr(o + 1).trim()), va.test(i) || va.test(s))
+  if (o <= 0 ? (i = "", s = e.trim()) : (i = e.substr(0, o).trim(), s = e.substr(o + 1).trim()), za.test(i) || za.test(s))
     return;
   const t = new w();
   return t.key = i, t.value = s, t;
 }
-function xe(e, a) {
-  if ((!a || typeof a != "object") && (a = {}), l.isEmptyString(e) || !l.isString(e))
+function Oe(e, a) {
+  if ((!a || typeof a != "object") && (a = {}), p.isEmptyString(e) || !p.isString(e))
     return null;
   e = e.trim();
-  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), s = ze(i, !!a.loose);
+  const o = e.indexOf(";"), i = o === -1 ? e : e.substr(0, o), s = xe(i, !!a.loose);
   if (!s)
     return;
   if (o === -1)
@@ -10427,20 +10427,20 @@ function xe(e, a) {
     switch (u === -1 ? (m = r, c = null) : (m = r.substr(0, u), c = r.substr(u + 1)), m = m.trim().toLowerCase(), c && (c = c.trim()), m) {
       case "expires":
         if (c) {
-          const p = H(c);
-          p && (s.expires = p);
+          const l = M(c);
+          l && (s.expires = l);
         }
         break;
       case "max-age":
         if (c && /^-?[0-9]+$/.test(c)) {
-          const p = parseInt(c, 10);
-          s.setMaxAge(p);
+          const l = parseInt(c, 10);
+          s.setMaxAge(l);
         }
         break;
       case "domain":
         if (c) {
-          const p = c.trim().replace(/^\./, "");
-          p && (s.domain = p.toLowerCase());
+          const l = c.trim().replace(/^\./, "");
+          l && (s.domain = l.toLowerCase());
         }
         break;
       case "path":
@@ -10475,13 +10475,13 @@ function xe(e, a) {
   }
   return s;
 }
-function Oe(e) {
-  return l.validate(l.isObject(e), e), !e.key.startsWith("__Secure-") || e.secure;
-}
 function Ae(e) {
-  return l.validate(l.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
+  return p.validate(p.isObject(e), e), !e.key.startsWith("__Secure-") || e.secure;
 }
-function oo(e) {
+function Pe(e) {
+  return p.validate(p.isObject(e)), !e.key.startsWith("__Host-") || e.secure && e.hostOnly && e.path != null && e.path === "/";
+}
+function eo(e) {
   let a;
   try {
     a = JSON.parse(e);
@@ -10490,29 +10490,29 @@ function oo(e) {
   }
   return a;
 }
-function da(e) {
-  if (!e || l.isEmptyString(e))
+function ka(e) {
+  if (!e || p.isEmptyString(e))
     return null;
   let a;
   if (typeof e == "string") {
-    if (a = oo(e), a instanceof Error)
+    if (a = eo(e), a instanceof Error)
       return null;
   } else
     a = e;
   const o = new w();
   for (let i = 0; i < w.serializableProperties.length; i++) {
     const s = w.serializableProperties[i];
-    a[s] === void 0 || a[s] === F[s] || (s === "expires" || s === "creation" || s === "lastAccessed" ? a[s] === null ? o[s] = null : o[s] = a[s] == "Infinity" ? "Infinity" : new Date(a[s]) : o[s] = a[s]);
+    a[s] === void 0 || a[s] === N[s] || (s === "expires" || s === "creation" || s === "lastAccessed" ? a[s] === null ? o[s] = null : o[s] = a[s] == "Infinity" ? "Infinity" : new Date(a[s]) : o[s] = a[s]);
   }
   return o;
 }
 function Sa(e, a) {
-  l.validate(l.isObject(e), e), l.validate(l.isObject(a), a);
+  p.validate(p.isObject(e), e), p.validate(p.isObject(a), a);
   let o = 0;
   const i = e.path ? e.path.length : 0;
   if (o = (a.path ? a.path.length : 0) - i, o !== 0)
     return o;
-  const s = e.creation ? e.creation.getTime() : oa, t = a.creation ? a.creation.getTime() : oa;
+  const s = e.creation ? e.creation.getTime() : ea, t = a.creation ? a.creation.getTime() : ea;
   return o = s - t, o !== 0 || (o = e.creationIndex - a.creationIndex), o;
 }
 function Ca(e) {
@@ -10522,9 +10522,9 @@ function Ca(e) {
     e = decodeURI(e);
   } catch {
   }
-  return te(e);
+  return ne(e);
 }
-const F = {
+const N = {
   // the order in which the RFC has them:
   key: "",
   value: "",
@@ -10544,8 +10544,8 @@ const F = {
 };
 class w {
   constructor(a = {}) {
-    const o = ce();
-    o && (this[o] = this.inspect), Object.assign(this, F, a), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
+    const o = le();
+    o && (this[o] = this.inspect), Object.assign(this, N, a), this.creation = this.creation || /* @__PURE__ */ new Date(), Object.defineProperty(this, "creationIndex", {
       configurable: !1,
       enumerable: !1,
       // important for assert.deepEqual checks
@@ -10560,20 +10560,20 @@ class w {
   toJSON() {
     const a = {};
     for (const o of w.serializableProperties)
-      this[o] !== F[o] && (o === "expires" || o === "creation" || o === "lastAccessed" ? this[o] === null ? a[o] = null : a[o] = this[o] == "Infinity" ? "Infinity" : this[o].toISOString() : o === "maxAge" ? this[o] !== null && (a[o] = this[o] == 1 / 0 || this[o] == -1 / 0 ? this[o].toString() : this[o]) : this[o] !== F[o] && (a[o] = this[o]));
+      this[o] !== N[o] && (o === "expires" || o === "creation" || o === "lastAccessed" ? this[o] === null ? a[o] = null : a[o] = this[o] == "Infinity" ? "Infinity" : this[o].toISOString() : o === "maxAge" ? this[o] !== null && (a[o] = this[o] == 1 / 0 || this[o] == -1 / 0 ? this[o].toString() : this[o]) : this[o] !== N[o] && (a[o] = this[o]));
     return a;
   }
   clone() {
-    return da(this.toJSON());
+    return ka(this.toJSON());
   }
   validate() {
-    if (!pe.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !H(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !le.test(this.path))
+    if (!pe.test(this.value) || this.expires != 1 / 0 && !(this.expires instanceof Date) && !M(this.expires) || this.maxAge != null && this.maxAge <= 0 || this.path != null && !he.test(this.path))
       return !1;
     const a = this.cdomain();
-    return !(a && (a.match(/\.$/) || ha.getPublicSuffix(a) == null));
+    return !(a && (a.match(/\.$/) || da.getPublicSuffix(a) == null));
   }
   setExpires(a) {
-    a instanceof Date ? this.expires = a : this.expires = H(a) || "Infinity";
+    a instanceof Date ? this.expires = a : this.expires = M(a) || "Infinity";
   }
   setMaxAge(a) {
     a === 1 / 0 || a === -1 / 0 ? this.maxAge = a.toString() : this.maxAge = a;
@@ -10585,7 +10585,7 @@ class w {
   // gives Set-Cookie header format
   toString() {
     let a = this.cookieString();
-    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${fe(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
+    if (this.expires != 1 / 0 && (this.expires instanceof Date ? a += `; Expires=${we(this.expires)}` : a += `; Expires=${this.expires}`), this.maxAge != null && this.maxAge != 1 / 0 && (a += `; Max-Age=${this.maxAge}`), this.domain && !this.hostOnly && (a += `; Domain=${this.domain}`), this.path && (a += `; Path=${this.path}`), this.secure && (a += "; Secure"), this.httpOnly && (a += "; HttpOnly"), this.sameSite && this.sameSite !== "none") {
       const o = w.sameSiteCanonical[this.sameSite.toLowerCase()];
       a += `; SameSite=${o || this.sameSite}`;
     }
@@ -10601,7 +10601,7 @@ class w {
     if (this.maxAge != null)
       return this.maxAge <= 0 ? 0 : this.maxAge * 1e3;
     let o = this.expires;
-    return o != 1 / 0 ? (o instanceof Date || (o = H(o) || 1 / 0), o == 1 / 0 ? 1 / 0 : o.getTime() - (a || Date.now())) : 1 / 0;
+    return o != 1 / 0 ? (o instanceof Date || (o = M(o) || 1 / 0), o == 1 / 0 ? 1 / 0 : o.getTime() - (a || Date.now())) : 1 / 0;
   }
   // expiryTime() replaces the "expiry-time" parts of S5.3 step 3 (setCookie()
   // elsewhere)
@@ -10616,7 +10616,7 @@ class w {
   // elsewhere), except it returns a Date
   expiryDate(a) {
     const o = this.expiryTime(a);
-    return o == 1 / 0 ? new Date(oa) : o == -1 / 0 ? new Date(ke) : new Date(o);
+    return o == 1 / 0 ? new Date(ea) : o == -1 / 0 ? new Date(ge) : new Date(o);
   }
   // This replaces the "persistent-flag" parts of S5.3 step 3
   isPersistent() {
@@ -10631,9 +10631,9 @@ class w {
   }
 }
 w.cookiesCreated = 0;
-w.parse = xe;
-w.fromJSON = da;
-w.serializableProperties = Object.keys(F);
+w.parse = Oe;
+w.fromJSON = ka;
+w.serializableProperties = Object.keys(N);
 w.sameSiteLevel = {
   strict: 3,
   lax: 2,
@@ -10643,7 +10643,7 @@ w.sameSiteCanonical = {
   strict: "Strict",
   lax: "Lax"
 };
-function Pa(e) {
+function Ua(e) {
   if (e != null) {
     const a = e.toLowerCase();
     switch (a) {
@@ -10657,20 +10657,20 @@ function Pa(e) {
 }
 class A {
   constructor(a, o = { rejectPublicSuffixes: !0 }) {
-    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), l.validate(l.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new re(), this.prefixSecurity = Pa(o.prefixSecurity), this._cloneSync = E("clone"), this._importCookiesSync = E("_importCookies"), this.getCookiesSync = E("getCookies"), this.getCookieStringSync = E("getCookieString"), this.getSetCookieStringsSync = E("getSetCookieStrings"), this.removeAllCookiesSync = E("removeAllCookies"), this.setCookieSync = E("setCookie"), this.serializeSync = E("serialize");
+    typeof o == "boolean" && (o = { rejectPublicSuffixes: o }), p.validate(p.isObject(o), o), this.rejectPublicSuffixes = o.rejectPublicSuffixes, this.enableLooseMode = !!o.looseMode, this.allowSpecialUseDomain = typeof o.allowSpecialUseDomain == "boolean" ? o.allowSpecialUseDomain : !0, this.store = a || new ue(), this.prefixSecurity = Ua(o.prefixSecurity), this._cloneSync = E("clone"), this._importCookiesSync = E("_importCookies"), this.getCookiesSync = E("getCookies"), this.getCookieStringSync = E("getCookieString"), this.getSetCookieStringsSync = E("getSetCookieStrings"), this.removeAllCookiesSync = E("removeAllCookies"), this.setCookieSync = E("setCookie"), this.serializeSync = E("serialize");
   }
   setCookie(a, o, i, s) {
-    l.validate(l.isNonEmptyString(o), s, i);
+    p.validate(p.isNonEmptyString(o), s, i);
     let t;
-    if (l.isFunction(o))
+    if (p.isFunction(o))
       return s = o, s(new Error("No URL was specified"));
     const n = Ca(o);
-    if (l.isFunction(i) && (s = i, i = {}), l.validate(l.isFunction(s), s), !l.isNonEmptyString(a) && !l.isObject(a) && a instanceof String && a.length == 0)
+    if (p.isFunction(i) && (s = i, i = {}), p.validate(p.isFunction(s), s), !p.isNonEmptyString(a) && !p.isObject(a) && a instanceof String && a.length == 0)
       return s(null);
     const r = $(n.hostname), u = i.loose || this.enableLooseMode;
     let m = null;
-    if (i.sameSiteContext && (m = Oa(i.sameSiteContext), !m))
-      return s(new Error(xa));
+    if (i.sameSiteContext && (m = Aa(i.sameSiteContext), !m))
+      return s(new Error(Oa));
     if (typeof a == "string" || a instanceof String) {
       if (a = w.parse(a, { loose: u }), !a)
         return t = new Error("Cookie failed to parse"), s(i.ignoreError ? null : t);
@@ -10679,38 +10679,38 @@ class A {
         "First argument to setCookie must be a Cookie object or string"
       ), s(i.ignoreError ? null : t);
     const c = i.now || /* @__PURE__ */ new Date();
-    if (this.rejectPublicSuffixes && a.domain && ha.getPublicSuffix(a.cdomain(), {
+    if (this.rejectPublicSuffixes && a.domain && da.getPublicSuffix(a.cdomain(), {
       allowSpecialUseDomain: this.allowSpecialUseDomain,
       ignoreError: i.ignoreError
-    }) == null && !ao.test(a.domain))
+    }) == null && !oo.test(a.domain))
       return t = new Error("Cookie has domain set to a public suffix"), s(i.ignoreError ? null : t);
     if (a.domain) {
-      if (!Aa(r, a.cdomain(), !1))
+      if (!Pa(r, a.cdomain(), !1))
         return t = new Error(
           `Cookie not in this host's domain. Cookie:${a.cdomain()} Request:${r}`
         ), s(i.ignoreError ? null : t);
       a.hostOnly == null && (a.hostOnly = !1);
     } else
       a.hostOnly = !0, a.domain = r;
-    if ((!a.path || a.path[0] !== "/") && (a.path = we(n.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
+    if ((!a.path || a.path[0] !== "/") && (a.path = ve(n.pathname), a.pathIsDefault = !0), i.http === !1 && a.httpOnly)
       return t = new Error("Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : t);
     if (a.sameSite !== "none" && a.sameSite !== void 0 && m && m === "none")
       return t = new Error(
         "Cookie is SameSite but this is a cross-origin request"
       ), s(i.ignoreError ? null : t);
-    const p = this.prefixSecurity === L.SILENT;
+    const l = this.prefixSecurity === L.SILENT;
     if (this.prefixSecurity !== L.DISABLED) {
-      let v = !1, k;
-      if (Oe(a) ? Ae(a) || (v = !0, k = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (v = !0, k = "Cookie has __Secure prefix but Secure attribute is not set"), v)
+      let v = !1, y;
+      if (Ae(a) ? Pe(a) || (v = !0, y = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (v = !0, y = "Cookie has __Secure prefix but Secure attribute is not set"), v)
         return s(
-          i.ignoreError || p ? null : new Error(k)
+          i.ignoreError || l ? null : new Error(y)
         );
     }
-    const g = this.store;
-    g.updateCookie || (g.updateCookie = function(v, k, O) {
-      this.putCookie(k, O);
+    const f = this.store;
+    f.updateCookie || (f.updateCookie = function(v, y, O) {
+      this.putCookie(y, O);
     });
-    function z(v, k) {
+    function x(v, y) {
       if (v)
         return s(v);
       const O = function(G) {
@@ -10718,59 +10718,59 @@ class A {
           return s(G);
         s(null, a);
       };
-      if (k) {
-        if (i.http === !1 && k.httpOnly)
+      if (y) {
+        if (i.http === !1 && y.httpOnly)
           return v = new Error("old Cookie is HttpOnly and this isn't an HTTP API"), s(i.ignoreError ? null : v);
-        a.creation = k.creation, a.creationIndex = k.creationIndex, a.lastAccessed = c, g.updateCookie(k, a, O);
+        a.creation = y.creation, a.creationIndex = y.creationIndex, a.lastAccessed = c, f.updateCookie(y, a, O);
       } else
-        a.creation = a.lastAccessed = c, g.putCookie(a, O);
+        a.creation = a.lastAccessed = c, f.putCookie(a, O);
     }
-    g.findCookie(a.domain, a.path, a.key, z);
+    f.findCookie(a.domain, a.path, a.key, x);
   }
   // RFC6365 S5.4
   getCookies(a, o, i) {
-    l.validate(l.isNonEmptyString(a), i, a);
+    p.validate(p.isNonEmptyString(a), i, a);
     const s = Ca(a);
-    l.isFunction(o) && (i = o, o = {}), l.validate(l.isObject(o), i, o), l.validate(l.isFunction(i), i);
+    p.isFunction(o) && (i = o, o = {}), p.validate(p.isObject(o), i, o), p.validate(p.isFunction(i), i);
     const t = $(s.hostname), n = s.pathname || "/";
     let r = o.secure;
     r == null && s.protocol && (s.protocol == "https:" || s.protocol == "wss:") && (r = !0);
     let u = 0;
     if (o.sameSiteContext) {
-      const k = Oa(o.sameSiteContext);
-      if (u = w.sameSiteLevel[k], !u)
-        return i(new Error(xa));
+      const y = Aa(o.sameSiteContext);
+      if (u = w.sameSiteLevel[y], !u)
+        return i(new Error(Oa));
     }
     let m = o.http;
     m == null && (m = !0);
-    const c = o.now || Date.now(), p = o.expire !== !1, g = !!o.allPaths, z = this.store;
-    function v(k) {
-      if (k.hostOnly) {
-        if (k.domain != t)
+    const c = o.now || Date.now(), l = o.expire !== !1, f = !!o.allPaths, x = this.store;
+    function v(y) {
+      if (y.hostOnly) {
+        if (y.domain != t)
           return !1;
-      } else if (!Aa(t, k.domain, !1))
+      } else if (!Pa(t, y.domain, !1))
         return !1;
-      return !g && !ue(n, k.path) || k.secure && !r || k.httpOnly && !m || u && w.sameSiteLevel[k.sameSite || "none"] > u ? !1 : p && k.expiryTime() <= c ? (z.removeCookie(k.domain, k.path, k.key, () => {
+      return !f && !me(n, y.path) || y.secure && !r || y.httpOnly && !m || u && w.sameSiteLevel[y.sameSite || "none"] > u ? !1 : l && y.expiryTime() <= c ? (x.removeCookie(y.domain, y.path, y.key, () => {
       }), !1) : !0;
     }
-    z.findCookies(
+    x.findCookies(
       t,
-      g ? null : n,
+      f ? null : n,
       this.allowSpecialUseDomain,
-      (k, O) => {
-        if (k)
-          return i(k);
+      (y, O) => {
+        if (y)
+          return i(y);
         O = O.filter(v), o.sort !== !1 && (O = O.sort(Sa));
         const G = /* @__PURE__ */ new Date();
-        for (const so of O)
-          so.lastAccessed = G;
+        for (const to of O)
+          to.lastAccessed = G;
         i(null, O);
       }
     );
   }
   getCookieString(...a) {
     const o = a.pop();
-    l.validate(l.isFunction(o), o);
+    p.validate(p.isFunction(o), o);
     const i = function(s, t) {
       s ? o(s) : o(
         null,
@@ -10781,7 +10781,7 @@ class A {
   }
   getSetCookieStrings(...a) {
     const o = a.pop();
-    l.validate(l.isFunction(o), o);
+    p.validate(p.isFunction(o), o);
     const i = function(s, t) {
       s ? o(s) : o(
         null,
@@ -10791,21 +10791,21 @@ class A {
     a.push(i), this.getCookies.apply(this, a);
   }
   serialize(a) {
-    l.validate(l.isFunction(a), a);
+    p.validate(p.isFunction(a), a);
     let o = this.store.constructor.name;
-    l.isObject(o) && (o = null);
+    p.isObject(o) && (o = null);
     const i = {
       // The version of tough-cookie that serialized this jar. Generally a good
       // practice since future versions can make data import decisions based on
       // known past behavior. When/if this matters, use `semver`.
-      version: `tough-cookie@${me}`,
+      version: `tough-cookie@${ce}`,
       // add the store type, to make humans happy:
       storeType: o,
       // CookieJar configuration:
       rejectPublicSuffixes: !!this.rejectPublicSuffixes,
       enableLooseMode: !!this.enableLooseMode,
       allowSpecialUseDomain: !!this.allowSpecialUseDomain,
-      prefixSecurity: Pa(this.prefixSecurity),
+      prefixSecurity: Ua(this.prefixSecurity),
       // this gets filled from getAllCookies:
       cookies: []
     };
@@ -10833,7 +10833,7 @@ class A {
         return o(t, this);
       let n;
       try {
-        n = da(i.shift());
+        n = ka(i.shift());
       } catch (r) {
         return o(r);
       }
@@ -10860,9 +10860,9 @@ class A {
     return this._cloneSync(a);
   }
   removeAllCookies(a) {
-    l.validate(l.isFunction(a), a);
+    p.validate(p.isFunction(a), a);
     const o = this.store;
-    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== ne.prototype.removeAllCookies)
+    if (typeof o.removeAllCookies == "function" && o.removeAllCookies !== re.prototype.removeAllCookies)
       return o.removeAllCookies(a);
     o.getAllCookies((i, s) => {
       if (i)
@@ -10886,10 +10886,10 @@ class A {
     });
   }
   static deserialize(a, o, i) {
-    arguments.length !== 3 && (i = o, o = null), l.validate(l.isFunction(i), i);
+    arguments.length !== 3 && (i = o, o = null), p.validate(p.isFunction(i), i);
     let s;
     if (typeof a == "string") {
-      if (s = oo(a), s instanceof Error)
+      if (s = eo(a), s instanceof Error)
         return i(s);
     } else
       s = a;
@@ -10928,9 +10928,9 @@ A.fromJSON = A.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((e) => {
-  A.prototype[e] = Xa(A.prototype[e]);
+  A.prototype[e] = ao(A.prototype[e]);
 });
-A.deserialize = Xa(A.deserialize);
+A.deserialize = ao(A.deserialize);
 function E(e) {
   return function(...a) {
     if (!this.store.synchronous)
@@ -10946,20 +10946,20 @@ function E(e) {
   };
 }
 var Se = A;
-ha.getPublicSuffix;
-l.ParameterError;
-var eo = {};
-Object.defineProperty(eo, "__esModule", { value: !0 });
+da.getPublicSuffix;
+p.ParameterError;
+var io = {};
+Object.defineProperty(io, "__esModule", { value: !0 });
 function Ce(e) {
   return e;
 }
-var Pe = eo.wrapper = Ce;
-const Ue = new Se();
-Pe && (d.defaults.jar = Ue);
+var Ue = io.wrapper = Ce;
+const Ve = new Se();
+Ue && (d.defaults.jar = Ve);
 d.defaults.withCredentials = !0;
-class Ua {
-  constructor(a = io) {
-    _(this, "basePath"), _(this, "baseOptions"), _(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
+class Va {
+  constructor(a = so) {
+    B(this, "basePath"), B(this, "baseOptions"), B(this, "formDataCtor"), this.basePath = a.basePath, this.baseOptions = a.baseOptions, this.formDataCtor = a.formDataCtor;
   }
   /**
    * Check if the given MIME is a JSON MIME.
@@ -10976,24 +10976,24 @@ class Ua {
     return a !== null && (o.test(a) || a.toLowerCase() === "application/json-patch+json");
   }
 }
-const io = typeof window == "object" && window.self === self && self ? new Ua({ basePath: "" }) : new Ua({ basePath: "https://learning.cultofbits.com" });
-class W {
+const so = typeof window == "object" && window.self === self && self ? new Va({ basePath: "" }) : new Va({ basePath: "https://learning.cultofbits.com" });
+class H {
   constructor(a, o = d) {
-    _(this, "configuration"), this.axios = o, this.configuration = a ?? io;
+    B(this, "configuration"), this.axios = o, this.configuration = a ?? so;
   }
 }
-class Ve extends Error {
+class Re extends Error {
   constructor(a, o) {
-    super(o), _(this, "name", "RequiredError"), this.field = a;
+    super(o), B(this, "name", "RequiredError"), this.field = a;
   }
 }
-const j = "https://example.com", h = function(e, a, o) {
+const k = "https://example.com", h = function(e, a, o) {
   if (o == null)
-    throw new Ve(
+    throw new Re(
       a,
       `Required parameter ${a} was null or undefined when calling ${e}.`
     );
-}, b = function(e, ...a) {
+}, g = function(e, ...a) {
   const o = new URLSearchParams(e.search);
   for (const i of a)
     for (const s in i)
@@ -11004,17 +11004,187 @@ const j = "https://example.com", h = function(e, a, o) {
       } else
         o.set(s, i[s]);
   e.search = o.toString();
-}, x = function(e, a, o) {
+}, z = function(e, a, o) {
   const i = typeof e != "string";
   return (i && o && o.isJsonMime ? o.isJsonMime(a.headers["Content-Type"]) : i) ? JSON.stringify(e !== void 0 ? e : {}) : e || "";
-}, y = function(e) {
+}, j = function(e) {
   return e.pathname + e.search + e.hash;
-}, f = function(e, a, o) {
+}, b = function(e, a, o) {
   return (i = a) => {
     const s = { ...e.options, url: o.basePath + e.url };
     return i.request(s);
   };
-}, Re = function(e) {
+}, Ee = function(e) {
+  return {
+    /**
+     * 
+     * @summary Authenticate a user
+     * @param {Credentials} credentials The user credentials
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    authenticate: async (a, o = {}) => {
+      h("authenticate", "credentials", a);
+      const i = "/userm/userm/auth", s = new URL(i, k);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "POST", ...t, ...o }, r = {}, u = {};
+      r["Content-Type"] = "application/json", g(s, u);
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = z(a, n, e), {
+        url: j(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Impersonate another user
+     * @param {string} username 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    impersonate: async (a, o = {}) => {
+      h("impersonate", "username", a);
+      const i = "/userm/userm/auth/impersonate/{username}".replace("{username}", encodeURIComponent(String(a))), s = new URL(i, k);
+      let t;
+      e && (t = e.baseOptions);
+      const n = { method: "PUT", ...t, ...o }, r = {};
+      g(s, {});
+      let m = t && t.headers ? t.headers : {};
+      return n.headers = { ...r, ...m, ...o.headers }, {
+        url: j(s),
+        options: n
+      };
+    },
+    /**
+     * 
+     * @summary Logout user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    logout: async (a = {}) => {
+      const o = "/userm/userm/auth/logout", i = new URL(o, k);
+      let s;
+      e && (s = e.baseOptions);
+      const t = { method: "GET", ...s, ...a }, n = {};
+      g(i, {});
+      let u = s && s.headers ? s.headers : {};
+      return t.headers = { ...n, ...u, ...a.headers }, {
+        url: j(i),
+        options: t
+      };
+    },
+    /**
+     * 
+     * @summary Reset the user to it\'s original user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetOriginalUser: async (a = {}) => {
+      const o = "/userm/userm/auth/resetUser", i = new URL(o, k);
+      let s;
+      e && (s = e.baseOptions);
+      const t = { method: "PUT", ...s, ...a }, n = {};
+      g(i, {});
+      let u = s && s.headers ? s.headers : {};
+      return t.headers = { ...n, ...u, ...a.headers }, {
+        url: j(i),
+        options: t
+      };
+    }
+  };
+}, Q = function(e) {
+  const a = Ee(e);
+  return {
+    /**
+     * 
+     * @summary Authenticate a user
+     * @param {Credentials} credentials The user credentials
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async authenticate(o, i) {
+      const s = await a.authenticate(o, i);
+      return b(s, d, e);
+    },
+    /**
+     * 
+     * @summary Impersonate another user
+     * @param {string} username 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async impersonate(o, i) {
+      const s = await a.impersonate(o, i);
+      return b(s, d, e);
+    },
+    /**
+     * 
+     * @summary Logout user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async logout(o) {
+      const i = await a.logout(o);
+      return b(i, d, e);
+    },
+    /**
+     * 
+     * @summary Reset the user to it\'s original user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async resetOriginalUser(o) {
+      const i = await a.resetOriginalUser(o);
+      return b(i, d, e);
+    }
+  };
+};
+class Fe extends H {
+  /**
+   * 
+   * @summary Authenticate a user
+   * @param {Credentials} credentials The user credentials
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AuthenticationApi
+   */
+  authenticate(a, o) {
+    return Q(this.configuration).authenticate(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Impersonate another user
+   * @param {string} username 
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AuthenticationApi
+   */
+  impersonate(a, o) {
+    return Q(this.configuration).impersonate(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Logout user
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AuthenticationApi
+   */
+  logout(a) {
+    return Q(this.configuration).logout(a).then((o) => o(this.axios));
+  }
+  /**
+   * 
+   * @summary Reset the user to it\'s original user
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AuthenticationApi
+   */
+  resetOriginalUser(a) {
+    return Q(this.configuration).resetOriginalUser(a).then((o) => o(this.axios));
+  }
+}
+const Ie = function(e) {
   return {
     /**
      * 
@@ -11026,14 +11196,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     addRoles: async (a, o, i = {}) => {
       h("addRoles", "id", a), h("addRoles", "requestBody", o);
-      const s = "/userm/userm/group/{id}/roles".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/group/{id}/roles".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     },
@@ -11047,14 +11217,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     addUsers: async (a, o, i = {}) => {
       h("addUsers", "id", a), h("addUsers", "requestBody", o);
-      const s = "/userm/userm/group/{id}/users".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/group/{id}/users".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     },
@@ -11067,14 +11237,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     createGroup: async (a, o = {}) => {
       h("createGroup", "createGroupRequest", a);
-      const i = "/userm/userm/group", s = new URL(i, j);
+      const i = "/userm/userm/group", s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", b(s, u);
+      r["Content-Type"] = "application/json", g(s, u);
       let m = t && t.headers ? t.headers : {};
-      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
-        url: y(s),
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = z(a, n, e), {
+        url: j(s),
         options: n
       };
     },
@@ -11087,14 +11257,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     deleteGroup: async (a, o = {}) => {
       h("deleteGroup", "id", a);
-      const i = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "DELETE", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
       };
     },
@@ -11108,14 +11278,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     getGroup: async (a, o, i = {}) => {
       h("getGroup", "id", a);
-      const s = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
-      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      o != null && (u["If-None-Match"] = String(o)), g(t, m);
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -11128,14 +11298,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     getGroupByName: async (a, o = {}) => {
       h("getGroupByName", "name", a);
-      const i = "/userm/userm/group/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/group/name/{name}".replace("{name}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "GET", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
       };
     },
@@ -11149,14 +11319,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     removeRoles: async (a, o, i = {}) => {
       h("removeRoles", "id", a), h("removeRoles", "requestBody", o);
-      const s = "/userm/userm/group/{id}/roles".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/group/{id}/roles".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     },
@@ -11170,14 +11340,14 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     removeUsers: async (a, o, i = {}) => {
       h("removeUsers", "id", a), h("removeUsers", "requestBody", o);
-      const s = "/userm/userm/group/{id}/users".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/group/{id}/users".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     },
@@ -11193,14 +11363,14 @@ const j = "https://example.com", h = function(e, a, o) {
      * @throws {RequiredError}
      */
     searchGroups: async (a, o, i, s, t, n = {}) => {
-      const r = "/userm/userm/group/search", u = new URL(r, j);
+      const r = "/userm/userm/group/search", u = new URL(r, k);
       let m;
       e && (m = e.baseOptions);
-      const c = { method: "GET", ...m, ...n }, p = {}, g = {};
-      a !== void 0 && (g.q = a), o !== void 0 && (g.from = o), i !== void 0 && (g.size = i), s !== void 0 && (g.sort = s), t !== void 0 && (g.ascending = t), b(u, g);
-      let z = m && m.headers ? m.headers : {};
-      return c.headers = { ...p, ...z, ...n.headers }, {
-        url: y(u),
+      const c = { method: "GET", ...m, ...n }, l = {}, f = {};
+      a !== void 0 && (f.q = a), o !== void 0 && (f.from = o), i !== void 0 && (f.size = i), s !== void 0 && (f.sort = s), t !== void 0 && (f.ascending = t), g(u, f);
+      let x = m && m.headers ? m.headers : {};
+      return c.headers = { ...l, ...x, ...n.headers }, {
+        url: j(u),
         options: c
       };
     },
@@ -11214,20 +11384,20 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     updateGroup: async (a, o, i = {}) => {
       h("updateGroup", "id", a), h("updateGroup", "updateGroupRequest", o);
-      const s = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/group/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     }
   };
-}, S = function(e) {
-  const a = Re(e);
+}, P = function(e) {
+  const a = Ie(e);
   return {
     /**
      * 
@@ -11239,7 +11409,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async addRoles(o, i, s) {
       const t = await a.addRoles(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11251,7 +11421,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async addUsers(o, i, s) {
       const t = await a.addUsers(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11262,7 +11432,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async createGroup(o, i) {
       const s = await a.createGroup(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -11273,7 +11443,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async deleteGroup(o, i) {
       const s = await a.deleteGroup(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * Retrieves the full details of a group.
@@ -11285,7 +11455,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async getGroup(o, i, s) {
       const t = await a.getGroup(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * Retrieves the full details of a group.
@@ -11296,7 +11466,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async getGroupByName(o, i) {
       const s = await a.getGroupByName(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -11308,7 +11478,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async removeRoles(o, i, s) {
       const t = await a.removeRoles(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11320,7 +11490,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async removeUsers(o, i, s) {
       const t = await a.removeUsers(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11335,7 +11505,7 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async searchGroups(o, i, s, t, n, r) {
       const u = await a.searchGroups(o, i, s, t, n, r);
-      return f(u, d, e);
+      return b(u, d, e);
     },
     /**
      * 
@@ -11347,11 +11517,11 @@ const j = "https://example.com", h = function(e, a, o) {
      */
     async updateGroup(o, i, s) {
       const t = await a.updateGroup(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     }
   };
 };
-class Le extends W {
+class Be extends H {
   /**
    * 
    * @summary Adds a role to a group
@@ -11362,7 +11532,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   addRoles(a, o, i) {
-    return S(this.configuration).addRoles(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).addRoles(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -11374,7 +11544,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   addUsers(a, o, i) {
-    return S(this.configuration).addUsers(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).addUsers(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -11385,7 +11555,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   createGroup(a, o) {
-    return S(this.configuration).createGroup(a, o).then((i) => i(this.axios));
+    return P(this.configuration).createGroup(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -11396,7 +11566,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   deleteGroup(a, o) {
-    return S(this.configuration).deleteGroup(a, o).then((i) => i(this.axios));
+    return P(this.configuration).deleteGroup(a, o).then((i) => i(this.axios));
   }
   /**
    * Retrieves the full details of a group.
@@ -11408,7 +11578,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   getGroup(a, o, i) {
-    return S(this.configuration).getGroup(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).getGroup(a, o, i).then((s) => s(this.axios));
   }
   /**
    * Retrieves the full details of a group.
@@ -11419,7 +11589,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   getGroupByName(a, o) {
-    return S(this.configuration).getGroupByName(a, o).then((i) => i(this.axios));
+    return P(this.configuration).getGroupByName(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -11431,7 +11601,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   removeRoles(a, o, i) {
-    return S(this.configuration).removeRoles(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).removeRoles(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -11443,7 +11613,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   removeUsers(a, o, i) {
-    return S(this.configuration).removeUsers(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).removeUsers(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -11458,7 +11628,7 @@ class Le extends W {
    * @memberof GroupsApi
    */
   searchGroups(a, o, i, s, t, n) {
-    return S(this.configuration).searchGroups(a, o, i, s, t, n).then((r) => r(this.axios));
+    return P(this.configuration).searchGroups(a, o, i, s, t, n).then((r) => r(this.axios));
   }
   /**
    * 
@@ -11470,10 +11640,10 @@ class Le extends W {
    * @memberof GroupsApi
    */
   updateGroup(a, o, i) {
-    return S(this.configuration).updateGroup(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).updateGroup(a, o, i).then((s) => s(this.axios));
   }
 }
-const Ee = function(e) {
+const Te = function(e) {
   return {
     /**
      * 
@@ -11484,14 +11654,14 @@ const Ee = function(e) {
      */
     createPermission: async (a, o = {}) => {
       h("createPermission", "createPermissionRequest", a);
-      const i = "/userm/userm/permissions", s = new URL(i, j);
+      const i = "/userm/userm/permissions", s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", b(s, u);
+      r["Content-Type"] = "application/json", g(s, u);
       let m = t && t.headers ? t.headers : {};
-      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
-        url: y(s),
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = z(a, n, e), {
+        url: j(s),
         options: n
       };
     },
@@ -11504,14 +11674,14 @@ const Ee = function(e) {
      */
     deletePermission: async (a, o = {}) => {
       h("deletePermission", "id", a);
-      const i = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "DELETE", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
       };
     },
@@ -11525,14 +11695,14 @@ const Ee = function(e) {
      */
     getPermission: async (a, o, i = {}) => {
       h("getPermission", "id", a);
-      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
-      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      o != null && (u["If-None-Match"] = String(o)), g(t, m);
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -11546,14 +11716,14 @@ const Ee = function(e) {
      */
     getPermissionByProductAndName: async (a, o, i = {}) => {
       h("getPermissionByProductAndName", "product", a), h("getPermissionByProductAndName", "name", o);
-      const s = "/userm/userm/permissions/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, j);
+      const s = "/userm/userm/permissions/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {};
-      b(t, {});
+      g(t, {});
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -11567,20 +11737,20 @@ const Ee = function(e) {
      */
     updatePermission: async (a, o, i = {}) => {
       h("updatePermission", "id", a), h("updatePermission", "updatePermissionRequest", o);
-      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     }
   };
-}, N = function(e) {
-  const a = Ee(e);
+}, F = function(e) {
+  const a = Te(e);
   return {
     /**
      * 
@@ -11591,7 +11761,7 @@ const Ee = function(e) {
      */
     async createPermission(o, i) {
       const s = await a.createPermission(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -11602,7 +11772,7 @@ const Ee = function(e) {
      */
     async deletePermission(o, i) {
       const s = await a.deletePermission(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * Retrieves the full details of a permission.
@@ -11614,7 +11784,7 @@ const Ee = function(e) {
      */
     async getPermission(o, i, s) {
       const t = await a.getPermission(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * Retrieves the full details of a permission.
@@ -11626,7 +11796,7 @@ const Ee = function(e) {
      */
     async getPermissionByProductAndName(o, i, s) {
       const t = await a.getPermissionByProductAndName(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11638,11 +11808,11 @@ const Ee = function(e) {
      */
     async updatePermission(o, i, s) {
       const t = await a.updatePermission(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     }
   };
 };
-class De extends W {
+class Ne extends H {
   /**
    * 
    * @summary Creates a new permission
@@ -11652,7 +11822,7 @@ class De extends W {
    * @memberof PermissionsApi
    */
   createPermission(a, o) {
-    return N(this.configuration).createPermission(a, o).then((i) => i(this.axios));
+    return F(this.configuration).createPermission(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -11663,7 +11833,7 @@ class De extends W {
    * @memberof PermissionsApi
    */
   deletePermission(a, o) {
-    return N(this.configuration).deletePermission(a, o).then((i) => i(this.axios));
+    return F(this.configuration).deletePermission(a, o).then((i) => i(this.axios));
   }
   /**
    * Retrieves the full details of a permission.
@@ -11675,7 +11845,7 @@ class De extends W {
    * @memberof PermissionsApi
    */
   getPermission(a, o, i) {
-    return N(this.configuration).getPermission(a, o, i).then((s) => s(this.axios));
+    return F(this.configuration).getPermission(a, o, i).then((s) => s(this.axios));
   }
   /**
    * Retrieves the full details of a permission.
@@ -11687,7 +11857,7 @@ class De extends W {
    * @memberof PermissionsApi
    */
   getPermissionByProductAndName(a, o, i) {
-    return N(this.configuration).getPermissionByProductAndName(a, o, i).then((s) => s(this.axios));
+    return F(this.configuration).getPermissionByProductAndName(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -11699,10 +11869,10 @@ class De extends W {
    * @memberof PermissionsApi
    */
   updatePermission(a, o, i) {
-    return N(this.configuration).updatePermission(a, o, i).then((s) => s(this.axios));
+    return F(this.configuration).updatePermission(a, o, i).then((s) => s(this.axios));
   }
 }
-const Ie = function(e) {
+const qe = function(e) {
   return {
     /**
      * 
@@ -11714,14 +11884,14 @@ const Ie = function(e) {
      */
     addPermissions: async (a, o, i = {}) => {
       h("addPermissions", "id", a), h("addPermissions", "requestBody", o);
-      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     },
@@ -11734,14 +11904,14 @@ const Ie = function(e) {
      */
     createRole: async (a, o = {}) => {
       h("createRole", "createRoleRequest", a);
-      const i = "/userm/userm/roles", s = new URL(i, j);
+      const i = "/userm/userm/roles", s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", b(s, u);
+      r["Content-Type"] = "application/json", g(s, u);
       let m = t && t.headers ? t.headers : {};
-      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
-        url: y(s),
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = z(a, n, e), {
+        url: j(s),
         options: n
       };
     },
@@ -11754,14 +11924,14 @@ const Ie = function(e) {
      */
     deleteRole: async (a, o = {}) => {
       h("deleteRole", "id", a);
-      const i = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "DELETE", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
       };
     },
@@ -11775,14 +11945,14 @@ const Ie = function(e) {
      */
     getRole: async (a, o, i = {}) => {
       h("getRole", "id", a);
-      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
-      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      o != null && (u["If-None-Match"] = String(o)), g(t, m);
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -11796,14 +11966,14 @@ const Ie = function(e) {
      */
     getRoleByProductAndName: async (a, o, i = {}) => {
       h("getRoleByProductAndName", "product", a), h("getRoleByProductAndName", "name", o);
-      const s = "/userm/userm/roles/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, j);
+      const s = "/userm/userm/roles/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {};
-      b(t, {});
+      g(t, {});
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -11817,14 +11987,14 @@ const Ie = function(e) {
      */
     removePermissions: async (a, o, i = {}) => {
       h("removePermissions", "id", a), h("removePermissions", "requestBody", o);
-      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     },
@@ -11838,20 +12008,20 @@ const Ie = function(e) {
      */
     updateRole: async (a, o, i = {}) => {
       h("updateRole", "id", a), h("updateRole", "updateRoleRequest", o);
-      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     }
   };
-}, I = function(e) {
-  const a = Ie(e);
+}, T = function(e) {
+  const a = qe(e);
   return {
     /**
      * 
@@ -11863,7 +12033,7 @@ const Ie = function(e) {
      */
     async addPermissions(o, i, s) {
       const t = await a.addPermissions(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11874,7 +12044,7 @@ const Ie = function(e) {
      */
     async createRole(o, i) {
       const s = await a.createRole(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -11885,7 +12055,7 @@ const Ie = function(e) {
      */
     async deleteRole(o, i) {
       const s = await a.deleteRole(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * Retrieves the full details of a role.
@@ -11897,7 +12067,7 @@ const Ie = function(e) {
      */
     async getRole(o, i, s) {
       const t = await a.getRole(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * Retrieves the full details of a role.
@@ -11909,7 +12079,7 @@ const Ie = function(e) {
      */
     async getRoleByProductAndName(o, i, s) {
       const t = await a.getRoleByProductAndName(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11921,7 +12091,7 @@ const Ie = function(e) {
      */
     async removePermissions(o, i, s) {
       const t = await a.removePermissions(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -11933,11 +12103,11 @@ const Ie = function(e) {
      */
     async updateRole(o, i, s) {
       const t = await a.updateRole(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     }
   };
 };
-class Ne extends W {
+class _e extends H {
   /**
    * 
    * @summary Adds permissions to a role
@@ -11948,7 +12118,7 @@ class Ne extends W {
    * @memberof RolesApi
    */
   addPermissions(a, o, i) {
-    return I(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -11959,7 +12129,7 @@ class Ne extends W {
    * @memberof RolesApi
    */
   createRole(a, o) {
-    return I(this.configuration).createRole(a, o).then((i) => i(this.axios));
+    return T(this.configuration).createRole(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -11970,7 +12140,7 @@ class Ne extends W {
    * @memberof RolesApi
    */
   deleteRole(a, o) {
-    return I(this.configuration).deleteRole(a, o).then((i) => i(this.axios));
+    return T(this.configuration).deleteRole(a, o).then((i) => i(this.axios));
   }
   /**
    * Retrieves the full details of a role.
@@ -11982,7 +12152,7 @@ class Ne extends W {
    * @memberof RolesApi
    */
   getRole(a, o, i) {
-    return I(this.configuration).getRole(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).getRole(a, o, i).then((s) => s(this.axios));
   }
   /**
    * Retrieves the full details of a role.
@@ -11994,7 +12164,7 @@ class Ne extends W {
    * @memberof RolesApi
    */
   getRoleByProductAndName(a, o, i) {
-    return I(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -12006,7 +12176,7 @@ class Ne extends W {
    * @memberof RolesApi
    */
   removePermissions(a, o, i) {
-    return I(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -12018,10 +12188,10 @@ class Ne extends W {
    * @memberof RolesApi
    */
   updateRole(a, o, i) {
-    return I(this.configuration).updateRole(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).updateRole(a, o, i).then((s) => s(this.axios));
   }
 }
-const Te = function(e) {
+const Le = function(e) {
   return {
     /**
      * 
@@ -12032,14 +12202,14 @@ const Te = function(e) {
      */
     createUser: async (a, o = {}) => {
       h("createUser", "createUserRequest", a);
-      const i = "/userm/userm/user", s = new URL(i, j);
+      const i = "/userm/userm/user", s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
-      r["Content-Type"] = "application/json", b(s, u);
+      r["Content-Type"] = "application/json", g(s, u);
       let m = t && t.headers ? t.headers : {};
-      return n.headers = { ...r, ...m, ...o.headers }, n.data = x(a, n, e), {
-        url: y(s),
+      return n.headers = { ...r, ...m, ...o.headers }, n.data = z(a, n, e), {
+        url: j(s),
         options: n
       };
     },
@@ -12052,14 +12222,14 @@ const Te = function(e) {
      */
     deleteUser: async (a, o = {}) => {
       h("deleteUser", "id", a);
-      const i = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "DELETE", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
       };
     },
@@ -12072,14 +12242,14 @@ const Te = function(e) {
      */
     disableUser: async (a, o = {}) => {
       h("disableUser", "id", a);
-      const i = "/userm/userm/user/{id}/disable".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/user/{id}/disable".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "PUT", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
       };
     },
@@ -12092,15 +12262,33 @@ const Te = function(e) {
      */
     enableUser: async (a, o = {}) => {
       h("enableUser", "id", a);
-      const i = "/userm/userm/user/{id}/enable".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, j);
+      const i = "/userm/userm/user/{id}/enable".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "PUT", ...t, ...o }, r = {};
-      b(s, {});
+      g(s, {});
       let m = t && t.headers ? t.headers : {};
       return n.headers = { ...r, ...m, ...o.headers }, {
-        url: y(s),
+        url: j(s),
         options: n
+      };
+    },
+    /**
+     * 
+     * @summary Retrieves user information about the logged in user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLoggedInUser: async (a = {}) => {
+      const o = "/userm/userm/user/loggedin", i = new URL(o, k);
+      let s;
+      e && (s = e.baseOptions);
+      const t = { method: "GET", ...s, ...a }, n = {};
+      g(i, {});
+      let u = s && s.headers ? s.headers : {};
+      return t.headers = { ...n, ...u, ...a.headers }, {
+        url: j(i),
+        options: t
       };
     },
     /**
@@ -12113,14 +12301,14 @@ const Te = function(e) {
      */
     getUser: async (a, o, i = {}) => {
       h("getUser", "id", a);
-      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
-      o != null && (u["If-None-Match"] = String(o)), b(t, m);
+      o != null && (u["If-None-Match"] = String(o)), g(t, m);
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -12134,14 +12322,14 @@ const Te = function(e) {
      */
     getUserByUsername: async (a, o, i = {}) => {
       h("getUserByUsername", "username", a);
-      const s = "/userm/userm/user/username/{username}".replace("{username}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/user/username/{username}".replace("{username}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
-      o !== void 0 && (m.substitutedUsers = o), b(t, m);
+      o !== void 0 && (m.substitutedUsers = o), g(t, m);
       let c = n && n.headers ? n.headers : {};
       return r.headers = { ...u, ...c, ...i.headers }, {
-        url: y(t),
+        url: j(t),
         options: r
       };
     },
@@ -12155,20 +12343,20 @@ const Te = function(e) {
      */
     updateUser: async (a, o, i = {}) => {
       h("updateUser", "id", a), h("updateUser", "updateUserRequest", o);
-      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, j);
+      const s = "/userm/userm/user/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, k);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
-      u["Content-Type"] = "application/json", b(t, m);
+      u["Content-Type"] = "application/json", g(t, m);
       let c = n && n.headers ? n.headers : {};
-      return r.headers = { ...u, ...c, ...i.headers }, r.data = x(o, r, e), {
-        url: y(t),
+      return r.headers = { ...u, ...c, ...i.headers }, r.data = z(o, r, e), {
+        url: j(t),
         options: r
       };
     }
   };
-}, T = function(e) {
-  const a = Te(e);
+}, I = function(e) {
+  const a = Le(e);
   return {
     /**
      * 
@@ -12179,7 +12367,7 @@ const Te = function(e) {
      */
     async createUser(o, i) {
       const s = await a.createUser(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -12190,7 +12378,7 @@ const Te = function(e) {
      */
     async deleteUser(o, i) {
       const s = await a.deleteUser(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -12201,7 +12389,7 @@ const Te = function(e) {
      */
     async disableUser(o, i) {
       const s = await a.disableUser(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
     },
     /**
      * 
@@ -12212,7 +12400,17 @@ const Te = function(e) {
      */
     async enableUser(o, i) {
       const s = await a.enableUser(o, i);
-      return f(s, d, e);
+      return b(s, d, e);
+    },
+    /**
+     * 
+     * @summary Retrieves user information about the logged in user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLoggedInUser(o) {
+      const i = await a.getLoggedInUser(o);
+      return b(i, d, e);
     },
     /**
      * Retrieves the full details of a user. 
@@ -12224,7 +12422,7 @@ const Te = function(e) {
      */
     async getUser(o, i, s) {
       const t = await a.getUser(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
@@ -12236,7 +12434,7 @@ const Te = function(e) {
      */
     async getUserByUsername(o, i, s) {
       const t = await a.getUserByUsername(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     },
     /**
      * 
@@ -12248,11 +12446,11 @@ const Te = function(e) {
      */
     async updateUser(o, i, s) {
       const t = await a.updateUser(o, i, s);
-      return f(t, d, e);
+      return b(t, d, e);
     }
   };
 };
-class _e extends W {
+class $e extends H {
   /**
    * 
    * @summary Creates a new user
@@ -12262,7 +12460,7 @@ class _e extends W {
    * @memberof UsersApi
    */
   createUser(a, o) {
-    return T(this.configuration).createUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).createUser(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -12273,7 +12471,7 @@ class _e extends W {
    * @memberof UsersApi
    */
   deleteUser(a, o) {
-    return T(this.configuration).deleteUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).deleteUser(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -12284,7 +12482,7 @@ class _e extends W {
    * @memberof UsersApi
    */
   disableUser(a, o) {
-    return T(this.configuration).disableUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).disableUser(a, o).then((i) => i(this.axios));
   }
   /**
    * 
@@ -12295,7 +12493,17 @@ class _e extends W {
    * @memberof UsersApi
    */
   enableUser(a, o) {
-    return T(this.configuration).enableUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).enableUser(a, o).then((i) => i(this.axios));
+  }
+  /**
+   * 
+   * @summary Retrieves user information about the logged in user
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  getLoggedInUser(a) {
+    return I(this.configuration).getLoggedInUser(a).then((o) => o(this.axios));
   }
   /**
    * Retrieves the full details of a user. 
@@ -12307,7 +12515,7 @@ class _e extends W {
    * @memberof UsersApi
    */
   getUser(a, o, i) {
-    return T(this.configuration).getUser(a, o, i).then((s) => s(this.axios));
+    return I(this.configuration).getUser(a, o, i).then((s) => s(this.axios));
   }
   /**
    * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
@@ -12319,7 +12527,7 @@ class _e extends W {
    * @memberof UsersApi
    */
   getUserByUsername(a, o, i) {
-    return T(this.configuration).getUserByUsername(a, o, i).then((s) => s(this.axios));
+    return I(this.configuration).getUserByUsername(a, o, i).then((s) => s(this.axios));
   }
   /**
    * 
@@ -12331,10 +12539,10 @@ class _e extends W {
    * @memberof UsersApi
    */
   updateUser(a, o, i) {
-    return T(this.configuration).updateUser(a, o, i).then((s) => s(this.axios));
+    return I(this.configuration).updateUser(a, o, i).then((s) => s(this.axios));
   }
 }
-const Fe = {
+const He = {
   MANDATORY: "MANDATORY",
   NON_UNIQUE: "NON_UNIQUE",
   INVALID_FORMAT: "INVALID_FORMAT",
@@ -12344,23 +12552,24 @@ const Fe = {
   USER_NOT_FOUND: "USER_NOT_FOUND",
   INVALID_SUBSTITUTE_USER: "INVALID_SUBSTITUTE_USER",
   NOT_ALLOWED: "NOT_ALLOWED"
-}, Be = {
+}, Ge = {
   RECORDM: "RECORDM",
   DEVICEM: "DEVICEM",
   INTEGRATIONM: "INTEGRATIONM",
   ELASTICSEARCH: "ELASTICSEARCH",
   USERM: "USERM"
-}, $e = {
+}, Qe = {
   ENABLED: "enabled",
   DISABLED: "disabled"
 };
 export {
-  Fe as FieldErrorErrorTypeEnum,
-  Le as GroupsApi,
-  De as PermissionsApi,
-  Be as ProductName,
-  Ne as RolesApi,
-  $e as UserState,
-  _e as UsersApi
+  Fe as AuthenticationApi,
+  He as FieldErrorErrorTypeEnum,
+  Be as GroupsApi,
+  Ne as PermissionsApi,
+  Ge as ProductName,
+  _e as RolesApi,
+  Qe as UserState,
+  $e as UsersApi
 };
 //# sourceMappingURL=cobjs-api-userm.mjs.map

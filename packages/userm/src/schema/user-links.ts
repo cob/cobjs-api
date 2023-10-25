@@ -67,7 +67,7 @@ export interface UserLinks {
      * @memberof UserLinks
      * @deprecated
      */
-    'remove-from'?: string;
+    'assign-substitute'?: string;
     /**
      * 
      * @type {string}
@@ -81,5 +81,5 @@ export interface UserLinks {
      * @memberof UserLinks
      * @deprecated
      */
-    'assign-substitute'?: string;
+    'remove-from'?: string;
 }

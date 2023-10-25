@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { BaseAPI } from '@cob/cobjs-api-core';
 import { CreateUserRequest } from '../schema';
+import { LoggedInUser } from '../schema';
 import { UpdateUserRequest } from '../schema';
 import { User } from '../schema';
 /**
@@ -46,6 +47,14 @@ export declare class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     enableUser(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @summary Retrieves user information about the logged in user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    getLoggedInUser(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<LoggedInUser, any>>;
     /**
      * Retrieves the full details of a user.
      * @summary Retrieves a user by it\'s id

@@ -12,6 +12,9 @@
     "cobtoken" : [ ]
   } ],
   "tags" : [ {
+    "name" : "Authentication",
+    "description" : "Authentication endpoints"
+  }, {
     "name" : "Groups",
     "description" : "Group endpoints"
   }, {
@@ -25,6 +28,91 @@
     "description" : "User endpoints"
   } ],
   "paths" : {
+    "/userm/auth" : {
+      "post" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Authenticate a user",
+        "operationId" : "authenticate",
+        "requestBody" : {
+          "description" : "The user credentials",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Credentials"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Credentials"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success authenticating a user",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Authentication"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userm/auth/impersonate/{username}" : {
+      "put" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Impersonate another user",
+        "operationId" : "impersonate",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Success impersonating user"
+          },
+          "403" : {
+            "description" : "Forbidden operation."
+          }
+        }
+      }
+    },
+    "/userm/auth/logout" : {
+      "get" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Logout user",
+        "operationId" : "logout",
+        "responses" : {
+          "204" : {
+            "description" : "Success authenticating a user"
+          }
+        }
+      }
+    },
+    "/userm/auth/resetUser" : {
+      "put" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Reset the user to it's original user",
+        "operationId" : "resetOriginalUser",
+        "responses" : {
+          "204" : {
+            "description" : "Success resetting user"
+          },
+          "403" : {
+            "description" : "Forbidden operation."
+          }
+        }
+      }
+    },
     "/userm/group/{id}/roles" : {
       "put" : {
         "tags" : [ "Groups" ],
@@ -1418,6 +1506,31 @@
         }
       }
     },
+    "/userm/user/loggedin" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Retrieves user information about the logged in user",
+        "operationId" : "getLoggedInUser",
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the user session information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoggedInUser"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "404" : {
+            "description" : "No user found with the provided id"
+          }
+        }
+      }
+    },
     "/userm/user/username/{username}" : {
       "get" : {
         "tags" : [ "Users" ],
@@ -1467,6 +1580,25 @@
   },
   "components" : {
     "schemas" : {
+      "Authentication" : {
+        "type" : "object",
+        "properties" : {
+          "securityToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Credentials" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        }
+      },
       "Group" : {
         "type" : "object",
         "properties" : {
@@ -1624,7 +1756,7 @@
           "perms" : {
             "type" : "string"
           },
-          "remove-from" : {
+          "assign-substitute" : {
             "type" : "string",
             "deprecated" : true
           },
@@ -1632,7 +1764,7 @@
             "type" : "string",
             "deprecated" : true
           },
-          "assign-substitute" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           }
@@ -1719,11 +1851,11 @@
           "perms" : {
             "type" : "string"
           },
-          "remove-from" : {
+          "add-to" : {
             "type" : "string",
             "deprecated" : true
           },
-          "add-to" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           }
@@ -1823,11 +1955,11 @@
           "perms" : {
             "type" : "string"
           },
-          "remove-from" : {
+          "add-to" : {
             "type" : "string",
             "deprecated" : true
           },
-          "add-to" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           }
@@ -1917,6 +2049,18 @@
             "items" : {
               "$ref" : "#/components/schemas/User"
             }
+          }
+        }
+      },
+      "LoggedInUser" : {
+        "required" : [ "loggedInUser" ],
+        "type" : "object",
+        "properties" : {
+          "loggedInUser" : {
+            "$ref" : "#/components/schemas/User"
+          },
+          "realUser" : {
+            "$ref" : "#/components/schemas/User"
           }
         }
       },

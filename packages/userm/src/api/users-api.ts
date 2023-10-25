@@ -8,6 +8,7 @@ import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeed
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
 import { CreateUserRequest } from '../schema';
 import { FieldError } from '../schema';
+import { LoggedInUser } from '../schema';
 import { UpdateUserRequest } from '../schema';
 import { User } from '../schema';
 
@@ -147,6 +148,38 @@ const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cobtoken required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieves user information about the logged in user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLoggedInUser: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/userm/userm/user/loggedin`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -342,6 +375,16 @@ const UsersApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
+         * 
+         * @summary Retrieves user information about the logged in user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getLoggedInUser(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance) => AxiosPromise<LoggedInUser>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLoggedInUser(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
+        },
+        /**
          * Retrieves the full details of a user. 
          * @summary Retrieves a user by it\'s id
          * @param {number} id The user identifier
@@ -433,6 +476,17 @@ export class UsersApi extends BaseAPI {
      */
     public enableUser(id: number, options?: AxiosRequestConfig) {
         return UsersApiFp(this.configuration).enableUser(id, options).then((request) => request(this.axios));
+    }
+
+    /**
+     * 
+     * @summary Retrieves user information about the logged in user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getLoggedInUser(options?: AxiosRequestConfig) {
+        return UsersApiFp(this.configuration).getLoggedInUser(options).then((request) => request(this.axios));
     }
 
     /**
