@@ -142,7 +142,9 @@ export class ReportsApi extends BaseAPI {
      * @memberof ReportsApi
      */
     public generate(reportGenerationRequest?: ReportGenerationRequest, options?: AxiosRequestConfig) {
-        return ReportsApiFp(this.configuration).generate(reportGenerationRequest, options).then((request) => request(this.axios));
+        return ReportsApiFp(this.configuration).generate(reportGenerationRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -154,6 +156,8 @@ export class ReportsApi extends BaseAPI {
      * @memberof ReportsApi
      */
     public test(f?: any, options?: AxiosRequestConfig) {
-        return ReportsApiFp(this.configuration).test(f, options).then((request) => request(this.axios));
+        return ReportsApiFp(this.configuration).test(f, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

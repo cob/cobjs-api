@@ -328,7 +328,9 @@ export class {{classname}} extends BaseAPI {
     {{/useSingleRequestParameter}}
     {{^useSingleRequestParameter}}
     public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: AxiosRequestConfig) {
-        return {{classname}}Fp(this.configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options).then((request) => request(this.axios));
+        return {{classname}}Fp(this.configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
     {{/useSingleRequestParameter}}
     {{^-last}}

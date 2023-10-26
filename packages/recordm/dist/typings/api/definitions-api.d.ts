@@ -18,7 +18,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    cloneDefinition(definitionId: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition, any>>;
+    cloneDefinition(definitionId: number, options?: AxiosRequestConfig): Promise<DecoratedDefinition>;
     /**
      *
      * @summary Delete an existing definition
@@ -27,7 +27,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    deleteDefinition(definitionId: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteDefinition(definitionId: number, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Download a definition
@@ -36,7 +36,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    exportDefinition(definitionId: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    exportDefinition(definitionId: number, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
      * @summary Retrieves all definitions
@@ -46,7 +46,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    getAllDefinitions(includeDisabled?: boolean, name?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition[], any>>;
+    getAllDefinitions(includeDisabled?: boolean, name?: string, options?: AxiosRequestConfig): Promise<DecoratedDefinition[]>;
     /**
      * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
      * @summary Retrieves a specific definition including its fields.
@@ -57,7 +57,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    getDefinition(definitionId: number, ifNoneMatch?: string, _export?: boolean, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition, any>>;
+    getDefinition(definitionId: number, ifNoneMatch?: string, _export?: boolean, options?: AxiosRequestConfig): Promise<DecoratedDefinition>;
     /**
      * Retrieves the full details about a definition.
      * @summary Retrieves a specific that match a provided name.
@@ -66,7 +66,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    getDefinitionByName(name: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition, any>>;
+    getDefinitionByName(name: string, options?: AxiosRequestConfig): Promise<DecoratedDefinition>;
     /**
      *
      * @summary Create a new definition
@@ -75,7 +75,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    saveDefinition(createDefinitionRequest?: CreateDefinitionRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition, any>>;
+    saveDefinition(createDefinitionRequest?: CreateDefinitionRequest, options?: AxiosRequestConfig): Promise<DecoratedDefinition>;
     /**
      *
      * @summary Update an existing definition
@@ -85,7 +85,7 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    updateDefinition(definitionId: number, updateDefinitionRequest?: UpdateDefinitionRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition, any>>;
+    updateDefinition(definitionId: number, updateDefinitionRequest?: UpdateDefinitionRequest, options?: AxiosRequestConfig): Promise<DecoratedDefinition>;
     /**
      *
      * @summary Change the state of an existing definition
@@ -95,5 +95,5 @@ export declare class DefinitionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefinitionsApi
      */
-    updateDefinitionState(definitionId: number, state: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDefinition, any>>;
+    updateDefinitionState(definitionId: number, state: string, options?: AxiosRequestConfig): Promise<DecoratedDefinition>;
 }

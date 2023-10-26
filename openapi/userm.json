@@ -28,7 +28,7 @@
     "description" : "User endpoints"
   } ],
   "paths" : {
-    "/userm/auth" : {
+    "/security/auth" : {
       "post" : {
         "tags" : [ "Authentication" ],
         "summary" : "Authenticate a user",
@@ -63,7 +63,7 @@
         }
       }
     },
-    "/userm/auth/impersonate/{username}" : {
+    "/security/auth/impersonate/{username}" : {
       "put" : {
         "tags" : [ "Authentication" ],
         "summary" : "Impersonate another user",
@@ -86,7 +86,7 @@
         }
       }
     },
-    "/userm/auth/logout" : {
+    "/security/auth/logout" : {
       "get" : {
         "tags" : [ "Authentication" ],
         "summary" : "Logout user",
@@ -98,7 +98,7 @@
         }
       }
     },
-    "/userm/auth/resetUser" : {
+    "/security/auth/resetUser" : {
       "put" : {
         "tags" : [ "Authentication" ],
         "summary" : "Reset the user to it's original user",
@@ -1589,6 +1589,7 @@
         }
       },
       "Credentials" : {
+        "required" : [ "password", "username" ],
         "type" : "object",
         "properties" : {
           "username" : {
@@ -1760,11 +1761,11 @@
             "type" : "string",
             "deprecated" : true
           },
-          "add-to" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           },
-          "remove-from" : {
+          "add-to" : {
             "type" : "string",
             "deprecated" : true
           }
@@ -1851,11 +1852,11 @@
           "perms" : {
             "type" : "string"
           },
-          "add-to" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           },
-          "remove-from" : {
+          "add-to" : {
             "type" : "string",
             "deprecated" : true
           }
@@ -1955,11 +1956,11 @@
           "perms" : {
             "type" : "string"
           },
-          "add-to" : {
+          "remove-from" : {
             "type" : "string",
             "deprecated" : true
           },
-          "remove-from" : {
+          "add-to" : {
             "type" : "string",
             "deprecated" : true
           }

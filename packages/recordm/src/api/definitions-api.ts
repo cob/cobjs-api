@@ -498,7 +498,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public cloneDefinition(definitionId: number, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).cloneDefinition(definitionId, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).cloneDefinition(definitionId, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -510,7 +512,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public deleteDefinition(definitionId: number, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).deleteDefinition(definitionId, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).deleteDefinition(definitionId, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -522,7 +526,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public exportDefinition(definitionId: number, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).exportDefinition(definitionId, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).exportDefinition(definitionId, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -535,7 +541,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public getAllDefinitions(includeDisabled?: boolean, name?: string, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).getAllDefinitions(includeDisabled, name, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).getAllDefinitions(includeDisabled, name, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -549,7 +557,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public getDefinition(definitionId: number, ifNoneMatch?: string, _export?: boolean, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).getDefinition(definitionId, ifNoneMatch, _export, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).getDefinition(definitionId, ifNoneMatch, _export, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -561,7 +571,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public getDefinitionByName(name: string, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).getDefinitionByName(name, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).getDefinitionByName(name, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -573,7 +585,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public saveDefinition(createDefinitionRequest?: CreateDefinitionRequest, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).saveDefinition(createDefinitionRequest, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).saveDefinition(createDefinitionRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -586,7 +600,9 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public updateDefinition(definitionId: number, updateDefinitionRequest?: UpdateDefinitionRequest, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).updateDefinition(definitionId, updateDefinitionRequest, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).updateDefinition(definitionId, updateDefinitionRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -599,6 +615,8 @@ export class DefinitionsApi extends BaseAPI {
      * @memberof DefinitionsApi
      */
     public updateDefinitionState(definitionId: number, state: string, options?: AxiosRequestConfig) {
-        return DefinitionsApiFp(this.configuration).updateDefinitionState(definitionId, state, options).then((request) => request(this.axios));
+        return DefinitionsApiFp(this.configuration).updateDefinitionState(definitionId, state, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

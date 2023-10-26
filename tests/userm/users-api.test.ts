@@ -1,4 +1,3 @@
-import {setServer} from "@cob/cobjs-api-core";
 import {Group, UpdateUserRequest, UsersApi, UserState} from "@cob/cobjs-api-userm";
 import {auth} from "@cob/cobjs-api-helpers";
 
@@ -7,7 +6,7 @@ const adminPassword = ""
 
 test("can retrieve user data with username", async () => {
 
-    const anonymousUser = (await new UsersApi().getUserByUsername("anonymous")).data
+    const anonymousUser = (await new UsersApi().getUserByUsername("anonymous"))
 
     expect(anonymousUser.username).toStrictEqual("anonymous")
     expect(anonymousUser.id).toStrictEqual(1)
@@ -22,7 +21,7 @@ test.skip("can update user data with username", async () => {
     await auth({username: adminUsername, password: adminPassword})
     const usersApi = new UsersApi();
 
-    const userData = (await usersApi.getUserByUsername("demo")).data
+    const userData = (await usersApi.getUserByUsername("demo"))
 
     const now = Date.now()
     userData.name = "a_" + now
@@ -30,7 +29,7 @@ test.skip("can update user data with username", async () => {
     userData.state = UserState.DISABLED
     userData.usernameAD = "ad.a_" + now
 
-    const afterUpdate = (await usersApi.updateUser(userData.id, userData)).data
+    const afterUpdate = (await usersApi.updateUser(userData.id, userData))
 
     expect(afterUpdate.username).toStrictEqual("demo")
     expect(afterUpdate.id).toStrictEqual(14)
@@ -47,7 +46,7 @@ test.skip("can change password", async () => {
     await auth({username: adminUsername, password: adminPassword})
     const usersApi = new UsersApi();
 
-    let initialUserData = (await usersApi.getUserByUsername("demo")).data
+    let initialUserData = (await usersApi.getUserByUsername("demo"))
 
     const now = Date.now()
     const newPassword = 'a_' + now;
@@ -56,7 +55,7 @@ test.skip("can change password", async () => {
     newUserData.state = UserState.ENABLED
     newUserData.password = newPassword
 
-    const afterUpdate = (await usersApi.updateUser(initialUserData.id, newUserData)).data
+    const afterUpdate = (await usersApi.updateUser(initialUserData.id, newUserData))
     expect(afterUpdate.state).toStrictEqual(UserState.ENABLED)
 
     const umLoggedInResponse = await auth({username: "demo", password: newPassword});

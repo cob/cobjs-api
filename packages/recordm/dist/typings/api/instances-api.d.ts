@@ -17,7 +17,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    addInstance(instance: Instance, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    addInstance(instance: Instance, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Adds a LogM log entry to an instance.
      * @summary Add log to instance
@@ -27,7 +27,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    addLogMessageToInstance(id: number, body?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    addLogMessageToInstance(id: number, body?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Deletes an instance.
      * @summary Delete an instance
@@ -37,7 +37,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    deleteInstance(id: number, ignoreRefs?: boolean, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteInstance(id: number, ignoreRefs?: boolean, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Download a file that is attached to a $file field
      * @summary Download file from field in instance
@@ -49,7 +49,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    downloadFile(id: string, fieldDefinitionId: string, filename: string, disposition?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    downloadFile(id: string, fieldDefinitionId: string, filename: string, disposition?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Obtains a representation of an instance.
      * @summary Get an instance
@@ -59,7 +59,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    getInstance(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedInstance, any>>;
+    getInstance(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<DecoratedInstance>;
     /**
      * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
      * @summary Get a new empty instance
@@ -69,7 +69,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    getNewInstance(definitionId: number, withDefaults?: boolean, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedInstance, any>>;
+    getNewInstance(definitionId: number, withDefaults?: boolean, options?: AxiosRequestConfig): Promise<DecoratedInstance>;
     /**
      * Updates an instance with the complete representation passed.
      * @summary Update an instance
@@ -80,7 +80,7 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    updateInstance(id: number, instance: Instance, acceptOutdated?: boolean, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    updateInstance(id: number, instance: Instance, acceptOutdated?: boolean, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Upload a file to be used as a value for a $file field
      * @summary Upload file to field in instance
@@ -91,5 +91,5 @@ export declare class InstancesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InstancesApi
      */
-    uploadFile(id: string, fieldDefinitionId: string, file?: any, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    uploadFile(id: string, fieldDefinitionId: string, file?: any, options?: AxiosRequestConfig): Promise<void>;
 }

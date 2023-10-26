@@ -302,7 +302,9 @@ export class PermissionsApi extends BaseAPI {
      * @memberof PermissionsApi
      */
     public createPermission(createPermissionRequest: CreatePermissionRequest, options?: AxiosRequestConfig) {
-        return PermissionsApiFp(this.configuration).createPermission(createPermissionRequest, options).then((request) => request(this.axios));
+        return PermissionsApiFp(this.configuration).createPermission(createPermissionRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -314,7 +316,9 @@ export class PermissionsApi extends BaseAPI {
      * @memberof PermissionsApi
      */
     public deletePermission(id: number, options?: AxiosRequestConfig) {
-        return PermissionsApiFp(this.configuration).deletePermission(id, options).then((request) => request(this.axios));
+        return PermissionsApiFp(this.configuration).deletePermission(id, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -327,7 +331,9 @@ export class PermissionsApi extends BaseAPI {
      * @memberof PermissionsApi
      */
     public getPermission(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig) {
-        return PermissionsApiFp(this.configuration).getPermission(id, ifNoneMatch, options).then((request) => request(this.axios));
+        return PermissionsApiFp(this.configuration).getPermission(id, ifNoneMatch, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -340,7 +346,9 @@ export class PermissionsApi extends BaseAPI {
      * @memberof PermissionsApi
      */
     public getPermissionByProductAndName(product: ProductName, name: string, options?: AxiosRequestConfig) {
-        return PermissionsApiFp(this.configuration).getPermissionByProductAndName(product, name, options).then((request) => request(this.axios));
+        return PermissionsApiFp(this.configuration).getPermissionByProductAndName(product, name, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -353,6 +361,8 @@ export class PermissionsApi extends BaseAPI {
      * @memberof PermissionsApi
      */
     public updatePermission(id: number, updatePermissionRequest: UpdatePermissionRequest, options?: AxiosRequestConfig) {
-        return PermissionsApiFp(this.configuration).updatePermission(id, updatePermissionRequest, options).then((request) => request(this.axios));
+        return PermissionsApiFp(this.configuration).updatePermission(id, updatePermissionRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

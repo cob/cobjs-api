@@ -49,12 +49,12 @@ export interface RoleLinks {
      * @memberof RoleLinks
      * @deprecated
      */
-    'add-to'?: string;
+    'remove-from'?: string;
     /**
      * 
      * @type {string}
      * @memberof RoleLinks
      * @deprecated
      */
-    'remove-from'?: string;
+    'add-to'?: string;
 }

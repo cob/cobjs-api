@@ -25,7 +25,7 @@ const AuthenticationApiAxiosParamCreator = function (configuration?: Configurati
         authenticate: async (credentials: Credentials, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'credentials' is not null or undefined
             assertParamExists('authenticate', 'credentials', credentials)
-            const localVarPath = `/userm/userm/auth`;
+            const localVarPath = `/userm/security/auth`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -63,7 +63,7 @@ const AuthenticationApiAxiosParamCreator = function (configuration?: Configurati
         impersonate: async (username: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'username' is not null or undefined
             assertParamExists('impersonate', 'username', username)
-            const localVarPath = `/userm/userm/auth/impersonate/{username}`
+            const localVarPath = `/userm/security/auth/impersonate/{username}`
                 .replace(`{${"username"}}`, encodeURIComponent(String(username)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -96,7 +96,7 @@ const AuthenticationApiAxiosParamCreator = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         logout: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/userm/userm/auth/logout`;
+            const localVarPath = `/userm/security/auth/logout`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -128,7 +128,7 @@ const AuthenticationApiAxiosParamCreator = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         resetOriginalUser: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/userm/userm/auth/resetUser`;
+            const localVarPath = `/userm/security/auth/resetUser`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -224,7 +224,9 @@ export class AuthenticationApi extends BaseAPI {
      * @memberof AuthenticationApi
      */
     public authenticate(credentials: Credentials, options?: AxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).authenticate(credentials, options).then((request) => request(this.axios));
+        return AuthenticationApiFp(this.configuration).authenticate(credentials, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -236,7 +238,9 @@ export class AuthenticationApi extends BaseAPI {
      * @memberof AuthenticationApi
      */
     public impersonate(username: string, options?: AxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).impersonate(username, options).then((request) => request(this.axios));
+        return AuthenticationApiFp(this.configuration).impersonate(username, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -247,7 +251,9 @@ export class AuthenticationApi extends BaseAPI {
      * @memberof AuthenticationApi
      */
     public logout(options?: AxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).logout(options).then((request) => request(this.axios));
+        return AuthenticationApiFp(this.configuration).logout(options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -258,6 +264,8 @@ export class AuthenticationApi extends BaseAPI {
      * @memberof AuthenticationApi
      */
     public resetOriginalUser(options?: AxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).resetOriginalUser(options).then((request) => request(this.axios));
+        return AuthenticationApiFp(this.configuration).resetOriginalUser(options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

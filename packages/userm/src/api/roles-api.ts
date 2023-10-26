@@ -411,7 +411,9 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public addPermissions(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).addPermissions(id, requestBody, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).addPermissions(id, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -423,7 +425,9 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public createRole(createRoleRequest: CreateRoleRequest, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).createRole(createRoleRequest, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).createRole(createRoleRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -435,7 +439,9 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public deleteRole(id: number, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).deleteRole(id, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).deleteRole(id, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -448,7 +454,9 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public getRole(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).getRole(id, ifNoneMatch, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).getRole(id, ifNoneMatch, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -461,7 +469,9 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public getRoleByProductAndName(product: ProductName, name: string, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).getRoleByProductAndName(product, name, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).getRoleByProductAndName(product, name, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -474,7 +484,9 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public removePermissions(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).removePermissions(id, requestBody, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).removePermissions(id, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -487,6 +499,8 @@ export class RolesApi extends BaseAPI {
      * @memberof RolesApi
      */
     public updateRole(id: number, updateRoleRequest: UpdateRoleRequest, options?: AxiosRequestConfig) {
-        return RolesApiFp(this.configuration).updateRole(id, updateRoleRequest, options).then((request) => request(this.axios));
+        return RolesApiFp(this.configuration).updateRole(id, updateRoleRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

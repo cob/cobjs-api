@@ -20,7 +20,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    addRoles(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    addRoles(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Adds a role to a group
@@ -30,7 +30,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    addUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    addUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Creates a new group
@@ -39,7 +39,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    createGroup(createGroupRequest: CreateGroupRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Group, any>>;
+    createGroup(createGroupRequest: CreateGroupRequest, options?: AxiosRequestConfig): Promise<Group>;
     /**
      *
      * @summary Delete an existing user
@@ -48,7 +48,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    deleteGroup(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    deleteGroup(id: number, options?: AxiosRequestConfig): Promise<User>;
     /**
      * Retrieves the full details of a group.
      * @summary Retrieves a group by it\'s id
@@ -58,7 +58,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    getGroup(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Group, any>>;
+    getGroup(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<Group>;
     /**
      * Retrieves the full details of a group.
      * @summary Retrieves a group by it\'s name
@@ -67,7 +67,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    getGroupByName(name: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Group, any>>;
+    getGroupByName(name: string, options?: AxiosRequestConfig): Promise<Group>;
     /**
      *
      * @summary Removes a role from a group
@@ -77,7 +77,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    removeRoles(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    removeRoles(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Removes a user from a group
@@ -87,7 +87,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    removeUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    removeUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Search groups
@@ -100,7 +100,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    searchGroups(q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Group, any>>;
+    searchGroups(q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options?: AxiosRequestConfig): Promise<Group>;
     /**
      *
      * @summary Update an existing group
@@ -110,5 +110,5 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    updateGroup(id: number, updateGroupRequest: UpdateGroupRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Group, any>>;
+    updateGroup(id: number, updateGroupRequest: UpdateGroupRequest, options?: AxiosRequestConfig): Promise<Group>;
 }

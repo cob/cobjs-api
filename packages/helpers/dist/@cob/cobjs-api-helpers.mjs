@@ -267,7 +267,7 @@ function ne(o, a) {
     rest: r
   };
 }
-function gi(o, a) {
+function hi(o, a) {
   if (o === "")
     return a;
   for (var e = (a || "/").split("/").slice(0, -1).concat(o.split("/")), i = e.length, n = e[i - 1], s = !1, t = 0; i--; )
@@ -285,9 +285,9 @@ function L(o, a, e) {
     }
     s = t[0], m = t[1], s !== s ? u[m] = o : typeof s == "string" ? (r = s === "@" ? o.lastIndexOf(s) : o.indexOf(s), ~r && (typeof t[2] == "number" ? (u[m] = o.slice(0, r), o = o.slice(r + t[2])) : (u[m] = o.slice(r), o = o.slice(0, r)))) : (r = s.exec(o)) && (u[m] = r[1], o = o.slice(0, r.index)), u[m] = u[m] || i && t[3] && a[m] || "", t[4] && (u[m] = u[m].toLowerCase());
   }
-  e && (u.query = e(u.query)), i && a.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || a.pathname !== "") && (u.pathname = gi(u.pathname, a.pathname)), u.pathname.charAt(0) !== "/" && q(u.protocol) && (u.pathname = "/" + u.pathname), ae(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && q(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
+  e && (u.query = e(u.query)), i && a.slashes && u.pathname.charAt(0) !== "/" && (u.pathname !== "" || a.pathname !== "") && (u.pathname = hi(u.pathname, a.pathname)), u.pathname.charAt(0) !== "/" && q(u.protocol) && (u.pathname = "/" + u.pathname), ae(u.port, u.protocol) || (u.host = u.hostname, u.port = ""), u.username = u.password = "", u.auth && (r = u.auth.indexOf(":"), ~r ? (u.username = u.auth.slice(0, r), u.username = encodeURIComponent(decodeURIComponent(u.username)), u.password = u.auth.slice(r + 1), u.password = encodeURIComponent(decodeURIComponent(u.password))) : u.username = encodeURIComponent(decodeURIComponent(u.auth)), u.auth = u.password ? u.username + ":" + u.password : u.username), u.origin = u.protocol !== "file:" && q(u.protocol) && u.host ? u.protocol + "//" + u.host : "null", u.href = u.toString();
 }
-function hi(o, a, e) {
+function gi(o, a, e) {
   var i = this;
   switch (o) {
     case "query":
@@ -334,7 +334,7 @@ function di(o) {
   var s = n + (e.protocol && e.slashes || q(e.protocol) ? "//" : "");
   return e.username ? (s += e.username, e.password && (s += ":" + e.password), s += "@") : e.password ? (s += ":" + e.password, s += "@") : e.protocol !== "file:" && q(e.protocol) && !i && e.pathname !== "/" && (s += "@"), (i[i.length - 1] === ":" || ee.test(e.hostname) && !e.port) && (i += ":"), s += i + e.pathname, a = typeof e.query == "object" ? o(e.query) : e.query, a && (s += a.charAt(0) !== "?" ? "?" + a : a), e.hash && (s += e.hash), s;
 }
-L.prototype = { set: hi, toString: di };
+L.prototype = { set: gi, toString: di };
 L.extractProtocol = ne;
 L.location = ie;
 L.trimLeft = Ba;
@@ -9828,7 +9828,7 @@ const bi = [
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const fi = se, go = [
+const fi = se, ho = [
   "local",
   "example",
   "invalid",
@@ -9837,13 +9837,13 @@ const fi = se, go = [
 ], yi = ["localhost", "invalid"];
 function wi(o, a = {}) {
   const e = o.split("."), i = e[e.length - 1], n = !!a.allowSpecialUseDomain, s = !!a.ignoreError;
-  if (n && go.includes(i)) {
+  if (n && ho.includes(i)) {
     if (e.length > 1)
       return `${e[e.length - 2]}.${i}`;
     if (yi.includes(i))
       return `${i}`;
   }
-  if (!s && go.includes(i))
+  if (!s && ho.includes(i))
     throw new Error(
       `Cookie has domain set to the public suffix "${i}" which is a special use domain. To allow this, configure your CookieJar with {allowSpecialUseDomain:true, rejectPublicSuffixes: false}.`
     );
@@ -9913,8 +9913,8 @@ let vi = class {
   }
 };
 Ja.Store = vi;
-var Ga = {}, ga = {};
-ga.fromCallback = function(o) {
+var Ga = {}, ha = {};
+ha.fromCallback = function(o) {
   return Object.defineProperty(function() {
     if (typeof arguments[arguments.length - 1] == "function")
       o.apply(this, arguments);
@@ -9928,7 +9928,7 @@ ga.fromCallback = function(o) {
       });
   }, "name", { value: o.name });
 };
-ga.fromPromise = function(o) {
+ha.fromPromise = function(o) {
   return Object.defineProperty(function() {
     const a = arguments[arguments.length - 1];
     if (typeof a != "function")
@@ -10020,7 +10020,7 @@ function Si(o, a) {
   return a === o || o.indexOf(a) === 0 && (a.substr(-1) === "/" || o.substr(a.length, 1) === "/");
 }
 Qa.pathMatch = Si;
-var ha = {};
+var ga = {};
 const Ci = {}, _i = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Ci
@@ -10039,13 +10039,13 @@ function Oi(o) {
   const a = (o.requireUtil || re)();
   return a ? a.inspect.custom : null;
 }
-ha.getUtilInspect = function(o, a = {}) {
+ga.getUtilInspect = function(o, a = {}) {
   const e = (a.requireUtil || re)();
   return function(i, n, s) {
     return e ? e.inspect(i, n, s) : o(i);
   };
 };
-ha.getCustomInspectSymbol = function(o = {}) {
+ga.getCustomInspectSymbol = function(o = {}) {
   return (o.lookupCustomInspectSymbol || Ai)() || Oi(o);
 };
 /*!
@@ -10078,7 +10078,7 @@ ha.getCustomInspectSymbol = function(o = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: $i } = ga, Di = Ja.Store, Ei = te.permuteDomain, qi = Qa.pathMatch, { getCustomInspectSymbol: Ui, getUtilInspect: Li } = ha;
+const { fromCallback: $i } = ha, Di = Ja.Store, Ei = te.permuteDomain, qi = Qa.pathMatch, { getCustomInspectSymbol: Ui, getUtilInspect: Li } = ga;
 let Ia = class extends Di {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
@@ -10269,7 +10269,7 @@ var Ji = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const ho = Ko, Gi = ji, Wa = Ha, Qi = Ja.Store, Wi = Ga.MemoryCookieStore, Yi = Qa.pathMatch, g = F, Zi = Ji, { fromCallback: le } = ga, { getCustomInspectSymbol: Vi } = ha, Xi = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, jo = /[\x00-\x1F]/, bo = [`
+const go = Ko, Gi = ji, Wa = Ha, Qi = Ja.Store, Wi = Ga.MemoryCookieStore, Yi = Qa.pathMatch, h = F, Zi = Ji, { fromCallback: le } = ha, { getCustomInspectSymbol: Vi } = ga, Xi = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, jo = /[\x00-\x1F]/, bo = [`
 `, "\r", "\0"], Ki = /[\x20-\x3A\x3C-\x7E]+/, an = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, on = {
   jan: 0,
   feb: 1,
@@ -10285,7 +10285,7 @@ const ho = Ko, Gi = ji, Wa = Ha, Qi = Ja.Store, Wi = Ga.MemoryCookieStore, Yi = 
   dec: 11
 }, Oa = 2147483647e3, en = 0, fo = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
 function yo(o) {
-  g.validate(g.isNonEmptyString(o), o);
+  h.validate(h.isNonEmptyString(o), o);
   const a = String(o).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
 }
@@ -10362,10 +10362,10 @@ function ma(o) {
     return new Date(Date.UTC(r, t, s, e, i, n));
 }
 function un(o) {
-  return g.validate(g.isDate(o), o), o.toUTCString();
+  return h.validate(h.isDate(o), o), o.toUTCString();
 }
 function ia(o) {
-  return o == null ? null : (o = o.trim().replace(/^\./, ""), ke.test(o) && (o = o.replace("[", "").replace("]", "")), ho && /[^\u0001-\u007f]/.test(o) && (o = ho.toASCII(o)), o.toLowerCase());
+  return o == null ? null : (o = o.trim().replace(/^\./, ""), ke.test(o) && (o = o.replace("[", "").replace("]", "")), go && /[^\u0001-\u007f]/.test(o) && (o = go.toASCII(o)), o.toLowerCase());
 }
 function wo(o, a, e) {
   if (o == null || a == null)
@@ -10384,7 +10384,7 @@ function mn(o) {
   return a === 0 ? "/" : o.slice(0, a);
 }
 function pn(o) {
-  if (g.isEmptyString(o))
+  if (h.isEmptyString(o))
     return o;
   for (let a = 0; a < bo.length; a++) {
     const e = o.indexOf(bo[a]);
@@ -10393,7 +10393,7 @@ function pn(o) {
   return o;
 }
 function cn(o, a) {
-  o = pn(o), g.validate(g.isString(o), o);
+  o = pn(o), h.validate(h.isString(o), o);
   let e = o.indexOf("=");
   if (a)
     e === 0 && (o = o.substr(1), e = o.indexOf("="));
@@ -10406,7 +10406,7 @@ function cn(o, a) {
   return s.key = i, s.value = n, s;
 }
 function ln(o, a) {
-  if ((!a || typeof a != "object") && (a = {}), g.isEmptyString(o) || !g.isString(o))
+  if ((!a || typeof a != "object") && (a = {}), h.isEmptyString(o) || !h.isString(o))
     return null;
   o = o.trim();
   const e = o.indexOf(";"), i = e === -1 ? o : o.substr(0, e), n = cn(i, !!a.loose);
@@ -10476,12 +10476,12 @@ function ln(o, a) {
   return n;
 }
 function kn(o) {
-  return g.validate(g.isObject(o), o), !o.key.startsWith("__Secure-") || o.secure;
+  return h.validate(h.isObject(o), o), !o.key.startsWith("__Secure-") || o.secure;
 }
-function gn(o) {
-  return g.validate(g.isObject(o)), !o.key.startsWith("__Host-") || o.secure && o.hostOnly && o.path != null && o.path === "/";
+function hn(o) {
+  return h.validate(h.isObject(o)), !o.key.startsWith("__Host-") || o.secure && o.hostOnly && o.path != null && o.path === "/";
 }
-function ge(o) {
+function he(o) {
   let a;
   try {
     a = JSON.parse(o);
@@ -10491,11 +10491,11 @@ function ge(o) {
   return a;
 }
 function Ya(o) {
-  if (!o || g.isEmptyString(o))
+  if (!o || h.isEmptyString(o))
     return null;
   let a;
   if (typeof o == "string") {
-    if (a = ge(o), a instanceof Error)
+    if (a = he(o), a instanceof Error)
       return null;
   } else
     a = o;
@@ -10507,7 +10507,7 @@ function Ya(o) {
   return e;
 }
 function vo(o, a) {
-  g.validate(g.isObject(o), o), g.validate(g.isObject(a), a);
+  h.validate(h.isObject(o), o), h.validate(h.isObject(a), a);
   let e = 0;
   const i = o.path ? o.path.length : 0;
   if (e = (a.path ? a.path.length : 0) - i, e !== 0)
@@ -10657,15 +10657,15 @@ function xo(o) {
 }
 class I {
   constructor(a, e = { rejectPublicSuffixes: !0 }) {
-    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), g.validate(g.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Wi(), this.prefixSecurity = xo(e.prefixSecurity), this._cloneSync = M("clone"), this._importCookiesSync = M("_importCookies"), this.getCookiesSync = M("getCookies"), this.getCookieStringSync = M("getCookieString"), this.getSetCookieStringsSync = M("getSetCookieStrings"), this.removeAllCookiesSync = M("removeAllCookies"), this.setCookieSync = M("setCookie"), this.serializeSync = M("serialize");
+    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), h.validate(h.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Wi(), this.prefixSecurity = xo(e.prefixSecurity), this._cloneSync = M("clone"), this._importCookiesSync = M("_importCookies"), this.getCookiesSync = M("getCookies"), this.getCookieStringSync = M("getCookieString"), this.getSetCookieStringsSync = M("getSetCookieStrings"), this.removeAllCookiesSync = M("removeAllCookies"), this.setCookieSync = M("setCookie"), this.serializeSync = M("serialize");
   }
   setCookie(a, e, i, n) {
-    g.validate(g.isNonEmptyString(e), n, i);
+    h.validate(h.isNonEmptyString(e), n, i);
     let s;
-    if (g.isFunction(e))
+    if (h.isFunction(e))
       return n = e, n(new Error("No URL was specified"));
     const t = zo(e);
-    if (g.isFunction(i) && (n = i, i = {}), g.validate(g.isFunction(n), n), !g.isNonEmptyString(a) && !g.isObject(a) && a instanceof String && a.length == 0)
+    if (h.isFunction(i) && (n = i, i = {}), h.validate(h.isFunction(n), n), !h.isNonEmptyString(a) && !h.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
     const r = ia(t.hostname), m = i.loose || this.enableLooseMode;
     let c = null;
@@ -10701,7 +10701,7 @@ class I {
     const u = this.prefixSecurity === W.SILENT;
     if (this.prefixSecurity !== W.DISABLED) {
       let d = !1, l;
-      if (kn(a) ? gn(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
+      if (kn(a) ? hn(a) || (d = !0, l = "Cookie has __Host prefix but either Secure or HostOnly attribute is not set or Path is not '/'") : (d = !0, l = "Cookie has __Secure prefix but Secure attribute is not set"), d)
         return n(
           i.ignoreError || u ? null : new Error(l)
         );
@@ -10729,9 +10729,9 @@ class I {
   }
   // RFC6365 S5.4
   getCookies(a, e, i) {
-    g.validate(g.isNonEmptyString(a), i, a);
+    h.validate(h.isNonEmptyString(a), i, a);
     const n = zo(a);
-    g.isFunction(e) && (i = e, e = {}), g.validate(g.isObject(e), i, e), g.validate(g.isFunction(i), i);
+    h.isFunction(e) && (i = e, e = {}), h.validate(h.isObject(e), i, e), h.validate(h.isFunction(i), i);
     const s = ia(n.hostname), t = n.pathname || "/";
     let r = e.secure;
     r == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (r = !0);
@@ -10770,7 +10770,7 @@ class I {
   }
   getCookieString(...a) {
     const e = a.pop();
-    g.validate(g.isFunction(e), e);
+    h.validate(h.isFunction(e), e);
     const i = function(n, s) {
       n ? e(n) : e(
         null,
@@ -10781,7 +10781,7 @@ class I {
   }
   getSetCookieStrings(...a) {
     const e = a.pop();
-    g.validate(g.isFunction(e), e);
+    h.validate(h.isFunction(e), e);
     const i = function(n, s) {
       n ? e(n) : e(
         null,
@@ -10791,9 +10791,9 @@ class I {
     a.push(i), this.getCookies.apply(this, a);
   }
   serialize(a) {
-    g.validate(g.isFunction(a), a);
+    h.validate(h.isFunction(a), a);
     let e = this.store.constructor.name;
-    g.isObject(e) && (e = null);
+    h.isObject(e) && (e = null);
     const i = {
       // The version of tough-cookie that serialized this jar. Generally a good
       // practice since future versions can make data import decisions based on
@@ -10860,7 +10860,7 @@ class I {
     return this._cloneSync(a);
   }
   removeAllCookies(a) {
-    g.validate(g.isFunction(a), a);
+    h.validate(h.isFunction(a), a);
     const e = this.store;
     if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== Qi.prototype.removeAllCookies)
       return e.removeAllCookies(a);
@@ -10886,10 +10886,10 @@ class I {
     });
   }
   static deserialize(a, e, i) {
-    arguments.length !== 3 && (i = e, e = null), g.validate(g.isFunction(i), i);
+    arguments.length !== 3 && (i = e, e = null), h.validate(h.isFunction(i), i);
     let n;
     if (typeof a == "string") {
-      if (n = ge(a), n instanceof Error)
+      if (n = he(a), n instanceof Error)
         return i(n);
     } else
       n = a;
@@ -10945,16 +10945,16 @@ function M(o) {
     return i;
   };
 }
-var hn = I;
+var gn = I;
 Wa.getPublicSuffix;
-g.ParameterError;
-var he = {};
-Object.defineProperty(he, "__esModule", { value: !0 });
+h.ParameterError;
+var ge = {};
+Object.defineProperty(ge, "__esModule", { value: !0 });
 function dn(o) {
   return o;
 }
-var jn = he.wrapper = dn;
-const de = new hn();
+var jn = ge.wrapper = dn;
+const de = new gn();
 jn && (j.defaults.jar = de);
 j.defaults.withCredentials = !0;
 let So = class {
@@ -21161,7 +21161,7 @@ ba.getCustomInspectSymbol = function(o = {}) {
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const { fromCallback: ms } = ja, ps = io.Store, cs = qe.permuteDomain, ls = so.pathMatch, { getCustomInspectSymbol: ks, getUtilInspect: gs } = ba;
+const { fromCallback: ms } = ja, ps = io.Store, cs = qe.permuteDomain, ls = so.pathMatch, { getCustomInspectSymbol: ks, getUtilInspect: hs } = ba;
 let qa = class extends ps {
   constructor() {
     super(), this.synchronous = !0, this.idx = /* @__PURE__ */ Object.create(null);
@@ -21169,7 +21169,7 @@ let qa = class extends ps {
     o && (this[o] = this.inspect);
   }
   inspect() {
-    return `{ idx: ${{ inspect: gs(Le) }.inspect(this.idx, !1, 2)} }`;
+    return `{ idx: ${{ inspect: hs(Le) }.inspect(this.idx, !1, 2)} }`;
   }
   findCookie(o, a, e, i) {
     return !this.idx[o] || !this.idx[o][a] ? i(null, void 0) : i(null, this.idx[o][a][e] || null);
@@ -21248,11 +21248,11 @@ function Le(o) {
   let e = `[Object: null prototype] {
 `;
   return Object.keys(o).forEach((i, n) => {
-    e += hs(i, o[i]), n < a.length - 1 && (e += ","), e += `
+    e += gs(i, o[i]), n < a.length - 1 && (e += ","), e += `
 `;
   }), e += "}", e;
 }
-function hs(o, a) {
+function gs(o, a) {
   const e = "  ";
   let i = `${e}'${o}': [Object: null prototype] {
 `;
@@ -21352,7 +21352,7 @@ var zs = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const qo = _e, xs = Yn, to = eo, Ss = io.Store, Cs = no.MemoryCookieStore, _s = so.pathMatch, h = N, Is = zs, { fromCallback: Fe } = ja, { getCustomInspectSymbol: As } = ba, Os = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Uo = /[\x00-\x1F]/, Lo = [`
+const qo = _e, xs = Yn, to = eo, Ss = io.Store, Cs = no.MemoryCookieStore, _s = so.pathMatch, g = N, Is = zs, { fromCallback: Fe } = ja, { getCustomInspectSymbol: As } = ba, Os = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, Uo = /[\x00-\x1F]/, Lo = [`
 `, "\r", "\0"], $s = /[\x20-\x3A\x3C-\x7E]+/, Ds = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, Es = {
   jan: 0,
   feb: 1,
@@ -21368,7 +21368,7 @@ const qo = _e, xs = Yn, to = eo, Ss = io.Store, Cs = no.MemoryCookieStore, _s = 
   dec: 11
 }, La = 2147483647e3, qs = 0, To = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
 function Ro(o) {
-  h.validate(h.isNonEmptyString(o), o);
+  g.validate(g.isNonEmptyString(o), o);
   const a = String(o).toLowerCase();
   return a === "none" || a === "lax" || a === "strict" ? a : null;
 }
@@ -21445,7 +21445,7 @@ function ca(o) {
     return new Date(Date.UTC(r, t, s, e, i, n));
 }
 function Ps(o) {
-  return h.validate(h.isDate(o), o), o.toUTCString();
+  return g.validate(g.isDate(o), o), o.toUTCString();
 }
 function sa(o) {
   return o == null ? null : (o = o.trim().replace(/^\./, ""), Ne.test(o) && (o = o.replace("[", "").replace("]", "")), qo && /[^\u0001-\u007f]/.test(o) && (o = qo.toASCII(o)), o.toLowerCase());
@@ -21467,7 +21467,7 @@ function Fs(o) {
   return a === 0 ? "/" : o.slice(0, a);
 }
 function Ns(o) {
-  if (h.isEmptyString(o))
+  if (g.isEmptyString(o))
     return o;
   for (let a = 0; a < Lo.length; a++) {
     const e = o.indexOf(Lo[a]);
@@ -21476,7 +21476,7 @@ function Ns(o) {
   return o;
 }
 function Ms(o, a) {
-  o = Ns(o), h.validate(h.isString(o), o);
+  o = Ns(o), g.validate(g.isString(o), o);
   let e = o.indexOf("=");
   if (a)
     e === 0 && (o = o.substr(1), e = o.indexOf("="));
@@ -21489,7 +21489,7 @@ function Ms(o, a) {
   return s.key = i, s.value = n, s;
 }
 function Bs(o, a) {
-  if ((!a || typeof a != "object") && (a = {}), h.isEmptyString(o) || !h.isString(o))
+  if ((!a || typeof a != "object") && (a = {}), g.isEmptyString(o) || !g.isString(o))
     return null;
   o = o.trim();
   const e = o.indexOf(";"), i = e === -1 ? o : o.substr(0, e), n = Ms(i, !!a.loose);
@@ -21559,10 +21559,10 @@ function Bs(o, a) {
   return n;
 }
 function Hs(o) {
-  return h.validate(h.isObject(o), o), !o.key.startsWith("__Secure-") || o.secure;
+  return g.validate(g.isObject(o), o), !o.key.startsWith("__Secure-") || o.secure;
 }
 function Js(o) {
-  return h.validate(h.isObject(o)), !o.key.startsWith("__Host-") || o.secure && o.hostOnly && o.path != null && o.path === "/";
+  return g.validate(g.isObject(o)), !o.key.startsWith("__Host-") || o.secure && o.hostOnly && o.path != null && o.path === "/";
 }
 function Me(o) {
   let a;
@@ -21574,7 +21574,7 @@ function Me(o) {
   return a;
 }
 function ro(o) {
-  if (!o || h.isEmptyString(o))
+  if (!o || g.isEmptyString(o))
     return null;
   let a;
   if (typeof o == "string") {
@@ -21590,7 +21590,7 @@ function ro(o) {
   return e;
 }
 function Fo(o, a) {
-  h.validate(h.isObject(o), o), h.validate(h.isObject(a), a);
+  g.validate(g.isObject(o), o), g.validate(g.isObject(a), a);
   let e = 0;
   const i = o.path ? o.path.length : 0;
   if (e = (a.path ? a.path.length : 0) - i, e !== 0)
@@ -21740,15 +21740,15 @@ function Mo(o) {
 }
 class A {
   constructor(a, e = { rejectPublicSuffixes: !0 }) {
-    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), h.validate(h.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Cs(), this.prefixSecurity = Mo(e.prefixSecurity), this._cloneSync = B("clone"), this._importCookiesSync = B("_importCookies"), this.getCookiesSync = B("getCookies"), this.getCookieStringSync = B("getCookieString"), this.getSetCookieStringsSync = B("getSetCookieStrings"), this.removeAllCookiesSync = B("removeAllCookies"), this.setCookieSync = B("setCookie"), this.serializeSync = B("serialize");
+    typeof e == "boolean" && (e = { rejectPublicSuffixes: e }), g.validate(g.isObject(e), e), this.rejectPublicSuffixes = e.rejectPublicSuffixes, this.enableLooseMode = !!e.looseMode, this.allowSpecialUseDomain = typeof e.allowSpecialUseDomain == "boolean" ? e.allowSpecialUseDomain : !0, this.store = a || new Cs(), this.prefixSecurity = Mo(e.prefixSecurity), this._cloneSync = B("clone"), this._importCookiesSync = B("_importCookies"), this.getCookiesSync = B("getCookies"), this.getCookieStringSync = B("getCookieString"), this.getSetCookieStringsSync = B("getSetCookieStrings"), this.removeAllCookiesSync = B("removeAllCookies"), this.setCookieSync = B("setCookie"), this.serializeSync = B("serialize");
   }
   setCookie(a, e, i, n) {
-    h.validate(h.isNonEmptyString(e), n, i);
+    g.validate(g.isNonEmptyString(e), n, i);
     let s;
-    if (h.isFunction(e))
+    if (g.isFunction(e))
       return n = e, n(new Error("No URL was specified"));
     const t = No(e);
-    if (h.isFunction(i) && (n = i, i = {}), h.validate(h.isFunction(n), n), !h.isNonEmptyString(a) && !h.isObject(a) && a instanceof String && a.length == 0)
+    if (g.isFunction(i) && (n = i, i = {}), g.validate(g.isFunction(n), n), !g.isNonEmptyString(a) && !g.isObject(a) && a instanceof String && a.length == 0)
       return n(null);
     const r = sa(t.hostname), m = i.loose || this.enableLooseMode;
     let c = null;
@@ -21812,9 +21812,9 @@ class A {
   }
   // RFC6365 S5.4
   getCookies(a, e, i) {
-    h.validate(h.isNonEmptyString(a), i, a);
+    g.validate(g.isNonEmptyString(a), i, a);
     const n = No(a);
-    h.isFunction(e) && (i = e, e = {}), h.validate(h.isObject(e), i, e), h.validate(h.isFunction(i), i);
+    g.isFunction(e) && (i = e, e = {}), g.validate(g.isObject(e), i, e), g.validate(g.isFunction(i), i);
     const s = sa(n.hostname), t = n.pathname || "/";
     let r = e.secure;
     r == null && n.protocol && (n.protocol == "https:" || n.protocol == "wss:") && (r = !0);
@@ -21853,7 +21853,7 @@ class A {
   }
   getCookieString(...a) {
     const e = a.pop();
-    h.validate(h.isFunction(e), e);
+    g.validate(g.isFunction(e), e);
     const i = function(n, s) {
       n ? e(n) : e(
         null,
@@ -21864,7 +21864,7 @@ class A {
   }
   getSetCookieStrings(...a) {
     const e = a.pop();
-    h.validate(h.isFunction(e), e);
+    g.validate(g.isFunction(e), e);
     const i = function(n, s) {
       n ? e(n) : e(
         null,
@@ -21874,9 +21874,9 @@ class A {
     a.push(i), this.getCookies.apply(this, a);
   }
   serialize(a) {
-    h.validate(h.isFunction(a), a);
+    g.validate(g.isFunction(a), a);
     let e = this.store.constructor.name;
-    h.isObject(e) && (e = null);
+    g.isObject(e) && (e = null);
     const i = {
       // The version of tough-cookie that serialized this jar. Generally a good
       // practice since future versions can make data import decisions based on
@@ -21943,7 +21943,7 @@ class A {
     return this._cloneSync(a);
   }
   removeAllCookies(a) {
-    h.validate(h.isFunction(a), a);
+    g.validate(g.isFunction(a), a);
     const e = this.store;
     if (typeof e.removeAllCookies == "function" && e.removeAllCookies !== Ss.prototype.removeAllCookies)
       return e.removeAllCookies(a);
@@ -21969,7 +21969,7 @@ class A {
     });
   }
   static deserialize(a, e, i) {
-    arguments.length !== 3 && (i = e, e = null), h.validate(h.isFunction(i), i);
+    arguments.length !== 3 && (i = e, e = null), g.validate(g.isFunction(i), i);
     let n;
     if (typeof a == "string") {
       if (n = Me(a), n instanceof Error)
@@ -22030,7 +22030,7 @@ function B(o) {
 }
 var Gs = A;
 to.getPublicSuffix;
-h.ParameterError;
+g.ParameterError;
 var Be = {};
 Object.defineProperty(Be, "__esModule", { value: !0 });
 function Qs(o) {
@@ -22402,7 +22402,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   cloneDefinition(a, e) {
-    return P(this.configuration).cloneDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).cloneDefinition(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -22413,7 +22413,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   deleteDefinition(a, e) {
-    return P(this.configuration).deleteDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).deleteDefinition(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -22424,7 +22424,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   exportDefinition(a, e) {
-    return P(this.configuration).exportDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).exportDefinition(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Retrieves a sinple representation of all enabled definitions by default.  To include disabled definitions set the query parameter `includeDisbaled` to true.  The result will not include the field definitions.
@@ -22436,7 +22436,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   getAllDefinitions(a, e, i) {
-    return P(this.configuration).getAllDefinitions(a, e, i).then((n) => n(this.axios));
+    return P(this.configuration).getAllDefinitions(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
   /**
    * Retrieves the full details about a specific definition. When setting export to true it will return a clone of the definition.
@@ -22449,7 +22449,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   getDefinition(a, e, i, n) {
-    return P(this.configuration).getDefinition(a, e, i, n).then((s) => s(this.axios));
+    return P(this.configuration).getDefinition(a, e, i, n).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Retrieves the full details about a definition.
@@ -22460,7 +22460,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   getDefinitionByName(a, e) {
-    return P(this.configuration).getDefinitionByName(a, e).then((i) => i(this.axios));
+    return P(this.configuration).getDefinitionByName(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -22471,7 +22471,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   saveDefinition(a, e) {
-    return P(this.configuration).saveDefinition(a, e).then((i) => i(this.axios));
+    return P(this.configuration).saveDefinition(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -22483,7 +22483,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   updateDefinition(a, e, i) {
-    return P(this.configuration).updateDefinition(a, e, i).then((n) => n(this.axios));
+    return P(this.configuration).updateDefinition(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
   /**
    * 
@@ -22495,7 +22495,7 @@ class Je extends uo {
    * @memberof DefinitionsApi
    */
   updateDefinitionState(a, e, i) {
-    return P(this.configuration).updateDefinitionState(a, e, i).then((n) => n(this.axios));
+    return P(this.configuration).updateDefinitionState(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
 }
 const Xs = function(o) {
@@ -22786,7 +22786,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   addInstance(a, e) {
-    return H(this.configuration).addInstance(a, e).then((i) => i(this.axios));
+    return H(this.configuration).addInstance(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Adds a LogM log entry to an instance.
@@ -22798,7 +22798,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   addLogMessageToInstance(a, e, i) {
-    return H(this.configuration).addLogMessageToInstance(a, e, i).then((n) => n(this.axios));
+    return H(this.configuration).addLogMessageToInstance(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
   /**
    * Deletes an instance.
@@ -22810,7 +22810,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   deleteInstance(a, e, i) {
-    return H(this.configuration).deleteInstance(a, e, i).then((n) => n(this.axios));
+    return H(this.configuration).deleteInstance(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
   /**
    * Download a file that is attached to a $file field
@@ -22824,7 +22824,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   downloadFile(a, e, i, n, s) {
-    return H(this.configuration).downloadFile(a, e, i, n, s).then((t) => t(this.axios));
+    return H(this.configuration).downloadFile(a, e, i, n, s).then((t) => t(this.axios)).then((t) => t.data);
   }
   /**
    * Obtains a representation of an instance.
@@ -22836,7 +22836,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   getInstance(a, e, i) {
-    return H(this.configuration).getInstance(a, e, i).then((n) => n(this.axios));
+    return H(this.configuration).getInstance(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
   /**
    * Obtains a representation of an instance with no values. Useful for using as a starting point for creating a new instance.
@@ -22848,7 +22848,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   getNewInstance(a, e, i) {
-    return H(this.configuration).getNewInstance(a, e, i).then((n) => n(this.axios));
+    return H(this.configuration).getNewInstance(a, e, i).then((n) => n(this.axios)).then((n) => n.data);
   }
   /**
    * Updates an instance with the complete representation passed.
@@ -22861,7 +22861,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   updateInstance(a, e, i, n) {
-    return H(this.configuration).updateInstance(a, e, i, n).then((s) => s(this.axios));
+    return H(this.configuration).updateInstance(a, e, i, n).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Upload a file to be used as a value for a $file field
@@ -22874,7 +22874,7 @@ class Ge extends uo {
    * @memberof InstancesApi
    */
   uploadFile(a, e, i, n) {
-    return H(this.configuration).uploadFile(a, e, i, n).then((s) => s(this.axios));
+    return H(this.configuration).uploadFile(a, e, i, n).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 const Ks = function(o) {
@@ -22985,7 +22985,7 @@ class at extends uo {
    * @memberof IntegrationApi
    */
   _delete(a, e) {
-    return Sa(this.configuration)._delete(a, e).then((i) => i(this.axios));
+    return Sa(this.configuration)._delete(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Adds a new instance represented by the passed Object.
@@ -22996,7 +22996,7 @@ class at extends uo {
    * @memberof IntegrationApi
    */
   add(a, e) {
-    return Sa(this.configuration).add(a, e).then((i) => i(this.axios));
+    return Sa(this.configuration).add(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Updates the matching instances with the passed updates.
@@ -23007,7 +23007,7 @@ class at extends uo {
    * @memberof IntegrationApi
    */
   update(a, e) {
-    return Sa(this.configuration).update(a, e).then((i) => i(this.axios));
+    return Sa(this.configuration).update(a, e).then((i) => i(this.axios)).then((i) => i.data);
   }
 }
 class Ca {
@@ -23149,7 +23149,7 @@ const ot = class la {
   }
   static async load(a) {
     try {
-      const e = (await la.API.getInstance(a)).data;
+      const e = await la.API.getInstance(a);
       return Promise.resolve(new la(e));
     } catch (e) {
       return console.error("Error loading instance with id", a), Promise.reject(e);
@@ -23163,7 +23163,7 @@ const et = "/recordm/index.html#/instance/__INSTANCE_ID__", ft = function(o, a) 
     values: a
   };
   return new at().add(e).then((n) => {
-    const s = n.data, t = s.id;
+    const s = n, t = s.id;
     return s.resultsUrl = et.replace("__INSTANCE_ID__", `${t}`), typeof window > "u" && (s.resultsUrl = _() + s.resultsUrl), s;
   });
 }, it = "/recordm/recordm/definitions/search/advanced/__DEF_ID__?from=__FROM__&size=__SIZE__", nt = "/recordm/#/definitions/__DEF_ID__/q=__QUERY__", yt = async function(o, a, e = "*", i = 0, n = 10, s = "", t = "") {
@@ -23196,16 +23196,16 @@ const et = "/recordm/index.html#/instance/__INSTANCE_ID__", ft = function(o, a) 
   return r.data.resultsUrl = mt.replace("__DOMAIN_ID__", `${o}`).replace("__QUERY__", a), typeof window > "u" && (r.data.resultsUrl = _() + r.data.resultsUrl), r.data;
 }, pt = "/recordm/index.html#/instance/__INSTANCE_ID__", xt = function(o) {
   return new Ge().getInstance(o).then((e) => {
-    const i = e.data, n = i.id;
+    const i = e, n = i.id;
     return i.resultsUrl = pt.replace("__INSTANCE_ID__", `${n}`), typeof window > "u" && (i.resultsUrl = _() + i.resultsUrl), i;
   });
 }, St = async function(o) {
-  return (await new Je().getDefinition(o)).data;
+  return await new Je().getDefinition(o);
 }, Ct = async function(o = { includeDisabled: !1, name: null }) {
-  return (await new Je().getAllDefinitions(
+  return await new Je().getAllDefinitions(
     o.includeDisabled,
     o.name ? o.name.replace(/\*/g, "%") : void 0
-  )).data;
+  );
 };
 export {
   dt as auth,

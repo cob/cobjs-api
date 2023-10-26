@@ -19,7 +19,7 @@ export declare class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    createPermission(createPermissionRequest: CreatePermissionRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Permission, any>>;
+    createPermission(createPermissionRequest: CreatePermissionRequest, options?: AxiosRequestConfig): Promise<Permission>;
     /**
      *
      * @summary Delete an existing permission
@@ -28,7 +28,7 @@ export declare class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    deletePermission(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Permission, any>>;
+    deletePermission(id: number, options?: AxiosRequestConfig): Promise<Permission>;
     /**
      * Retrieves the full details of a permission.
      * @summary Retrieves a permission by it\'s id
@@ -38,7 +38,7 @@ export declare class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    getPermission(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Permission, any>>;
+    getPermission(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<Permission>;
     /**
      * Retrieves the full details of a permission.
      * @summary Retrieves a permission by it\'s product and name
@@ -48,7 +48,7 @@ export declare class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    getPermissionByProductAndName(product: ProductName, name: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Permission, any>>;
+    getPermissionByProductAndName(product: ProductName, name: string, options?: AxiosRequestConfig): Promise<Permission>;
     /**
      *
      * @summary Update an existing permission
@@ -58,5 +58,5 @@ export declare class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    updatePermission(id: number, updatePermissionRequest: UpdatePermissionRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Permission, any>>;
+    updatePermission(id: number, updatePermissionRequest: UpdatePermissionRequest, options?: AxiosRequestConfig): Promise<Permission>;
 }

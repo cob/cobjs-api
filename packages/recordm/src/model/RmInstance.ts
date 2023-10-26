@@ -177,7 +177,7 @@ export default class RmInstance {
 
   static async load(id: number) {
     try {
-      const instance = (await RmInstance.API.getInstance(id)).data;
+      const instance = (await RmInstance.API.getInstance(id));
       return Promise.resolve(new RmInstance(instance));
 
     } catch (err) {

@@ -11099,7 +11099,7 @@ class Ie extends Ae {
    * @memberof ActionsApi
    */
   executeBlockingAction(o, e, i) {
-    return Ca(this.configuration).executeBlockingAction(o, e, i).then((s) => s(this.axios));
+    return Ca(this.configuration).executeBlockingAction(o, e, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Can be used with:    - JSON, the simplest way when calling from other code (or even cURL)   - <code>application/x-www-form-urlencoded</code>, directly from an HTML form.
@@ -11111,7 +11111,7 @@ class Ie extends Ae {
    * @memberof ActionsApi
    */
   executeConcurrentAction(o, e, i) {
-    return Ca(this.configuration).executeConcurrentAction(o, e, i).then((s) => s(this.axios));
+    return Ca(this.configuration).executeConcurrentAction(o, e, i).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 export {

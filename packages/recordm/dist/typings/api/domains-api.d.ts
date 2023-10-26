@@ -19,7 +19,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    addDefinitionToDomain(domainId: number, definitionId: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain, any>>;
+    addDefinitionToDomain(domainId: number, definitionId: number, options?: AxiosRequestConfig): Promise<DecoratedDomain>;
     /**
      *
      * @summary Creates a new domain
@@ -28,7 +28,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    addDomain(createDomainRequest?: CreateDomainRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain, any>>;
+    addDomain(createDomainRequest?: CreateDomainRequest, options?: AxiosRequestConfig): Promise<DecoratedDomain>;
     /**
      *
      * @summary Delete an existing domain
@@ -37,7 +37,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    deleteDomain(domainId: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    deleteDomain(domainId: number, options?: AxiosRequestConfig): Promise<void>;
     /**
      * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
      * @summary Find a domain by name
@@ -46,7 +46,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    findDomainByName(name: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain, any>>;
+    findDomainByName(name: string, options?: AxiosRequestConfig): Promise<DecoratedDomain>;
     /**
      * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
      * @summary Retrieves all domains
@@ -54,7 +54,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    getAllDomains(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain[], any>>;
+    getAllDomains(options?: AxiosRequestConfig): Promise<DecoratedDomain[]>;
     /**
      * It will include all definitions belonging to this domain but the definitions will not include it\'s field definitions.
      * @summary Retrieve a domain by it\'s identifier
@@ -64,7 +64,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    getDomain(domainId: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain, any>>;
+    getDomain(domainId: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<DecoratedDomain>;
     /**
      * The response will return the domain with its definitions but not with it\'s field definitions.
      * @summary Remove a definition from an existing domain
@@ -74,7 +74,7 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    removeDefinitionFromDomain(domainId: number, definitionId: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain, any>>;
+    removeDefinitionFromDomain(domainId: number, definitionId: number, options?: AxiosRequestConfig): Promise<DecoratedDomain>;
     /**
      *
      * @summary Update an existing domain
@@ -84,5 +84,5 @@ export declare class DomainsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainsApi
      */
-    updateDomain(domainId: number, updateDomainRequest?: UpdateDomainRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<DecoratedDomain, any>>;
+    updateDomain(domainId: number, updateDomainRequest?: UpdateDomainRequest, options?: AxiosRequestConfig): Promise<DecoratedDomain>;
 }

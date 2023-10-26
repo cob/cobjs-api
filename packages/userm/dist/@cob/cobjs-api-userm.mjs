@@ -11025,7 +11025,7 @@ const k = "https://example.com", h = function(e, a, o) {
      */
     authenticate: async (a, o = {}) => {
       h("authenticate", "credentials", a);
-      const i = "/userm/userm/auth", s = new URL(i, k);
+      const i = "/userm/security/auth", s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
@@ -11045,7 +11045,7 @@ const k = "https://example.com", h = function(e, a, o) {
      */
     impersonate: async (a, o = {}) => {
       h("impersonate", "username", a);
-      const i = "/userm/userm/auth/impersonate/{username}".replace("{username}", encodeURIComponent(String(a))), s = new URL(i, k);
+      const i = "/userm/security/auth/impersonate/{username}".replace("{username}", encodeURIComponent(String(a))), s = new URL(i, k);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "PUT", ...t, ...o }, r = {};
@@ -11063,7 +11063,7 @@ const k = "https://example.com", h = function(e, a, o) {
      * @throws {RequiredError}
      */
     logout: async (a = {}) => {
-      const o = "/userm/userm/auth/logout", i = new URL(o, k);
+      const o = "/userm/security/auth/logout", i = new URL(o, k);
       let s;
       e && (s = e.baseOptions);
       const t = { method: "GET", ...s, ...a }, n = {};
@@ -11081,7 +11081,7 @@ const k = "https://example.com", h = function(e, a, o) {
      * @throws {RequiredError}
      */
     resetOriginalUser: async (a = {}) => {
-      const o = "/userm/userm/auth/resetUser", i = new URL(o, k);
+      const o = "/userm/security/auth/resetUser", i = new URL(o, k);
       let s;
       e && (s = e.baseOptions);
       const t = { method: "PUT", ...s, ...a }, n = {};
@@ -11150,7 +11150,7 @@ class Fe extends H {
    * @memberof AuthenticationApi
    */
   authenticate(a, o) {
-    return Q(this.configuration).authenticate(a, o).then((i) => i(this.axios));
+    return Q(this.configuration).authenticate(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -11161,7 +11161,7 @@ class Fe extends H {
    * @memberof AuthenticationApi
    */
   impersonate(a, o) {
-    return Q(this.configuration).impersonate(a, o).then((i) => i(this.axios));
+    return Q(this.configuration).impersonate(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -11171,7 +11171,7 @@ class Fe extends H {
    * @memberof AuthenticationApi
    */
   logout(a) {
-    return Q(this.configuration).logout(a).then((o) => o(this.axios));
+    return Q(this.configuration).logout(a).then((o) => o(this.axios)).then((o) => o.data);
   }
   /**
    * 
@@ -11181,7 +11181,7 @@ class Fe extends H {
    * @memberof AuthenticationApi
    */
   resetOriginalUser(a) {
-    return Q(this.configuration).resetOriginalUser(a).then((o) => o(this.axios));
+    return Q(this.configuration).resetOriginalUser(a).then((o) => o(this.axios)).then((o) => o.data);
   }
 }
 const Ie = function(e) {
@@ -11532,7 +11532,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   addRoles(a, o, i) {
-    return P(this.configuration).addRoles(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).addRoles(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -11544,7 +11544,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   addUsers(a, o, i) {
-    return P(this.configuration).addUsers(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).addUsers(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -11555,7 +11555,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   createGroup(a, o) {
-    return P(this.configuration).createGroup(a, o).then((i) => i(this.axios));
+    return P(this.configuration).createGroup(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -11566,7 +11566,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   deleteGroup(a, o) {
-    return P(this.configuration).deleteGroup(a, o).then((i) => i(this.axios));
+    return P(this.configuration).deleteGroup(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Retrieves the full details of a group.
@@ -11578,7 +11578,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   getGroup(a, o, i) {
-    return P(this.configuration).getGroup(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).getGroup(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Retrieves the full details of a group.
@@ -11589,7 +11589,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   getGroupByName(a, o) {
-    return P(this.configuration).getGroupByName(a, o).then((i) => i(this.axios));
+    return P(this.configuration).getGroupByName(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -11601,7 +11601,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   removeRoles(a, o, i) {
-    return P(this.configuration).removeRoles(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).removeRoles(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -11613,7 +11613,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   removeUsers(a, o, i) {
-    return P(this.configuration).removeUsers(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).removeUsers(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -11628,7 +11628,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   searchGroups(a, o, i, s, t, n) {
-    return P(this.configuration).searchGroups(a, o, i, s, t, n).then((r) => r(this.axios));
+    return P(this.configuration).searchGroups(a, o, i, s, t, n).then((r) => r(this.axios)).then((r) => r.data);
   }
   /**
    * 
@@ -11640,7 +11640,7 @@ class Be extends H {
    * @memberof GroupsApi
    */
   updateGroup(a, o, i) {
-    return P(this.configuration).updateGroup(a, o, i).then((s) => s(this.axios));
+    return P(this.configuration).updateGroup(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 const Te = function(e) {
@@ -11822,7 +11822,7 @@ class Ne extends H {
    * @memberof PermissionsApi
    */
   createPermission(a, o) {
-    return F(this.configuration).createPermission(a, o).then((i) => i(this.axios));
+    return F(this.configuration).createPermission(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -11833,7 +11833,7 @@ class Ne extends H {
    * @memberof PermissionsApi
    */
   deletePermission(a, o) {
-    return F(this.configuration).deletePermission(a, o).then((i) => i(this.axios));
+    return F(this.configuration).deletePermission(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Retrieves the full details of a permission.
@@ -11845,7 +11845,7 @@ class Ne extends H {
    * @memberof PermissionsApi
    */
   getPermission(a, o, i) {
-    return F(this.configuration).getPermission(a, o, i).then((s) => s(this.axios));
+    return F(this.configuration).getPermission(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Retrieves the full details of a permission.
@@ -11857,7 +11857,7 @@ class Ne extends H {
    * @memberof PermissionsApi
    */
   getPermissionByProductAndName(a, o, i) {
-    return F(this.configuration).getPermissionByProductAndName(a, o, i).then((s) => s(this.axios));
+    return F(this.configuration).getPermissionByProductAndName(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -11869,7 +11869,7 @@ class Ne extends H {
    * @memberof PermissionsApi
    */
   updatePermission(a, o, i) {
-    return F(this.configuration).updatePermission(a, o, i).then((s) => s(this.axios));
+    return F(this.configuration).updatePermission(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 const qe = function(e) {
@@ -12118,7 +12118,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   addPermissions(a, o, i) {
-    return T(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12129,7 +12129,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   createRole(a, o) {
-    return T(this.configuration).createRole(a, o).then((i) => i(this.axios));
+    return T(this.configuration).createRole(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -12140,7 +12140,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   deleteRole(a, o) {
-    return T(this.configuration).deleteRole(a, o).then((i) => i(this.axios));
+    return T(this.configuration).deleteRole(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Retrieves the full details of a role.
@@ -12152,7 +12152,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   getRole(a, o, i) {
-    return T(this.configuration).getRole(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).getRole(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Retrieves the full details of a role.
@@ -12164,7 +12164,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   getRoleByProductAndName(a, o, i) {
-    return T(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12176,7 +12176,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   removePermissions(a, o, i) {
-    return T(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12188,7 +12188,7 @@ class _e extends H {
    * @memberof RolesApi
    */
   updateRole(a, o, i) {
-    return T(this.configuration).updateRole(a, o, i).then((s) => s(this.axios));
+    return T(this.configuration).updateRole(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 const Le = function(e) {
@@ -12460,7 +12460,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   createUser(a, o) {
-    return I(this.configuration).createUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).createUser(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -12471,7 +12471,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   deleteUser(a, o) {
-    return I(this.configuration).deleteUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).deleteUser(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -12482,7 +12482,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   disableUser(a, o) {
-    return I(this.configuration).disableUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).disableUser(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -12493,7 +12493,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   enableUser(a, o) {
-    return I(this.configuration).enableUser(a, o).then((i) => i(this.axios));
+    return I(this.configuration).enableUser(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -12503,7 +12503,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   getLoggedInUser(a) {
-    return I(this.configuration).getLoggedInUser(a).then((o) => o(this.axios));
+    return I(this.configuration).getLoggedInUser(a).then((o) => o(this.axios)).then((o) => o.data);
   }
   /**
    * Retrieves the full details of a user. 
@@ -12515,7 +12515,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   getUser(a, o, i) {
-    return I(this.configuration).getUser(a, o, i).then((s) => s(this.axios));
+    return I(this.configuration).getUser(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
@@ -12527,7 +12527,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   getUserByUsername(a, o, i) {
-    return I(this.configuration).getUserByUsername(a, o, i).then((s) => s(this.axios));
+    return I(this.configuration).getUserByUsername(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12539,7 +12539,7 @@ class $e extends H {
    * @memberof UsersApi
    */
   updateUser(a, o, i) {
-    return I(this.configuration).updateUser(a, o, i).then((s) => s(this.axios));
+    return I(this.configuration).updateUser(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 const He = {

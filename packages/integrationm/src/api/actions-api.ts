@@ -147,7 +147,9 @@ export class ActionsApi extends BaseAPI {
      * @memberof ActionsApi
      */
     public executeBlockingAction(name: string, requestBody?: { [key: string]: any; }, options?: AxiosRequestConfig) {
-        return ActionsApiFp(this.configuration).executeBlockingAction(name, requestBody, options).then((request) => request(this.axios));
+        return ActionsApiFp(this.configuration).executeBlockingAction(name, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -160,6 +162,8 @@ export class ActionsApi extends BaseAPI {
      * @memberof ActionsApi
      */
     public executeConcurrentAction(name: string, requestBody?: { [key: string]: any; }, options?: AxiosRequestConfig) {
-        return ActionsApiFp(this.configuration).executeConcurrentAction(name, requestBody, options).then((request) => request(this.axios));
+        return ActionsApiFp(this.configuration).executeConcurrentAction(name, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

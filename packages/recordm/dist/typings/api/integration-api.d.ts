@@ -20,7 +20,7 @@ export declare class IntegrationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IntegrationApi
      */
-    _delete(integrationDeleteMessage?: IntegrationDeleteMessage, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<IntegrationStats, any>>;
+    _delete(integrationDeleteMessage?: IntegrationDeleteMessage, options?: AxiosRequestConfig): Promise<IntegrationStats>;
     /**
      * Adds a new instance represented by the passed Object.
      * @summary Create an instance
@@ -29,7 +29,7 @@ export declare class IntegrationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IntegrationApi
      */
-    add(integrationAddMessage?: IntegrationAddMessage, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Instance, any>>;
+    add(integrationAddMessage?: IntegrationAddMessage, options?: AxiosRequestConfig): Promise<Instance>;
     /**
      * Updates the matching instances with the passed updates.
      * @summary Update one or more instances
@@ -38,5 +38,5 @@ export declare class IntegrationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof IntegrationApi
      */
-    update(integrationUpdateMessage?: IntegrationUpdateMessage, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<IntegrationStats, any>>;
+    update(integrationUpdateMessage?: IntegrationUpdateMessage, options?: AxiosRequestConfig): Promise<IntegrationStats>;
 }

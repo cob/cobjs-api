@@ -188,7 +188,9 @@ export class IntegrationApi extends BaseAPI {
      * @memberof IntegrationApi
      */
     public _delete(integrationDeleteMessage?: IntegrationDeleteMessage, options?: AxiosRequestConfig) {
-        return IntegrationApiFp(this.configuration)._delete(integrationDeleteMessage, options).then((request) => request(this.axios));
+        return IntegrationApiFp(this.configuration)._delete(integrationDeleteMessage, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -200,7 +202,9 @@ export class IntegrationApi extends BaseAPI {
      * @memberof IntegrationApi
      */
     public add(integrationAddMessage?: IntegrationAddMessage, options?: AxiosRequestConfig) {
-        return IntegrationApiFp(this.configuration).add(integrationAddMessage, options).then((request) => request(this.axios));
+        return IntegrationApiFp(this.configuration).add(integrationAddMessage, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -212,6 +216,8 @@ export class IntegrationApi extends BaseAPI {
      * @memberof IntegrationApi
      */
     public update(integrationUpdateMessage?: IntegrationUpdateMessage, options?: AxiosRequestConfig) {
-        return IntegrationApiFp(this.configuration).update(integrationUpdateMessage, options).then((request) => request(this.axios));
+        return IntegrationApiFp(this.configuration).update(integrationUpdateMessage, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

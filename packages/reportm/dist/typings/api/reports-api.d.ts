@@ -16,7 +16,7 @@ export declare class ReportsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ReportsApi
      */
-    generate(reportGenerationRequest?: ReportGenerationRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    generate(reportGenerationRequest?: ReportGenerationRequest, options?: AxiosRequestConfig): Promise<void>;
     /**
      * To simplify development of new report templates. Arguments to the template can be passed as query string args.
      * @summary Test a report template
@@ -25,5 +25,5 @@ export declare class ReportsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ReportsApi
      */
-    test(f?: any, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    test(f?: any, options?: AxiosRequestConfig): Promise<void>;
 }

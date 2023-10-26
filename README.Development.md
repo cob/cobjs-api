@@ -48,7 +48,7 @@ You can check the status of the existing tests by running:
 npm run test
 
 # Run a specific test
-npm run test <test filename name without test.ts>
+npm run test <test filename without test.ts>
 ```
 
 ## Publishing packages

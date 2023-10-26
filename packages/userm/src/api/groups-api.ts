@@ -587,7 +587,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public addRoles(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).addRoles(id, requestBody, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).addRoles(id, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -600,7 +602,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public addUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).addUsers(id, requestBody, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).addUsers(id, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -612,7 +616,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public createGroup(createGroupRequest: CreateGroupRequest, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).createGroup(createGroupRequest, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).createGroup(createGroupRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -624,7 +630,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public deleteGroup(id: number, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).deleteGroup(id, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).deleteGroup(id, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -637,7 +645,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public getGroup(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).getGroup(id, ifNoneMatch, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).getGroup(id, ifNoneMatch, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -649,7 +659,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public getGroupByName(name: string, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).getGroupByName(name, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).getGroupByName(name, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -662,7 +674,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public removeRoles(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).removeRoles(id, requestBody, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).removeRoles(id, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -675,7 +689,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public removeUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).removeUsers(id, requestBody, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).removeUsers(id, requestBody, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -691,7 +707,9 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public searchGroups(q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).searchGroups(q, from, size, sort, ascending, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).searchGroups(q, from, size, sort, ascending, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -704,6 +722,8 @@ export class GroupsApi extends BaseAPI {
      * @memberof GroupsApi
      */
     public updateGroup(id: number, updateGroupRequest: UpdateGroupRequest, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).updateGroup(id, updateGroupRequest, options).then((request) => request(this.axios));
+        return GroupsApiFp(this.configuration).updateGroup(id, updateGroupRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

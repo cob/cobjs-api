@@ -9,11 +9,11 @@ export interface Credentials {
      * @type {string}
      * @memberof Credentials
      */
-    'username'?: string;
+    'username': string;
     /**
      *
      * @type {string}
      * @memberof Credentials
      */
-    'password'?: string;
+    'password': string;
 }

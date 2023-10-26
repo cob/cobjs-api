@@ -577,7 +577,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public searchInDefinition(defId?: number, def?: string, q?: string, from?: number, size?: number, sort?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).searchInDefinition(defId, def, q, from, size, sort, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).searchInDefinition(defId, def, q, from, size, sort, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -594,7 +596,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public searchInDomain(domainId?: number, domain?: string, q?: string, from?: number, size?: number, sort?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).searchInDomain(domainId, domain, q, from, size, sort, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).searchInDomain(domainId, domain, q, from, size, sort, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -608,7 +612,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public searchStructuredInDomain(domainId?: number, domain?: string, body?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).searchStructuredInDomain(domainId, domain, body, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).searchStructuredInDomain(domainId, domain, body, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -623,7 +629,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public streamSearchInDefinition(defId?: number, def?: string, q?: string, sort?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).streamSearchInDefinition(defId, def, q, sort, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).streamSearchInDefinition(defId, def, q, sort, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -638,7 +646,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public streamSearchInDomain(domainId?: number, domain?: string, q?: string, sort?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).streamSearchInDomain(domainId, domain, q, sort, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).streamSearchInDomain(domainId, domain, q, sort, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -652,7 +662,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public streamStructuredSearchInDefinition(defId?: number, def?: string, body?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).streamStructuredSearchInDefinition(defId, def, body, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).streamStructuredSearchInDefinition(defId, def, body, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -666,7 +678,9 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public streamStructuredSearchInDomain(domainId?: number, domain?: string, body?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).streamStructuredSearchInDomain(domainId, domain, body, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).streamStructuredSearchInDomain(domainId, domain, body, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -681,6 +695,8 @@ export class SearchApi extends BaseAPI {
      * @memberof SearchApi
      */
     public structuredSearchInDefinition(defId?: number, def?: string, typedKeys?: boolean, body?: string, options?: AxiosRequestConfig) {
-        return SearchApiFp(this.configuration).structuredSearchInDefinition(defId, def, typedKeys, body, options).then((request) => request(this.axios));
+        return SearchApiFp(this.configuration).structuredSearchInDefinition(defId, def, typedKeys, body, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

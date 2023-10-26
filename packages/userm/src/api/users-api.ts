@@ -439,7 +439,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public createUser(createUserRequest: CreateUserRequest, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).createUser(createUserRequest, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).createUser(createUserRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -451,7 +453,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public deleteUser(id: number, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).deleteUser(id, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).deleteUser(id, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -463,7 +467,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public disableUser(id: number, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).disableUser(id, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).disableUser(id, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -475,7 +481,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public enableUser(id: number, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).enableUser(id, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).enableUser(id, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -486,7 +494,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public getLoggedInUser(options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).getLoggedInUser(options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).getLoggedInUser(options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -499,7 +509,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public getUser(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).getUser(id, ifNoneMatch, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).getUser(id, ifNoneMatch, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -512,7 +524,9 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public getUserByUsername(username: string, substitutedUsers?: boolean, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).getUserByUsername(username, substitutedUsers, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).getUserByUsername(username, substitutedUsers, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -525,6 +539,8 @@ export class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     public updateUser(id: number, updateUserRequest: UpdateUserRequest, options?: AxiosRequestConfig) {
-        return UsersApiFp(this.configuration).updateUser(id, updateUserRequest, options).then((request) => request(this.axios));
+        return UsersApiFp(this.configuration).updateUser(id, updateUserRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

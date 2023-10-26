@@ -10,5 +10,5 @@ export const rmListDefinitions = async function (
       filter.includeDisabled,
       filter.name ? filter.name.replace(/\*/g, "%") : undefined
     )
-  ).data
+  )
 }

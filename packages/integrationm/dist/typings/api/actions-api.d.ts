@@ -18,7 +18,7 @@ export declare class ActionsApi extends BaseAPI {
      */
     executeBlockingAction(name: string, requestBody?: {
         [key: string]: any;
-    }, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any>>;
+    }, options?: AxiosRequestConfig): Promise<string>;
     /**
      * Can be used with:    - JSON, the simplest way when calling from other code (or even cURL)   - <code>application/x-www-form-urlencoded</code>, directly from an HTML form.
      * @summary Execute an action that will not block the execution of other actions
@@ -30,5 +30,5 @@ export declare class ActionsApi extends BaseAPI {
      */
     executeConcurrentAction(name: string, requestBody?: {
         [key: string]: any;
-    }, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any>>;
+    }, options?: AxiosRequestConfig): Promise<string>;
 }

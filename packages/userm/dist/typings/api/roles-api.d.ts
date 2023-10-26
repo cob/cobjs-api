@@ -20,7 +20,7 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    addPermissions(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    addPermissions(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Creates a new role
@@ -29,7 +29,7 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    createRole(createRoleRequest: CreateRoleRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Role, any>>;
+    createRole(createRoleRequest: CreateRoleRequest, options?: AxiosRequestConfig): Promise<Role>;
     /**
      *
      * @summary Delete an existing role
@@ -38,7 +38,7 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    deleteRole(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Role, any>>;
+    deleteRole(id: number, options?: AxiosRequestConfig): Promise<Role>;
     /**
      * Retrieves the full details of a role.
      * @summary Retrieves a role by it\'s id
@@ -48,7 +48,7 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    getRole(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Role, any>>;
+    getRole(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<Role>;
     /**
      * Retrieves the full details of a role.
      * @summary Retrieves a role by it\'s product and name
@@ -58,7 +58,7 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    getRoleByProductAndName(product: ProductName, name: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Role, any>>;
+    getRoleByProductAndName(product: ProductName, name: string, options?: AxiosRequestConfig): Promise<Role>;
     /**
      *
      * @summary Removes permissions from a role
@@ -68,7 +68,7 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    removePermissions(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    removePermissions(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Update an existing role
@@ -78,5 +78,5 @@ export declare class RolesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RolesApi
      */
-    updateRole(id: number, updateRoleRequest: UpdateRoleRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Role, any>>;
+    updateRole(id: number, updateRoleRequest: UpdateRoleRequest, options?: AxiosRequestConfig): Promise<Role>;
 }

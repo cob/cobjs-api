@@ -11081,7 +11081,7 @@ class Ee extends Se {
    * @memberof ReportsApi
    */
   generate(o, e) {
-    return xa(this.configuration).generate(o, e).then((i) => i(this.axios));
+    return xa(this.configuration).generate(o, e).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * To simplify development of new report templates. Arguments to the template can be passed as query string args.
@@ -11092,7 +11092,7 @@ class Ee extends Se {
    * @memberof ReportsApi
    */
   test(o, e) {
-    return xa(this.configuration).test(o, e).then((i) => i(this.axios));
+    return xa(this.configuration).test(o, e).then((i) => i(this.axios)).then((i) => i.data);
   }
 }
 const qe = {

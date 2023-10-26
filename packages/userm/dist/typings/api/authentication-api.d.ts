@@ -17,7 +17,7 @@ export declare class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    authenticate(credentials: Credentials, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<Authentication, any>>;
+    authenticate(credentials: Credentials, options?: AxiosRequestConfig): Promise<Authentication>;
     /**
      *
      * @summary Impersonate another user
@@ -26,7 +26,7 @@ export declare class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    impersonate(username: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    impersonate(username: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Logout user
@@ -34,7 +34,7 @@ export declare class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    logout(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    logout(options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Reset the user to it\'s original user
@@ -42,5 +42,5 @@ export declare class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    resetOriginalUser(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    resetOriginalUser(options?: AxiosRequestConfig): Promise<void>;
 }

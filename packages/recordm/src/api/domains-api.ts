@@ -439,7 +439,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public addDefinitionToDomain(domainId: number, definitionId: number, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).addDefinitionToDomain(domainId, definitionId, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).addDefinitionToDomain(domainId, definitionId, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -451,7 +453,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public addDomain(createDomainRequest?: CreateDomainRequest, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).addDomain(createDomainRequest, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).addDomain(createDomainRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -463,7 +467,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public deleteDomain(domainId: number, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).deleteDomain(domainId, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).deleteDomain(domainId, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -475,7 +481,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public findDomainByName(name: string, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).findDomainByName(name, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).findDomainByName(name, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -486,7 +494,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public getAllDomains(options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).getAllDomains(options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).getAllDomains(options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -499,7 +509,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public getDomain(domainId: number, ifNoneMatch?: string, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).getDomain(domainId, ifNoneMatch, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).getDomain(domainId, ifNoneMatch, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -512,7 +524,9 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public removeDefinitionFromDomain(domainId: number, definitionId: number, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).removeDefinitionFromDomain(domainId, definitionId, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).removeDefinitionFromDomain(domainId, definitionId, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -525,6 +539,8 @@ export class DomainsApi extends BaseAPI {
      * @memberof DomainsApi
      */
     public updateDomain(domainId: number, updateDomainRequest?: UpdateDomainRequest, options?: AxiosRequestConfig) {
-        return DomainsApiFp(this.configuration).updateDomain(domainId, updateDomainRequest, options).then((request) => request(this.axios));
+        return DomainsApiFp(this.configuration).updateDomain(domainId, updateDomainRequest, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }

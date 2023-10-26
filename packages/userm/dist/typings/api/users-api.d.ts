@@ -19,7 +19,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    createUser(createUserRequest: CreateUserRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    createUser(createUserRequest: CreateUserRequest, options?: AxiosRequestConfig): Promise<User>;
     /**
      *
      * @summary Delete an existing user
@@ -28,7 +28,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    deleteUser(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    deleteUser(id: number, options?: AxiosRequestConfig): Promise<User>;
     /**
      *
      * @summary Disables an existing user
@@ -37,7 +37,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    disableUser(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    disableUser(id: number, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Enables an existing user
@@ -46,7 +46,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    enableUser(id: number, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    enableUser(id: number, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
      * @summary Retrieves user information about the logged in user
@@ -54,7 +54,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    getLoggedInUser(options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<LoggedInUser, any>>;
+    getLoggedInUser(options?: AxiosRequestConfig): Promise<LoggedInUser>;
     /**
      * Retrieves the full details of a user.
      * @summary Retrieves a user by it\'s id
@@ -64,7 +64,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    getUser(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    getUser(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig): Promise<User>;
     /**
      * Retrieves the full details of a user. Optionally, it can also include information about the users that this user is substituing.
      * @summary Retrieves a user by it\'s username
@@ -74,7 +74,7 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    getUserByUsername(username: string, substitutedUsers?: boolean, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    getUserByUsername(username: string, substitutedUsers?: boolean, options?: AxiosRequestConfig): Promise<User>;
     /**
      *
      * @summary Update an existing user
@@ -84,5 +84,5 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    updateUser(id: number, updateUserRequest: UpdateUserRequest, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    updateUser(id: number, updateUserRequest: UpdateUserRequest, options?: AxiosRequestConfig): Promise<User>;
 }

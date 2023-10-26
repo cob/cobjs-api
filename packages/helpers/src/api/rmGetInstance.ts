@@ -8,7 +8,7 @@ export const rmGetInstance = function (instanceId: number): Promise<UIInstance> 
   const instancesApi = new InstancesApi()
 
   return instancesApi.getInstance(instanceId).then((response) => {
-    const instance = response.data as UIInstance
+    const instance = response as UIInstance
     const id = instance.id
 
     //Add resultsUrl to response

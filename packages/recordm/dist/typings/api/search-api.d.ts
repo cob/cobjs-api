@@ -20,7 +20,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    searchInDefinition(defId?: number, def?: string, q?: string, from?: number, size?: number, sort?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    searchInDefinition(defId?: number, def?: string, q?: string, from?: number, size?: number, sort?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Search instances of all definitions of a Domain, specified either by id or by name, using ES query_string. Supports multiple sorts.See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-query-string-query.html#query-string-syntax) for syntax details.
      * @summary Search Domain
@@ -34,7 +34,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    searchInDomain(domainId?: number, domain?: string, q?: string, from?: number, size?: number, sort?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    searchInDomain(domainId?: number, domain?: string, q?: string, from?: number, size?: number, sort?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Search instances of all definitions of a Domain, specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
      * @summary Structured Search of Domain
@@ -45,7 +45,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    searchStructuredInDomain(domainId?: number, domain?: string, body?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    searchStructuredInDomain(domainId?: number, domain?: string, body?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
      * @summary Stream a Definition Search
@@ -57,7 +57,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    streamSearchInDefinition(defId?: number, def?: string, q?: string, sort?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    streamSearchInDefinition(defId?: number, def?: string, q?: string, sort?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Stream through all the results of a Domain search. Useful when needing to process more than the 10.000 results available through the normal search. The arguments are the same as on a normal search, excluding `size` and `from`, that are not needed.
      * @summary Stream a Domain Search
@@ -69,7 +69,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    streamSearchInDomain(domainId?: number, domain?: string, q?: string, sort?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    streamSearchInDomain(domainId?: number, domain?: string, q?: string, sort?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
      * @summary Stream a Definition Search
@@ -80,7 +80,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    streamStructuredSearchInDefinition(defId?: number, def?: string, body?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    streamStructuredSearchInDefinition(defId?: number, def?: string, body?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Stream through all the results of a Definition search. Useful when needing to process more than the 10.000 results available through the normal search. Accepts a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.Does <strong>NOT</strong> accept aggregations, use the normal search endpoint for them.
      * @summary Stream a Definition Search
@@ -91,7 +91,7 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    streamStructuredSearchInDomain(domainId?: number, domain?: string, body?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    streamStructuredSearchInDomain(domainId?: number, domain?: string, body?: string, options?: AxiosRequestConfig): Promise<void>;
     /**
      * Search the definition specified either by id or name, using a structured ES search request. See [the ES docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html) for details on query syntax.
      * @summary Structured Search of Definition
@@ -103,5 +103,5 @@ export declare class SearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    structuredSearchInDefinition(defId?: number, def?: string, typedKeys?: boolean, body?: string, options?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    structuredSearchInDefinition(defId?: number, def?: string, typedKeys?: boolean, body?: string, options?: AxiosRequestConfig): Promise<void>;
 }

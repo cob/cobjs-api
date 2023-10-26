@@ -489,7 +489,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public addInstance(instance: Instance, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).addInstance(instance, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).addInstance(instance, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -502,7 +504,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public addLogMessageToInstance(id: number, body?: string, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).addLogMessageToInstance(id, body, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).addLogMessageToInstance(id, body, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -515,7 +519,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public deleteInstance(id: number, ignoreRefs?: boolean, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).deleteInstance(id, ignoreRefs, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).deleteInstance(id, ignoreRefs, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -530,7 +536,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public downloadFile(id: string, fieldDefinitionId: string, filename: string, disposition?: string, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).downloadFile(id, fieldDefinitionId, filename, disposition, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).downloadFile(id, fieldDefinitionId, filename, disposition, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -543,7 +551,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public getInstance(id: number, ifNoneMatch?: string, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).getInstance(id, ifNoneMatch, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).getInstance(id, ifNoneMatch, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -556,7 +566,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public getNewInstance(definitionId: number, withDefaults?: boolean, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).getNewInstance(definitionId, withDefaults, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).getNewInstance(definitionId, withDefaults, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -570,7 +582,9 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public updateInstance(id: number, instance: Instance, acceptOutdated?: boolean, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).updateInstance(id, instance, acceptOutdated, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).updateInstance(id, instance, acceptOutdated, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 
     /**
@@ -584,6 +598,8 @@ export class InstancesApi extends BaseAPI {
      * @memberof InstancesApi
      */
     public uploadFile(id: string, fieldDefinitionId: string, file?: any, options?: AxiosRequestConfig) {
-        return InstancesApiFp(this.configuration).uploadFile(id, fieldDefinitionId, file, options).then((request) => request(this.axios));
+        return InstancesApiFp(this.configuration).uploadFile(id, fieldDefinitionId, file, options)
+            .then((request) => request(this.axios))
+            .then((axios) => axios.data);
     }
 }
