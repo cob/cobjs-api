@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Configuration } from '@cob/cobjs-api-core';
+import { Configuration, SearchResult } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
@@ -53,11 +53,11 @@ const ReportsApiAxiosParamCreator = function (configuration?: Configuration) {
         /**
          * To simplify development of new report templates. Arguments to the template can be passed as query string args.
          * @summary Test a report template
-         * @param {any} [f] The template excel file
+         * @param {File} [f] The template excel file
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        test: async (f?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        test: async (f?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/reportm/report/test`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -115,11 +115,11 @@ const ReportsApiFp = function(configuration: Configuration) {
         /**
          * To simplify development of new report templates. Arguments to the template can be passed as query string args.
          * @summary Test a report template
-         * @param {any} [f] The template excel file
+         * @param {File} [f] The template excel file
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async test(f?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance) => AxiosPromise<void>> {
+        async test(f?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.test(f, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
@@ -150,12 +150,12 @@ export class ReportsApi extends BaseAPI {
     /**
      * To simplify development of new report templates. Arguments to the template can be passed as query string args.
      * @summary Test a report template
-     * @param {any} [f] The template excel file
+     * @param {File} [f] The template excel file
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportsApi
      */
-    public test(f?: any, options?: AxiosRequestConfig) {
+    public test(f?: File, options?: AxiosRequestConfig) {
         return ReportsApiFp(this.configuration).test(f, options)
             .then((request) => request(this.axios))
             .then((axios) => axios.data);

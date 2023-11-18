@@ -24,6 +24,9 @@
     "name" : "Roles",
     "description" : "Role endpoints"
   }, {
+    "name" : "Search",
+    "description" : "Search endpoints"
+  }, {
     "name" : "Users",
     "description" : "User endpoints"
   } ],
@@ -539,96 +542,6 @@
           },
           "404" : {
             "description" : "No group found with the provided id"
-          }
-        }
-      }
-    },
-    "/userm/group/search" : {
-      "get" : {
-        "tags" : [ "Groups" ],
-        "summary" : "Search groups",
-        "operationId" : "searchGroups",
-        "parameters" : [ {
-          "name" : "q",
-          "in" : "query",
-          "description" : "The query",
-          "schema" : {
-            "type" : "string",
-            "default" : "*"
-          }
-        }, {
-          "name" : "from",
-          "in" : "query",
-          "description" : "the first result to return",
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32",
-            "default" : 0
-          }
-        }, {
-          "name" : "size",
-          "in" : "query",
-          "description" : "the number of results to return",
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32",
-            "default" : 5
-          }
-        }, {
-          "name" : "sort",
-          "in" : "query",
-          "schema" : {
-            "type" : "string",
-            "default" : "_score"
-          }
-        }, {
-          "name" : "ascending",
-          "in" : "query",
-          "description" : "Should the results be returned in asceding order",
-          "schema" : {
-            "type" : "boolean",
-            "default" : false
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "The search was successful",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Group"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid request",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/FieldError"
-                  }
-                }
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized access."
-          },
-          "403" : {
-            "description" : "The user is not allowed to perfom the operation"
-          },
-          "500" : {
-            "description" : "An internal error ocurred",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            }
           }
         }
       }
@@ -1229,6 +1142,150 @@
         }
       }
     },
+    "/userm/search/{index}/{type}/download" : {
+      "get" : {
+        "tags" : [ "Search" ],
+        "summary" : "Downloaad all instances of a specific type (user, groups, roles or permissions) that match the query.",
+        "operationId" : "downloadSearchResults",
+        "parameters" : [ {
+          "name" : "index",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "schema" : {
+            "type" : "string",
+            "default" : "*"
+          }
+        }, {
+          "name" : "vc",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vcn",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ascending",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full role details",
+            "content" : {
+              "application/octet-stream" : { }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          }
+        }
+      }
+    },
+    "/userm/search/{index}/{type}" : {
+      "get" : {
+        "tags" : [ "Search" ],
+        "summary" : "Search for instancesof a specific type (user, groups, roles or permissions) that match the query.",
+        "operationId" : "search",
+        "parameters" : [ {
+          "name" : "index",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "schema" : {
+            "type" : "string",
+            "default" : "*"
+          }
+        }, {
+          "name" : "from",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          }
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ascending",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success obtaining the full role details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchResult"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized access."
+          },
+          "403" : {
+            "description" : "The user is not allowed to perform the operation"
+          }
+        }
+      }
+    },
     "/userm/user" : {
       "post" : {
         "tags" : [ "Users" ],
@@ -1757,15 +1814,15 @@
           "perms" : {
             "type" : "string"
           },
-          "assign-substitute" : {
-            "type" : "string",
-            "deprecated" : true
-          },
           "remove-from" : {
             "type" : "string",
             "deprecated" : true
           },
           "add-to" : {
+            "type" : "string",
+            "deprecated" : true
+          },
+          "assign-substitute" : {
             "type" : "string",
             "deprecated" : true
           }
@@ -1774,14 +1831,6 @@
       "UserState" : {
         "type" : "string",
         "enum" : [ "enabled", "disabled" ]
-      },
-      "ErrorMessage" : {
-        "type" : "object",
-        "properties" : {
-          "error" : {
-            "type" : "string"
-          }
-        }
       },
       "UpdateGroupRequest" : {
         "required" : [ "description", "id", "name", "version" ],
@@ -2007,6 +2056,114 @@
           },
           "productName" : {
             "$ref" : "#/components/schemas/ProductName"
+          }
+        }
+      },
+      "Hit" : {
+        "required" : [ "_id", "_index", "_score", "_source", "_type" ],
+        "type" : "object",
+        "properties" : {
+          "_index" : {
+            "type" : "string"
+          },
+          "_type" : {
+            "type" : "string"
+          },
+          "_source" : {
+            "type" : "object"
+          },
+          "_id" : {
+            "type" : "string"
+          },
+          "_score" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        }
+      },
+      "HitsMetadata" : {
+        "required" : [ "hits", "total" ],
+        "type" : "object",
+        "properties" : {
+          "total" : {
+            "$ref" : "#/components/schemas/TotalHits"
+          },
+          "hits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Hit"
+            }
+          }
+        }
+      },
+      "SearchResult" : {
+        "required" : [ "hits", "shards" ],
+        "type" : "object",
+        "properties" : {
+          "shards" : {
+            "$ref" : "#/components/schemas/ShardStatistics"
+          },
+          "hits" : {
+            "$ref" : "#/components/schemas/HitsMetadata"
+          }
+        }
+      },
+      "ShardFailure" : {
+        "required" : [ "reason", "shard" ],
+        "type" : "object",
+        "properties" : {
+          "index" : {
+            "type" : "string"
+          },
+          "node" : {
+            "type" : "string"
+          },
+          "reason" : {
+            "type" : "object"
+          },
+          "shard" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "status" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ShardStatistics" : {
+        "required" : [ "failed", "failures", "successful", "total" ],
+        "type" : "object",
+        "properties" : {
+          "failed" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "successful" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "total" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "failures" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ShardFailure"
+            }
+          }
+        }
+      },
+      "TotalHits" : {
+        "required" : [ "relation", "value" ],
+        "type" : "object",
+        "properties" : {
+          "relation" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "integer",
+            "format" : "int64"
           }
         }
       },

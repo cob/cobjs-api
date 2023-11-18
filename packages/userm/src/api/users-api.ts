@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Configuration } from '@cob/cobjs-api-core';
+import { Configuration, SearchResult } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';

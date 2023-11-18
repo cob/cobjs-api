@@ -2,12 +2,11 @@
 /* eslint-disable */
 
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Configuration } from '@cob/cobjs-api-core';
+import { Configuration, SearchResult } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
 import { CreateGroupRequest } from '../schema';
-import { ErrorMessage } from '../schema';
 import { FieldError } from '../schema';
 import { Group } from '../schema';
 import { UpdateGroupRequest } from '../schema';
@@ -340,63 +339,6 @@ const GroupsApiAxiosParamCreator = function (configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Search groups
-         * @param {string} [q] The query
-         * @param {number} [from] the first result to return
-         * @param {number} [size] the number of results to return
-         * @param {string} [sort] 
-         * @param {boolean} [ascending] Should the results be returned in asceding order
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        searchGroups: async (q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/userm/userm/group/search`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cobtoken required
-
-            if (q !== undefined) {
-                localVarQueryParameter['q'] = q;
-            }
-
-            if (from !== undefined) {
-                localVarQueryParameter['from'] = from;
-            }
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
-
-            if (sort !== undefined) {
-                localVarQueryParameter['sort'] = sort;
-            }
-
-            if (ascending !== undefined) {
-                localVarQueryParameter['ascending'] = ascending;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Update an existing group
          * @param {number} id The group identifier
          * @param {UpdateGroupRequest} updateGroupRequest The updated group information
@@ -542,21 +484,6 @@ const GroupsApiFp = function(configuration: Configuration) {
         },
         /**
          * 
-         * @summary Search groups
-         * @param {string} [q] The query
-         * @param {number} [from] the first result to return
-         * @param {number} [size] the number of results to return
-         * @param {string} [sort] 
-         * @param {boolean} [ascending] Should the results be returned in asceding order
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async searchGroups(q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance) => AxiosPromise<Group>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchGroups(q, from, size, sort, ascending, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
-        },
-        /**
-         * 
          * @summary Update an existing group
          * @param {number} id The group identifier
          * @param {UpdateGroupRequest} updateGroupRequest The updated group information
@@ -690,24 +617,6 @@ export class GroupsApi extends BaseAPI {
      */
     public removeUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig) {
         return GroupsApiFp(this.configuration).removeUsers(id, requestBody, options)
-            .then((request) => request(this.axios))
-            .then((axios) => axios.data);
-    }
-
-    /**
-     * 
-     * @summary Search groups
-     * @param {string} [q] The query
-     * @param {number} [from] the first result to return
-     * @param {number} [size] the number of results to return
-     * @param {string} [sort] 
-     * @param {boolean} [ascending] Should the results be returned in asceding order
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GroupsApi
-     */
-    public searchGroups(q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options?: AxiosRequestConfig) {
-        return GroupsApiFp(this.configuration).searchGroups(q, from, size, sort, ascending, options)
             .then((request) => request(this.axios))
             .then((axios) => axios.data);
     }
