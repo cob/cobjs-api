@@ -1,6 +1,6 @@
 {
   "name": "@cob/cobjs-api-helpers",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "Cult Of Bits",
   "keywords": [
     "@cob",
@@ -22,8 +22,8 @@
     "build": "vite build -c ../../vite.config.ts && tsc"
   },
   "dependencies": {
-    "@cob/cobjs-api-core": "0.3.0",
-    "@cob/cobjs-api-recordm": "0.3.0",
+    "@cob/cobjs-api-core": "0.4.0",
+    "@cob/cobjs-api-recordm": "0.5.0",
     "axios": "^1.6.2",
     "js-cookie": "^3.0.1"
   },

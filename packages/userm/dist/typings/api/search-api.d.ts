@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
-import { SearchResult } from '@cob/cobjs-api-core';
 import { BaseAPI } from '@cob/cobjs-api-core';
+import { SearchResult } from '../schema';
 /**
  * SearchApi - object-oriented interface
  * @export
