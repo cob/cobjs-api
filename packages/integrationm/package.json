@@ -1,6 +1,6 @@
 {
   "name": "@cob/cobjs-api-integrationm",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Cult Of Bits",
   "keywords": [
     "@cob",
@@ -15,7 +15,8 @@
     "import": "./dist/@cob/cobjs-api-integrationm.mjs"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "vite build -c ../../vite.config.ts && tsc"

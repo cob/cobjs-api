@@ -90,19 +90,6 @@ export declare class GroupsApi extends BaseAPI {
     removeUsers(id: number, requestBody: Array<number>, options?: AxiosRequestConfig): Promise<void>;
     /**
      *
-     * @summary Search groups
-     * @param {string} [q] The query
-     * @param {number} [from] the first result to return
-     * @param {number} [size] the number of results to return
-     * @param {string} [sort]
-     * @param {boolean} [ascending] Should the results be returned in asceding order
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GroupsApi
-     */
-    searchGroups(q?: string, from?: number, size?: number, sort?: string, ascending?: boolean, options?: AxiosRequestConfig): Promise<Group>;
-    /**
-     *
      * @summary Update an existing group
      * @param {number} id The group identifier
      * @param {UpdateGroupRequest} updateGroupRequest The updated group information

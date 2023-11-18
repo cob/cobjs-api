@@ -20,10 +20,10 @@ export declare class ReportsApi extends BaseAPI {
     /**
      * To simplify development of new report templates. Arguments to the template can be passed as query string args.
      * @summary Test a report template
-     * @param {any} [f] The template excel file
+     * @param {File} [f] The template excel file
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportsApi
      */
-    test(f?: any, options?: AxiosRequestConfig): Promise<void>;
+    test(f?: File, options?: AxiosRequestConfig): Promise<void>;
 }

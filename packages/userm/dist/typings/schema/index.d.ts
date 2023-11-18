@@ -4,7 +4,6 @@ export * from "./create-permission-request";
 export * from "./create-role-request";
 export * from "./create-user-request";
 export * from "./credentials";
-export * from "./error-message";
 export * from "./field-error";
 export * from "./group";
 export * from "./group-links";
