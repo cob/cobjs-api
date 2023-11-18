@@ -10,10 +10,3 @@ packages/*/src/base.ts
 packages/*/src/common.ts
 packages/*/src/configuration.ts
 packages/*/src/index.ts
-
-packages/*/src/schema/hit.ts
-packages/*/src/schema/hits-metadata.ts
-packages/*/src/schema/search-result.ts
-packages/*/src/schema/shard-failure.ts
-packages/*/src/schema/shard-statistics.ts
-packages/*/src/schema/total-hits.ts
