@@ -2,10 +2,11 @@
 /* eslint-disable */
 
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Configuration, SearchResult } from '@cob/cobjs-api-core';
+import { Configuration } from '@cob/cobjs-api-core';
 // Some imports not used depending on template conditions
 import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '@cob/cobjs-api-core';
 import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
+import { SearchResult } from '../schema';
 
 /**
  * SearchApi - axios parameter creator
@@ -14,15 +15,15 @@ import { RequestArgs, BaseAPI, RequiredError } from '@cob/cobjs-api-core';
 const SearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         *
+         * 
          * @summary Downloaad all instances of a specific type (user, groups, roles or permissions) that match the query.
-         * @param {string} index
-         * @param {string} type
-         * @param {string} [q]
-         * @param {string} [vc]
-         * @param {string} [vcn]
-         * @param {string} [sort]
-         * @param {boolean} [ascending]
+         * @param {string} index 
+         * @param {string} type 
+         * @param {string} [q] 
+         * @param {string} [vc] 
+         * @param {string} [vcn] 
+         * @param {string} [sort] 
+         * @param {boolean} [ascending] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -68,7 +69,7 @@ const SearchApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -79,15 +80,15 @@ const SearchApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         *
+         * 
          * @summary Search for instancesof a specific type (user, groups, roles or permissions) that match the query.
-         * @param {string} index
-         * @param {string} type
-         * @param {string} [q]
-         * @param {number} [from]
-         * @param {number} [size]
-         * @param {string} [sort]
-         * @param {boolean} [ascending]
+         * @param {string} index 
+         * @param {string} type 
+         * @param {string} [q] 
+         * @param {number} [from] 
+         * @param {number} [size] 
+         * @param {string} [sort] 
+         * @param {boolean} [ascending] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -133,7 +134,7 @@ const SearchApiAxiosParamCreator = function (configuration?: Configuration) {
             }
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -154,15 +155,15 @@ const SearchApiFp = function(configuration: Configuration) {
     const localVarAxiosParamCreator = SearchApiAxiosParamCreator(configuration)
     return {
         /**
-         *
+         * 
          * @summary Downloaad all instances of a specific type (user, groups, roles or permissions) that match the query.
-         * @param {string} index
-         * @param {string} type
-         * @param {string} [q]
-         * @param {string} [vc]
-         * @param {string} [vcn]
-         * @param {string} [sort]
-         * @param {boolean} [ascending]
+         * @param {string} index 
+         * @param {string} type 
+         * @param {string} [q] 
+         * @param {string} [vc] 
+         * @param {string} [vcn] 
+         * @param {string} [sort] 
+         * @param {boolean} [ascending] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -171,15 +172,15 @@ const SearchApiFp = function(configuration: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },
         /**
-         *
+         * 
          * @summary Search for instancesof a specific type (user, groups, roles or permissions) that match the query.
-         * @param {string} index
-         * @param {string} type
-         * @param {string} [q]
-         * @param {number} [from]
-         * @param {number} [size]
-         * @param {string} [sort]
-         * @param {boolean} [ascending]
+         * @param {string} index 
+         * @param {string} type 
+         * @param {string} [q] 
+         * @param {number} [from] 
+         * @param {number} [size] 
+         * @param {string} [sort] 
+         * @param {boolean} [ascending] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -198,15 +199,15 @@ const SearchApiFp = function(configuration: Configuration) {
  */
 export class SearchApi extends BaseAPI {
     /**
-     *
+     * 
      * @summary Downloaad all instances of a specific type (user, groups, roles or permissions) that match the query.
-     * @param {string} index
-     * @param {string} type
-     * @param {string} [q]
-     * @param {string} [vc]
-     * @param {string} [vcn]
-     * @param {string} [sort]
-     * @param {boolean} [ascending]
+     * @param {string} index 
+     * @param {string} type 
+     * @param {string} [q] 
+     * @param {string} [vc] 
+     * @param {string} [vcn] 
+     * @param {string} [sort] 
+     * @param {boolean} [ascending] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SearchApi
@@ -218,15 +219,15 @@ export class SearchApi extends BaseAPI {
     }
 
     /**
-     *
+     * 
      * @summary Search for instancesof a specific type (user, groups, roles or permissions) that match the query.
-     * @param {string} index
-     * @param {string} type
-     * @param {string} [q]
-     * @param {number} [from]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {boolean} [ascending]
+     * @param {string} index 
+     * @param {string} type 
+     * @param {string} [q] 
+     * @param {number} [from] 
+     * @param {number} [size] 
+     * @param {string} [sort] 
+     * @param {boolean} [ascending] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SearchApi

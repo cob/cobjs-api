@@ -1814,15 +1814,15 @@
           "perms" : {
             "type" : "string"
           },
+          "assign-substitute" : {
+            "type" : "string",
+            "deprecated" : true
+          },
           "remove-from" : {
             "type" : "string",
             "deprecated" : true
           },
           "add-to" : {
-            "type" : "string",
-            "deprecated" : true
-          },
-          "assign-substitute" : {
             "type" : "string",
             "deprecated" : true
           }
