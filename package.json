@@ -19,6 +19,10 @@
     "publish:all": "npm publish -ws",
     "generate-api": "openapi-generator-cli generate && find . -type d -name .openapi-generator -exec rm -rf {} +"
   },
+  "engineStrict": true,
+  "engines" : {
+    "node" : ">=20.0.0"
+  },
   "workspaces": [
     "packages/core",
     "packages/userm",
