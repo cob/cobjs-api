@@ -1,6 +1,9 @@
 import path from "path";
 import {defineConfig} from "vite";
+import {createRequire} from "module";
 
+// https://www.stefanjudis.com/snippets/how-to-import-json-files-in-es-modules-node-js/#option-2%3A-leverage-the-commonjs-%60require%60-function-to-load-json-files
+const require = createRequire(import.meta.url);
 const workingDir = path.resolve("./")
 const workspacePackageJson = require(`${workingDir}/package.json`)
 
@@ -21,7 +24,7 @@ const fileName = {
     cjs: `${getPackageNameCamelCase()}.cjs`
 };
 
-module.exports = defineConfig({
+export default defineConfig({
     base: "./",
     build: {
         // https://github.com/vitejs/vite/issues/8910
@@ -33,10 +36,11 @@ module.exports = defineConfig({
         lib: {
             entry: path.resolve("./", "src/index.ts"),
             name: getPackageNameCamelCase(),
+            formats: ["es", "cjs"],
             fileName: (format) => {
                 // @ts-ignore
                 return fileName[format];
             }
         }
     }
-});
+})

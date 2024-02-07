@@ -2,6 +2,7 @@
   "name": "cobjs-api",
   "version": "1.0.0",
   "author": "Cult Of Bits",
+  "type": "module",
   "scripts": {
     "build:um": "npm run --if-present -w packages/userm build",
     "build:rm": "npm run --if-present -w packages/recordm build",
