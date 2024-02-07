@@ -24,7 +24,7 @@ function va(o) {
     });
   }), e;
 }
-const O = 2147483647, b = 36, V = 1, D = 26, Ka = 38, Ya = 700, za = 72, xa = 128, Sa = "-", Qa = /^xn--/, ao = /[^\0-\x7E]/, oo = /[\x2E\u3002\uFF0E\uFF61]/g, eo = {
+const O = 2147483647, b = 36, V = 1, D = 26, Ka = 38, Ya = 700, za = 72, xa = 128, Sa = "-", Qa = /^xn--/, ao = /[^\0-\x7F]/, oo = /[\x2E\u3002\uFF0E\uFF61]/g, eo = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
@@ -61,7 +61,7 @@ function G(o) {
   return a;
 }
 const Aa = (o) => String.fromCodePoint(...o), no = function(o) {
-  return o - 48 < 10 ? o - 22 : o - 65 < 26 ? o - 65 : o - 97 < 26 ? o - 97 : b;
+  return o >= 48 && o < 58 ? 26 + (o - 48) : o >= 65 && o < 91 ? o - 65 : o >= 97 && o < 123 ? o - 97 : b;
 }, ra = function(o, a) {
   return o + 22 + 75 * (o < 26) - ((a != 0) << 5);
 }, Ia = function(o, a, e) {
@@ -76,11 +76,11 @@ const Aa = (o) => String.fromCodePoint(...o), no = function(o) {
   for (let r = 0; r < t; ++r)
     o.charCodeAt(r) >= 128 && C("not-basic"), a.push(o.charCodeAt(r));
   for (let r = t > 0 ? t + 1 : 0; r < e; ) {
-    let p = i;
+    const p = i;
     for (let m = 1, u = b; ; u += b) {
       r >= e && C("invalid-input");
       const k = no(o.charCodeAt(r++));
-      (k >= b || k > y((O - i) / m)) && C("overflow"), i += k * m;
+      k >= b && C("invalid-input"), k > y((O - i) / m) && C("overflow"), i += k * m;
       const h = u <= s ? V : u >= s + D ? D : u - s;
       if (k < h)
         break;
@@ -94,10 +94,12 @@ const Aa = (o) => String.fromCodePoint(...o), no = function(o) {
 }, Z = function(o) {
   const a = [];
   o = G(o);
-  let e = o.length, i = xa, n = 0, s = za;
+  const e = o.length;
+  let i = xa, n = 0, s = za;
   for (const p of o)
     p < 128 && a.push(R(p));
-  let t = a.length, r = t;
+  const t = a.length;
+  let r = t;
   for (t && a.push(Sa); r < e; ) {
     let p = O;
     for (const m of o)
@@ -105,7 +107,7 @@ const Aa = (o) => String.fromCodePoint(...o), no = function(o) {
     const l = r + 1;
     p - i > y((O - n) / l) && C("overflow"), n += (p - i) * l, i = p;
     for (const m of o)
-      if (m < i && ++n > O && C("overflow"), m == i) {
+      if (m < i && ++n > O && C("overflow"), m === i) {
         let u = n;
         for (let k = b; ; k += b) {
           const h = k <= s ? V : k >= s + D ? D : k - s;
@@ -116,7 +118,7 @@ const Aa = (o) => String.fromCodePoint(...o), no = function(o) {
             R(ra(h + z % g, 0))
           ), u = y(z / g);
         }
-        a.push(R(ra(u, 0))), s = Ia(n, l, r == t), n = 0, ++r;
+        a.push(R(ra(u, 0))), s = Ia(n, l, r === t), n = 0, ++r;
       }
     ++n, ++i;
   }
@@ -135,7 +137,7 @@ const Aa = (o) => String.fromCodePoint(...o), no = function(o) {
    * @memberOf punycode
    * @type String
    */
-  version: "2.1.0",
+  version: "2.3.1",
   /**
    * An object of methods to convert from JavaScript's internal character
    * representation (UCS-2) to Unicode code points, and back.
@@ -10199,16 +10201,16 @@ function Na(o) {
 function Uo(o) {
   return Ua(o) && o !== "";
 }
-function Ho(o) {
+function Bo(o) {
   return Jo(o, Date) && Wo(o.getTime());
 }
-function Bo(o) {
+function Ho(o) {
   return o === "" || o instanceof String && o.toString() === "";
 }
 function Ua(o) {
   return typeof o == "string" || o instanceof String;
 }
-function Ha(o) {
+function Ba(o) {
   return toString.call(o) === "[object Object]";
 }
 function Jo(o, a) {
@@ -10222,24 +10224,24 @@ function Wo(o) {
   return typeof o == "number" && o % 1 === 0;
 }
 function Vo(o, a, e) {
-  if (Na(a) || (e = a, a = null), Ha(e) || (e = { Error: "Failed Check" }), !o)
+  if (Na(a) || (e = a, a = null), Ba(e) || (e = { Error: "Failed Check" }), !o)
     if (a)
-      a(new H(e));
+      a(new B(e));
     else
-      throw new H(e);
+      throw new B(e);
 }
-class H extends Error {
+class B extends Error {
   constructor(...a) {
     super(...a);
   }
 }
-x.ParameterError = H;
+x.ParameterError = B;
 x.isFunction = Na;
 x.isNonEmptyString = Uo;
-x.isDate = Ho;
-x.isEmptyString = Bo;
+x.isDate = Bo;
+x.isEmptyString = Ho;
 x.isString = Ua;
-x.isObject = Ha;
+x.isObject = Ba;
 x.validate = Vo;
 var Go = "4.1.3";
 /*!
@@ -10272,7 +10274,7 @@ var Go = "4.1.3";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-const la = qa, Xo = yo, ia = Q, Zo = aa.Store, Ko = oa.MemoryCookieStore, Yo = ea.pathMatch, c = x, Qo = Go, { fromCallback: Ba } = $, { getCustomInspectSymbol: ae } = M, oe = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, ka = /[\x00-\x1F]/, ga = [`
+const la = qa, Xo = yo, ia = Q, Zo = aa.Store, Ko = oa.MemoryCookieStore, Yo = ea.pathMatch, c = x, Qo = Go, { fromCallback: Ha } = $, { getCustomInspectSymbol: ae } = M, oe = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/, ka = /[\x00-\x1F]/, ga = [`
 `, "\r", "\0"], ee = /[\x20-\x3A\x3C-\x7E]+/, ie = /[\x09\x20-\x2F\x3B-\x40\x5B-\x60\x7B-\x7E]/, ne = {
   jan: 0,
   feb: 1,
@@ -10286,7 +10288,7 @@ const la = qa, Xo = yo, ia = Q, Zo = aa.Store, Ko = oa.MemoryCookieStore, Yo = e
   oct: 9,
   nov: 10,
   dec: 11
-}, B = 2147483647e3, se = 0, ha = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
+}, H = 2147483647e3, se = 0, ha = 'Invalid sameSiteContext option for getCookies(); expected one of "strict", "lax", or "none"';
 function da(o) {
   c.validate(c.isNonEmptyString(o), o);
   const a = String(o).toLowerCase();
@@ -10515,7 +10517,7 @@ function fa(o, a) {
   const i = o.path ? o.path.length : 0;
   if (e = (a.path ? a.path.length : 0) - i, e !== 0)
     return e;
-  const s = o.creation ? o.creation.getTime() : B, t = a.creation ? a.creation.getTime() : B;
+  const s = o.creation ? o.creation.getTime() : H, t = a.creation ? a.creation.getTime() : H;
   return e = s - t, e !== 0 || (e = o.creationIndex - a.creationIndex), e;
 }
 function ba(o) {
@@ -10619,7 +10621,7 @@ class j {
   // elsewhere), except it returns a Date
   expiryDate(a) {
     const e = this.expiryTime(a);
-    return e == 1 / 0 ? new Date(B) : e == -1 / 0 ? new Date(se) : new Date(e);
+    return e == 1 / 0 ? new Date(H) : e == -1 / 0 ? new Date(se) : new Date(e);
   }
   // This replaces the "persistent-flag" parts of S5.3 step 3
   isPersistent() {
@@ -10931,9 +10933,9 @@ f.fromJSON = f.deserializeSync;
   "serialize",
   "setCookie"
 ].forEach((o) => {
-  f.prototype[o] = Ba(f.prototype[o]);
+  f.prototype[o] = Ha(f.prototype[o]);
 });
-f.deserialize = Ba(f.deserialize);
+f.deserialize = Ha(f.deserialize);
 function S(o) {
   return function(...a) {
     if (!this.store.synchronous)

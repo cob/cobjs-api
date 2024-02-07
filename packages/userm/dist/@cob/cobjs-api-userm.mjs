@@ -21,12 +21,12 @@ function Ea(e) {
     });
   }), o;
 }
-const D = 2147483647, P = 36, sa = 1, $ = 26, mo = 38, co = 700, Ia = 72, Ta = 128, qa = "-", lo = /^xn--/, po = /[^\0-\x7E]/, ho = /[\x2E\u3002\uFF0E\uFF61]/g, ko = {
+const D = 2147483647, P = 36, sa = 1, $ = 26, mo = 38, co = 700, Ia = 72, Ta = 128, qa = "-", lo = /^xn--/, po = /[^\0-\x7F]/, ho = /[\x2E\u3002\uFF0E\uFF61]/g, ko = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
 }, Y = P - sa, S = Math.floor, K = String.fromCharCode;
-function q(e) {
+function T(e) {
   throw new RangeError(ko[e]);
 }
 function go(e, a) {
@@ -58,7 +58,7 @@ function ta(e) {
   return a;
 }
 const Da = (e) => String.fromCodePoint(...e), jo = function(e) {
-  return e - 48 < 10 ? e - 22 : e - 65 < 26 ? e - 65 : e - 97 < 26 ? e - 97 : P;
+  return e >= 48 && e < 58 ? 26 + (e - 48) : e >= 65 && e < 91 ? e - 65 : e >= 97 && e < 123 ? e - 97 : P;
 }, ja = function(e, a) {
   return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
 }, Fa = function(e, a, o) {
@@ -71,38 +71,40 @@ const Da = (e) => String.fromCodePoint(...e), jo = function(e) {
   let i = 0, s = Ta, t = Ia, n = e.lastIndexOf(qa);
   n < 0 && (n = 0);
   for (let r = 0; r < n; ++r)
-    e.charCodeAt(r) >= 128 && q("not-basic"), a.push(e.charCodeAt(r));
+    e.charCodeAt(r) >= 128 && T("not-basic"), a.push(e.charCodeAt(r));
   for (let r = n > 0 ? n + 1 : 0; r < o; ) {
-    let u = i;
+    const u = i;
     for (let c = 1, l = P; ; l += P) {
-      r >= o && q("invalid-input");
+      r >= o && T("invalid-input");
       const w = jo(e.charCodeAt(r++));
-      (w >= P || w > S((D - i) / c)) && q("overflow"), i += w * c;
+      w >= P && T("invalid-input"), w > S((D - i) / c) && T("overflow"), i += w * c;
       const z = l <= t ? sa : l >= t + $ ? $ : l - t;
       if (w < z)
         break;
       const f = P - z;
-      c > S(D / f) && q("overflow"), c *= f;
+      c > S(D / f) && T("overflow"), c *= f;
     }
     const m = a.length + 1;
-    t = Fa(i - u, m, u == 0), S(i / m) > D - s && q("overflow"), s += S(i / m), i %= m, a.splice(i++, 0, s);
+    t = Fa(i - u, m, u == 0), S(i / m) > D - s && T("overflow"), s += S(i / m), i %= m, a.splice(i++, 0, s);
   }
   return String.fromCodePoint(...a);
 }, ra = function(e) {
   const a = [];
   e = ta(e);
-  let o = e.length, i = Ta, s = 0, t = Ia;
+  const o = e.length;
+  let i = Ta, s = 0, t = Ia;
   for (const u of e)
     u < 128 && a.push(K(u));
-  let n = a.length, r = n;
+  const n = a.length;
+  let r = n;
   for (n && a.push(qa); r < o; ) {
     let u = D;
     for (const c of e)
       c >= i && c < u && (u = c);
     const m = r + 1;
-    u - i > S((D - s) / m) && q("overflow"), s += (u - i) * m, i = u;
+    u - i > S((D - s) / m) && T("overflow"), s += (u - i) * m, i = u;
     for (const c of e)
-      if (c < i && ++s > D && q("overflow"), c == i) {
+      if (c < i && ++s > D && T("overflow"), c === i) {
         let l = s;
         for (let w = P; ; w += P) {
           const z = w <= t ? sa : w >= t + $ ? $ : w - t;
@@ -113,7 +115,7 @@ const Da = (e) => String.fromCodePoint(...e), jo = function(e) {
             K(ja(z + f % k, 0))
           ), l = S(f / k);
         }
-        a.push(K(ja(l, 0))), t = Fa(s, m, r == n), s = 0, ++r;
+        a.push(K(ja(l, 0))), t = Fa(s, m, r === n), s = 0, ++r;
       }
     ++s, ++i;
   }
@@ -132,7 +134,7 @@ const Da = (e) => String.fromCodePoint(...e), jo = function(e) {
    * @memberOf punycode
    * @type String
    */
-  version: "2.1.0",
+  version: "2.3.1",
   /**
    * An object of methods to convert from JavaScript's internal character
    * representation (UCS-2) to Unicode code points, and back.
@@ -11967,7 +11969,7 @@ const Le = function(e) {
       };
     }
   };
-}, T = function(e) {
+}, q = function(e) {
   const a = Le(e);
   return {
     /**
@@ -12065,7 +12067,7 @@ class He extends F {
    * @memberof RolesApi
    */
   addPermissions(a, o, i) {
-    return T(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
+    return q(this.configuration).addPermissions(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12076,7 +12078,7 @@ class He extends F {
    * @memberof RolesApi
    */
   createRole(a, o) {
-    return T(this.configuration).createRole(a, o).then((i) => i(this.axios)).then((i) => i.data);
+    return q(this.configuration).createRole(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * 
@@ -12087,7 +12089,7 @@ class He extends F {
    * @memberof RolesApi
    */
   deleteRole(a, o) {
-    return T(this.configuration).deleteRole(a, o).then((i) => i(this.axios)).then((i) => i.data);
+    return q(this.configuration).deleteRole(a, o).then((i) => i(this.axios)).then((i) => i.data);
   }
   /**
    * Retrieves the full details of a role.
@@ -12099,7 +12101,7 @@ class He extends F {
    * @memberof RolesApi
    */
   getRole(a, o, i) {
-    return T(this.configuration).getRole(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
+    return q(this.configuration).getRole(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * Retrieves the full details of a role.
@@ -12111,7 +12113,7 @@ class He extends F {
    * @memberof RolesApi
    */
   getRoleByProductAndName(a, o, i) {
-    return T(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
+    return q(this.configuration).getRoleByProductAndName(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12123,7 +12125,7 @@ class He extends F {
    * @memberof RolesApi
    */
   removePermissions(a, o, i) {
-    return T(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
+    return q(this.configuration).removePermissions(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
   /**
    * 
@@ -12135,7 +12137,7 @@ class He extends F {
    * @memberof RolesApi
    */
   updateRole(a, o, i) {
-    return T(this.configuration).updateRole(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
+    return q(this.configuration).updateRole(a, o, i).then((s) => s(this.axios)).then((s) => s.data);
   }
 }
 const De = function(e) {

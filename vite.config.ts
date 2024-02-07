@@ -33,7 +33,6 @@ module.exports = defineConfig({
         lib: {
             entry: path.resolve("./", "src/index.ts"),
             name: getPackageNameCamelCase(),
-            formats: ["es", "cjs"],
             fileName: (format) => {
                 // @ts-ignore
                 return fileName[format];

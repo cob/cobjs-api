@@ -21,7 +21,7 @@ function Sa(a) {
     });
   }), e;
 }
-const O = 2147483647, f = 36, J = 1, I = 26, oo = 38, eo = 700, Ca = 72, Aa = 128, Oa = "-", io = /^xn--/, so = /[^\0-\x7E]/, no = /[\x2E\u3002\uFF0E\uFF61]/g, to = {
+const O = 2147483647, f = 36, J = 1, I = 26, oo = 38, eo = 700, Ca = 72, Aa = 128, Oa = "-", io = /^xn--/, so = /[^\0-\x7F]/, no = /[\x2E\u3002\uFF0E\uFF61]/g, to = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
@@ -58,7 +58,7 @@ function W(a) {
   return o;
 }
 const qa = (a) => String.fromCodePoint(...a), uo = function(a) {
-  return a - 48 < 10 ? a - 22 : a - 65 < 26 ? a - 65 : a - 97 < 26 ? a - 97 : f;
+  return a >= 48 && a < 58 ? 26 + (a - 48) : a >= 65 && a < 91 ? a - 65 : a >= 97 && a < 123 ? a - 97 : f;
 }, na = function(a, o) {
   return a + 22 + 75 * (a < 26) - ((o != 0) << 5);
 }, Ia = function(a, o, e) {
@@ -73,11 +73,11 @@ const qa = (a) => String.fromCodePoint(...a), uo = function(a) {
   for (let r = 0; r < t; ++r)
     a.charCodeAt(r) >= 128 && C("not-basic"), o.push(a.charCodeAt(r));
   for (let r = t > 0 ? t + 1 : 0; r < e; ) {
-    let p = i;
+    const p = i;
     for (let m = 1, u = f; ; u += f) {
       r >= e && C("invalid-input");
       const g = uo(a.charCodeAt(r++));
-      (g >= f || g > w((O - i) / m)) && C("overflow"), i += g * m;
+      g >= f && C("invalid-input"), g > w((O - i) / m) && C("overflow"), i += g * m;
       const j = u <= n ? J : u >= n + I ? I : u - n;
       if (g < j)
         break;
@@ -91,10 +91,12 @@ const qa = (a) => String.fromCodePoint(...a), uo = function(a) {
 }, G = function(a) {
   const o = [];
   a = W(a);
-  let e = a.length, i = Aa, s = 0, n = Ca;
+  const e = a.length;
+  let i = Aa, s = 0, n = Ca;
   for (const p of a)
     p < 128 && o.push(R(p));
-  let t = o.length, r = t;
+  const t = o.length;
+  let r = t;
   for (t && o.push(Oa); r < e; ) {
     let p = O;
     for (const m of a)
@@ -102,7 +104,7 @@ const qa = (a) => String.fromCodePoint(...a), uo = function(a) {
     const c = r + 1;
     p - i > w((O - s) / c) && C("overflow"), s += (p - i) * c, i = p;
     for (const m of a)
-      if (m < i && ++s > O && C("overflow"), m == i) {
+      if (m < i && ++s > O && C("overflow"), m === i) {
         let u = s;
         for (let g = f; ; g += f) {
           const j = g <= n ? J : g >= n + I ? I : g - n;
@@ -113,7 +115,7 @@ const qa = (a) => String.fromCodePoint(...a), uo = function(a) {
             R(na(j + d % k, 0))
           ), u = w(d / k);
         }
-        o.push(R(na(u, 0))), n = Ia(s, c, r == t), s = 0, ++r;
+        o.push(R(na(u, 0))), n = Ia(s, c, r === t), s = 0, ++r;
       }
     ++s, ++i;
   }
@@ -132,7 +134,7 @@ const qa = (a) => String.fromCodePoint(...a), uo = function(a) {
    * @memberOf punycode
    * @type String
    */
-  version: "2.1.0",
+  version: "2.3.1",
   /**
    * An object of methods to convert from JavaScript's internal character
    * representation (UCS-2) to Unicode code points, and back.
