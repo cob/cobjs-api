@@ -27,14 +27,7 @@
               },
               "examples" : {
                 "payload" : {
-                  "value" : {
-                    "report" : "report_name.xlsx",
-                    "arguments" : {
-                      "arg1" : "value1",
-                      "arg2" : [ "a", "b" ]
-                    },
-                    "callback" : "https://example.com"
-                  }
+                  "value" : "{\"report\": \"report_name.xlsx\", \"arguments\": {\"arg1\": \"value1\", \"arg2\": [\"a\", \"b\"]},\"extracts\" : [{\"name\": \"EMAIL\", \"cellReference\": \"sheet1!A1\"}, ...],\"callback\" : \"https://example.com\"}"
                 }
               }
             },
@@ -233,6 +226,13 @@
             "type" : "object",
             "additionalProperties" : {
               "type" : "object"
+            }
+          },
+          "extracts" : {
+            "description" : "A Map specifying the values to be extracted after the report has been generated. The keys represent the name of the extract and the value a cell address in the form of \"sheet!A1\".",
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
             }
           },
           "callback" : {
