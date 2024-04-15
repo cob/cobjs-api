@@ -1,6 +1,8 @@
 /* eslint-disable */
 
 // May contain unused imports in some cases
+import { Permission } from "./permission"
+// May contain unused imports in some cases
 import { RoleLinks } from "./role-links"
 
 /**
@@ -45,4 +47,10 @@ export interface Role {
      * @memberof Role
      */
     '_links'?: RoleLinks;
+    /**
+     * 
+     * @type {Array<Permission>}
+     * @memberof Role
+     */
+    'permissions'?: Array<Permission>;
 }

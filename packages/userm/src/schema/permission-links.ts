@@ -49,12 +49,12 @@ export interface PermissionLinks {
      * @memberof PermissionLinks
      * @deprecated
      */
-    'remove-from'?: string;
+    'add-to'?: string;
     /**
      * 
      * @type {string}
      * @memberof PermissionLinks
      * @deprecated
      */
-    'add-to'?: string;
+    'remove-from'?: string;
 }

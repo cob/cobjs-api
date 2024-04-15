@@ -1,3 +1,5 @@
+import { GroupLinks } from "./group-links";
+import { Role } from "./role";
 /**
  *
  * @export
@@ -34,4 +36,16 @@ export interface Group {
      * @memberof Group
      */
     'version'?: number;
+    /**
+     *
+     * @type {GroupLinks}
+     * @memberof Group
+     */
+    '_links'?: GroupLinks;
+    /**
+     *
+     * @type {Array<Role>}
+     * @memberof Group
+     */
+    'roles'?: Array<Role>;
 }

@@ -1,8 +1,6 @@
 /* eslint-disable */
 
 // May contain unused imports in some cases
-import { Group } from "./group"
-// May contain unused imports in some cases
 import { User } from "./user"
 // May contain unused imports in some cases
 import { UserState } from "./user-state"
@@ -55,12 +53,6 @@ export interface CreateUserRequest {
      * @memberof CreateUserRequest
      */
     'substitute'?: User;
-    /**
-     * 
-     * @type {Array<Group>}
-     * @memberof CreateUserRequest
-     */
-    'groups'?: Array<Group>;
     /**
      * 
      * @type {UserState}

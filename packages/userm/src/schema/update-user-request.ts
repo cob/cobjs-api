@@ -1,8 +1,6 @@
 /* eslint-disable */
 
 // May contain unused imports in some cases
-import { Group } from "./group"
-// May contain unused imports in some cases
 import { User } from "./user"
 // May contain unused imports in some cases
 import { UserState } from "./user-state"
@@ -67,12 +65,6 @@ export interface UpdateUserRequest {
      * @memberof UpdateUserRequest
      */
     'version': number;
-    /**
-     * 
-     * @type {Array<Group>}
-     * @memberof UpdateUserRequest
-     */
-    'groups'?: Array<Group>;
     /**
      * 
      * @type {UserState}

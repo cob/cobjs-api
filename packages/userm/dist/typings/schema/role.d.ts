@@ -1,3 +1,4 @@
+import { Permission } from "./permission";
 import { RoleLinks } from "./role-links";
 /**
  *
@@ -41,4 +42,10 @@ export interface Role {
      * @memberof Role
      */
     '_links'?: RoleLinks;
+    /**
+     *
+     * @type {Array<Permission>}
+     * @memberof Role
+     */
+    'permissions'?: Array<Permission>;
 }

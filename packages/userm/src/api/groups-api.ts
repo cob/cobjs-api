@@ -10,7 +10,6 @@ import { CreateGroupRequest } from '../schema';
 import { FieldError } from '../schema';
 import { Group } from '../schema';
 import { UpdateGroupRequest } from '../schema';
-import { User } from '../schema';
 
 /**
  * GroupsApi - axios parameter creator
@@ -431,7 +430,7 @@ const GroupsApiFp = function(configuration: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteGroup(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance) => AxiosPromise<User>> {
+        async deleteGroup(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance) => AxiosPromise<Group>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroup(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, configuration);
         },

@@ -3,7 +3,6 @@ import { BaseAPI } from '@cob/cobjs-api-core';
 import { CreateGroupRequest } from '../schema';
 import { Group } from '../schema';
 import { UpdateGroupRequest } from '../schema';
-import { User } from '../schema';
 /**
  * GroupsApi - object-oriented interface
  * @export
@@ -48,7 +47,7 @@ export declare class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    deleteGroup(id: number, options?: AxiosRequestConfig): Promise<User>;
+    deleteGroup(id: number, options?: AxiosRequestConfig): Promise<Group>;
     /**
      * Retrieves the full details of a group.
      * @summary Retrieves a group by it\'s id

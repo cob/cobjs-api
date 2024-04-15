@@ -1,4 +1,3 @@
-import { Group } from "./group";
 import { User } from "./user";
 import { UserState } from "./user-state";
 /**
@@ -49,12 +48,6 @@ export interface CreateUserRequest {
      * @memberof CreateUserRequest
      */
     'substitute'?: User;
-    /**
-     *
-     * @type {Array<Group>}
-     * @memberof CreateUserRequest
-     */
-    'groups'?: Array<Group>;
     /**
      *
      * @type {UserState}

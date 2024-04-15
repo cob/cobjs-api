@@ -1,5 +1,9 @@
 /* eslint-disable */
 
+// May contain unused imports in some cases
+import { GroupLinks } from "./group-links"
+// May contain unused imports in some cases
+import { Role } from "./role"
 
 /**
  * 
@@ -37,4 +41,16 @@ export interface Group {
      * @memberof Group
      */
     'version'?: number;
+    /**
+     * 
+     * @type {GroupLinks}
+     * @memberof Group
+     */
+    '_links'?: GroupLinks;
+    /**
+     * 
+     * @type {Array<Role>}
+     * @memberof Group
+     */
+    'roles'?: Array<Role>;
 }
