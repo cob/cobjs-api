@@ -16,17 +16,11 @@ export interface CreatePermissionRequest {
      * @type {string}
      * @memberof CreatePermissionRequest
      */
-    'description': string;
-    /**
-     *
-     * @type {string}
-     * @memberof CreatePermissionRequest
-     */
-    'product'?: string;
+    'description'?: string;
     /**
      *
      * @type {ProductName}
      * @memberof CreatePermissionRequest
      */
-    'productName': ProductName;
+    'product': ProductName;
 }

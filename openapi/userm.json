@@ -546,7 +546,7 @@
         }
       }
     },
-    "/userm/permissions" : {
+    "/userm/permission" : {
       "post" : {
         "tags" : [ "Permissions" ],
         "summary" : "Creates a new permission",
@@ -595,7 +595,7 @@
         }
       }
     },
-    "/userm/permissions/{id}" : {
+    "/userm/permission/{id}" : {
       "get" : {
         "tags" : [ "Permissions" ],
         "summary" : "Retrieves a permission by it's id",
@@ -755,7 +755,7 @@
         }
       }
     },
-    "/userm/permissions/product/{product}/name/{name}" : {
+    "/userm/permission/product/{product}/name/{name}" : {
       "get" : {
         "tags" : [ "Permissions" ],
         "summary" : "Retrieves a permission by it's product and name",
@@ -800,7 +800,7 @@
         }
       }
     },
-    "/userm/roles/{id}/permissions" : {
+    "/userm/role/{id}/permissions" : {
       "put" : {
         "tags" : [ "Roles" ],
         "summary" : "Adds permissions to a role",
@@ -888,7 +888,7 @@
         }
       }
     },
-    "/userm/roles" : {
+    "/userm/role" : {
       "post" : {
         "tags" : [ "Roles" ],
         "summary" : "Creates a new role",
@@ -937,7 +937,7 @@
         }
       }
     },
-    "/userm/roles/{id}" : {
+    "/userm/role/{id}" : {
       "get" : {
         "tags" : [ "Roles" ],
         "summary" : "Retrieves a role by it's id",
@@ -1097,7 +1097,7 @@
         }
       }
     },
-    "/userm/roles/product/{product}/name/{name}" : {
+    "/userm/role/product/{product}/name/{name}" : {
       "get" : {
         "tags" : [ "Roles" ],
         "summary" : "Retrieves a role by it's product and name",
@@ -1658,6 +1658,7 @@
         }
       },
       "Group" : {
+        "required" : [ "id", "name", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -1706,6 +1707,7 @@
         }
       },
       "Permission" : {
+        "required" : [ "id", "name", "product", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -1762,6 +1764,7 @@
         }
       },
       "Role" : {
+        "required" : [ "id", "name", "product", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -1839,7 +1842,7 @@
         }
       },
       "CreateGroupRequest" : {
-        "required" : [ "description", "name" ],
+        "required" : [ "name" ],
         "type" : "object",
         "properties" : {
           "name" : {
@@ -1854,7 +1857,7 @@
         }
       },
       "UpdateGroupRequest" : {
-        "required" : [ "description", "id", "name", "version" ],
+        "required" : [ "id", "name", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -1877,7 +1880,7 @@
         }
       },
       "CreatePermissionRequest" : {
-        "required" : [ "description", "name", "productName" ],
+        "required" : [ "name", "product" ],
         "type" : "object",
         "properties" : {
           "name" : {
@@ -1887,19 +1890,16 @@
             "type" : "string"
           },
           "product" : {
-            "type" : "string"
-          },
-          "productName" : {
             "$ref" : "#/components/schemas/ProductName"
           }
         }
       },
       "ProductName" : {
         "type" : "string",
-        "enum" : [ "RECORDM", "DEVICEM", "INTEGRATIONM", "ELASTICSEARCH", "USERM" ]
+        "enum" : [ "recordm", "devicem", "integrationm", "elasticsearch", "userm" ]
       },
       "UpdatePermissionRequest" : {
-        "required" : [ "description", "id", "name", "productName", "version" ],
+        "required" : [ "id", "name", "product", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -1913,19 +1913,16 @@
             "type" : "string"
           },
           "product" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/ProductName"
           },
           "version" : {
             "type" : "integer",
             "format" : "int32"
-          },
-          "productName" : {
-            "$ref" : "#/components/schemas/ProductName"
           }
         }
       },
       "CreateRoleRequest" : {
-        "required" : [ "description", "name", "productName" ],
+        "required" : [ "name", "product" ],
         "type" : "object",
         "properties" : {
           "name" : {
@@ -1935,15 +1932,12 @@
             "type" : "string"
           },
           "product" : {
-            "type" : "string"
-          },
-          "productName" : {
             "$ref" : "#/components/schemas/ProductName"
           }
         }
       },
       "UpdateRoleRequest" : {
-        "required" : [ "description", "id", "name", "productName", "version" ],
+        "required" : [ "id", "name", "product", "version" ],
         "type" : "object",
         "properties" : {
           "id" : {
@@ -1957,14 +1951,11 @@
             "type" : "string"
           },
           "product" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/ProductName"
           },
           "version" : {
             "type" : "integer",
             "format" : "int32"
-          },
-          "productName" : {
-            "$ref" : "#/components/schemas/ProductName"
           }
         }
       },
@@ -2164,15 +2155,15 @@
           "perms" : {
             "type" : "string"
           },
-          "assign-substitute" : {
-            "type" : "string",
-            "deprecated" : true
-          },
           "add-to" : {
             "type" : "string",
             "deprecated" : true
           },
           "remove-from" : {
+            "type" : "string",
+            "deprecated" : true
+          },
+          "assign-substitute" : {
             "type" : "string",
             "deprecated" : true
           }

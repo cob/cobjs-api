@@ -14,13 +14,13 @@ export interface Permission {
      * @type {number}
      * @memberof Permission
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof Permission
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
@@ -32,13 +32,13 @@ export interface Permission {
      * @type {string}
      * @memberof Permission
      */
-    'product'?: string;
+    'product': string;
     /**
      * 
      * @type {number}
      * @memberof Permission
      */
-    'version'?: number;
+    'version': number;
     /**
      * 
      * @type {PermissionLinks}

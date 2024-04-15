@@ -20,19 +20,13 @@ export interface CreateRoleRequest {
      * @type {string}
      * @memberof CreateRoleRequest
      */
-    'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRoleRequest
-     */
-    'product'?: string;
+    'description'?: string;
     /**
      * 
      * @type {ProductName}
      * @memberof CreateRoleRequest
      */
-    'productName': ProductName;
+    'product': ProductName;
 }
 
 

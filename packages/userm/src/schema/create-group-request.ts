@@ -18,7 +18,7 @@ export interface CreateGroupRequest {
      * @type {string}
      * @memberof CreateGroupRequest
      */
-    'description': string;
+    'description'?: string;
     /**
      * 
      * @type {string}

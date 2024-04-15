@@ -16,13 +16,13 @@ export interface Role {
      * @type {number}
      * @memberof Role
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof Role
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
@@ -34,13 +34,13 @@ export interface Role {
      * @type {string}
      * @memberof Role
      */
-    'product'?: string;
+    'product': string;
     /**
      * 
      * @type {number}
      * @memberof Role
      */
-    'version'?: number;
+    'version': number;
     /**
      * 
      * @type {RoleLinks}

@@ -21,7 +21,7 @@ export interface UpdateGroupRequest {
      * @type {string}
      * @memberof UpdateGroupRequest
      */
-    'description': string;
+    'description'?: string;
     /**
      *
      * @type {string}

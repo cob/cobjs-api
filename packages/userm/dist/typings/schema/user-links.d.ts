@@ -64,13 +64,6 @@ export interface UserLinks {
      * @memberof UserLinks
      * @deprecated
      */
-    'assign-substitute'?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof UserLinks
-     * @deprecated
-     */
     'add-to'?: string;
     /**
      *
@@ -79,4 +72,11 @@ export interface UserLinks {
      * @deprecated
      */
     'remove-from'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UserLinks
+     * @deprecated
+     */
+    'assign-substitute'?: string;
 }

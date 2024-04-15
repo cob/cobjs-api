@@ -26,25 +26,19 @@ export interface UpdatePermissionRequest {
      * @type {string}
      * @memberof UpdatePermissionRequest
      */
-    'description': string;
+    'description'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ProductName}
      * @memberof UpdatePermissionRequest
      */
-    'product'?: string;
+    'product': ProductName;
     /**
      * 
      * @type {number}
      * @memberof UpdatePermissionRequest
      */
     'version': number;
-    /**
-     * 
-     * @type {ProductName}
-     * @memberof UpdatePermissionRequest
-     */
-    'productName': ProductName;
 }
 
 

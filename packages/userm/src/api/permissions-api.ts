@@ -28,7 +28,7 @@ const PermissionsApiAxiosParamCreator = function (configuration?: Configuration)
         createPermission: async (createPermissionRequest: CreatePermissionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'createPermissionRequest' is not null or undefined
             assertParamExists('createPermission', 'createPermissionRequest', createPermissionRequest)
-            const localVarPath = `/userm/userm/permissions`;
+            const localVarPath = `/userm/userm/permission`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -66,7 +66,7 @@ const PermissionsApiAxiosParamCreator = function (configuration?: Configuration)
         deletePermission: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deletePermission', 'id', id)
-            const localVarPath = `/userm/userm/permissions/{id}`
+            const localVarPath = `/userm/userm/permission/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -103,7 +103,7 @@ const PermissionsApiAxiosParamCreator = function (configuration?: Configuration)
         getPermission: async (id: number, ifNoneMatch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getPermission', 'id', id)
-            const localVarPath = `/userm/userm/permissions/{id}`
+            const localVarPath = `/userm/userm/permission/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -146,7 +146,7 @@ const PermissionsApiAxiosParamCreator = function (configuration?: Configuration)
             assertParamExists('getPermissionByProductAndName', 'product', product)
             // verify required parameter 'name' is not null or undefined
             assertParamExists('getPermissionByProductAndName', 'name', name)
-            const localVarPath = `/userm/userm/permissions/product/{product}/name/{name}`
+            const localVarPath = `/userm/userm/permission/product/{product}/name/{name}`
                 .replace(`{${"product"}}`, encodeURIComponent(String(product)))
                 .replace(`{${"name"}}`, encodeURIComponent(String(name)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -186,7 +186,7 @@ const PermissionsApiAxiosParamCreator = function (configuration?: Configuration)
             assertParamExists('updatePermission', 'id', id)
             // verify required parameter 'updatePermissionRequest' is not null or undefined
             assertParamExists('updatePermission', 'updatePermissionRequest', updatePermissionRequest)
-            const localVarPath = `/userm/userm/permissions/{id}`
+            const localVarPath = `/userm/userm/permission/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);

@@ -11603,7 +11603,7 @@ const qe = function(e) {
      */
     createPermission: async (a, o = {}) => {
       h("createPermission", "createPermissionRequest", a);
-      const i = "/userm/userm/permissions", s = new URL(i, g);
+      const i = "/userm/userm/permission", s = new URL(i, g);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
@@ -11623,7 +11623,7 @@ const qe = function(e) {
      */
     deletePermission: async (a, o = {}) => {
       h("deletePermission", "id", a);
-      const i = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, g);
+      const i = "/userm/userm/permission/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, g);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "DELETE", ...t, ...o }, r = {};
@@ -11644,7 +11644,7 @@ const qe = function(e) {
      */
     getPermission: async (a, o, i = {}) => {
       h("getPermission", "id", a);
-      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
+      const s = "/userm/userm/permission/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
@@ -11665,7 +11665,7 @@ const qe = function(e) {
      */
     getPermissionByProductAndName: async (a, o, i = {}) => {
       h("getPermissionByProductAndName", "product", a), h("getPermissionByProductAndName", "name", o);
-      const s = "/userm/userm/permissions/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, g);
+      const s = "/userm/userm/permission/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {};
@@ -11686,7 +11686,7 @@ const qe = function(e) {
      */
     updatePermission: async (a, o, i = {}) => {
       h("updatePermission", "id", a), h("updatePermission", "updatePermissionRequest", o);
-      const s = "/userm/userm/permissions/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
+      const s = "/userm/userm/permission/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
@@ -11833,7 +11833,7 @@ const Le = function(e) {
      */
     addPermissions: async (a, o, i = {}) => {
       h("addPermissions", "id", a), h("addPermissions", "requestBody", o);
-      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
+      const s = "/userm/userm/role/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
@@ -11853,7 +11853,7 @@ const Le = function(e) {
      */
     createRole: async (a, o = {}) => {
       h("createRole", "createRoleRequest", a);
-      const i = "/userm/userm/roles", s = new URL(i, g);
+      const i = "/userm/userm/role", s = new URL(i, g);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "POST", ...t, ...o }, r = {}, u = {};
@@ -11873,7 +11873,7 @@ const Le = function(e) {
      */
     deleteRole: async (a, o = {}) => {
       h("deleteRole", "id", a);
-      const i = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, g);
+      const i = "/userm/userm/role/{id}".replace("{id}", encodeURIComponent(String(a))), s = new URL(i, g);
       let t;
       e && (t = e.baseOptions);
       const n = { method: "DELETE", ...t, ...o }, r = {};
@@ -11894,7 +11894,7 @@ const Le = function(e) {
      */
     getRole: async (a, o, i = {}) => {
       h("getRole", "id", a);
-      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
+      const s = "/userm/userm/role/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {}, m = {};
@@ -11915,7 +11915,7 @@ const Le = function(e) {
      */
     getRoleByProductAndName: async (a, o, i = {}) => {
       h("getRoleByProductAndName", "product", a), h("getRoleByProductAndName", "name", o);
-      const s = "/userm/userm/roles/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, g);
+      const s = "/userm/userm/role/product/{product}/name/{name}".replace("{product}", encodeURIComponent(String(a))).replace("{name}", encodeURIComponent(String(o))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "GET", ...n, ...i }, u = {};
@@ -11936,7 +11936,7 @@ const Le = function(e) {
      */
     removePermissions: async (a, o, i = {}) => {
       h("removePermissions", "id", a), h("removePermissions", "requestBody", o);
-      const s = "/userm/userm/roles/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
+      const s = "/userm/userm/role/{id}/permissions".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "DELETE", ...n, ...i }, u = {}, m = {};
@@ -11957,7 +11957,7 @@ const Le = function(e) {
      */
     updateRole: async (a, o, i = {}) => {
       h("updateRole", "id", a), h("updateRole", "updateRoleRequest", o);
-      const s = "/userm/userm/roles/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
+      const s = "/userm/userm/role/{id}".replace("{id}", encodeURIComponent(String(a))), t = new URL(s, g);
       let n;
       e && (n = e.baseOptions);
       const r = { method: "PUT", ...n, ...i }, u = {}, m = {};
@@ -12632,11 +12632,11 @@ const Me = {
   INVALID_SUBSTITUTE_USER: "INVALID_SUBSTITUTE_USER",
   NOT_ALLOWED: "NOT_ALLOWED"
 }, Je = {
-  RECORDM: "RECORDM",
-  DEVICEM: "DEVICEM",
-  INTEGRATIONM: "INTEGRATIONM",
-  ELASTICSEARCH: "ELASTICSEARCH",
-  USERM: "USERM"
+  RECORDM: "recordm",
+  DEVICEM: "devicem",
+  INTEGRATIONM: "integrationm",
+  ELASTICSEARCH: "elasticsearch",
+  USERM: "userm"
 }, We = {
   ENABLED: "enabled",
   DISABLED: "disabled"

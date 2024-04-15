@@ -26,25 +26,19 @@ export interface UpdateRoleRequest {
      * @type {string}
      * @memberof UpdateRoleRequest
      */
-    'description': string;
+    'description'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ProductName}
      * @memberof UpdateRoleRequest
      */
-    'product'?: string;
+    'product': ProductName;
     /**
      * 
      * @type {number}
      * @memberof UpdateRoleRequest
      */
     'version': number;
-    /**
-     * 
-     * @type {ProductName}
-     * @memberof UpdateRoleRequest
-     */
-    'productName': ProductName;
 }
 
 

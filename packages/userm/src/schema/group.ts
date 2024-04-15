@@ -16,13 +16,13 @@ export interface Group {
      * @type {number}
      * @memberof Group
      */
-    'id'?: number;
+    'id': number;
     /**
      * 
      * @type {string}
      * @memberof Group
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
@@ -40,7 +40,7 @@ export interface Group {
      * @type {number}
      * @memberof Group
      */
-    'version'?: number;
+    'version': number;
     /**
      * 
      * @type {GroupLinks}
