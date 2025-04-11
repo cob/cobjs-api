@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@cob/cobjs-api-core": "0.5.0",
-    "axios": "^1.6.7"
+    "axios": "^1.8.4"
   }
 }
