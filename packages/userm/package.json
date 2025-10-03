@@ -12,7 +12,8 @@
   "typings": "./dist/typings/index.d.ts",
   "exports": {
     "require": "./dist/@cob/cobjs-api-userm.cjs",
-    "import": "./dist/@cob/cobjs-api-userm.mjs"
+    "import": "./dist/@cob/cobjs-api-userm.mjs",
+    "types": "./dist/typings/index.d.ts"
   },
   "files": [
     "dist"

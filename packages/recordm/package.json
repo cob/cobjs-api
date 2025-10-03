@@ -12,7 +12,8 @@
   "typings": "./dist/typings/index.d.ts",
   "exports": {
     "require": "./dist/@cob/cobjs-api-recordm.cjs",
-    "import": "./dist/@cob/cobjs-api-recordm.mjs"
+    "import": "./dist/@cob/cobjs-api-recordm.mjs",
+    "types": "./dist/typings/index.d.ts"
   },
   "files": [
     "dist",
